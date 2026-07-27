@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card machines for UK businesses | Countertop, portable & mobile — Stored</title>
+  <meta name="description" content="Countertop, portable and mobile card machines for UK businesses. Pre-configured, shipped next day, and ready to take payment. Contactless, chip & PIN, Apple Pay and Google Pay.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.joinstored.com/solutions/in-person/terminals.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Card machines for UK businesses | Countertop, portable & mobile — Stored">
+  <meta property="og:description" content="Countertop, portable and mobile card machines for UK businesses. Pre-configured, shipped next day.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.joinstored.com/solutions/in-person/terminals.html">
+  <meta property="og:image" content="/assets/images/og-default.jpg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/variables.css?v=brand-2">
+  <link rel="stylesheet" href="../../css/base.css?v=brand-2">
+  <link rel="stylesheet" href="../../css/components.css?v=brand-2">
+  <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
+  <link rel="stylesheet" href="../../css/header.css">
+  <link rel="stylesheet" href="../../css/footer.css">
+  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-9">
+  <style>
+    /* Homepage-pattern hero: full-width two-line headline at homepage scale */
+    .solution-hero .solution-hero__inner {
+      grid-template-columns: 1fr;
+      gap: 0;
+      position: relative;
+    }
+
+    /* Spacing mirrors the homepage hero: 32px pill-to-title (9 + 23),
+       72px title-to-subtitle, 47px subtitle-to-actions */
+    .solution-hero .solution-hero__inner .solution-hero__title {
+      font-size: clamp(5rem, 3.5rem + 11vw, 12rem);
+      line-height: calc(0.85em + 5px);
+      letter-spacing: -0.05em;
+      margin-top: 23px;
+      /* Optically matched to the homepage: "settled." has no descenders,
+         so the CSS margin is smaller to read as the same visual gap */
+      margin-bottom: 40px;
+    }
+
+    .solution-hero__asterisk {
+      color: var(--hot);
+      display: inline-block;
+      margin-left: 0.05em;
+    }
+
+    .solution-hero__subtitle-asterisk {
+      color: var(--hot);
+      margin-right: 0.4em;
+    }
+
+    .solution-hero__subtitle {
+      max-width: 660px;
+    }
+
+    /* Phone sits absolutely, vertically centred against the whole hero block,
+       sliding in from the right like the POS demo */
+    .solution-hero__visual {
+      position: absolute;
+      right: 0;
+      top: calc(50% - 20px);
+      width: 300px;
+      transform: translateY(-50%);
+      animation: terminal-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
+    }
+
+    /* translateY(-50%) must ride along in every frame or the entrance
+       animation would wipe out the vertical centring */
+    @keyframes terminal-slide-in {
+      from { opacity: 0; transform: translateY(-50%) translateX(90px); }
+      to { opacity: 1; transform: translateY(-50%); }
+    }
+
+    /* Uniform scale keeps the phone's true proportions */
+    .solution-hero__visual .phone-demo {
+      transform: scale(0.858);
+      transform-origin: right center;
+    }
+
+    /* High-fidelity app demo phone, cycling through the payment states */
+    .phone-demo {
+      width: min(300px, 100%);
+      margin: 0 0 0 auto;
+      background: #101014;
+      /* Card terminal housing: boxier corners, tall black forehead housing
+         the contactless mark and printer slot, like a real payment terminal */
+      border-radius: 32px;
+      padding: 52px 10px 14px;
+      position: relative;
+      /* Same shading language as the POS page's cut edges: soft ink shadow,
+         light falling from the top left */
+      box-shadow: 24px 32px 64px rgba(11, 27, 51, 0.18);
+    }
+
+    .demo-sketch {
+      position: relative;
+      width: 100%;
+    }
+
+    /* Receipt printer slot, at the base of the forehead */
+    .phone-demo::after {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 104px;
+      height: 5px;
+      border-radius: 3px;
+      background: #33333B;
+      z-index: 2;
+    }
+
+    /* Contactless mark in the forehead */
+    .phone-demo::before {
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 24px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.55)' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M9 9a4.2 4.2 0 0 1 0 6'/%3E%3Cpath d='M12.2 7.2a7.4 7.4 0 0 1 0 9.6'/%3E%3Cpath d='M15.4 5.4a10.6 10.6 0 0 1 0 13.2'/%3E%3C/svg%3E") center / contain no-repeat;
+      z-index: 2;
+    }
+
+    .phone-demo__screens {
+      display: grid;
+      /* Concentric with the housing: outer 32 minus the 10px side bezel */
+      border-radius: 22px;
+      overflow: hidden;
+    }
+
+    .phone-demo .hero__card-state {
+      grid-area: 1 / 1;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+
+    .phone-demo .hero__card-state.is-active {
+      opacity: 1;
+    }
+
+    .phone-demo__screen {
+      /* A whisper lighter than the site's paper, for marginal contrast */
+      background: #F6F3EC;
+      min-height: 588px;
+      padding: 52px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-body);
+    }
+
+    .pd-amount {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin: 26px 0 30px;
+    }
+
+    .pd-amount__currency {
+      font-size: 19px;
+      font-weight: 700;
+      vertical-align: 8px;
+      margin-right: 3px;
+    }
+
+    .pd-keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      /* Keypad and CTAs sink to the foot of the screen; amount stays put */
+      margin-top: auto;
+      margin-bottom: 18px;
+    }
+
+    .pd-keypad button {
+      height: 50px;
+      background: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      box-shadow: 0 1px 2px rgba(11, 27, 51, 0.07);
+      pointer-events: none;
+    }
+
+    .pd-cta {
+      height: 46px;
+      border-radius: 12px;
+      background: var(--hot);
+      color: #FFFFFF;
+      font-size: 13.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* The CTA presses (darker pink + slight shrink) just before the
+       cycle moves to the tap screen: cause, then effect */
+    .phone-demo .hero__card-state.is-active .pd-cta:not(.pd-cta--outline) {
+      animation: pd-press 4s ease forwards;
+    }
+
+    @keyframes pd-press {
+      0%, 80% { background: var(--hot); transform: scale(1); }
+      86%, 94% { background: #6E44FF; transform: scale(0.96); }
+      100% { background: #6E44FF; transform: scale(0.96); }
+    }
+
+    /* Inactive screens hold their end states so fade-outs never snap back */
+    .phone-demo .hero__card-state:not(.is-active) .pd-cta:not(.pd-cta--outline) {
+      background: #6E44FF;
+      transform: scale(0.96);
+    }
+
+    /* Amount types itself: 2, 5, 0, 0 in the real pence-entry pattern */
+    .pd-amount--cycle {
+      display: grid;
+    }
+
+    .pd-amount__step {
+      grid-area: 1 / 1;
+      opacity: 0;
+    }
+
+    .pd-amount__step:last-child {
+      opacity: 1;
+    }
+
+    .phone-demo .hero__card-state.is-active .pd-amount__step:nth-child(1) { animation: pd-amt-1 4s steps(1, end) both; }
+    .phone-demo .hero__card-state.is-active .pd-amount__step:nth-child(2) { animation: pd-amt-2 4s steps(1, end) both; }
+    .phone-demo .hero__card-state.is-active .pd-amount__step:nth-child(3) { animation: pd-amt-3 4s steps(1, end) both; }
+    .phone-demo .hero__card-state.is-active .pd-amount__step:nth-child(4) { animation: pd-amt-4 4s steps(1, end) both; }
+    .phone-demo .hero__card-state.is-active .pd-amount__step:nth-child(5) { animation: pd-amt-5 4s steps(1, end) both; }
+
+    @keyframes pd-amt-1 { 0% { opacity: 1; } 16%, 100% { opacity: 0; } }
+    @keyframes pd-amt-2 { 0%, 15% { opacity: 0; } 16% { opacity: 1; } 32%, 100% { opacity: 0; } }
+    @keyframes pd-amt-3 { 0%, 31% { opacity: 0; } 32% { opacity: 1; } 48%, 100% { opacity: 0; } }
+    @keyframes pd-amt-4 { 0%, 47% { opacity: 0; } 48% { opacity: 1; } 64%, 100% { opacity: 0; } }
+    @keyframes pd-amt-5 { 0%, 63% { opacity: 0; } 64%, 100% { opacity: 1; } }
+
+    /* Matching key presses */
+    .phone-demo .hero__card-state.is-active .pd-key-2 { animation: pd-key-a 4s ease both; }
+    .phone-demo .hero__card-state.is-active .pd-key-5 { animation: pd-key-b 4s ease both; }
+    .phone-demo .hero__card-state.is-active .pd-key-0 { animation: pd-key-c 4s ease both; }
+
+    @keyframes pd-key-a {
+      0%, 12% { background: #FFFFFF; transform: scale(1); }
+      14%, 16% { background: #C8D1DC; transform: scale(0.93); }
+      19%, 100% { background: #FFFFFF; transform: scale(1); }
+    }
+
+    @keyframes pd-key-b {
+      0%, 28% { background: #FFFFFF; transform: scale(1); }
+      30%, 32% { background: #C8D1DC; transform: scale(0.93); }
+      35%, 100% { background: #FFFFFF; transform: scale(1); }
+    }
+
+    @keyframes pd-key-c {
+      0%, 44% { background: #FFFFFF; transform: scale(1); }
+      46%, 48% { background: #C8D1DC; transform: scale(0.93); }
+      51%, 60% { background: #FFFFFF; transform: scale(1); }
+      62%, 64% { background: #C8D1DC; transform: scale(0.93); }
+      67%, 100% { background: #FFFFFF; transform: scale(1); }
+    }
+
+    /* Subtle motion in the three-steps illustrations, homepage style */
+    .anim-open {
+      transform-box: view-box;
+      transform-origin: 160px 112px;
+      animation: t-swing 3.4s ease-in-out infinite;
+    }
+
+    @keyframes t-swing {
+      0%, 100% { transform: rotate(2.5deg); }
+      50% { transform: rotate(-2.5deg); }
+    }
+
+    .anim-bob {
+      animation: t-bob 3s ease-in-out infinite;
+    }
+
+    @keyframes t-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .anim-total {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: t-pulse 2.6s ease-in-out infinite;
+    }
+
+    @keyframes t-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.09); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .anim-open, .anim-bob, .anim-total,
+      .solution-hero__visual,
+      .phone-demo .hero__card-state.is-active .pd-cta:not(.pd-cta--outline),
+      .phone-demo .hero__card-state.is-active .pd-amount__step,
+      .phone-demo .hero__card-state.is-active .pd-key-2,
+      .phone-demo .hero__card-state.is-active .pd-key-5,
+      .phone-demo .hero__card-state.is-active .pd-key-0,
+      .phone-demo .hero__card-state.is-active .pd-success svg,
+      .phone-demo .hero__card-state.is-active .pd-success path {
+        animation: none;
+      }
+
+      .pd-amount__step:not(:last-child) {
+        opacity: 0;
+      }
+    }
+
+    .pd-cta--outline {
+      background: #FFFFFF;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      margin-top: 9px;
+    }
+
+    .pd-tap {
+      display: flex;
+      justify-content: center;
+      margin: 40px 0 34px;
+    }
+
+    .pd-tap__ring {
+      width: 150px;
+      height: 150px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Pale halo pulses gently; the pink core stays still */
+    .pd-tap__ring::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: rgba(235, 24, 87, 0.14);
+      animation: pd-pulse 2s var(--ease-in-out, ease-in-out) infinite;
+    }
+
+    @keyframes pd-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.75; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pd-tap__ring::before {
+        animation: none;
+      }
+    }
+
+    .pd-tap__ring svg {
+      width: 96px;
+      height: 96px;
+      background: var(--hot);
+      border-radius: 50%;
+      padding: 24px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .pd-tap__label {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .pd-footnote {
+      margin-top: auto;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(11, 27, 51, 0.55);
+    }
+
+    .pd-success {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0 18px;
+    }
+
+    .pd-success svg {
+      width: 76px;
+      height: 76px;
+      transform-origin: center;
+    }
+
+    .pd-success path {
+      stroke-dasharray: 27;
+      stroke-dashoffset: 0;
+    }
+
+    /* Approved screen: badge pops in, then the tick draws itself */
+    .phone-demo .hero__card-state.is-active .pd-success svg {
+      animation: pd-tick-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      animation-delay: 0.2s;
+    }
+
+    .phone-demo .hero__card-state.is-active .pd-success path {
+      animation: pd-tick-draw 0.4s ease-out both;
+      animation-delay: 0.55s;
+    }
+
+    @keyframes pd-tick-pop {
+      from { transform: scale(0.4); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pd-tick-draw {
+      from { stroke-dashoffset: 27; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .pd-receipt {
+      background: #FFFFFF;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 22px 0 12px;
+      box-shadow: 0 1px 2px rgba(11, 27, 51, 0.07);
+    }
+
+    .pd-receipt__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      padding: 5px 0;
+      font-size: 12px;
+    }
+
+    .pd-receipt__row span {
+      color: rgba(11, 27, 51, 0.55);
+      font-weight: 500;
+    }
+
+    .pd-receipt__row strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .pd-receipt__row--total strong {
+      color: var(--ink);
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .pd-receipt__divider {
+      border-top: 1.5px dashed rgba(11, 27, 51, 0.18);
+      margin: 6px 0;
+    }
+
+    /* Approved screen: tick and receipt hold position, button sits at the foot */
+    .pd-receipt + .pd-cta--outline {
+      margin-top: auto;
+    }
+
+    @media (max-width: 968px) {
+      .solution-hero__visual {
+        position: static;
+        transform: none;
+        margin-top: var(--space-10);
+      }
+
+      .phone-demo {
+        margin: 0 auto;
+      }
+    }
+
+    /* Shorter laptop screens: same compression as the homepage hero,
+       so spacing matches at every viewport height */
+    @media (min-width: 769px) and (max-height: 900px) {
+      .solution-hero {
+        min-height: calc(100vh - 110px);
+        padding-top: 94px;
+        padding-bottom: 42px;
+      }
+
+      .solution-hero .solution-hero__inner .solution-hero__title {
+        margin-top: 16px;
+        margin-bottom: 26px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .solution-hero .solution-hero__inner .solution-hero__title {
+        font-size: clamp(3rem, 2.5rem + 5vw, 5rem);
+      }
+    }
+  </style>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- HEADER                                   -->
+  <!-- ════════════════════════════════════════ -->
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="Stored — Home">
+        <img src="/assets/images/stored-logo.svg" alt="Stored" width="129" height="28">
+      </a>
+
+      <nav class="header__nav" role="navigation" aria-label="Primary">
+        <a href="#" class="nav-link" data-mega-trigger="mega-solutions">
+          Solutions
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="nav-link" data-mega-trigger="mega-sectors">
+          Sectors
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/pricing.html" class="nav-link">Pricing</a>
+        <a href="/resources/" class="nav-link">Resources</a>
+        <a href="#" class="nav-link" data-mega-trigger="mega-company">
+          Company
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#" class="btn btn--secondary btn--sm">Sign in</a>
+        <a href="/sign-up.html" class="btn btn--primary btn--sm">Sign up</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+    </div>
+
+    <!-- Solutions mega menu -->
+    <div class="mega-menu" id="mega-solutions" role="menu">
+      <div class="mega-menu__inner">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">In-Person Payments</div>
+          <a href="/solutions/in-person/terminals.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Card Machines</span>
+              <span class="mega-menu__link-desc">Countertop, portable & mobile</span>
+            </div>
+          </a>
+          <a href="/solutions/in-person/pos.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">POS Solutions</span>
+              <span class="mega-menu__link-desc">Full POS for counter, table & field</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Digital Payments</div>
+          <a href="/solutions/digital/gateway.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Payment Gateway</span>
+              <span class="mega-menu__link-desc">Cards & wallets on your site</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/hosted-checkout.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Hosted Checkout</span>
+              <span class="mega-menu__link-desc">Branded checkout pages, no code</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/pay-by-link.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Pay-by-Link</span>
+              <span class="mega-menu__link-desc">SMS, email, WhatsApp or QR</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/invoicing.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Digital Invoicing</span>
+              <span class="mega-menu__link-desc">Invoices with built-in payment</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/virtual-terminal.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Virtual Terminal</span>
+              <span class="mega-menu__link-desc">MOTO payments, PCI compliant</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/bulk-payments.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Bulk Payments</span>
+              <span class="mega-menu__link-desc">Hundreds of payment links at once</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Merchant Platform</div>
+          <a href="/solutions/platform/orders.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Order Management</span>
+              <span class="mega-menu__link-desc">Every order, every channel</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/reporting.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Reporting & Analytics</span>
+              <span class="mega-menu__link-desc">Real-time cross-channel reporting</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/refunds-returns.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Refunds & Returns</span>
+              <span class="mega-menu__link-desc">Fast, auditable refund workflows</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/brand-control.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Brand Control</span>
+              <span class="mega-menu__link-desc">Your brand on every touchpoint</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/tickets-events.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Tickets &amp; Events</span>
+              <span class="mega-menu__link-desc">Sell, scan and settle events</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/gift-vouchers.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Gift Vouchers</span>
+              <span class="mega-menu__link-desc">Digital vouchers, sold and redeemed</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">See Stored in action.</div>
+            <p class="mega-menu__promo-text">20 minutes with a payments specialist. No pressure, no commitment.</p>
+          </div>
+          <a href="/sign-up.html" class="btn btn--primary btn--sm" style="align-self: flex-start;">Sign up now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sectors mega menu -->
+    <div class="mega-menu" id="mega-sectors" role="menu">
+      <div class="mega-menu__inner">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Consumer-facing</div>
+          <a href="/sectors/hospitality.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Hospitality</span>
+              <span class="mega-menu__link-desc">Restaurants, bars &amp; caf&eacute;s</span>
+            </div>
+          </a>
+          <a href="/sectors/beauty-wellness.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Beauty &amp; Wellness</span>
+              <span class="mega-menu__link-desc">Salons, spas &amp; clinics</span>
+            </div>
+          </a>
+          <a href="/sectors/retail.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Retail</span>
+              <span class="mega-menu__link-desc">Single &amp; multi-store shops</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Service &amp; trade</div>
+          <a href="/sectors/services.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Services</span>
+              <span class="mega-menu__link-desc">Trades, agencies &amp; field teams</span>
+            </div>
+          </a>
+          <a href="/sectors/b2b.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">B2B</span>
+              <span class="mega-menu__link-desc">Net-term invoicing &amp; MOTO</span>
+            </div>
+          </a>
+          <a href="/sectors/wholesale.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Wholesale</span>
+              <span class="mega-menu__link-desc">Bulk billing &amp; ERP integrations</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Browse</div>
+          <a href="/sectors/" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">All sectors</span>
+              <span class="mega-menu__link-desc">Every sector Stored serves</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">Not sure which fits?</div>
+            <p class="mega-menu__promo-text">20 minutes with a payments specialist. We&rsquo;ll map Stored to your sector.</p>
+          </div>
+          <a href="/sign-up.html" class="btn btn--primary btn--sm" style="align-self: flex-start;">Sign up now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company mega menu -->
+    <div class="mega-menu" id="mega-company" role="menu">
+      <div class="mega-menu__inner" style="grid-template-columns: 1fr 1fr 1fr 280px;">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Company</div>
+          <a href="/about.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">About Stored</span>
+              <span class="mega-menu__link-desc">Our story, mission and team</span>
+            </div>
+          </a>
+          <a href="/partners.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Partners</span>
+              <span class="mega-menu__link-desc">Worldpay, Cashflows, Clover</span>
+            </div>
+          </a>
+          <a href="/careers.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Careers</span>
+              <span class="mega-menu__link-desc">Join the team</span>
+            </div>
+          </a>
+          <a href="/contact.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Contact</span>
+              <span class="mega-menu__link-desc">Sales, support & press</span>
+            </div>
+          </a>
+          <a href="/homepage-test.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Homepage test</span>
+              <span class="mega-menu__link-desc">The blurple prototype, for reference</span>
+            </div>
+          </a>
+        </div>
+        <div class="mega-menu__column"></div>
+        <div class="mega-menu__column"></div>
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">Powered by world-class partners.</div>
+            <p class="mega-menu__promo-text">Worldpay, Cashflows and Clover — trusted rails behind every transaction.</p>
+          </div>
+          <a href="/partners.html" class="btn btn--white btn--sm" style="align-self: flex-start;">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav">
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Solutions</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/solutions/in-person/terminals.html" class="mobile-nav__link">In-Person Payments</a>
+        <a href="/solutions/digital/gateway.html" class="mobile-nav__link">Digital Payments</a>
+        <a href="/solutions/platform/orders.html" class="mobile-nav__link">Merchant Platform</a>
+      </div>
+    </div>
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Sectors</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/sectors/" class="mobile-nav__link">All Sectors</a>
+        <a href="/sectors/hospitality.html" class="mobile-nav__link">Hospitality</a>
+        <a href="/sectors/beauty-wellness.html" class="mobile-nav__link">Beauty &amp; Wellness</a>
+        <a href="/sectors/retail.html" class="mobile-nav__link">Retail</a>
+        <a href="/sectors/services.html" class="mobile-nav__link">Services</a>
+        <a href="/sectors/b2b.html" class="mobile-nav__link">B2B</a>
+        <a href="/sectors/wholesale.html" class="mobile-nav__link">Wholesale</a>
+      </div>
+    </div>
+    <div class="mobile-nav__section">
+      <a href="/pricing.html" class="mobile-nav__link">Pricing</a>
+    </div>
+    <div class="mobile-nav__section">
+      <a href="/resources/" class="mobile-nav__link">Resources</a>
+    </div>
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Company</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/about.html" class="mobile-nav__link">About</a>
+        <a href="/partners.html" class="mobile-nav__link">Partners</a>
+        <a href="/careers.html" class="mobile-nav__link">Careers</a>
+        <a href="/contact.html" class="mobile-nav__link">Contact</a>
+        <a href="/homepage-test.html" class="mobile-nav__link">Homepage test</a>
+      </div>
+    </div>
+    <div class="mobile-nav__actions">
+      <a href="/sign-up.html" class="btn btn--primary">Sign up</a>
+      <a href="/book-a-demo.html" class="btn btn--secondary">Book a demo</a>
+      <a href="#" class="btn btn--ghost">Sign in</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ════════════════════════════════════════ -->
+    <!-- HERO                                     -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="solution-hero">
+      <div class="container">
+        <div class="solution-hero__inner">
+          <div class="solution-hero__content" data-animate>
+            <h1 class="solution-hero__title">Tap, paid,<br><span style="white-space: nowrap;">settled.<span class="solution-hero__asterisk">*</span></span></h1>
+            <div class="solution-hero__row">
+              <div class="solution-hero__row-text">
+                <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>in your account the next working day. Countertop, portable and mobile, pre-configured and ready out of the box.</p>
+                <div class="solution-hero__actions">
+                  <a href="/sign-up.html" class="btn btn--primary btn--lg btn--icon-right">
+                    Sign up now
+                    <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </a>
+                  <a href="/pricing.html" class="btn btn--secondary btn--lg">See pricing</a>
+                </div>
+                <div class="solution-hero__trust">
+                  <img class="solution-hero__trust-logo" src="/assets/icons/trustpilot_logo.svg" alt="Trustpilot" loading="lazy">
+                  <span class="solution-hero__trust-text">Rated <strong>4.8 Excellent</strong></span>
+                </div>
+              </div>
+              <div class="solution-hero__visual">
+                <div class="demo-sketch">
+                <div class="phone-demo" role="img" aria-label="The Stored payment app taking a &#163;25 payment: enter amount, tap card or phone, payment approved with receipt">
+                  <div class="phone-demo__screens" data-cycle-card data-cycle-interval="4000">
+                    <!-- State 1: enter amount -->
+                    <div class="hero__card-state is-active phone-demo__screen">
+                      <div class="pd-amount pd-amount--cycle">
+                        <span class="pd-amount__step"><span class="pd-amount__currency">&#163;</span>0.00</span>
+                        <span class="pd-amount__step"><span class="pd-amount__currency">&#163;</span>0.02</span>
+                        <span class="pd-amount__step"><span class="pd-amount__currency">&#163;</span>0.25</span>
+                        <span class="pd-amount__step"><span class="pd-amount__currency">&#163;</span>2.50</span>
+                        <span class="pd-amount__step"><span class="pd-amount__currency">&#163;</span>25.00</span>
+                      </div>
+                      <div class="pd-keypad">
+                        <button type="button" tabindex="-1">1</button>
+                        <button type="button" tabindex="-1" class="pd-key-2">2</button>
+                        <button type="button" tabindex="-1">3</button>
+                        <button type="button" tabindex="-1">4</button>
+                        <button type="button" tabindex="-1" class="pd-key-5">5</button>
+                        <button type="button" tabindex="-1">6</button>
+                        <button type="button" tabindex="-1">7</button>
+                        <button type="button" tabindex="-1">8</button>
+                        <button type="button" tabindex="-1">9</button>
+                        <button type="button" tabindex="-1">00</button>
+                        <button type="button" tabindex="-1" class="pd-key-0">0</button>
+                        <button type="button" tabindex="-1" aria-label="Delete">&#9003;</button>
+                      </div>
+                      <div class="pd-cta">Take card payment</div>
+                      <div class="pd-cta pd-cta--outline">Other payment methods</div>
+                    </div>
+                    <!-- State 2: tap card or phone -->
+                    <div class="hero__card-state phone-demo__screen">
+                      <div class="pd-amount"><span class="pd-amount__currency">&#163;</span>25.00</div>
+                      <div class="pd-tap">
+                        <div class="pd-tap__ring">
+                          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                            <path d="M 15.3 21 A 4.5 4.5 0 0 1 15.3 27" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M 19.4 17.3 A 10 10 0 0 1 19.4 30.7" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M 23.5 13.6 A 15.5 15.5 0 0 1 23.5 34.4" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M 27.6 10 A 21 21 0 0 1 27.6 38" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="pd-tap__label">Tap card or phone</div>
+                      <div class="pd-footnote">Insert card for Chip &amp; PIN</div>
+                    </div>
+                    <!-- State 3: approved + receipt -->
+                    <div class="hero__card-state phone-demo__screen">
+                      <div class="pd-success">
+                        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                          <circle cx="24" cy="24" r="24" fill="#31D895"/>
+                          <path d="M15 24.5 L21 30.5 L33 17.5" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div class="pd-tap__label">Payment approved</div>
+                      <div class="pd-receipt">
+                        <div class="pd-receipt__row pd-receipt__row--total"><span>Total</span><strong>&#163;25.00</strong></div>
+                        <div class="pd-receipt__divider"></div>
+                        <div class="pd-receipt__row"><span>Card</span><strong>Visa &#8226;&#8226;&#8226;&#8226; 4321</strong></div>
+                        <div class="pd-receipt__row"><span>Type</span><strong>Contactless</strong></div>
+                        <div class="pd-receipt__row"><span>Time</span><strong>Today, 09:41</strong></div>
+                        <div class="pd-receipt__divider"></div>
+                        <div class="pd-receipt__row"><span>Settled</span><strong>Next working day</strong></div>
+                      </div>
+                      <div class="pd-cta pd-cta--outline">Send receipt</div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#below-hero" class="scroll-hint" aria-label="Scroll down">
+        <span class="scroll-hint__text">Scroll</span>
+        <svg class="scroll-hint__icon" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" stroke-width="1.6"/>
+          <circle class="scroll-hint__wheel" cx="8" cy="7" r="1.6" fill="currentColor"/>
+        </svg>
+      </a>
+
+    </section>
+
+    <div class="marquee">
+      <div class="marquee__track">
+        <span class="marquee__item">COUNTERTOP <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">PORTABLE <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">MOBILE <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">CONTACTLESS <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">CHIP <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">TAP <span class="marquee__separator">&rarr;</span></span>
+      </div>
+    </div>
+
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- DEVICE GRID                              -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--compact">
+      <div class="container">
+        <div class="section-header section-header--center section-header--tight section-header--wide" data-animate>
+          <h2 class="section-header__title">Three machines. One standard.</h2>
+          <p class="section-header__subtitle">Every terminal ships pre-configured, ready to go.</p>
+        </div>
+
+        <div class="device-grid" data-stagger>
+          <div class="device-card">
+            <div class="device-card__image" style="background-image: url('https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=600&q=80&auto=format&fit=crop'); background-size: cover; background-position: center; color: transparent;">Countertop terminal</div>
+            <div class="device-card__body">
+              <div class="device-card__badge">Countertop</div>
+              <div class="device-card__title">Fixed Terminal</div>
+              <p class="device-card__desc">Mains-powered and ethernet-connected for maximum reliability. The workhorse for any counter, till point or reception desk.</p>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="device-card__image" style="background-image: url('https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600&q=80&auto=format&fit=crop'); background-size: cover; background-position: center; color: transparent;">Portable terminal</div>
+            <div class="device-card__body">
+              <div class="device-card__badge">Portable</div>
+              <div class="device-card__title">Wireless Terminal</div>
+              <p class="device-card__desc">Battery-powered with Wi-Fi connectivity. Take payment tableside, in the queue, across the shop floor or anywhere within range.</p>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="device-card__image" style="background-image: url('https://images.unsplash.com/photo-1556740758-90de374c12ad?w=600&q=80&auto=format&fit=crop'); background-size: cover; background-position: center; color: transparent;">Mobile terminal</div>
+            <div class="device-card__body">
+              <div class="device-card__badge">Mobile</div>
+              <div class="device-card__title">On-the-Go Terminal</div>
+              <p class="device-card__desc">4G SIM-connected with all-day battery life. Built for deliveries, markets, pop-ups, field service and anywhere without Wi-Fi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- STATS BAND                               -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--stats">
+      <div class="container">
+        <div class="stats-typewriter" data-animate>
+          <span class="stats-typewriter__cycle" data-typewriter-cycle="Fastest tap.|Flattest rate.|Quickest cash.|Fairest price.|Calmest support.|Sharpest setup."></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- HOW TO CHOOSE                            -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header section-header--center" data-animate>
+          <h2 class="section-header__title">Pick the right terminal in <span class="highlight">three steps.</span></h2>
+        </div>
+
+        <div class="why-grid" data-stagger>
+
+          <!-- Step 1: Where do you trade? — storefront -->
+          <div class="why-card">
+            <div class="why-card__illustration">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="Where do you trade — your storefront">
+                <ellipse cx="160" cy="244" rx="104" ry="13" fill="#D8D0C2" opacity="0.5"/>
+                <!-- Building -->
+                <rect x="60" y="100" width="200" height="130" rx="4" fill="#FFFFFF" stroke="#16223C" stroke-width="3"/>
+                <!-- Awning (pink) -->
+                <rect x="50" y="80" width="220" height="22" rx="2" fill="#EB1857" stroke="#16223C" stroke-width="3"/>
+                <line x1="86" y1="80" x2="86" y2="102" stroke="#16223C" stroke-width="1.6" opacity="0.5"/>
+                <line x1="122" y1="80" x2="122" y2="102" stroke="#16223C" stroke-width="1.6" opacity="0.5"/>
+                <line x1="158" y1="80" x2="158" y2="102" stroke="#16223C" stroke-width="1.6" opacity="0.5"/>
+                <line x1="194" y1="80" x2="194" y2="102" stroke="#16223C" stroke-width="1.6" opacity="0.5"/>
+                <line x1="230" y1="80" x2="230" y2="102" stroke="#16223C" stroke-width="1.6" opacity="0.5"/>
+                <!-- OPEN sign, gently swinging -->
+                <g class="anim-open">
+                  <rect x="132" y="114" width="56" height="16" rx="3" fill="#FFFFFF" stroke="#16223C" stroke-width="2"/>
+                  <text x="160" y="125" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="700" letter-spacing="1.5" fill="#6E44FF">OPEN</text>
+                </g>
+                <!-- Left window -->
+                <rect x="80" y="142" width="48" height="48" rx="2" fill="#DCE3EC" stroke="#16223C" stroke-width="2.6"/>
+                <line x1="104" y1="142" x2="104" y2="190" stroke="#16223C" stroke-width="1.4" opacity="0.6"/>
+                <line x1="80" y1="166" x2="128" y2="166" stroke="#16223C" stroke-width="1.4" opacity="0.6"/>
+                <!-- Door -->
+                <rect x="146" y="150" width="38" height="80" rx="2" fill="#16223C" stroke="#16223C" stroke-width="2.6"/>
+                <circle cx="177" cy="192" r="2.4" fill="#FFFFFF"/>
+                <!-- Right window -->
+                <rect x="200" y="142" width="48" height="48" rx="2" fill="#DCE3EC" stroke="#16223C" stroke-width="2.6"/>
+                <line x1="224" y1="142" x2="224" y2="190" stroke="#16223C" stroke-width="1.4" opacity="0.6"/>
+                <line x1="200" y1="166" x2="248" y2="166" stroke="#16223C" stroke-width="1.4" opacity="0.6"/>
+              </svg>
+            </div>
+            <h3 class="why-card__title">Where do you trade?</h3>
+            <p class="why-card__text">Fixed location with reliable internet? Go countertop. Moving around a venue? Portable. Out and about? Mobile.</p>
+          </div>
+
+          <!-- Step 2: How many do you need? — three terminals -->
+          <div class="why-card">
+            <div class="why-card__illustration">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="How many do you need — one, two or more">
+                <ellipse cx="160" cy="244" rx="104" ry="13" fill="#D8D0C2" opacity="0.5"/>
+                <!-- Terminal 1 (back-left, tilted) -->
+                <g transform="translate(28 78) rotate(-7)">
+                  <rect x="0" y="0" width="74" height="138" rx="11" fill="#FFFFFF" stroke="#16223C" stroke-width="2.6"/>
+                  <rect x="8" y="14" width="58" height="40" rx="4" fill="#16223C"/>
+                  <g fill="#16223C" opacity="0.55">
+                    <rect x="14" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="88" width="14" height="9" rx="1.4"/>
+                  </g>
+                </g>
+                <!-- Terminal 2 (centre, prominent, gently bobbing) -->
+                <g transform="translate(123 64)">
+                  <g class="anim-bob">
+                  <rect x="0" y="0" width="74" height="138" rx="11" fill="#FFFFFF" stroke="#16223C" stroke-width="3"/>
+                  <rect x="8" y="14" width="58" height="40" rx="4" fill="#EB1857"/>
+                  <text x="37" y="40" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">£</text>
+                  <g fill="#16223C" opacity="0.6">
+                    <rect x="14" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="88" width="14" height="9" rx="1.4"/>
+                  </g>
+                  <rect x="46" y="88" width="14" height="9" rx="1.4" fill="#6E44FF"/>
+                  </g>
+                </g>
+                <!-- Terminal 3 (back-right, tilted) -->
+                <g transform="translate(218 78) rotate(7)">
+                  <rect x="0" y="0" width="74" height="138" rx="11" fill="#FFFFFF" stroke="#16223C" stroke-width="2.6"/>
+                  <rect x="8" y="14" width="58" height="40" rx="4" fill="#16223C"/>
+                  <g fill="#16223C" opacity="0.55">
+                    <rect x="14" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="88" width="14" height="9" rx="1.4"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <h3 class="why-card__title">How many terminals?</h3>
+            <p class="why-card__text">One terminal per till point is the rule of thumb. Add portables for table service or queue-busting during busy periods.</p>
+          </div>
+
+          <!-- Step 3: Do you need POS? — POS register -->
+          <div class="why-card">
+            <div class="why-card__illustration">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="Do you need POS — point of sale screen">
+                <ellipse cx="160" cy="244" rx="104" ry="13" fill="#D8D0C2" opacity="0.5"/>
+                <!-- Stand base -->
+                <rect x="80" y="216" width="160" height="16" rx="3" fill="#DCE3EC" stroke="#16223C" stroke-width="2.6"/>
+                <!-- Stand neck -->
+                <rect x="144" y="178" width="32" height="38" fill="#FFFFFF" stroke="#16223C" stroke-width="2.6"/>
+                <!-- Tablet screen -->
+                <rect x="50" y="50" width="220" height="138" rx="12" fill="#FFFFFF" stroke="#16223C" stroke-width="3.2"/>
+                <!-- Screen inner -->
+                <rect x="62" y="62" width="196" height="114" rx="5" fill="#F3EEE5"/>
+                <!-- Top bar -->
+                <circle cx="74" cy="76" r="3.5" fill="#6E44FF"/>
+                <rect x="84" y="73" width="80" height="6" rx="2" fill="#16223C" opacity="0.85"/>
+                <line x1="62" y1="86" x2="258" y2="86" stroke="#16223C" stroke-width="1.4" opacity="0.4"/>
+                <!-- Order lines -->
+                <rect x="74" y="98" width="100" height="8" rx="2" fill="#DCE3EC"/>
+                <text x="246" y="106" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="9" font-weight="700" fill="#16223C">£4.50</text>
+                <rect x="74" y="116" width="78" height="8" rx="2" fill="#DCE3EC"/>
+                <text x="246" y="124" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="9" font-weight="700" fill="#16223C">£3.20</text>
+                <rect x="74" y="134" width="110" height="8" rx="2" fill="#DCE3EC"/>
+                <text x="246" y="142" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="9" font-weight="700" fill="#16223C">£8.00</text>
+                <!-- Total -->
+                <line x1="74" y1="150" x2="246" y2="150" stroke="#16223C" stroke-width="1.2" opacity="0.4"/>
+                <text x="74" y="166" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700" fill="#16223C">TOTAL</text>
+                <text class="anim-total" x="246" y="168" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="700" fill="#EB1857">£15.70</text>
+              </svg>
+            </div>
+            <h3 class="why-card__title">Do you need POS?</h3>
+            <p class="why-card__text">Terminals work standalone for simple payments. Add POS for inventory, staff management, reporting and more.</p>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-10);" data-animate>
+          <a href="/sign-up.html" class="btn btn--primary btn--lg btn--icon-right">
+            Sign up now
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- PRICING SNAPSHOT                         -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="pricing-teaser" data-animate>
+          <div class="pricing-teaser__header">
+            <h2 class="section-header__title text-inverse">Simple, fair, transparent pricing. As it should be.</h2>
+            <p class="body-lg" style="color: rgba(255,255,255,0.65); margin-top: var(--space-4);">
+              One rate, one monthly price, zero surprises. The deal you sign for is the deal you keep. Processing more than &pound;200,000? Let&rsquo;s talk about custom pricing.
+            </p>
+          </div>
+          <div class="pricing-teaser__rates">
+            <div class="pricing-teaser__rate-card">
+              <div class="pricing-teaser__rate-label">in-person</div>
+              <div class="pricing-teaser__rate-old">1.69%<span>avg. industry rate</span></div>
+              <div class="pricing-teaser__rate-number" data-count-to="0.8" data-count-from="1.69" data-decimals="2" data-suffix="%" data-final="0.80%">1.69%</div>
+            </div>
+            <div class="pricing-teaser__rate-card">
+              <div class="pricing-teaser__rate-label">account</div>
+              <div class="pricing-teaser__rate-note">Everything you need, one simple price.</div>
+              <div class="pricing-teaser__rate-number"><span class="pricing-teaser__rate-typed" data-typewriter="&pound;14"></span><span class="pricing-teaser__rate-unit">/mo<span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>includes one free card machine</div>
+            </div>
+            <div class="pricing-teaser__rate-card pricing-teaser__rate-card--promise">
+              <div class="pricing-teaser__rate-label">promise</div>
+              <div class="pricing-teaser__rate-note">Pricing you can trust.</div>
+              <ul class="pricing-promise__list">
+                <li>
+                  <svg class="pricing-promise__check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  No PCI or auth fees
+                </li>
+                <li>
+                  <svg class="pricing-promise__check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  All card types, one price
+                </li>
+                <li>
+                  <svg class="pricing-promise__check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  No in-contract rate rises
+                </li>
+                <li>
+                  <svg class="pricing-promise__check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Free card machine
+                </li>
+              </ul>
+            </div>
+          </div>
+          <a href="/pricing.html" class="btn btn--primary" style="margin-top: var(--space-10);">See full pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CASE STUDY                               -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="section-header section-header--center section-header--wide" data-animate>
+          <div class="section-header__overline">CASE STUDY</div>
+          <h2 class="section-header__title">Faster taps, happier queues.</h2>
+        </div>
+
+        <div class="case-study" data-animate>
+          <div class="case-study__image">
+            <img src="https://images.unsplash.com/photo-1556740772-1a741367b93e?w=800&q=80&auto=format&fit=crop" alt="Shopkeeper completing a contactless sale on a Stored terminal" loading="lazy">
+          </div>
+          <div class="case-study__content">
+            <blockquote class="case-study__quote">&ldquo;Our card machines never stop, even on the busiest Saturdays. Customers tap, pay, gone &mdash; the queue just keeps moving.&rdquo;</blockquote>
+            <div class="case-study__attribution">
+              <div class="case-study__avatar"></div>
+              <div>
+                <div class="case-study__name">Hannah Routledge</div>
+                <div class="case-study__role">Owner, Routledge Coffee Co.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- FAQ                                      -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header section-header--center section-header--wide" data-animate>
+          <div class="section-header__overline">FAQ&rsquo;s</div>
+          <h2 class="section-header__title">Questions, answered.</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div data-animate>
+          <div class="faq-item">
+            <button class="faq-item__question">
+              How long does it take to receive my terminal?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">Once your merchant account is approved (typically within 24 hours), your terminal ships next working day. Most merchants receive their terminal within 2&ndash;3 working days of signing up.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question">
+              Do I need to set anything up when my terminal arrives?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">No. Every terminal arrives pre-configured with your merchant account, pricing and branding. Countertop: plug in the ethernet and power. Portable: charge and connect to Wi-Fi. Mobile: switch on — the 4G SIM is already active.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question">
+              What payment methods do the terminals accept?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">All terminals accept contactless (tap), chip &amp; PIN, magstripe, Apple Pay, Google Pay and Samsung Pay. Visa, Mastercard, American Express and other major card schemes are supported.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question">
+              What happens if my internet goes down?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">Terminals with multiple connectivity options (ethernet + Wi-Fi, or 4G + Wi-Fi) fail over automatically. All terminals also support store-and-forward mode for brief outages, so you can continue accepting payments.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question">
+              Is there a contract or minimum term?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">No. There are no lock-in contracts, no minimum terms and no early termination fees. You can cancel at any time.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- FINAL CTA                                -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="cta-band">
+      <div class="container" data-animate>
+        <h2 class="cta-band__title">Let&rsquo;s<br>get paid.</h2>
+        <div class="cta-band__footer">
+          <div class="cta-band__actions">
+            <a href="/sign-up.html" class="btn cta-band__btn-primary btn--icon-right">
+              Sign up now
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/book-a-demo.html" class="btn cta-band__btn-secondary">Book a demo</a>
+          </div>
+          <p class="cta-band__note">GET PAID &middot; YOUR WAY &middot; NEXT DAY</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- FOOTER                                   -->
+  <!-- ════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="/" class="footer__logo" aria-label="Stored">
+            <img src="/assets/images/stored-logo-white.svg" alt="Stored" width="129" height="28">
+          </a>
+          <p class="footer__tagline">Full-service payments for UK businesses. In-person, digital and platform — one partner for everything.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="X / Twitter">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Solutions</div>
+          <div class="footer__links">
+            <a href="/solutions/in-person/terminals.html" class="footer__link">Card Machines</a>
+            <a href="/solutions/in-person/pos.html" class="footer__link">POS Solutions</a>
+            <a href="/solutions/digital/gateway.html" class="footer__link">Payment Gateway</a>
+            <a href="/solutions/digital/pay-by-link.html" class="footer__link">Pay-by-Link</a>
+            <a href="/solutions/digital/invoicing.html" class="footer__link">Digital Invoicing</a>
+            <a href="/solutions/digital/virtual-terminal.html" class="footer__link">Virtual Terminal</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Sectors</div>
+          <div class="footer__links">
+            <a href="/sectors/hospitality.html" class="footer__link">Hospitality</a>
+            <a href="/sectors/beauty-wellness.html" class="footer__link">Beauty & Wellness</a>
+            <a href="/sectors/retail.html" class="footer__link">Retail</a>
+            <a href="/sectors/services.html" class="footer__link">Services</a>
+            <a href="/sectors/b2b.html" class="footer__link">B2B</a>
+            <a href="/sectors/wholesale.html" class="footer__link">Wholesale</a>
+            <a href="/sectors/" class="footer__link">All Sectors</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Company</div>
+          <div class="footer__links">
+            <a href="/about.html" class="footer__link">About</a>
+            <a href="/partners.html" class="footer__link">Partners</a>
+            <a href="/careers.html" class="footer__link">Careers</a>
+            <a href="/contact.html" class="footer__link">Contact</a>
+            <a href="/pricing.html" class="footer__link">Pricing</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Resources</div>
+          <div class="footer__links">
+            <a href="/blog/" class="footer__link">Blog</a>
+            <a href="/guides/" class="footer__link">Guides</a>
+            <a href="/resources/" class="footer__link">All Resources</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__legal">
+          <a href="/legal/terms.html" class="footer__legal-link">Terms & Conditions</a>
+          <a href="/legal/privacy.html" class="footer__legal-link">Privacy Policy</a>
+          <a href="/legal/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/legal/complaints.html" class="footer__legal-link">Complaints</a>
+          <a href="/legal/regulatory.html" class="footer__legal-link">Regulatory</a>
+        </div>
+        <p class="footer__copyright">&copy; 2026 Stored. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js?v=cycle-2"></script>
+</body>
+</html>

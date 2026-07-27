@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" width="320" height="280" role="img" aria-label="Paid next day, every day">
+  
+  <ellipse cx="160" cy="244" rx="104" ry="14" fill="#D8D0C2" opacity="0.5"></ellipse>
+  
+  <g>
+    <ellipse cx="116" cy="160" rx="72" ry="68" fill="#FFFFFF" stroke="#16223C" stroke-width="3.2"></ellipse>
+    <ellipse cx="116" cy="160" rx="60" ry="57" fill="none" stroke="#DCE3EC" stroke-width="2.6"></ellipse>
+    <line x1="116.00" y1="101.47" x2="116.00" y2="109.97" stroke="#16223C" stroke-width="3.2" stroke-linecap="round" opacity="1"></line>
+    <line x1="147.00" y1="109.31" x2="144.50" y2="113.40" stroke="#16223C" stroke-width="1.9" stroke-linecap="round" opacity="0.5"></line>
+    <line x1="169.69" y1="130.74" x2="165.36" y2="133.10" stroke="#16223C" stroke-width="1.9" stroke-linecap="round" opacity="0.5"></line>
+    <line x1="178.00" y1="160.00" x2="169.00" y2="160.00" stroke="#16223C" stroke-width="3.2" stroke-linecap="round" opacity="1"></line>
+    <line x1="169.69" y1="189.26" x2="165.36" y2="186.90" stroke="#16223C" stroke-width="1.9" stroke-linecap="round" opacity="0.5"></line>
+    <line x1="147.00" y1="210.69" x2="144.50" y2="206.60" stroke="#16223C" stroke-width="1.9" stroke-linecap="round" opacity="0.5"></line>
+    <line x1="116.00" y1="218.53" x2="116.00" y2="210.03" stroke="#16223C" stroke-width="3.2" stroke-linecap="round" opacity="1"></line>
+    <line x1="85.00" y1="210.69" x2="87.50" y2="206.60" stroke="#16223C" stroke-width="1.9" stroke-linecap="round" opacity="0.5"></line>
+    <line x1="62.31" y1="189.26" x2="66.64" y2="186.90" stroke="#16223C" stroke-width="1.9" stroke-linecap="round" opacity="0.5"></line>
+    <line x1="54.00" y1="160.00" x2="63.00" y2="160.00" stroke="#16223C" stroke-width="3.2" stroke-linecap="round" opacity="1"></line>
+    <line x1="62.31" y1="130.74" x2="66.64" y2="133.10" stroke="#16223C" stroke-width="1.9" stroke-linecap="round" opacity="0.5"></line>
+    <line x1="85.00" y1="109.31" x2="87.50" y2="113.40" stroke="#16223C" stroke-width="1.9" stroke-linecap="round" opacity="0.5"></line>
+    <line x1="116" y1="160" x2="113" y2="129" stroke="#16223C" stroke-width="4.8" stroke-linecap="round"></line>
+    <line x1="116" y1="160" x2="150" y2="138" stroke="#EF4E25" stroke-width="4.8" stroke-linecap="round"></line>
+    <circle cx="116" cy="160" r="5.6" fill="#16223C"></circle>
+  </g>
+  
+  <g>
+    <g>
+      <path d="M 196 206 L 196 225 A 48 17 0 0 0 292 225 L 292 206 Z" fill="#C2CDDC" stroke="#16223C" stroke-width="2.8" stroke-linejoin="round"></path>
+      <ellipse cx="244" cy="206" rx="48" ry="17" fill="#DCE3EC" stroke="#16223C" stroke-width="2.8"></ellipse>
+    </g>
+    <g>
+      <path d="M 196 187 L 196 206 A 48 17 0 0 0 292 206 L 292 187 Z" fill="#C2CDDC" stroke="#16223C" stroke-width="2.8" stroke-linejoin="round"></path>
+      <ellipse cx="244" cy="187" rx="48" ry="17" fill="#FFFFFF" stroke="#16223C" stroke-width="2.8"></ellipse>
+    </g>
+    <g>
+      <path d="M 196 168 L 196 187 A 48 17 0 0 0 292 187 L 292 168 Z" fill="#CF3D18" stroke="#16223C" stroke-width="2.8" stroke-linejoin="round"></path>
+      <ellipse cx="244" cy="168" rx="48" ry="17" fill="#EF4E25" stroke="#16223C" stroke-width="2.8"></ellipse>
+    </g>
+    <text x="244" y="169" text-anchor="middle" dominant-baseline="middle" font-family="&#39;Space Grotesk&#39;, sans-serif" font-weight="700" font-size="23" fill="#FFFFFF">£</text>
+  </g>
+</svg>

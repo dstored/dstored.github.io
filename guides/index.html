@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guides | Stored</title>
+  <meta name="description" content="Long-form, no-fluff explainers for UK businesses taking payment. Practical guides from the Stored team.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.joinstored.com/guides/">
+
+  <meta property="og:title" content="Guides | Stored">
+  <meta property="og:description" content="Long-form, no-fluff explainers for UK businesses taking payment.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.joinstored.com/guides/">
+  <meta property="og:image" content="/assets/images/og-default.jpg">
+
+  <link rel="stylesheet" href="../css/variables.css?v=brand-2">
+  <link rel="stylesheet" href="../css/base.css?v=brand-2">
+  <link rel="stylesheet" href="../css/components.css?v=brand-2">
+  <link rel="stylesheet" href="../css/animations.css?v=brand-2">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/pages/solutions.css?v=brand-9">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+  <style>
+    /* Text-led hero: full-width headline, no visual */
+    .solution-hero .solution-hero__inner { grid-template-columns: 1fr; gap: 0; }
+
+    .solution-hero .solution-hero__inner .solution-hero__title {
+      font-size: clamp(5rem, 3.5rem + 11vw, 11rem);
+      line-height: calc(0.85em + 5px);
+      letter-spacing: -0.05em;
+      margin-top: 23px;
+      margin-bottom: calc(var(--space-12) * 1.5);
+    }
+
+    .solution-hero__subtitle { max-width: 660px; }
+
+    @media (max-height: 900px) {
+      .solution-hero { min-height: 0; padding-bottom: var(--space-10); }
+
+      .solution-hero .solution-hero__inner .solution-hero__title {
+        font-size: clamp(4.5rem, 3rem + 8vw, 8rem);
+        margin-bottom: var(--space-10);
+      }
+    }
+
+    /* Brand cards: flat panels instead of stock photography */
+    .rc {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--ink);
+      transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out);
+    }
+
+    .rc:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+    .section--dark .rc { background: var(--paper); }
+    .section--dark .rc:hover { box-shadow: 6px 6px 0 var(--hot); }
+
+    .rc__panel {
+      min-height: 150px;
+      background: var(--bone);
+      border-bottom: 2px solid var(--ink);
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .rc__panel--alt { background: #E8E4DB; }
+
+    .rc__panel-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .rc__body {
+      padding: var(--space-5) var(--space-6) var(--space-6);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rc__body .heading-sm { color: var(--ink); }
+
+    .rc__meta {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--mute);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-3);
+    }
+
+    .rc__body .card__link { color: var(--ink); margin-top: auto; padding-top: var(--space-4); }
+    .rc:hover .card__link { color: var(--hot); }
+
+    /* Topic cards on the brand border */
+    .capability-card {
+      background: var(--white);
+      border: 2px solid var(--ink);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out);
+    }
+
+    .capability-card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rc, .capability-card { transition: none; }
+      .rc:hover, .capability-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="Stored — Home">
+        <img src="/assets/images/stored-logo.svg" alt="Stored" width="129" height="28">
+      </a>
+
+      <nav class="header__nav" role="navigation" aria-label="Primary">
+        <a href="#" class="nav-link" data-mega-trigger="mega-solutions">
+          Solutions
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="nav-link" data-mega-trigger="mega-sectors">
+          Sectors
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/pricing.html" class="nav-link">Pricing</a>
+        <a href="/resources/" class="nav-link">Resources</a>
+        <a href="#" class="nav-link" data-mega-trigger="mega-company">
+          Company
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#" class="btn btn--secondary btn--sm">Sign in</a>
+        <a href="/sign-up.html" class="btn btn--primary btn--sm">Sign up</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+    </div>
+
+    <!-- Solutions mega menu -->
+    <div class="mega-menu" id="mega-solutions" role="menu">
+      <div class="mega-menu__inner">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">In-Person Payments</div>
+          <a href="/solutions/in-person/terminals.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Card Machines</span>
+              <span class="mega-menu__link-desc">Countertop, portable & mobile</span>
+            </div>
+          </a>
+          <a href="/solutions/in-person/pos.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">POS Solutions</span>
+              <span class="mega-menu__link-desc">Full POS for counter, table & field</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Digital Payments</div>
+          <a href="/solutions/digital/gateway.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Payment Gateway</span>
+              <span class="mega-menu__link-desc">Cards & wallets on your site</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/hosted-checkout.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Hosted Checkout</span>
+              <span class="mega-menu__link-desc">Branded checkout pages, no code</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/pay-by-link.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Pay-by-Link</span>
+              <span class="mega-menu__link-desc">SMS, email, WhatsApp or QR</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/invoicing.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Digital Invoicing</span>
+              <span class="mega-menu__link-desc">Invoices with built-in payment</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/virtual-terminal.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Virtual Terminal</span>
+              <span class="mega-menu__link-desc">MOTO payments, PCI compliant</span>
+            </div>
+          </a>
+          <a href="/solutions/digital/bulk-payments.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Bulk Payments</span>
+              <span class="mega-menu__link-desc">Hundreds of payment links at once</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Merchant Platform</div>
+          <a href="/solutions/platform/orders.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Order Management</span>
+              <span class="mega-menu__link-desc">Every order, every channel</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/reporting.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Reporting & Analytics</span>
+              <span class="mega-menu__link-desc">Real-time cross-channel reporting</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/refunds-returns.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Refunds & Returns</span>
+              <span class="mega-menu__link-desc">Fast, auditable refund workflows</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/brand-control.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Brand Control</span>
+              <span class="mega-menu__link-desc">Your brand on every touchpoint</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/tickets-events.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Tickets &amp; Events</span>
+              <span class="mega-menu__link-desc">Sell, scan and settle events</span>
+            </div>
+          </a>
+          <a href="/solutions/platform/gift-vouchers.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Gift Vouchers</span>
+              <span class="mega-menu__link-desc">Digital vouchers, sold and redeemed</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">See Stored in action.</div>
+            <p class="mega-menu__promo-text">20 minutes with a payments specialist. No pressure, no commitment.</p>
+          </div>
+          <a href="/sign-up.html" class="btn btn--primary btn--sm" style="align-self: flex-start;">Sign up now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sectors mega menu -->
+    <div class="mega-menu" id="mega-sectors" role="menu">
+      <div class="mega-menu__inner">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Consumer-facing</div>
+          <a href="/sectors/hospitality.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Hospitality</span>
+              <span class="mega-menu__link-desc">Restaurants, bars &amp; caf&eacute;s</span>
+            </div>
+          </a>
+          <a href="/sectors/beauty-wellness.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Beauty &amp; Wellness</span>
+              <span class="mega-menu__link-desc">Salons, spas &amp; clinics</span>
+            </div>
+          </a>
+          <a href="/sectors/retail.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Retail</span>
+              <span class="mega-menu__link-desc">Single &amp; multi-store shops</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Service &amp; trade</div>
+          <a href="/sectors/services.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Services</span>
+              <span class="mega-menu__link-desc">Trades, agencies &amp; field teams</span>
+            </div>
+          </a>
+          <a href="/sectors/b2b.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">B2B</span>
+              <span class="mega-menu__link-desc">Net-term invoicing &amp; MOTO</span>
+            </div>
+          </a>
+          <a href="/sectors/wholesale.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Wholesale</span>
+              <span class="mega-menu__link-desc">Bulk billing &amp; ERP integrations</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Browse</div>
+          <a href="/sectors/" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">All sectors</span>
+              <span class="mega-menu__link-desc">Every sector Stored serves</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">Not sure which fits?</div>
+            <p class="mega-menu__promo-text">20 minutes with a payments specialist. We&rsquo;ll map Stored to your sector.</p>
+          </div>
+          <a href="/sign-up.html" class="btn btn--primary btn--sm" style="align-self: flex-start;">Sign up now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company mega menu -->
+    <div class="mega-menu" id="mega-company" role="menu">
+      <div class="mega-menu__inner" style="grid-template-columns: 1fr 1fr 1fr 280px;">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Company</div>
+          <a href="/about.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">About Stored</span>
+              <span class="mega-menu__link-desc">Our story, mission and team</span>
+            </div>
+          </a>
+          <a href="/partners.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Partners</span>
+              <span class="mega-menu__link-desc">Worldpay, Cashflows, Clover</span>
+            </div>
+          </a>
+          <a href="/careers.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Careers</span>
+              <span class="mega-menu__link-desc">Join the team</span>
+            </div>
+          </a>
+          <a href="/contact.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Contact</span>
+              <span class="mega-menu__link-desc">Sales, support & press</span>
+            </div>
+          </a>
+          <a href="/homepage-test.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Homepage test</span>
+              <span class="mega-menu__link-desc">The blurple prototype, for reference</span>
+            </div>
+          </a>
+        </div>
+        <div class="mega-menu__column"></div>
+        <div class="mega-menu__column"></div>
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">Powered by world-class partners.</div>
+            <p class="mega-menu__promo-text">Worldpay, Cashflows and Clover — trusted rails behind every transaction.</p>
+          </div>
+          <a href="/partners.html" class="btn btn--white btn--sm" style="align-self: flex-start;">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Solutions</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/solutions/in-person/terminals.html" class="mobile-nav__link">In-Person Payments</a>
+        <a href="/solutions/digital/gateway.html" class="mobile-nav__link">Digital Payments</a>
+        <a href="/solutions/platform/orders.html" class="mobile-nav__link">Merchant Platform</a>
+      </div>
+    </div>
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Sectors</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/sectors/" class="mobile-nav__link">All Sectors</a>
+        <a href="/sectors/hospitality.html" class="mobile-nav__link">Hospitality</a>
+        <a href="/sectors/beauty-wellness.html" class="mobile-nav__link">Beauty &amp; Wellness</a>
+        <a href="/sectors/retail.html" class="mobile-nav__link">Retail</a>
+        <a href="/sectors/services.html" class="mobile-nav__link">Services</a>
+        <a href="/sectors/b2b.html" class="mobile-nav__link">B2B</a>
+        <a href="/sectors/wholesale.html" class="mobile-nav__link">Wholesale</a>
+      </div>
+    </div>
+    <div class="mobile-nav__section">
+      <a href="/pricing.html" class="mobile-nav__link">Pricing</a>
+    </div>
+    <div class="mobile-nav__section">
+      <a href="/resources/" class="mobile-nav__link">Resources</a>
+    </div>
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Company</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/about.html" class="mobile-nav__link">About</a>
+        <a href="/partners.html" class="mobile-nav__link">Partners</a>
+        <a href="/careers.html" class="mobile-nav__link">Careers</a>
+        <a href="/contact.html" class="mobile-nav__link">Contact</a>
+        <a href="/homepage-test.html" class="mobile-nav__link">Homepage test</a>
+      </div>
+    </div>
+    <div class="mobile-nav__actions">
+      <a href="/sign-up.html" class="btn btn--primary">Sign up</a>
+      <a href="/book-a-demo.html" class="btn btn--secondary">Book a demo</a>
+      <a href="#" class="btn btn--ghost">Sign in</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="solution-hero">
+      <div class="container">
+        <div class="solution-hero__inner">
+          <div class="solution-hero__content" data-animate>
+            <h1 class="solution-hero__title">The<br>how-to&rsquo;s.</h1>
+            <p class="solution-hero__subtitle">long-form explainers for UK businesses taking payment. No fluff.</p>
+            <div class="solution-hero__actions">
+              <a href="/sign-up.html" class="btn btn--primary btn--lg btn--icon-right">
+                Sign up now
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="/pricing.html" class="btn btn--secondary btn--lg">See pricing</a>
+            </div>
+            <div class="solution-hero__trust">
+              <img class="solution-hero__trust-logo" src="/assets/icons/trustpilot_logo.svg" alt="Trustpilot" loading="lazy">
+              <span class="solution-hero__trust-text">Rated <strong>4.8 Excellent</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#below-hero" class="scroll-hint" aria-label="Scroll down">
+        <span class="scroll-hint__text">Scroll</span>
+        <svg class="scroll-hint__icon" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" stroke-width="1.6"/>
+          <circle class="scroll-hint__wheel" cx="8" cy="7" r="1.6" fill="currentColor"/>
+        </svg>
+      </a>
+    </section>
+
+    <div class="marquee" id="below-hero">
+      <div class="marquee__track">
+        <span class="marquee__item">GETTING STARTED <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">HARDWARE <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">PRICING <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">SCALING <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">COMPLIANCE <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">NO FLUFF <span class="marquee__separator">&rarr;</span></span>
+      </div>
+    </div>
+
+    <!-- GUIDE CATEGORIES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <div class="section-header__overline">BROWSE BY TOPIC</div>
+          <h2 class="section-header__title">Pick a track.</h2>
+        </div>
+
+        <div class="capability-grid" style="grid-template-columns: repeat(4, 1fr);" data-stagger>
+          <a href="#guides" class="capability-card">
+            <div class="capability-card__icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 28V4"/><path d="M8 5h15l-4 5 4 5H8"/></svg>
+            </div>
+            <h3 class="capability-card__title">Getting started.</h3>
+            <p class="capability-card__text">First terminal, first checkout, first link.</p>
+          </a>
+          <a href="#guides" class="capability-card">
+            <div class="capability-card__icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="3" width="12" height="26" rx="2"/><line x1="13" y1="9" x2="19" y2="9"/><line x1="13" y1="15" x2="19" y2="15"/><line x1="13" y1="19" x2="19" y2="19"/><line x1="13" y1="23" x2="19" y2="23"/></svg>
+            </div>
+            <h3 class="capability-card__title">Choosing hardware.</h3>
+            <p class="capability-card__text">Countertop, portable, mobile, kiosk.</p>
+          </a>
+          <a href="#guides" class="capability-card">
+            <div class="capability-card__icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="24" x2="24" y2="8"/><circle cx="10.5" cy="10.5" r="3.5"/><circle cx="21.5" cy="21.5" r="3.5"/></svg>
+            </div>
+            <h3 class="capability-card__title">Pricing &amp; fees.</h3>
+            <p class="capability-card__text">Interchange, scheme fees, markups, surcharging.</p>
+          </a>
+          <a href="#guides" class="capability-card">
+            <div class="capability-card__icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="26" x2="6" y2="18"/><line x1="13" y1="26" x2="13" y2="11"/><line x1="20" y1="26" x2="20" y2="15"/><line x1="27" y1="26" x2="27" y2="6"/></svg>
+            </div>
+            <h3 class="capability-card__title">Scaling.</h3>
+            <p class="capability-card__text">From first &pound;100 to first &pound;10m.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUIDE GRID -->
+    <section class="section section--dark" id="guides">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <div class="section-header__overline">ALL GUIDES</div>
+          <h2 class="section-header__title">The library.</h2>
+        </div>
+
+        <div class="grid grid--3" data-stagger>
+          <a href="#" class="rc">
+            <div class="rc__panel">
+              <span class="rc__panel-label">Guide</span>
+            </div>
+            <div class="rc__body">
+              <div class="rc__meta">10 min read</div>
+              <h3 class="heading-sm">Pick the right card machine.</h3>
+              <p class="body-sm text-muted" style="margin-top: var(--space-2);">A practical guide for UK SMEs comparing terminals, features and pricing.</p>
+              <span class="card__link">Read guide <span>&rarr;</span></span>
+            </div>
+          </a>
+          <a href="#" class="rc">
+            <div class="rc__panel rc__panel--alt">
+              <span class="rc__panel-label">Guide</span>
+            </div>
+            <div class="rc__body">
+              <div class="rc__meta">14 min read</div>
+              <h3 class="heading-sm">Interchange fees, explained.</h3>
+              <p class="body-sm text-muted" style="margin-top: var(--space-2);">Everything you need to know about interchange, scheme fees and markups.</p>
+              <span class="card__link">Read guide <span>&rarr;</span></span>
+            </div>
+          </a>
+          <a href="#" class="rc">
+            <div class="rc__panel">
+              <span class="rc__panel-label">Guide</span>
+            </div>
+            <div class="rc__body">
+              <div class="rc__meta">8 min read</div>
+              <h3 class="heading-sm">Pay-by-link vs invoicing.</h3>
+              <p class="body-sm text-muted" style="margin-top: var(--space-2);">Two ways to get paid remotely. Here&rsquo;s how to decide which fits.</p>
+              <span class="card__link">Read guide <span>&rarr;</span></span>
+            </div>
+          </a>
+          <a href="#" class="rc">
+            <div class="rc__panel rc__panel--alt">
+              <span class="rc__panel-label">Guide</span>
+            </div>
+            <div class="rc__body">
+              <div class="rc__meta">12 min read</div>
+              <h3 class="heading-sm">From &pound;100k to &pound;10m.</h3>
+              <p class="body-sm text-muted" style="margin-top: var(--space-2);">Scaling your payments stack. When to upgrade, what to negotiate, what to never compromise on.</p>
+              <span class="card__link">Read guide <span>&rarr;</span></span>
+            </div>
+          </a>
+          <a href="#" class="rc">
+            <div class="rc__panel">
+              <span class="rc__panel-label">Guide</span>
+            </div>
+            <div class="rc__body">
+              <div class="rc__meta">6 min read</div>
+              <h3 class="heading-sm">PCI compliance, made simple.</h3>
+              <p class="body-sm text-muted" style="margin-top: var(--space-2);">What PCI DSS requires of you, what your provider should handle.</p>
+              <span class="card__link">Read guide <span>&rarr;</span></span>
+            </div>
+          </a>
+          <a href="#" class="rc">
+            <div class="rc__panel rc__panel--alt">
+              <span class="rc__panel-label">Guide</span>
+            </div>
+            <div class="rc__body">
+              <div class="rc__meta">9 min read</div>
+              <h3 class="heading-sm">The MOTO playbook.</h3>
+              <p class="body-sm text-muted" style="margin-top: var(--space-2);">Virtual terminals and secure phone payments, without falling foul of compliance.</p>
+              <span class="card__link">Read guide <span>&rarr;</span></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUGGEST A TOPIC -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header section-header--center" data-animate>
+          <div class="section-header__overline">GET IN TOUCH</div>
+          <h2 class="section-header__title">Suggest a topic.</h2>
+          <p class="section-header__subtitle">Question we haven&rsquo;t covered? Email the team. If it&rsquo;s useful, we&rsquo;ll write it.</p>
+        </div>
+
+        <div style="text-align: center;" data-animate>
+          <a href="mailto:hello@joinstored.com" class="btn btn--primary btn--lg">hello@joinstored.com</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band">
+      <div class="container" data-animate>
+        <h2 class="cta-band__title">Let&rsquo;s<br>get paid.</h2>
+        <div class="cta-band__footer">
+          <div class="cta-band__actions">
+            <a href="/sign-up.html" class="btn cta-band__btn-primary btn--icon-right">
+              Sign up now
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/book-a-demo.html" class="btn cta-band__btn-secondary">Book a demo</a>
+          </div>
+          <p class="cta-band__note">GET PAID &middot; YOUR WAY &middot; NEXT DAY</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="/" class="footer__logo" aria-label="Stored">
+            <img src="/assets/images/stored-logo-white.svg" alt="Stored" width="129" height="28">
+          </a>
+          <p class="footer__tagline">Full-service payments for UK businesses. In-person, digital and platform, one partner for everything.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="X / Twitter"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Solutions</div>
+          <div class="footer__links">
+            <a href="/solutions/in-person/terminals.html" class="footer__link">Card Machines</a>
+            <a href="/solutions/in-person/pos.html" class="footer__link">POS Solutions</a>
+            <a href="/solutions/digital/gateway.html" class="footer__link">Payment Gateway</a>
+            <a href="/solutions/digital/pay-by-link.html" class="footer__link">Pay-by-Link</a>
+            <a href="/solutions/digital/invoicing.html" class="footer__link">Digital Invoicing</a>
+            <a href="/solutions/digital/virtual-terminal.html" class="footer__link">Virtual Terminal</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Sectors</div>
+          <div class="footer__links">
+            <a href="/sectors/hospitality.html" class="footer__link">Hospitality</a>
+            <a href="/sectors/beauty-wellness.html" class="footer__link">Beauty & Wellness</a>
+            <a href="/sectors/retail.html" class="footer__link">Retail</a>
+            <a href="/sectors/services.html" class="footer__link">Services</a>
+            <a href="/sectors/b2b.html" class="footer__link">B2B</a>
+            <a href="/sectors/wholesale.html" class="footer__link">Wholesale</a>
+            <a href="/sectors/" class="footer__link">All Sectors</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Company</div>
+          <div class="footer__links">
+            <a href="/about.html" class="footer__link">About</a>
+            <a href="/partners.html" class="footer__link">Partners</a>
+            <a href="/careers.html" class="footer__link">Careers</a>
+            <a href="/contact.html" class="footer__link">Contact</a>
+            <a href="/pricing.html" class="footer__link">Pricing</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Resources</div>
+          <div class="footer__links">
+            <a href="/blog/" class="footer__link">Blog</a>
+            <a href="/guides/" class="footer__link">Guides</a>
+            <a href="/resources/" class="footer__link">All Resources</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__legal">
+          <a href="/legal/terms.html" class="footer__legal-link">Terms & Conditions</a>
+          <a href="/legal/privacy.html" class="footer__legal-link">Privacy Policy</a>
+          <a href="/legal/cookies.html" class="footer__legal-link">Cookies</a>
+          <a href="/legal/complaints.html" class="footer__legal-link">Complaints</a>
+          <a href="/legal/regulatory.html" class="footer__legal-link">Regulatory</a>
+        </div>
+        <p class="footer__copyright">&copy; 2026 Stored. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js?v=cycle-2"></script>
+</body>
+</html>

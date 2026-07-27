@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" role="img" aria-label="Taking a payment on the Stored app: enter the amount, tap card or phone, payment approved with receipt">
+  <!-- Ground shadows -->
+  <ellipse cx="160" cy="496" rx="120" ry="12" fill="#D8D0C2" opacity="0.5"/>
+  <ellipse cx="480" cy="496" rx="120" ry="12" fill="#D8D0C2" opacity="0.5"/>
+  <ellipse cx="800" cy="496" rx="120" ry="12" fill="#D8D0C2" opacity="0.5"/>
+
+  <!-- ═══ Phone 1: enter amount ═══ -->
+  <g transform="translate(50 30)">
+    <rect x="0" y="0" width="220" height="450" rx="24" fill="#FFFFFF" stroke="#16223C" stroke-width="3"/>
+    <rect x="10" y="10" width="200" height="430" rx="16" fill="#F3EEE5"/>
+    <!-- Amount -->
+    <text x="82" y="78" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" fill="#16223C">&#163;</text>
+    <text x="90" y="82" font-family="'Space Grotesk', sans-serif" font-size="34" font-weight="700" letter-spacing="-1" fill="#16223C">25.00</text>
+    <!-- Keypad -->
+    <g font-family="'Space Grotesk', sans-serif" font-size="17" font-weight="700" text-anchor="middle">
+      <rect x="22" y="118" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="49" y="145" fill="#16223C">1</text>
+      <rect x="83" y="118" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="110" y="145" fill="#16223C">2</text>
+      <rect x="144" y="118" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="171" y="145" fill="#16223C">3</text>
+      <rect x="22" y="168" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="49" y="195" fill="#16223C">4</text>
+      <!-- The active press: the one blurple detail in this graphic -->
+      <rect x="83" y="168" width="54" height="42" rx="8" fill="#6E44FF"/>
+      <text x="110" y="195" fill="#FFFFFF">5</text>
+      <rect x="144" y="168" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="171" y="195" fill="#16223C">6</text>
+      <rect x="22" y="218" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="49" y="245" fill="#16223C">7</text>
+      <rect x="83" y="218" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="110" y="245" fill="#16223C">8</text>
+      <rect x="144" y="218" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="171" y="245" fill="#16223C">9</text>
+      <rect x="22" y="268" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="49" y="295" fill="#16223C">00</text>
+      <rect x="83" y="268" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <text x="110" y="295" fill="#16223C">0</text>
+      <rect x="144" y="268" width="54" height="42" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+      <path d="M 163 289 L 169 283 L 187 283 L 187 295 L 169 295 Z M 172 286 L 178 292 M 178 286 L 172 292" fill="none" stroke="#16223C" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+    <!-- CTAs -->
+    <rect x="22" y="332" width="176" height="42" rx="8" fill="#EB1857"/>
+    <text x="110" y="358" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">Take card payment</text>
+    <rect x="22" y="384" width="176" height="38" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+    <text x="110" y="408" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="600" fill="#16223C">Other payment methods</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <path d="M 292 255 h 44 m 0 0 l -12 -12 m 12 12 l -12 12" fill="none" stroke="#EB1857" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ═══ Phone 2: tap card or phone ═══ -->
+  <g transform="translate(370 30)">
+    <rect x="0" y="0" width="220" height="450" rx="24" fill="#FFFFFF" stroke="#16223C" stroke-width="3"/>
+    <rect x="10" y="10" width="200" height="430" rx="16" fill="#F3EEE5"/>
+    <!-- Amount -->
+    <text x="82" y="78" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" fill="#16223C">&#163;</text>
+    <text x="90" y="82" font-family="'Space Grotesk', sans-serif" font-size="34" font-weight="700" letter-spacing="-1" fill="#16223C">25.00</text>
+    <!-- Tap target -->
+    <circle cx="110" cy="216" r="62" fill="#EB1857" opacity="0.16"/>
+    <circle cx="110" cy="216" r="40" fill="#EB1857"/>
+    <g fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round">
+      <path d="M 102 204 a 17 17 0 0 1 0 24"/>
+      <path d="M 111 197 a 27 27 0 0 1 0 38"/>
+      <path d="M 120 190 a 37 37 0 0 1 0 52"/>
+    </g>
+    <text x="110" y="312" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="15" font-weight="700" fill="#16223C">Tap card or phone</text>
+    <!-- Chip &amp; PIN fallback -->
+    <g transform="translate(58 408)">
+      <rect x="0" y="0" width="14" height="11" rx="2" fill="none" stroke="#16223C" stroke-width="1.4"/>
+      <rect x="3" y="3" width="4" height="3" rx="0.8" fill="#16223C"/>
+    </g>
+    <text x="80" y="417" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="600" fill="#16223C" opacity="0.7">Insert card for Chip &amp; PIN</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <path d="M 612 255 h 44 m 0 0 l -12 -12 m 12 12 l -12 12" fill="none" stroke="#EB1857" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ═══ Phone 3: approved, with receipt ═══ -->
+  <g transform="translate(690 30)">
+    <rect x="0" y="0" width="220" height="450" rx="24" fill="#FFFFFF" stroke="#16223C" stroke-width="3"/>
+    <rect x="10" y="10" width="200" height="430" rx="16" fill="#F3EEE5"/>
+    <!-- Success: green is the semantic money-moved signal -->
+    <circle cx="110" cy="86" r="34" fill="#31D895"/>
+    <path d="M 96 86 L 106 96 L 126 74" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="110" y="152" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" fill="#16223C">Payment approved</text>
+    <!-- Receipt -->
+    <rect x="30" y="178" width="160" height="196" rx="10" fill="#FFFFFF" stroke="#16223C" stroke-width="1.8"/>
+    <text x="46" y="212" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="600" fill="#16223C" opacity="0.6">Total</text>
+    <text x="174" y="214" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="700" fill="#EB1857">&#163;25.00</text>
+    <line x1="46" y1="230" x2="174" y2="230" stroke="#16223C" stroke-width="1.2" opacity="0.25" stroke-dasharray="3 4"/>
+    <text x="46" y="254" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="600" fill="#16223C" opacity="0.6">Card</text>
+    <text x="174" y="254" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="700" fill="#16223C">Visa &#8226;&#8226;&#8226;&#8226; 4321</text>
+    <text x="46" y="278" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="600" fill="#16223C" opacity="0.6">Type</text>
+    <text x="174" y="278" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="700" fill="#16223C">Contactless</text>
+    <text x="46" y="302" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="600" fill="#16223C" opacity="0.6">Time</text>
+    <text x="174" y="302" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="700" fill="#16223C">Today, 09:41</text>
+    <line x1="46" y1="322" x2="174" y2="322" stroke="#16223C" stroke-width="1.2" opacity="0.25" stroke-dasharray="3 4"/>
+    <text x="46" y="348" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="600" fill="#16223C" opacity="0.6">Settled</text>
+    <text x="174" y="348" text-anchor="end" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="700" fill="#16223C">By 8am tomorrow</text>
+    <!-- Send receipt -->
+    <rect x="30" y="390" width="160" height="36" rx="8" fill="#FFFFFF" stroke="#16223C" stroke-width="1.6"/>
+    <text x="110" y="413" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="600" fill="#16223C">Send receipt</text>
+  </g>
+</svg>

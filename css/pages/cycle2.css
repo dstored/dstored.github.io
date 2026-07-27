@@ -1,0 +1,620 @@
+/* ════════════════════════════════════════════════════════════
+   CYCLE 2 — sectors + pricing polish
+   Brutalist sector cards, photo heroes, dark case-study,
+   animated bar fill on £200k split. Applied only on the 7
+   in-scope pages via additional class hooks.
+   ════════════════════════════════════════════════════════════ */
+
+
+/* ─── Sector hub: brutalist 6-card grid ─────────────────────── */
+.sector-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.sector-pillar {
+  position: relative;
+  padding: var(--space-6);
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--white);
+  text-decoration: none;
+  overflow: hidden;
+  transition: background var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out);
+}
+
+.sector-pillar::after {
+  /* faint sector glyph behind text */
+  content: "";
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  background-size: contain;
+  background-position: center right;
+  background-repeat: no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.sector-pillar__counter {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: var(--weight-bold);
+  color: var(--hot);
+  margin-bottom: var(--space-8);
+}
+
+.sector-pillar__title {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-bold);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin-bottom: var(--space-3);
+  color: var(--white);
+  text-transform: lowercase;
+}
+
+.sector-pillar__text {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: var(--space-6);
+  max-width: 26ch;
+}
+
+.sector-pillar__link {
+  margin-top: auto;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: gap var(--duration-base) var(--ease-out);
+}
+
+.sector-pillar:hover {
+  background: var(--hot);
+  border-color: var(--hot);
+}
+
+.sector-pillar:hover .sector-pillar__counter {
+  color: var(--white);
+}
+
+.sector-pillar:hover .sector-pillar__link {
+  gap: var(--space-3);
+}
+
+.sector-pillar:hover::after {
+  opacity: 0.18;
+}
+
+@media (max-width: 1024px) {
+  .sector-pillars {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .sector-pillars {
+    grid-template-columns: 1fr;
+  }
+  .sector-pillar__title {
+    font-size: var(--text-4xl);
+  }
+}
+
+
+/* ─── Sector hero photo + floating context cards ────────────── */
+.sector-hero-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+.sector-hero-visual__photo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bone);
+  box-shadow: 0 24px 70px rgba(11, 27, 51, 0.18);
+}
+
+.sector-hero-visual__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sector-hero-visual__halo {
+  /* subtle orange ring behind photo */
+  position: absolute;
+  inset: -12px;
+  border: 2px solid var(--hot);
+  border-radius: 50%;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.sector-hero-visual__card {
+  position: absolute;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  box-shadow: 0 12px 32px rgba(11, 27, 51, 0.12);
+  min-width: 180px;
+  font-family: var(--font-body);
+  animation: float 4.5s var(--ease-in-out) infinite;
+}
+
+.sector-hero-visual__card--tl {
+  top: 8%;
+  left: -6%;
+  animation-delay: 0s;
+}
+
+.sector-hero-visual__card--br {
+  bottom: 10%;
+  right: -8%;
+  animation-delay: 1.2s;
+}
+
+.sector-hero-visual__card-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  background: var(--bone);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sector-hero-visual__card-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.sector-hero-visual__card-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+
+.sector-hero-visual__card-value {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+@media (max-width: 640px) {
+  .sector-hero-visual {
+    max-width: 360px;
+  }
+  .sector-hero-visual__card {
+    min-width: 150px;
+    padding: var(--space-2) var(--space-3);
+  }
+  .sector-hero-visual__card--tl {
+    left: -4%;
+  }
+  .sector-hero-visual__card--br {
+    right: -4%;
+  }
+}
+
+
+/* ─── Brutalist stack cards (sector pages: 4-up) ────────────── */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.stack-card {
+  background: var(--bone);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  min-height: 220px;
+  transition: background var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out),
+              color var(--duration-base) var(--ease-out);
+}
+
+.stack-card__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hot);
+  margin-bottom: var(--space-5);
+}
+
+.stack-card__icon {
+  width: 36px;
+  height: 36px;
+  color: var(--ink);
+  margin-bottom: var(--space-4);
+}
+
+.stack-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.stack-card__title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-2xl);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-2);
+  text-transform: lowercase;
+}
+
+.stack-card__text {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  flex: 1;
+}
+
+.stack-card__link {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  margin-top: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink);
+  transition: gap var(--duration-base) var(--ease-out);
+}
+
+.stack-card:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+
+.stack-card:hover .stack-card__title,
+.stack-card:hover .stack-card__link {
+  color: var(--white);
+}
+
+.stack-card:hover .stack-card__icon {
+  color: var(--white);
+}
+
+.stack-card:hover .stack-card__text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.stack-card:hover .stack-card__link {
+  gap: var(--space-3);
+}
+
+@media (max-width: 1024px) {
+  .stack-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .stack-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ─── Dark case-study override (when inside section--dark) ──── */
+.section--dark .case-study {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.section--dark .case-study__image {
+  background: var(--bone);
+  position: relative;
+  overflow: hidden;
+}
+
+.section--dark .case-study__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.section--dark .case-study__quote {
+  color: var(--white);
+}
+
+.section--dark .case-study__name {
+  color: var(--white);
+}
+
+.section--dark .case-study__role {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.section--dark .case-study__avatar {
+  background: var(--hot);
+}
+
+
+/* ─── Pricing: segment-split with brutalist styling + fill anim ─ */
+.pricing-page .segment-card {
+  border-radius: 0 !important;
+  border-width: 2px !important;
+  border-color: var(--ink) !important;
+  transition: transform var(--duration-base) var(--ease-out),
+              box-shadow var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out);
+}
+
+.pricing-page .segment-card--published {
+  background: var(--bone) !important;
+  border-color: var(--ink) !important;
+  box-shadow: 8px 8px 0 var(--hot);
+}
+
+.pricing-page .segment-card--bespoke {
+  background: var(--ink) !important;
+  border-color: var(--ink) !important;
+  box-shadow: 8px 8px 0 var(--hot);
+}
+
+.pricing-page .segment-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 var(--hot);
+}
+
+.pricing-page .segment-split__divider {
+  border-radius: 0;
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--ink);
+  background: var(--hot);
+  color: var(--white);
+  box-shadow: 4px 4px 0 var(--ink);
+  text-transform: lowercase;
+}
+
+/* Animated rate bar — appears under each segment card */
+.segment-card__bar {
+  margin-top: var(--space-4);
+  height: 6px;
+  background: rgba(11, 27, 51, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.segment-card--bespoke .segment-card__bar {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.segment-card__bar-fill {
+  position: absolute;
+  inset: 0;
+  width: 0;
+  background: var(--hot);
+  transition: width 1.6s var(--ease-out);
+}
+
+[data-animate].is-visible .segment-card__bar-fill,
+[data-stagger].is-visible .segment-card__bar-fill {
+  width: var(--fill, 40%);
+}
+
+.segment-card__bar-caption {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+
+.segment-card--bespoke .segment-card__bar-caption {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* ─── Pricing hero: layered orange-shadow receipt mockup ──────── */
+.pricing-hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4 / 3;
+  margin-inline: auto;
+}
+
+.pricing-hero-visual__backdrop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--bone) 0%, rgba(235, 24, 87, 0.12) 100%);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+}
+
+.pricing-hero-visual__rate-block {
+  position: absolute;
+  top: 12%;
+  left: 12%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.pricing-hero-visual__rate {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: clamp(4rem, 8vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--hot);
+}
+
+.pricing-hero-visual__rate-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+}
+
+.pricing-hero-visual__receipt {
+  position: absolute;
+  right: -6%;
+  bottom: -6%;
+  width: 56%;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  padding: var(--space-4) var(--space-5);
+  box-shadow: 6px 6px 0 var(--hot);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink);
+  animation: float 5s var(--ease-in-out) infinite;
+}
+
+.pricing-hero-visual__receipt-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px dashed rgba(11, 27, 51, 0.25);
+}
+
+.pricing-hero-visual__receipt-row:last-child {
+  border-bottom: none;
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 2px solid var(--ink);
+  font-weight: var(--weight-bold);
+}
+
+@media (max-width: 1024px) {
+  .pricing-hero-visual {
+    max-width: 400px;
+  }
+}
+
+
+/* ─── Pricing: stack-card style for "Over £200k" dark section ─ */
+.section--dark .capability-card.cap-card--bone {
+  background: var(--bone);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  position: relative;
+  transition: background var(--duration-base) var(--ease-out);
+}
+
+.section--dark .capability-card.cap-card--bone .capability-card__title {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+  letter-spacing: -0.02em;
+}
+
+.section--dark .capability-card.cap-card--bone .capability-card__text {
+  color: var(--text-secondary);
+}
+
+.section--dark .capability-card.cap-card--bone .capability-card__icon {
+  color: var(--hot);
+}
+
+.section--dark .capability-card.cap-card--bone:hover {
+  background: var(--hot);
+  border-color: var(--hot);
+}
+
+.section--dark .capability-card.cap-card--bone:hover .capability-card__title,
+.section--dark .capability-card.cap-card--bone:hover .capability-card__text {
+  color: var(--white);
+}
+
+.section--dark .capability-card.cap-card--bone:hover .capability-card__icon {
+  color: var(--white);
+}
+
+
+/* ─── Sector page: feature card upgrade ──────────────────────── */
+.feature-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.feature-card-list .capability-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--hot);
+  border-radius: 0;
+  padding: var(--space-6);
+  transition: border-color var(--duration-base) var(--ease-out),
+              transform var(--duration-base) var(--ease-out);
+}
+
+.feature-card-list .capability-card:hover {
+  border-left-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.feature-card-list .capability-card__title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-lg);
+  letter-spacing: -0.015em;
+}
+
+@media (max-width: 1024px) {
+  .feature-card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .feature-card-list {
+    grid-template-columns: 1fr;
+  }
+}
