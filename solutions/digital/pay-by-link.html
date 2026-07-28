@@ -612,6 +612,41 @@
       margin-bottom: 20px;
     }
 
+    /* ── Inverted for the navy background ── */
+    .section--dark .section-header__title .highlight { color: var(--ink); }
+
+    .section--dark .pl-speed__card {
+      background: var(--ink-light);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .section--dark .pl-speed__number { color: var(--white); }
+    .section--dark .pl-speed__label { color: rgba(255, 255, 255, 0.75); }
+
+    .section--dark .pl-remind { border-color: rgba(255, 255, 255, 0.22); }
+    .section--dark .pl-remind__title { color: var(--white); }
+    .section--dark .pl-remind__text { color: rgba(255, 255, 255, 0.65); }
+    .section--dark .pl-remind__label { color: var(--white); }
+    .section--dark .pl-remind__rule { background: rgba(255, 255, 255, 0.2); }
+
+    .section--dark .pl-remind__dot {
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .section--dark .pl-remind__dot--sent { background: transparent; }
+
+    /* Bright blurple: standard #6E44FF fails contrast as a small mark on
+       Prussian (brand-guidelines section 3) */
+    .section--dark .pl-remind__dot--nudge {
+      background: #8F70FF;
+      border-color: #8F70FF;
+    }
+
+    .section--dark .pl-remind__dot--paid {
+      background: #31D895;
+      border-color: #31D895;
+    }
+
     /* ── AI: paperwork in, links out ── */
     /* Matches the tracking split below, so both graphics sit on the same
        edge and read as one family */
@@ -1867,6 +1902,53 @@
     </section>
 
     <!-- ════════════════════════════════════════ -->
+    <!-- SENT BY TEXT                             -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="section-header section-header--center section-header--wide" data-animate>
+          <div class="section-header__overline">SENT BY TEXT</div>
+          <h2 class="section-header__title">A text gets <span class="highlight">paid sooner.</span></h2>
+          <p class="section-header__subtitle">People open a text in minutes and an email when they get round to it. Send the link by SMS and it lands while the job is still front of mind.</p>
+        </div>
+
+        <div class="pl-speed" data-stagger>
+          <div class="pl-speed__card">
+            <div class="pl-speed__number">3x</div>
+            <p class="pl-speed__label">faster to get paid than chasing the same payment by email.</p>
+          </div>
+          <div class="pl-speed__card">
+            <div class="pl-speed__number">45%</div>
+            <p class="pl-speed__label">more of the links you send get paid when they go out by text.</p>
+          </div>
+        </div>
+
+        <div class="pl-remind" data-animate>
+          <div class="pl-remind__copy">
+            <h3 class="pl-remind__title">Then it chases for you.</h3>
+            <p class="pl-remind__text">Unpaid links get automatic reminders by text and email, so nobody has to write the awkward follow-up. The reminders stop the moment the link is paid.</p>
+          </div>
+          <div class="pl-remind__seq" role="img" aria-label="A link sent, a reminder sent, then paid">
+            <div class="pl-remind__step">
+              <span class="pl-remind__dot pl-remind__dot--sent"></span>
+              <span class="pl-remind__label">Link sent</span>
+            </div>
+            <span class="pl-remind__rule"></span>
+            <div class="pl-remind__step">
+              <span class="pl-remind__dot pl-remind__dot--nudge"></span>
+              <span class="pl-remind__label">Reminder sent</span>
+            </div>
+            <span class="pl-remind__rule"></span>
+            <div class="pl-remind__step">
+              <span class="pl-remind__dot pl-remind__dot--paid"></span>
+              <span class="pl-remind__label">Paid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
     <!-- USE CASES                                -->
     <!-- ════════════════════════════════════════ -->
     <section class="section">
@@ -1917,53 +1999,6 @@
         </div>
       </div>
       </section>
-
-    <!-- ════════════════════════════════════════ -->
-    <!-- SENT BY TEXT                             -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header section-header--center section-header--wide" data-animate>
-          <div class="section-header__overline">SENT BY TEXT</div>
-          <h2 class="section-header__title">A text gets <span class="highlight">paid sooner.</span></h2>
-          <p class="section-header__subtitle">People open a text in minutes and an email when they get round to it. Send the link by SMS and it lands while the job is still front of mind.</p>
-        </div>
-
-        <div class="pl-speed" data-stagger>
-          <div class="pl-speed__card">
-            <div class="pl-speed__number">3x</div>
-            <p class="pl-speed__label">faster to get paid than chasing the same payment by email.</p>
-          </div>
-          <div class="pl-speed__card">
-            <div class="pl-speed__number">45%</div>
-            <p class="pl-speed__label">more of the links you send get paid when they go out by text.</p>
-          </div>
-        </div>
-
-        <div class="pl-remind" data-animate>
-          <div class="pl-remind__copy">
-            <h3 class="pl-remind__title">Then it chases for you.</h3>
-            <p class="pl-remind__text">Unpaid links get automatic reminders by text and email, so nobody has to write the awkward follow-up. The reminders stop the moment the link is paid.</p>
-          </div>
-          <div class="pl-remind__seq" role="img" aria-label="A link sent, a reminder sent, then paid">
-            <div class="pl-remind__step">
-              <span class="pl-remind__dot pl-remind__dot--sent"></span>
-              <span class="pl-remind__label">Link sent</span>
-            </div>
-            <span class="pl-remind__rule"></span>
-            <div class="pl-remind__step">
-              <span class="pl-remind__dot pl-remind__dot--nudge"></span>
-              <span class="pl-remind__label">Reminder sent</span>
-            </div>
-            <span class="pl-remind__rule"></span>
-            <div class="pl-remind__step">
-              <span class="pl-remind__dot pl-remind__dot--paid"></span>
-              <span class="pl-remind__label">Paid</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ════════════════════════════════════════ -->
     <!-- BRANDING                                 -->
