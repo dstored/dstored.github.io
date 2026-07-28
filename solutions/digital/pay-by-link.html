@@ -400,7 +400,7 @@
        run between each row's label and its amount. The space left over sits
        between the two, which is the air we wanted against the copy. */
     .pl-track__split {
-      grid-template-columns: minmax(0, 600px) 380px;
+      grid-template-columns: minmax(0, 580px) 470px;
       justify-content: space-between;
       gap: var(--space-12);
     }
@@ -420,11 +420,13 @@
       flex-direction: column;
     }
 
+    /* Type scales with the frame so a wider card still reads as full
+       rather than leaving a long run between the label and the amount */
     .pl-track__row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
+      gap: 13px;
+      padding: 16px 20px;
       background: #FFFFFF;
     }
 
@@ -444,7 +446,7 @@
     .pl-track__dot--sent { background: rgba(11, 27, 51, 0.25); }
 
     .pl-track__ref {
-      font-size: 13px;
+      font-size: 14.5px;
       font-weight: 600;
       color: var(--ink);
     }
@@ -452,7 +454,7 @@
     /* Inter, not mono: product graphics use the body face throughout */
     .pl-track__status {
       font-family: var(--font-body);
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -461,9 +463,49 @@
 
     .pl-track__amount {
       margin-left: auto;
-      font-size: 13.5px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--ink);
+    }
+
+    /* One row flips from sent to paid on a slow loop. The section is about
+       knowing status in real time, so the graphic shows a status changing
+       rather than just sitting there. */
+    .pl-track__row--live .pl-track__dot {
+      animation: pl-live-dot 9s ease-in-out infinite;
+    }
+
+    @keyframes pl-live-dot {
+      0%, 45% { background: rgba(11, 27, 51, 0.25); }
+      53%, 94% { background: #31D895; }
+      100% { background: rgba(11, 27, 51, 0.25); }
+    }
+
+    .pl-track__flip {
+      position: relative;
+      display: block;
+    }
+
+    .pl-track__flip span { display: block; }
+
+    .pl-track__flip span + span {
+      position: absolute;
+      inset: 0;
+    }
+
+    .pl-track__flip span:first-child { animation: pl-live-a 9s ease-in-out infinite; }
+    .pl-track__flip span + span { animation: pl-live-b 9s ease-in-out infinite; }
+
+    @keyframes pl-live-a {
+      0%, 45% { opacity: 1; }
+      53%, 94% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes pl-live-b {
+      0%, 45% { opacity: 0; }
+      53%, 94% { opacity: 1; }
+      100% { opacity: 0; }
     }
 
     /* ── Sent by text: two claims, then the reminder sequence ── */
@@ -659,7 +701,14 @@
 
     @media (prefers-reduced-motion: reduce) {
       .pl-ai__file,
-      .pl-ai__spark { animation: none; }
+      .pl-ai__spark,
+      .pl-track__row--live .pl-track__dot,
+      .pl-track__flip span { animation: none; }
+
+      /* Settle on the paid state, which is the point of the graphic */
+      .pl-track__row--live .pl-track__dot { background: #31D895; }
+      .pl-track__flip span:first-child { opacity: 0; }
+      .pl-track__flip span + span { opacity: 1; }
     }
 
     /* Branding mock: one link page in the merchant's colours */
@@ -1520,6 +1569,61 @@
       </section>
 
     <!-- ════════════════════════════════════════ -->
+    <!-- AI                                       -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="content-split pl-ai__split">
+          <div data-animate class="pl-ai__copy">
+            <div class="section-header">
+              <div class="section-header__overline">AI</div>
+              <h2 class="section-header__title">Drop the paperwork in.</h2>
+              <p class="section-header__subtitle">Drag in up to 50 PDFs, or a CSV, and AI reads them: who owes what, for which job, against which reference. A payment link comes back for every one, ready to send.</p>
+            </div>
+            <a href="/sign-up.html" class="btn btn--primary btn--icon-right">
+              Sign up now
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div data-animate>
+            <div class="pl-ai" role="img" aria-label="Fifty PDF invoices dropped in, read by AI, and turned into payment links">
+              <div class="pl-ai__drop">
+                <div class="pl-ai__files">
+                  <span class="pl-ai__file">PDF</span>
+                  <span class="pl-ai__file">PDF</span>
+                  <span class="pl-ai__file">PDF</span>
+                </div>
+                <div class="pl-ai__droptext">Drop up to 50 files</div>
+              </div>
+              <div class="pl-ai__reading">
+                <span class="pl-ai__spark"></span>
+                Read by AI
+              </div>
+              <div class="pl-ai__out">
+                <div class="pl-track__row">
+                  <span class="pl-track__dot pl-track__dot--sent"></span>
+                  <div>
+                    <div class="pl-track__ref">Invoice 4292</div>
+                    <div class="pl-track__status">Link ready</div>
+                  </div>
+                  <div class="pl-track__amount">&#163;320.00</div>
+                </div>
+                <div class="pl-track__row">
+                  <span class="pl-track__dot pl-track__dot--sent"></span>
+                  <div>
+                    <div class="pl-track__ref">Invoice 4293</div>
+                    <div class="pl-track__status">Link ready</div>
+                  </div>
+                  <div class="pl-track__amount">&#163;95.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
     <!-- USE CASES                                -->
     <!-- ════════════════════════════════════════ -->
     <section class="section">
@@ -1626,11 +1730,14 @@
                     </div>
                     <div class="pl-track__amount">&#163;480.00</div>
                   </div>
-                  <div class="pl-track__row">
+                  <div class="pl-track__row pl-track__row--live">
                     <span class="pl-track__dot pl-track__dot--sent"></span>
                     <div>
                       <div class="pl-track__ref">Callout fee &middot; Elm Road</div>
-                      <div class="pl-track__status">Sent &middot; 8:12am</div>
+                      <div class="pl-track__status pl-track__flip">
+                        <span>Sent &middot; 8:12am</span>
+                        <span>Paid &middot; 9:58am</span>
+                      </div>
                     </div>
                     <div class="pl-track__amount">&#163;85.00</div>
                   </div>
@@ -1683,61 +1790,6 @@
             <div class="pl-remind__step">
               <span class="pl-remind__dot pl-remind__dot--paid"></span>
               <span class="pl-remind__label">Paid</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════ -->
-    <!-- AI                                       -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="section section--dark">
-      <div class="container">
-        <div class="content-split pl-ai__split">
-          <div data-animate class="pl-ai__copy">
-            <div class="section-header">
-              <div class="section-header__overline">AI</div>
-              <h2 class="section-header__title">Drop the paperwork in.</h2>
-              <p class="section-header__subtitle">Drag in up to 50 PDFs, or a CSV, and AI reads them: who owes what, for which job, against which reference. A payment link comes back for every one, ready to send.</p>
-            </div>
-            <a href="/sign-up.html" class="btn btn--primary btn--icon-right">
-              Sign up now
-              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-          <div data-animate>
-            <div class="pl-ai" role="img" aria-label="Fifty PDF invoices dropped in, read by AI, and turned into payment links">
-              <div class="pl-ai__drop">
-                <div class="pl-ai__files">
-                  <span class="pl-ai__file">PDF</span>
-                  <span class="pl-ai__file">PDF</span>
-                  <span class="pl-ai__file">PDF</span>
-                </div>
-                <div class="pl-ai__droptext">Drop up to 50 files</div>
-              </div>
-              <div class="pl-ai__reading">
-                <span class="pl-ai__spark"></span>
-                Read by AI
-              </div>
-              <div class="pl-ai__out">
-                <div class="pl-track__row">
-                  <span class="pl-track__dot pl-track__dot--sent"></span>
-                  <div>
-                    <div class="pl-track__ref">Invoice 4292</div>
-                    <div class="pl-track__status">Link ready</div>
-                  </div>
-                  <div class="pl-track__amount">&#163;320.00</div>
-                </div>
-                <div class="pl-track__row">
-                  <span class="pl-track__dot pl-track__dot--sent"></span>
-                  <div>
-                    <div class="pl-track__ref">Invoice 4293</div>
-                    <div class="pl-track__status">Link ready</div>
-                  </div>
-                  <div class="pl-track__amount">&#163;95.00</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
