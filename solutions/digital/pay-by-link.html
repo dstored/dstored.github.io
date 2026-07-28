@@ -603,8 +603,10 @@
     }
 
     /* ── AI: paperwork in, links out ── */
+    /* Matches the tracking split below, so both graphics sit on the same
+       edge and read as one family */
     .pl-ai__split {
-      grid-template-columns: minmax(0, 560px) 400px;
+      grid-template-columns: minmax(0, 580px) 470px;
       justify-content: space-between;
       gap: var(--space-12);
     }
@@ -618,41 +620,88 @@
       padding: var(--space-5);
     }
 
+    /* One 12s loop drives the whole sequence: the upload is clicked, files
+       land, AI reads them, links come back. Every element runs the same
+       period so the steps stay in step with each other. */
     .pl-ai__drop {
+      position: relative;
       border: 2px dashed rgba(11, 27, 51, 0.25);
       border-radius: 8px;
       padding: var(--space-5) var(--space-4);
       text-align: center;
     }
 
+    .pl-ai__stack { display: grid; }
+    .pl-ai__stack > * { grid-area: 1 / 1; }
+
+    .pl-ai__upload {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      animation: pl-ai-upload 12s ease-in-out infinite;
+    }
+
+    .pl-ai__upload svg { width: 34px; height: 34px; }
+
+    @keyframes pl-ai-upload {
+      0%, 8% { opacity: 1; transform: scale(1); }
+      10%, 12% { opacity: 1; transform: scale(0.93); }
+      16% { opacity: 1; transform: scale(1); }
+      20%, 94% { opacity: 0; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .pl-ai__cursor {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 17px;
+      height: 17px;
+      margin: -2px 0 0 -2px;
+      animation: pl-ai-cursor 12s ease-in-out infinite;
+    }
+
+    .pl-ai__cursor svg { width: 100%; height: 100%; display: block; }
+
+    @keyframes pl-ai-cursor {
+      0% { opacity: 0; transform: translate(22px, 22px) scale(1); }
+      5% { opacity: 1; transform: translate(0, 0) scale(1); }
+      9%, 11% { opacity: 1; transform: translate(0, 0) scale(0.78); }
+      15% { opacity: 1; transform: translate(0, 0) scale(1); }
+      19%, 100% { opacity: 0; transform: translate(22px, 22px) scale(1); }
+    }
+
     .pl-ai__files {
       display: flex;
       justify-content: center;
-      gap: 8px;
-      margin-bottom: 10px;
+      align-items: flex-end;
+      gap: 7px;
     }
 
     .pl-ai__file {
-      width: 34px;
-      height: 44px;
+      width: 30px;
+      height: 40px;
       border: 2px solid var(--ink);
       border-radius: 4px;
       background: var(--paper);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 8.5px;
+      font-size: 8px;
       font-weight: 700;
       color: var(--ink);
-      animation: pl-ai-drop 3.6s ease-in-out infinite;
+      animation: pl-ai-file 12s ease-in-out infinite;
     }
 
-    .pl-ai__file:nth-child(2) { animation-delay: 0.25s; }
-    .pl-ai__file:nth-child(3) { animation-delay: 0.5s; }
+    .pl-ai__file:nth-child(2) { animation-delay: 0.18s; }
+    .pl-ai__file:nth-child(3) { animation-delay: 0.36s; }
+    .pl-ai__file:nth-child(4) { animation-delay: 0.54s; }
 
-    @keyframes pl-ai-drop {
-      0%, 60%, 100% { transform: translateY(0); }
-      30% { transform: translateY(-5px); }
+    @keyframes pl-ai-file {
+      0%, 15% { opacity: 0; transform: translateY(9px); }
+      22%, 94% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(9px); }
     }
 
     .pl-ai__droptext {
@@ -661,12 +710,33 @@
       color: rgba(11, 27, 51, 0.5);
     }
 
+    .pl-ai__count {
+      display: block;
+      margin-top: 9px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: rgba(11, 27, 51, 0.5);
+      animation: pl-ai-file 12s ease-in-out infinite;
+      animation-delay: 0.7s;
+    }
+
     .pl-ai__reading {
+      padding: 13px 0 14px;
+      animation: pl-ai-read 12s ease-in-out infinite;
+    }
+
+    @keyframes pl-ai-read {
+      0%, 22% { opacity: 0; }
+      27%, 88% { opacity: 1; }
+      94%, 100% { opacity: 0; }
+    }
+
+    .pl-ai__readlabel {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 7px;
-      padding: 12px 0;
+      margin-bottom: 9px;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.06em;
@@ -687,10 +757,44 @@
       50% { transform: scale(1.35); opacity: 0.6; }
     }
 
+    .pl-ai__bar {
+      height: 5px;
+      border-radius: 999px;
+      background: var(--bone);
+      overflow: hidden;
+    }
+
+    .pl-ai__bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: #6E44FF;
+      animation: pl-ai-bar 12s ease-in-out infinite;
+    }
+
+    @keyframes pl-ai-bar {
+      0%, 25% { width: 0; }
+      46%, 94% { width: 100%; }
+      100% { width: 0; }
+    }
+
     .pl-ai__out {
       border: 1px solid rgba(11, 27, 51, 0.12);
       border-radius: 8px;
       overflow: hidden;
+    }
+
+    .pl-ai__out .pl-track__row {
+      animation: pl-ai-row 12s ease-in-out infinite;
+    }
+
+    .pl-ai__out .pl-track__row:nth-child(2) { animation-delay: 0.35s; }
+
+    @keyframes pl-ai-row {
+      0%, 48% { opacity: 0; transform: translateY(9px); }
+      57%, 94% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(9px); }
     }
 
     @media (max-width: 968px) {
@@ -701,9 +805,24 @@
 
     @media (prefers-reduced-motion: reduce) {
       .pl-ai__file,
+      .pl-ai__count,
       .pl-ai__spark,
+      .pl-ai__upload,
+      .pl-ai__cursor,
+      .pl-ai__reading,
+      .pl-ai__bar span,
+      .pl-ai__out .pl-track__row,
       .pl-track__row--live .pl-track__dot,
       .pl-track__flip span { animation: none; }
+
+      /* Settle on the finished state: files in, read, links back */
+      .pl-ai__upload,
+      .pl-ai__cursor { opacity: 0; }
+      .pl-ai__file,
+      .pl-ai__count,
+      .pl-ai__reading,
+      .pl-ai__out .pl-track__row { opacity: 1; transform: none; }
+      .pl-ai__bar span { width: 100%; }
 
       /* Settle on the paid state, which is the point of the graphic */
       .pl-track__row--live .pl-track__dot { background: #31D895; }
@@ -1588,16 +1707,34 @@
           <div data-animate>
             <div class="pl-ai" role="img" aria-label="Fifty PDF invoices dropped in, read by AI, and turned into payment links">
               <div class="pl-ai__drop">
-                <div class="pl-ai__files">
-                  <span class="pl-ai__file">PDF</span>
-                  <span class="pl-ai__file">PDF</span>
-                  <span class="pl-ai__file">PDF</span>
+                <div class="pl-ai__stack">
+                  <div class="pl-ai__upload">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#16223C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5"/>
+                      <path d="M4 16v2.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V16"/>
+                    </svg>
+                    <span class="pl-ai__droptext">Drop up to 50 files</span>
+                  </div>
+                  <div class="pl-ai__files-wrap">
+                    <div class="pl-ai__files">
+                      <span class="pl-ai__file">PDF</span>
+                      <span class="pl-ai__file">PDF</span>
+                      <span class="pl-ai__file">PDF</span>
+                      <span class="pl-ai__file">PDF</span>
+                    </div>
+                    <span class="pl-ai__count">12 invoices added</span>
+                  </div>
                 </div>
-                <div class="pl-ai__droptext">Drop up to 50 files</div>
+                <span class="pl-ai__cursor" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="#16223C" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 7.8-5.9 1.4-2.6 5.8z"/></svg>
+                </span>
               </div>
               <div class="pl-ai__reading">
-                <span class="pl-ai__spark"></span>
-                Read by AI
+                <div class="pl-ai__readlabel">
+                  <span class="pl-ai__spark"></span>
+                  Reading with AI
+                </div>
+                <div class="pl-ai__bar"><span></span></div>
               </div>
               <div class="pl-ai__out">
                 <div class="pl-track__row">
