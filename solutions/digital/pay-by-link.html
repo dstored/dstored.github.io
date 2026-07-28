@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
   <link rel="stylesheet" href="../../css/header.css">
   <link rel="stylesheet" href="../../css/footer.css">
-  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-10">
+  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-11">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
@@ -658,6 +658,9 @@
       justify-content: center;
       text-align: center;
       gap: 10px;
+      /* Lifts the paid group off dead centre, so it sits nearer the top of
+         the empty screen rather than floating in the middle of it */
+      padding-bottom: 80px;
     }
 
     @media (max-width: 968px) {
@@ -1038,7 +1041,7 @@
               <a href="/pricing.html" class="btn btn--secondary btn--lg">See pricing</a>
             </div>
             <div class="solution-hero__trust">
-              <a class="solution-hero__trust-text trust-line" href="https://uk.trustpilot.com/review/joinstored.com" target="_blank" rel="noopener noreferrer"><span class="trust-line__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" fill="#31D895"/></svg></span>Rated <strong data-trustpilot-rating>4.9</strong> out of 5 stars on <strong>Trustpilot</strong>.</a>
+              <a class="solution-hero__trust-text trust-line" href="https://uk.trustpilot.com/review/joinstored.com" target="_blank" rel="noopener noreferrer"><span class="trust-line__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" fill="#31D895"/></svg></span>Rated <strong data-trustpilot-rating>4.9</strong> out of 5 stars on <strong class="trust-line__name">Trustpilot</strong>.</a>
             </div>
           </div>
           <div class="solution-hero__visual">
@@ -1206,7 +1209,7 @@
                 </g>
               </svg>
             </div>
-            <h3 class="why-card__title">Set the amount.</h3>
+            <h3 class="why-card__title">Set the request.</h3>
             <p class="why-card__text">Any amount, with a description and reference so it is clear what the payment is for.</p>
           </div>
 
