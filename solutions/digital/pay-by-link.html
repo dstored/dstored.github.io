@@ -664,22 +664,21 @@
       overflow: hidden;
     }
 
-    /* Navy chrome bar, matching the tracking frame below so the two
-       graphics read as the same product. Uses the stepped navy rather
-       than --ink: this sits ON a navy section, and plain --ink would be
-       the exact background colour, leaving the card with no top edge. */
+    /* The chrome bar always takes the opposite tone to its section, so the
+       frame keeps a defined top edge: paper here on the navy section,
+       navy on the tracking frame that sits on paper. */
     .pl-ai__chrome {
       display: flex;
       gap: 6px;
       padding: var(--space-3) var(--space-4);
-      background: var(--ink-light);
+      background: var(--paper);
     }
 
     .pl-ai__chrome span {
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
+      background: var(--border-medium);
     }
 
     .pl-ai__body { padding: var(--space-5); }
@@ -1760,7 +1759,7 @@
           <div data-animate class="pl-ai__copy">
             <div class="section-header">
               <div class="section-header__overline">AI</div>
-              <h2 class="section-header__title">AI turns paperwork into links.</h2>
+              <h2 class="section-header__title">AI that turns files into links.</h2>
               <p class="section-header__subtitle">Drag in up to 50 PDFs, or a CSV. AI reads who owes what, for which job, against which reference, and a payment link comes back for every one. Nothing to type, nothing to copy across.</p>
             </div>
             <a href="/sign-up.html" class="btn btn--primary btn--icon-right">
