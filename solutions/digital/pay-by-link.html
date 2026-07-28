@@ -532,11 +532,24 @@
       font-weight: var(--weight-bold);
       font-size: 16px;
       letter-spacing: 0.06em;
-      text-align: center;
       color: #111111;
       padding-bottom: 12px;
       border-bottom: 1px solid rgba(11, 27, 51, 0.1);
       margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    /* The merchant's own mark, so it wears the merchant's colour, not ours.
+       Bluefin is an electrician: a bolt in a trade blue reads as a real
+       small-business logo rather than a text string */
+    .pl-web__bolt {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      margin-top: -1px;
     }
 
     .pl-web__payto {
@@ -1086,7 +1099,7 @@
                     <span class="pl-web__bardot"></span><span class="pl-web__bardot"></span><span class="pl-web__bardot"></span>
                     <div class="pl-web__url">storedpay.co</div>
                   </div>
-                  <div class="pl-web__brand">BLUEFIN ELECTRICAL</div>
+                  <div class="pl-web__brand"><svg class="pl-web__bolt" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" fill="#1668D6"/></svg>BLUEFIN ELECTRICAL</div>
                   <div class="pl-web__payto">Pay Bluefin Electrical</div>
                   <div class="pl-web__amount">&#163;150.00</div>
                   <div class="pl-web__desc"><strong>Boiler repair deposit</strong>Please make payment to secure your booking.</div>
@@ -1125,7 +1138,7 @@
                     <span class="pl-web__bardot"></span><span class="pl-web__bardot"></span><span class="pl-web__bardot"></span>
                     <div class="pl-web__url">storedpay.co</div>
                   </div>
-                  <div class="pl-web__brand">BLUEFIN ELECTRICAL</div>
+                  <div class="pl-web__brand"><svg class="pl-web__bolt" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" fill="#1668D6"/></svg>BLUEFIN ELECTRICAL</div>
                   <div class="pl-web__successbody">
                     <svg class="pl-tick" viewBox="0 0 48 48" fill="none" aria-hidden="true">
                       <circle cx="24" cy="24" r="24" fill="#31D895"/>
@@ -1194,7 +1207,7 @@
               </svg>
             </div>
             <h3 class="why-card__title">Set the amount.</h3>
-            <p class="why-card__text">Type any amount and add a reference, in the app or dashboard.</p>
+            <p class="why-card__text">Any amount, with a description and reference so it is clear what the payment is for.</p>
           </div>
 
           <div class="why-card">
