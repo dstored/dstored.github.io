@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
   <link rel="stylesheet" href="../../css/header.css">
   <link rel="stylesheet" href="../../css/footer.css">
-  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-9">
+  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-10">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
@@ -582,34 +582,6 @@
       margin-bottom: 8px;
     }
 
-    /* Trust line carries a plain five-point star and names Trustpilot in
-       words instead of showing their logo. The star is Stored green
-       #31D895, not Trustpilot's #00B67A, and is a plain star rather than
-       their rounded badge, so it reads as ours */
-    .pl-trust { max-width: 520px; }
-
-    /* Inline with the first line rather than a flex sibling: as a sibling
-       the long text wrapped as a whole item and dropped below the star */
-    .pl-trust__star {
-      width: 24px;
-      height: 24px;
-      display: inline-block;
-      vertical-align: -5px;
-      margin-right: 8px;
-    }
-
-    .pl-trust__star svg { display: block; width: 100%; height: 100%; }
-
-    /* Links out to the public Trustpilot profile */
-    .pl-trust__link {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s ease;
-    }
-
-    .pl-trust__link:hover { border-bottom-color: var(--ink); }
-
     /* Dial code sits behind a flag, the way a real phone input renders it */
     .pl-web__field--tel { gap: 7px; }
 
@@ -1052,8 +1024,8 @@
               </a>
               <a href="/pricing.html" class="btn btn--secondary btn--lg">See pricing</a>
             </div>
-            <div class="solution-hero__trust pl-trust">
-              <a class="solution-hero__trust-text pl-trust__link" href="https://uk.trustpilot.com/review/joinstored.com" target="_blank" rel="noopener noreferrer"><span class="pl-trust__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" fill="#31D895"/></svg></span>Rated <strong data-trustpilot-rating>4.8</strong> out of 5 stars on Trustpilot.</a>
+            <div class="solution-hero__trust">
+              <a class="solution-hero__trust-text trust-line" href="https://uk.trustpilot.com/review/joinstored.com" target="_blank" rel="noopener noreferrer"><span class="trust-line__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" fill="#31D895"/></svg></span>Rated <strong data-trustpilot-rating>4.9</strong> out of 5 stars on Trustpilot.</a>
             </div>
           </div>
           <div class="solution-hero__visual">
@@ -1305,6 +1277,7 @@
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
+      </div>
       </section>
 
     <!-- ════════════════════════════════════════ -->
@@ -1356,6 +1329,7 @@
             <p class="card__text">Selling in the comments or by DM? Reply with a link for the exact amount.</p>
           </div>
         </div>
+      </div>
       </section>
 
     <!-- ════════════════════════════════════════ -->
