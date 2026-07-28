@@ -541,7 +541,9 @@
     }
 
     .pl-web__amount {
-      font-family: var(--font-display);
+      /* Inter, not the display face: this is the customer's payment page,
+         so the amount reads as a value, not as Stored brand type */
+      font-family: var(--font-body);
       font-weight: var(--weight-bold);
       font-size: 30px;
       letter-spacing: -0.02em;
@@ -575,6 +577,24 @@
       color: #111111;
       margin-bottom: 8px;
     }
+
+    /* Trust line carries a plain five-point star and names Trustpilot in
+       words instead of showing their logo. The star is Stored green
+       #31D895, not Trustpilot's #00B67A, and is a plain star rather than
+       their rounded badge, so it reads as ours */
+    .pl-trust { max-width: 520px; }
+
+    /* Inline with the first line rather than a flex sibling: as a sibling
+       the long text wrapped as a whole item and dropped below the star */
+    .pl-trust__star {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: -4px;
+      margin-right: 8px;
+    }
+
+    .pl-trust__star svg { display: block; width: 100%; height: 100%; }
 
     /* Dial code sits behind a flag, the way a real phone input renders it */
     .pl-web__field--tel { gap: 7px; }
@@ -1018,9 +1038,8 @@
               </a>
               <a href="/pricing.html" class="btn btn--secondary btn--lg">See pricing</a>
             </div>
-            <div class="solution-hero__trust">
-              <img class="solution-hero__trust-logo" src="/assets/icons/trustpilot_logo.svg" alt="Trustpilot" loading="lazy">
-              <span class="solution-hero__trust-text">Rated <strong>4.8 Excellent</strong></span>
+            <div class="solution-hero__trust pl-trust">
+              <span class="solution-hero__trust-text"><span class="pl-trust__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" fill="#31D895"/></svg></span>Rated <strong>4.8 out of 5 stars</strong> based on customer reviews on Trustpilot.</span>
             </div>
           </div>
           <div class="solution-hero__visual">
