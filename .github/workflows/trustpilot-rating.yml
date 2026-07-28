@@ -1,0 +1,41 @@
+name: Refresh Trustpilot rating
+
+# Weekly check that the rating on the site still matches Trustpilot.
+# Runs in the cloud, so it does not depend on anyone's laptop being awake.
+on:
+  schedule:
+    - cron: '0 8 * * 1' # Mondays, 08:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Writes nothing and fails the run if the API is unhappy, so a bad
+      # response can never publish a wrong or blank rating.
+      - name: Read the rating and update the pages
+        env:
+          TRUSTPILOT_API_KEY: ${{ secrets.TRUSTPILOT_API_KEY }}
+          TRUSTPILOT_DOMAIN: joinstored.com
+        run: node scripts/update-trustpilot-rating.mjs
+
+      - name: Commit if the rating moved
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Rating unchanged, nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update Trustpilot rating"
+          git push

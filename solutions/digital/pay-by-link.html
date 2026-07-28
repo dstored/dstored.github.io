@@ -215,38 +215,31 @@
 
     .pl-mail__to { color: #007AFF; white-space: nowrap; }
 
-    /* The address types itself in, then the caret fades and Send presses.
-       Clip-path and caret offset are both percentages of the same box, so
-       they stay in step whatever width the system font gives the string */
-    .pl-mail__typing {
+    /* Shared typing treatment, used by the email address on screen 1 and
+       the phone number on screen 2: the value types itself in, the caret
+       fades, then the button presses. Clip-path and caret offset are both
+       percentages of the same box, so they stay in step whatever width the
+       system font gives the string. Step count = characters in the value. */
+    .pl-typing {
       position: relative;
       display: inline-block;
     }
 
-    .pl-mail__typed { display: inline-block; }
-
-    .hero__card-state.is-active .pl-mail__typed {
-      animation: pl-type 4s steps(21, end) both;
-    }
+    .pl-typed { display: inline-block; }
 
     @keyframes pl-type {
       0% { clip-path: inset(0 100% 0 0); }
       50%, 100% { clip-path: inset(0 0 0 0); }
     }
 
-    .hero__card-state:not(.is-active) .pl-mail__typed { clip-path: inset(0 0 0 0); }
+    .hero__card-state:not(.is-active) .pl-typed { clip-path: inset(0 0 0 0); }
 
-    .pl-mail__caret {
+    .pl-caret {
       position: absolute;
       top: 0;
       bottom: 1px;
       width: 1.5px;
-      background: #007AFF;
       opacity: 0;
-    }
-
-    .hero__card-state.is-active .pl-mail__caret {
-      animation: pl-caret 4s steps(21, end) both;
     }
 
     @keyframes pl-caret {
@@ -254,6 +247,17 @@
       50%, 68% { left: 100%; opacity: 1; }
       72%, 100% { left: 100%; opacity: 0; }
     }
+
+    .pl-caret--mail { background: #007AFF; }
+    .pl-caret--tel { background: #111111; }
+
+    /* "accounts@oneworld.com" is 21 characters */
+    .hero__card-state.is-active .pl-typed--mail { animation: pl-type 4s steps(21, end) both; }
+    .hero__card-state.is-active .pl-caret--mail { animation: pl-caret 4s steps(21, end) both; }
+
+    /* "7700 900123" is 11 characters */
+    .hero__card-state.is-active .pl-typed--tel { animation: pl-type 4s steps(11, end) both; }
+    .hero__card-state.is-active .pl-caret--tel { animation: pl-caret 4s steps(11, end) both; }
     .pl-mail__from { color: #8A8A8E; overflow-wrap: anywhere; }
     .pl-mail__subject { color: #000000; }
 
@@ -587,14 +591,24 @@
     /* Inline with the first line rather than a flex sibling: as a sibling
        the long text wrapped as a whole item and dropped below the star */
     .pl-trust__star {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       display: inline-block;
-      vertical-align: -4px;
+      vertical-align: -5px;
       margin-right: 8px;
     }
 
     .pl-trust__star svg { display: block; width: 100%; height: 100%; }
+
+    /* Links out to the public Trustpilot profile */
+    .pl-trust__link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    .pl-trust__link:hover { border-bottom-color: var(--ink); }
 
     /* Dial code sits behind a flag, the way a real phone input renders it */
     .pl-web__field--tel { gap: 7px; }
@@ -680,14 +694,14 @@
       .pl-anim-pill, .pl-anim-bubble,
       .anim-clock-hour, .anim-clock-minute,
       .hero__card-state.is-active .pl-mail__send,
-      .hero__card-state.is-active .pl-mail__typed,
-      .hero__card-state.is-active .pl-mail__caret,
+      .hero__card-state.is-active .pl-typed,
+      .hero__card-state.is-active .pl-caret,
       .hero__card-state.is-active .pl-tick {
         animation: none;
       }
 
-      .pl-mail__typed { clip-path: inset(0 0 0 0); }
-      .pl-mail__caret { opacity: 0; }
+      .pl-typed { clip-path: inset(0 0 0 0); }
+      .pl-caret { opacity: 0; }
     }
   </style>
 
@@ -1039,7 +1053,7 @@
               <a href="/pricing.html" class="btn btn--secondary btn--lg">See pricing</a>
             </div>
             <div class="solution-hero__trust pl-trust">
-              <span class="solution-hero__trust-text"><span class="pl-trust__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" fill="#31D895"/></svg></span>Rated <strong>4.8 out of 5 stars</strong> based on customer reviews on Trustpilot.</span>
+              <a class="solution-hero__trust-text pl-trust__link" href="https://uk.trustpilot.com/review/joinstored.com" target="_blank" rel="noopener noreferrer"><span class="pl-trust__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" fill="#31D895"/></svg></span>Rated <strong data-trustpilot-rating>4.8</strong> out of 5 stars on Trustpilot.</a>
             </div>
           </div>
           <div class="solution-hero__visual">
@@ -1058,9 +1072,9 @@
                     <div class="pl-mail__title">Boiler repair deposit</div>
                     <div class="pl-mail__row">
                       <span class="pl-mail__label">To:</span>
-                      <span class="pl-mail__typing">
-                        <span class="pl-mail__to pl-mail__typed">accounts@oneworld.com</span>
-                        <span class="pl-mail__caret"></span>
+                      <span class="pl-typing">
+                        <span class="pl-mail__to pl-typed pl-typed--mail">accounts@oneworld.com</span>
+                        <span class="pl-caret pl-caret--mail"></span>
                       </span>
                     </div>
                     <div class="pl-mail__row">
@@ -1119,7 +1133,10 @@
                       </svg>
                     </span>
                     <span class="pl-web__dial">+44</span>
-                    <span>7700 900123</span>
+                    <span class="pl-typing">
+                      <span class="pl-typed pl-typed--tel">7700 900123</span>
+                      <span class="pl-caret pl-caret--tel"></span>
+                    </span>
                   </div>
                   <div class="pl-web__paybtn">
                     <svg width="11" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
