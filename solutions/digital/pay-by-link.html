@@ -396,6 +396,16 @@
       border-radius: 10px;
     }
 
+    /* Navy chrome bar rather than the shared parchment one */
+    .pl-track__frame .platform-mock__bar {
+      background: var(--ink);
+      border-bottom: none;
+    }
+
+    .pl-track__frame .platform-mock__dot {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
     /* Copy column sized to the headline, frame column narrowed to close the
        run between each row's label and its amount. The space left over sits
        between the two, which is the air we wanted against the copy. */
@@ -617,8 +627,27 @@
       background: #FFFFFF;
       border-radius: 10px;
       overflow: hidden;
-      padding: var(--space-5);
     }
+
+    /* Navy chrome bar, matching the tracking frame below so the two
+       graphics read as the same product. Uses the stepped navy rather
+       than --ink: this sits ON a navy section, and plain --ink would be
+       the exact background colour, leaving the card with no top edge. */
+    .pl-ai__chrome {
+      display: flex;
+      gap: 6px;
+      padding: var(--space-3) var(--space-4);
+      background: var(--ink-light);
+    }
+
+    .pl-ai__chrome span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .pl-ai__body { padding: var(--space-5); }
 
     /* One 12s loop drives the whole sequence: the upload is clicked, files
        land, AI reads them, links come back. Every element runs the same
@@ -1696,8 +1725,8 @@
           <div data-animate class="pl-ai__copy">
             <div class="section-header">
               <div class="section-header__overline">AI</div>
-              <h2 class="section-header__title">Drop the paperwork in.</h2>
-              <p class="section-header__subtitle">Drag in up to 50 PDFs, or a CSV, and AI reads them: who owes what, for which job, against which reference. A payment link comes back for every one, ready to send.</p>
+              <h2 class="section-header__title">AI turns paperwork into links.</h2>
+              <p class="section-header__subtitle">Drag in up to 50 PDFs, or a CSV. AI reads who owes what, for which job, against which reference, and a payment link comes back for every one. Nothing to type, nothing to copy across.</p>
             </div>
             <a href="/sign-up.html" class="btn btn--primary btn--icon-right">
               Sign up now
@@ -1706,6 +1735,8 @@
           </div>
           <div data-animate>
             <div class="pl-ai" role="img" aria-label="Fifty PDF invoices dropped in, read by AI, and turned into payment links">
+              <div class="pl-ai__chrome"><span></span><span></span><span></span></div>
+              <div class="pl-ai__body">
               <div class="pl-ai__drop">
                 <div class="pl-ai__stack">
                   <div class="pl-ai__upload">
@@ -1753,6 +1784,7 @@
                   </div>
                   <div class="pl-track__amount">&#163;95.00</div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
