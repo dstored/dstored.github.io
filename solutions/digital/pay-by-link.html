@@ -389,7 +389,32 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Tracking mock: a live list of links in the platform frame */
+    /* Tracking mock: a live list of links in the platform frame.
+       .platform-mock is only used on this page, so these overrides stay
+       page-local rather than changing the shared component. */
+    .pl-track__frame {
+      border-radius: 10px;
+    }
+
+    /* Copy column sized to the headline, frame column narrowed to close the
+       run between each row's label and its amount. The space left over sits
+       between the two, which is the air we wanted against the copy. */
+    .pl-track__split {
+      grid-template-columns: minmax(0, 600px) 380px;
+      justify-content: space-between;
+      gap: var(--space-12);
+    }
+
+    /* 580px fits "Know the status" (537px) but not "Know the status of"
+       (625px), so the headline breaks where it reads best */
+    .pl-track__copy .section-header__title {
+      max-width: 580px;
+    }
+
+    .pl-track__copy .section-header__subtitle {
+      max-width: 520px;
+    }
+
     .pl-track {
       display: flex;
       flex-direction: column;
@@ -424,9 +449,11 @@
       color: var(--ink);
     }
 
+    /* Inter, not mono: product graphics use the body face throughout */
     .pl-track__status {
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 10px;
+      font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: rgba(11, 27, 51, 0.5);
@@ -437,6 +464,202 @@
       font-size: 13.5px;
       font-weight: 700;
       color: var(--ink);
+    }
+
+    /* ── Sent by text: two claims, then the reminder sequence ── */
+    .pl-speed {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+
+    .pl-speed__card {
+      background: var(--bone);
+      border: 2px solid var(--ink);
+      padding: var(--space-8);
+    }
+
+    .pl-speed__number {
+      font-family: var(--font-display);
+      font-weight: var(--weight-bold);
+      font-size: clamp(3.5rem, 2.5rem + 5vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .pl-speed__label {
+      margin-top: var(--space-4);
+      font-size: var(--text-base);
+      color: var(--ink);
+      max-width: 330px;
+    }
+
+    .pl-remind {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+      margin-top: var(--space-10);
+      padding: var(--space-8);
+      border: 2px solid var(--ink);
+    }
+
+    .pl-remind__title {
+      font-family: var(--font-display);
+      font-weight: var(--weight-bold);
+      font-size: var(--text-3xl);
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: var(--space-3);
+    }
+
+    .pl-remind__text {
+      font-size: var(--text-base);
+      color: var(--mute);
+      max-width: 460px;
+    }
+
+    .pl-remind__seq {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .pl-remind__step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .pl-remind__dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--ink);
+    }
+
+    .pl-remind__dot--sent { background: var(--bone); }
+    .pl-remind__dot--nudge { background: #6E44FF; border-color: #6E44FF; }
+    .pl-remind__dot--paid { background: #31D895; border-color: #16223C; }
+
+    .pl-remind__label {
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--ink);
+    }
+
+    .pl-remind__rule {
+      flex: 1;
+      height: 2px;
+      background: rgba(11, 27, 51, 0.15);
+      margin-bottom: 20px;
+    }
+
+    /* ── AI: paperwork in, links out ── */
+    .pl-ai__split {
+      grid-template-columns: minmax(0, 560px) 400px;
+      justify-content: space-between;
+      gap: var(--space-12);
+    }
+
+    .pl-ai__copy .section-header__subtitle { max-width: 520px; }
+
+    .pl-ai {
+      background: #FFFFFF;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: var(--space-5);
+    }
+
+    .pl-ai__drop {
+      border: 2px dashed rgba(11, 27, 51, 0.25);
+      border-radius: 8px;
+      padding: var(--space-5) var(--space-4);
+      text-align: center;
+    }
+
+    .pl-ai__files {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .pl-ai__file {
+      width: 34px;
+      height: 44px;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      color: var(--ink);
+      animation: pl-ai-drop 3.6s ease-in-out infinite;
+    }
+
+    .pl-ai__file:nth-child(2) { animation-delay: 0.25s; }
+    .pl-ai__file:nth-child(3) { animation-delay: 0.5s; }
+
+    @keyframes pl-ai-drop {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-5px); }
+    }
+
+    .pl-ai__droptext {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: rgba(11, 27, 51, 0.5);
+    }
+
+    .pl-ai__reading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 12px 0;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .pl-ai__spark {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #6E44FF;
+      animation: pl-ai-pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pl-ai-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.6; }
+    }
+
+    .pl-ai__out {
+      border: 1px solid rgba(11, 27, 51, 0.12);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 968px) {
+      .pl-speed,
+      .pl-remind,
+      .pl-ai__split { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pl-ai__file,
+      .pl-ai__spark { animation: none; }
     }
 
     /* Branding mock: one link page in the merchant's colours */
@@ -1353,17 +1576,17 @@
     <!-- ════════════════════════════════════════ -->
     <section class="section section--dark">
       <div class="container">
-        <div class="content-split">
-          <div data-animate>
+        <div class="content-split pl-track__split">
+          <div data-animate class="pl-track__copy">
             <div class="section-header">
               <div class="section-header__overline">TRACKING</div>
               <h2 class="section-header__title">Know the status of every link.</h2>
               <p class="section-header__subtitle">Sent, opened, paid, in real time. Filter by date, status, amount or customer. Export or sync to your accounting tools.</p>
             </div>
-            <a href="/solutions/platform/orders.html" class="btn btn--white">Explore the platform</a>
+            <a href="/solutions/platform/orders.html" class="btn btn--primary">Explore the platform</a>
           </div>
           <div data-animate>
-            <div class="platform-mock platform-mock--media">
+            <div class="platform-mock platform-mock--media pl-track__frame">
               <div class="platform-mock__bar">
                 <div class="platform-mock__dot"></div>
                 <div class="platform-mock__dot"></div>
@@ -1395,6 +1618,124 @@
                     </div>
                     <div class="pl-track__amount">&#163;60.00</div>
                   </div>
+                  <div class="pl-track__row">
+                    <span class="pl-track__dot pl-track__dot--paid"></span>
+                    <div>
+                      <div class="pl-track__ref">Invoice 4288</div>
+                      <div class="pl-track__status">Paid &middot; 8:57am</div>
+                    </div>
+                    <div class="pl-track__amount">&#163;480.00</div>
+                  </div>
+                  <div class="pl-track__row">
+                    <span class="pl-track__dot pl-track__dot--sent"></span>
+                    <div>
+                      <div class="pl-track__ref">Callout fee &middot; Elm Road</div>
+                      <div class="pl-track__status">Sent &middot; 8:12am</div>
+                    </div>
+                    <div class="pl-track__amount">&#163;85.00</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- SENT BY TEXT                             -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header section-header--center section-header--wide" data-animate>
+          <div class="section-header__overline">SENT BY TEXT</div>
+          <h2 class="section-header__title">A text gets <span class="highlight">paid sooner.</span></h2>
+          <p class="section-header__subtitle">People open a text in minutes and an email when they get round to it. Send the link by SMS and it lands while the job is still front of mind.</p>
+        </div>
+
+        <div class="pl-speed" data-stagger>
+          <div class="pl-speed__card">
+            <div class="pl-speed__number">3x</div>
+            <p class="pl-speed__label">faster to get paid than chasing the same payment by email.</p>
+          </div>
+          <div class="pl-speed__card">
+            <div class="pl-speed__number">45%</div>
+            <p class="pl-speed__label">more of the links you send get paid when they go out by text.</p>
+          </div>
+        </div>
+
+        <div class="pl-remind" data-animate>
+          <div class="pl-remind__copy">
+            <h3 class="pl-remind__title">Then it chases for you.</h3>
+            <p class="pl-remind__text">Unpaid links get automatic reminders by text and email, so nobody has to write the awkward follow-up. The reminders stop the moment the link is paid.</p>
+          </div>
+          <div class="pl-remind__seq" role="img" aria-label="A link sent, a reminder sent, then paid">
+            <div class="pl-remind__step">
+              <span class="pl-remind__dot pl-remind__dot--sent"></span>
+              <span class="pl-remind__label">Link sent</span>
+            </div>
+            <span class="pl-remind__rule"></span>
+            <div class="pl-remind__step">
+              <span class="pl-remind__dot pl-remind__dot--nudge"></span>
+              <span class="pl-remind__label">Reminder sent</span>
+            </div>
+            <span class="pl-remind__rule"></span>
+            <div class="pl-remind__step">
+              <span class="pl-remind__dot pl-remind__dot--paid"></span>
+              <span class="pl-remind__label">Paid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- AI                                       -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="content-split pl-ai__split">
+          <div data-animate class="pl-ai__copy">
+            <div class="section-header">
+              <div class="section-header__overline">AI</div>
+              <h2 class="section-header__title">Drop the paperwork in.</h2>
+              <p class="section-header__subtitle">Drag in up to 50 PDFs, or a CSV, and AI reads them: who owes what, for which job, against which reference. A payment link comes back for every one, ready to send.</p>
+            </div>
+            <a href="/sign-up.html" class="btn btn--primary btn--icon-right">
+              Sign up now
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div data-animate>
+            <div class="pl-ai" role="img" aria-label="Fifty PDF invoices dropped in, read by AI, and turned into payment links">
+              <div class="pl-ai__drop">
+                <div class="pl-ai__files">
+                  <span class="pl-ai__file">PDF</span>
+                  <span class="pl-ai__file">PDF</span>
+                  <span class="pl-ai__file">PDF</span>
+                </div>
+                <div class="pl-ai__droptext">Drop up to 50 files</div>
+              </div>
+              <div class="pl-ai__reading">
+                <span class="pl-ai__spark"></span>
+                Read by AI
+              </div>
+              <div class="pl-ai__out">
+                <div class="pl-track__row">
+                  <span class="pl-track__dot pl-track__dot--sent"></span>
+                  <div>
+                    <div class="pl-track__ref">Invoice 4292</div>
+                    <div class="pl-track__status">Link ready</div>
+                  </div>
+                  <div class="pl-track__amount">&#163;320.00</div>
+                </div>
+                <div class="pl-track__row">
+                  <span class="pl-track__dot pl-track__dot--sent"></span>
+                  <div>
+                    <div class="pl-track__ref">Invoice 4293</div>
+                    <div class="pl-track__status">Link ready</div>
+                  </div>
+                  <div class="pl-track__amount">&#163;95.00</div>
                 </div>
               </div>
             </div>
