@@ -123,125 +123,158 @@
       font-family: var(--font-body);
     }
 
-    /* ── State 1: the merchant emails the link ── */
-    .pl-head {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--ink);
-      text-align: center;
-      margin-bottom: 6px;
-    }
-
-    .pl-ref {
-      font-size: 11.5px;
-      font-weight: 500;
-      color: rgba(11, 27, 51, 0.55);
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    /* The compose sheet: To / Subject rows over a body carrying the link */
+    /* ── State 1: the merchant emails the link ──
+       Drawn as the real iOS Mail compose sheet, deliberately off-palette
+       (system blue, white, grey hairlines, system font) on the same
+       principle as the WhatsApp thread on hosted-checkout: it depicts a
+       third-party app, so it wears that app's colours, not ours. */
     .pl-mail {
-      background: #FFFFFF;
-      border: 2px solid var(--ink);
-      border-radius: 12px;
-      overflow: hidden;
-      /* Fills the screen like a real compose sheet, so the Send button
-         sits against the body rather than across a gap */
-      display: flex;
-      flex-direction: column;
+      padding: 0;
+      background: #1C1C1E;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pl-mail__sheet {
       flex: 1;
       min-height: 0;
-      margin-bottom: 16px;
+      margin-top: 9px;
+      background: #FFFFFF;
+      border-radius: 11px 11px 0 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .pl-mail__grabber {
+      width: 34px;
+      height: 4px;
+      border-radius: 2px;
+      background: #C7C7CC;
+      margin: 6px auto 0;
+    }
+
+    .pl-mail__topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 8px 14px 0;
+    }
+
+    .pl-mail__cancel {
+      font-size: 12.5px;
+      color: #007AFF;
+      line-height: 1.6;
+    }
+
+    .pl-mail__send {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #007AFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero__card-state.is-active .pl-mail__send {
+      animation: pl-send-press 4s ease forwards;
+    }
+
+    @keyframes pl-send-press {
+      0%, 80% { transform: scale(1); background: #007AFF; }
+      87%, 100% { transform: scale(0.86); background: #0055CC; }
+    }
+
+    .hero__card-state:not(.is-active) .pl-mail__send {
+      transform: scale(0.86);
+      background: #0055CC;
+    }
+
+    .pl-mail__title {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #000000;
+      padding: 2px 14px 14px;
     }
 
     .pl-mail__row {
       display: flex;
       align-items: baseline;
-      gap: 10px;
-      padding: 11px 13px;
-      border-bottom: 1.5px solid rgba(11, 27, 51, 0.1);
+      gap: 5px;
+      padding: 9px 14px;
+      border-top: 0.5px solid #D6D6DA;
+      font-size: 12px;
     }
 
     .pl-mail__label {
       flex-shrink: 0;
-      width: 42px;
-      font-size: 11px;
-      font-weight: 600;
-      color: rgba(11, 27, 51, 0.45);
+      color: #8A8A8E;
     }
 
-    .pl-mail__value {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--ink);
-      overflow-wrap: anywhere;
-    }
+    .pl-mail__to { color: #007AFF; overflow-wrap: anywhere; }
+    .pl-mail__from { color: #8A8A8E; overflow-wrap: anywhere; }
+    .pl-mail__subject { color: #000000; }
 
     .pl-mail__body {
       flex: 1;
-      padding: 13px;
+      padding: 12px 14px 0;
+      border-top: 0.5px solid #D6D6DA;
       font-size: 12px;
-      line-height: 1.5;
-      color: var(--ink);
+      line-height: 1.45;
+      color: #000000;
     }
 
-    .pl-mail__body p { margin: 0 0 11px; }
-    .pl-mail__sign { color: rgba(11, 27, 51, 0.55); }
+    .pl-mail__body p { margin: 0 0 9px; }
+    .pl-mail__url { color: #007AFF; text-decoration: underline; overflow-wrap: anywhere; }
 
-    /* The link as it sits in the sent email: bone surface, blurple url */
-    .pl-mail__link {
-      background: var(--bone);
-      border-radius: 10px;
-      padding: 11px 12px;
-      text-align: center;
-      margin-bottom: 11px;
-    }
-
-    .pl-mail__linkurl {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 600;
-      color: #6E44FF;
-    }
-
-    .pl-mail__linkamt {
-      display: block;
-      font-family: var(--font-display);
-      font-weight: var(--weight-bold);
-      font-size: 21px;
-      letter-spacing: -0.03em;
-      color: var(--ink);
-      margin-top: 2px;
-    }
-
-    .pl-cta {
+    /* Compact iOS keyboard, texture rather than detail at this scale */
+    .pl-kb {
       margin-top: auto;
-      height: 46px;
-      border-radius: 12px;
-      background: var(--hot);
-      color: #FFFFFF;
+      background: #D1D3D9;
+      padding: 4px 3px 5px;
+      flex-shrink: 0;
+    }
+
+    .pl-kb__pred {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      height: 22px;
+      font-size: 10.5px;
+      color: #000000;
+      border-bottom: 0.5px solid #B9BCC2;
+      margin-bottom: 5px;
+    }
+
+    .pl-kb__pred span:nth-child(2) { border-left: 0.5px solid #B9BCC2; border-right: 0.5px solid #B9BCC2; padding: 0 26px; }
+
+    .pl-kb__row {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 5px;
+    }
+
+    .pl-kb__row--mid { padding: 0 11px; }
+
+    .pl-kb__key {
+      flex: 1;
+      height: 25px;
+      background: #FFFFFF;
+      border-radius: 4px;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
-      font-size: 14px;
+      font-size: 11px;
+      color: #000000;
     }
 
-    .hero__card-state.is-active .pl-cta {
-      animation: pl-press 4s ease forwards;
-    }
-
-    @keyframes pl-press {
-      0%, 80% { background: var(--hot); transform: scale(1); }
-      86%, 100% { background: #6E44FF; transform: scale(0.97); }
-    }
-
-    .hero__card-state:not(.is-active) .pl-cta {
-      background: #6E44FF;
-      transform: scale(0.97);
-    }
+    .pl-kb__key--fn { background: #ADB2BC; font-size: 9px; }
+    .pl-kb__key--wide { flex: 1.5; }
+    .pl-kb__key--space { flex: 5; }
 
     /* ── State 3: paid ── */
     .pl-paid {
@@ -570,7 +603,7 @@
       .solution-hero .solution-hero__visual,
       .pl-anim-pill, .pl-anim-bubble,
       .anim-clock-hour, .anim-clock-minute,
-      .hero__card-state.is-active .pl-cta,
+      .hero__card-state.is-active .pl-mail__send,
       .hero__card-state.is-active .pl-tick {
         animation: none;
       }
@@ -932,29 +965,51 @@
           <div class="solution-hero__visual">
             <div class="phone-demo" role="img" aria-label="Emailing a &#163;150 payment link to a customer, and the customer paying it">
               <div class="phone-demo__screens" data-cycle-card data-cycle-interval="4000">
-                <!-- State 1: the merchant emails the link -->
-                <div class="hero__card-state is-active phone-demo__screen">
-                  <div class="pl-head">New message</div>
-                  <div class="pl-ref">Bluefin Electrical</div>
-                  <div class="pl-mail">
+                <!-- State 1: the merchant emails the link, in the real Mail compose sheet -->
+                <div class="hero__card-state is-active phone-demo__screen pl-mail">
+                  <div class="pl-mail__sheet">
+                    <span class="pl-mail__grabber"></span>
+                    <div class="pl-mail__topbar">
+                      <span class="pl-mail__cancel">Cancel</span>
+                      <span class="pl-mail__send">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V5m0 0l-7 7m7-7l7 7"/></svg>
+                      </span>
+                    </div>
+                    <div class="pl-mail__title">Boiler repair deposit</div>
                     <div class="pl-mail__row">
-                      <span class="pl-mail__label">To</span>
-                      <span class="pl-mail__value">accounts@oneworld.com</span>
+                      <span class="pl-mail__label">To:</span>
+                      <span class="pl-mail__to">accounts@oneworld.com</span>
                     </div>
                     <div class="pl-mail__row">
-                      <span class="pl-mail__label">Subject</span>
-                      <span class="pl-mail__value">Boiler repair deposit</span>
+                      <span class="pl-mail__label">Cc/Bcc, From:</span>
+                      <span class="pl-mail__from">hello@bluefinelectrical.co.uk</span>
+                    </div>
+                    <div class="pl-mail__row">
+                      <span class="pl-mail__label">Subject:</span>
+                      <span class="pl-mail__subject">Boiler repair deposit</span>
                     </div>
                     <div class="pl-mail__body">
-                      <p>Hi, here is the link to pay the deposit. Card or wallet, no account needed.</p>
-                      <div class="pl-mail__link">
-                        <span class="pl-mail__linkurl">stored.link/boiler-150</span>
-                        <span class="pl-mail__linkamt">&#163;150.00</span>
+                      <p>Hi, here is the link to pay the &#163;150.00 deposit:</p>
+                      <p><span class="pl-mail__url">stored.link/boiler-150</span></p>
+                      <p>Card or Apple Pay, no account needed.</p>
+                      <p>Thanks,<br>Bluefin Electrical</p>
+                    </div>
+                    <div class="pl-kb" aria-hidden="true">
+                      <div class="pl-kb__pred"><span>I</span><span>The</span><span>And</span></div>
+                      <div class="pl-kb__row">
+                        <span class="pl-kb__key">Q</span><span class="pl-kb__key">W</span><span class="pl-kb__key">E</span><span class="pl-kb__key">R</span><span class="pl-kb__key">T</span><span class="pl-kb__key">Y</span><span class="pl-kb__key">U</span><span class="pl-kb__key">I</span><span class="pl-kb__key">O</span><span class="pl-kb__key">P</span>
                       </div>
-                      <p class="pl-mail__sign">Thanks,<br>Bluefin Electrical</p>
+                      <div class="pl-kb__row pl-kb__row--mid">
+                        <span class="pl-kb__key">A</span><span class="pl-kb__key">S</span><span class="pl-kb__key">D</span><span class="pl-kb__key">F</span><span class="pl-kb__key">G</span><span class="pl-kb__key">H</span><span class="pl-kb__key">J</span><span class="pl-kb__key">K</span><span class="pl-kb__key">L</span>
+                      </div>
+                      <div class="pl-kb__row">
+                        <span class="pl-kb__key pl-kb__key--fn pl-kb__key--wide">&#8679;</span><span class="pl-kb__key">Z</span><span class="pl-kb__key">X</span><span class="pl-kb__key">C</span><span class="pl-kb__key">V</span><span class="pl-kb__key">B</span><span class="pl-kb__key">N</span><span class="pl-kb__key">M</span><span class="pl-kb__key pl-kb__key--fn pl-kb__key--wide">&#9003;</span>
+                      </div>
+                      <div class="pl-kb__row">
+                        <span class="pl-kb__key pl-kb__key--fn pl-kb__key--wide">123</span><span class="pl-kb__key pl-kb__key--space">space</span><span class="pl-kb__key pl-kb__key--fn pl-kb__key--wide">return</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="pl-cta">Send</div>
                 </div>
                 <!-- State 3: the customer's payment page (from the real UI) -->
                 <div class="hero__card-state phone-demo__screen pl-web">
