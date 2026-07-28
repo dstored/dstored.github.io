@@ -130,17 +130,16 @@
        third-party app, so it wears that app's colours, not ours. */
     .pl-mail {
       padding: 0;
-      background: #1C1C1E;
+      background: #FFFFFF;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Runs flush to the top edge: the phone frame's own radius clips it */
     .pl-mail__sheet {
       flex: 1;
       min-height: 0;
-      margin-top: 9px;
       background: #FFFFFF;
-      border-radius: 11px 11px 0 0;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -214,7 +213,47 @@
       color: #8A8A8E;
     }
 
-    .pl-mail__to { color: #007AFF; overflow-wrap: anywhere; }
+    .pl-mail__to { color: #007AFF; white-space: nowrap; }
+
+    /* The address types itself in, then the caret fades and Send presses.
+       Clip-path and caret offset are both percentages of the same box, so
+       they stay in step whatever width the system font gives the string */
+    .pl-mail__typing {
+      position: relative;
+      display: inline-block;
+    }
+
+    .pl-mail__typed { display: inline-block; }
+
+    .hero__card-state.is-active .pl-mail__typed {
+      animation: pl-type 4s steps(21, end) both;
+    }
+
+    @keyframes pl-type {
+      0% { clip-path: inset(0 100% 0 0); }
+      50%, 100% { clip-path: inset(0 0 0 0); }
+    }
+
+    .hero__card-state:not(.is-active) .pl-mail__typed { clip-path: inset(0 0 0 0); }
+
+    .pl-mail__caret {
+      position: absolute;
+      top: 0;
+      bottom: 1px;
+      width: 1.5px;
+      background: #007AFF;
+      opacity: 0;
+    }
+
+    .hero__card-state.is-active .pl-mail__caret {
+      animation: pl-caret 4s steps(21, end) both;
+    }
+
+    @keyframes pl-caret {
+      0% { left: 0; opacity: 1; }
+      50%, 68% { left: 100%; opacity: 1; }
+      72%, 100% { left: 100%; opacity: 0; }
+    }
     .pl-mail__from { color: #8A8A8E; overflow-wrap: anywhere; }
     .pl-mail__subject { color: #000000; }
 
@@ -604,9 +643,14 @@
       .pl-anim-pill, .pl-anim-bubble,
       .anim-clock-hour, .anim-clock-minute,
       .hero__card-state.is-active .pl-mail__send,
+      .hero__card-state.is-active .pl-mail__typed,
+      .hero__card-state.is-active .pl-mail__caret,
       .hero__card-state.is-active .pl-tick {
         animation: none;
       }
+
+      .pl-mail__typed { clip-path: inset(0 0 0 0); }
+      .pl-mail__caret { opacity: 0; }
     }
   </style>
 
@@ -978,7 +1022,10 @@
                     <div class="pl-mail__title">Boiler repair deposit</div>
                     <div class="pl-mail__row">
                       <span class="pl-mail__label">To:</span>
-                      <span class="pl-mail__to">accounts@oneworld.com</span>
+                      <span class="pl-mail__typing">
+                        <span class="pl-mail__to pl-mail__typed">accounts@oneworld.com</span>
+                        <span class="pl-mail__caret"></span>
+                      </span>
                     </div>
                     <div class="pl-mail__row">
                       <span class="pl-mail__label">Cc/Bcc, From:</span>
