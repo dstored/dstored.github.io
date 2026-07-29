@@ -957,17 +957,21 @@
       box-shadow: 24px 32px 64px rgba(11, 27, 51, 0.18);
     }
 
+    /* Same treatment as the hero payment page: ink wordmark on white
+       with a hairline beneath, blue bolt only. No blue bar, that is not
+       how Bluefin's page renders elsewhere. */
     .pl-brandcard__bar {
-      height: 36px;
-      background: #1668D6;
-      color: #FFFFFF;
+      padding: 13px 14px 12px;
+      color: #111111;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       font-family: var(--font-display);
       font-weight: var(--weight-bold);
-      font-size: 13.5px;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid rgba(11, 27, 51, 0.1);
     }
 
     .pl-brandcard__bar svg { flex-shrink: 0; }
@@ -1040,6 +1044,9 @@
       0%, 48% { transform: scale(0.4); }
       56%, 100% { transform: scale(1); }
     }
+
+    /* Same size as the paid amount on the hero payment page */
+    .pl-brandcard__body--paid .pl-brandcard__amount { font-size: 19px; }
 
     .pl-brandcard__paidmeta {
       font-size: 12px;
@@ -2125,8 +2132,8 @@
           <div data-animate>
             <div class="pl-brandcard" role="img" aria-label="Bluefin Electrical's own payment page: their logo and blue, Pay now pressed, paid">
               <div class="pl-brandcard__bar">
-                <svg width="13" height="13" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" fill="#FFFFFF"/></svg>
-                Bluefin Electrical
+                <svg width="13" height="13" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" fill="#1668D6"/></svg>
+                BLUEFIN ELECTRICAL
               </div>
               <div class="pl-brandcard__stack">
                 <div class="pl-brandcard__body pl-brandcard__body--request">
