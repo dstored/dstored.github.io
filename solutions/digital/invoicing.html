@@ -346,23 +346,88 @@
 
     /* Shorter laptop screens: same compression as the homepage hero,
        so subtitle and CTA hold above the fold on a 13" screen */
-    @media (min-width: 769px) and (max-height: 900px) {
-      .solution-hero {
-        min-height: calc(100vh - 110px);
-        padding-top: 94px;
-        padding-bottom: 42px;
-      }
-
-      .solution-hero .solution-hero__inner .solution-hero__title {
-        margin-top: 16px;
-        margin-bottom: 26px;
-      }
-    }
-
     @media (max-width: 768px) {
       .solution-hero .solution-hero__inner .solution-hero__title {
         font-size: clamp(3rem, 2.5rem + 5vw, 5rem);
       }
+    }
+
+    /* ── Why card-on-the-invoice: the friction compare ── */
+    .iv-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+
+    .iv-compare__card {
+      background: var(--ink-light);
+      border: 2px solid rgba(255, 255, 255, 0.16);
+      padding: var(--space-7, 1.75rem) var(--space-8);
+    }
+
+    .iv-compare__label {
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: var(--space-4);
+    }
+
+    .iv-compare__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .iv-compare__list li {
+      position: relative;
+      padding: 7px 0 7px 26px;
+      font-size: var(--text-base);
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Each step is a small cross: friction, not a feature */
+    .iv-compare__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 13px;
+      width: 14px;
+      height: 14px;
+      background:
+        linear-gradient(45deg, transparent 44%, rgba(255,255,255,0.45) 44%, rgba(255,255,255,0.45) 56%, transparent 56%),
+        linear-gradient(-45deg, transparent 44%, rgba(255,255,255,0.45) 44%, rgba(255,255,255,0.45) 56%, transparent 56%);
+    }
+
+    .iv-compare__card--pay {
+      background: var(--bone);
+      border-color: var(--bone);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .iv-compare__card--pay .iv-compare__label { color: rgba(11, 27, 51, 0.55); }
+
+    .iv-compare__tap {
+      font-family: var(--font-display);
+      font-weight: var(--weight-bold);
+      font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: auto 0;
+      padding: var(--space-4) 0;
+    }
+
+    .iv-compare__note {
+      font-size: var(--text-sm);
+      color: rgba(11, 27, 51, 0.7);
+      max-width: 420px;
+    }
+
+    @media (max-width: 968px) {
+      .iv-compare { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -717,7 +782,7 @@
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
             <h1 class="solution-hero__title">Invoiced.<br><span style="white-space: nowrap;">Paid.<span class="solution-hero__asterisk">*</span></span></h1>
-            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>send an invoice with the payment built in. Your customer pays online in one tap, you see it the moment it happens, and it settles next working day.</p>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>send an invoice with the payment built in. One tap to pay, tracked live, settled next working day.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up.html" class="btn btn--primary btn--lg btn--icon-right">
                 Sign up now
@@ -914,6 +979,36 @@
             Sign up now
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- WHY CARD ON THE INVOICE                  -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="section-header section-header--center section-header--wide" data-animate>
+          <div class="section-header__overline">WHY IT WORKS</div>
+          <h2 class="section-header__title">One tap beats a <span class="highlight">bank transfer.</span></h2>
+          <p class="section-header__subtitle">Every step you ask a customer to take is a reason the invoice waits. A pay button removes all of them.</p>
+        </div>
+
+        <div class="iv-compare" data-stagger>
+          <div class="iv-compare__card">
+            <div class="iv-compare__label">A bank transfer asks them to</div>
+            <ul class="iv-compare__list">
+              <li>Open their banking app and add you as a payee</li>
+              <li>Type your account number and sort code without a slip</li>
+              <li>Copy the reference exactly, or you reconcile by hand</li>
+              <li>Do it later, which is where invoices go to wait</li>
+            </ul>
+          </div>
+          <div class="iv-compare__card iv-compare__card--pay">
+            <div class="iv-compare__label">The invoice asks them to</div>
+            <div class="iv-compare__tap">Tap pay. Done.</div>
+            <p class="iv-compare__note">Card, Apple Pay or Google Pay, on the invoice itself. No account details to type, no reference to get wrong. And if it does sit unpaid, the automatic reminders chase it for you.</p>
+          </div>
         </div>
       </div>
     </section>
