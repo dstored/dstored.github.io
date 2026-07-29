@@ -944,6 +944,15 @@
       .pl-track__flip span + span { opacity: 1; }
     }
 
+    /* The shared typewriter clamp is sized for terminals' longest phrase
+       (16 chars); ours is "Send by WhatsApp." at 17, so it gets its own
+       slightly smaller size and never wraps mid-cycle */
+    .stats-typewriter__cycle {
+      white-space: nowrap;
+      /* Min sized so the 17 chars still hold one line on a 375px phone */
+      font-size: clamp(2.4rem, 9.8vw - 12px, 8.4rem);
+    }
+
     /* Branding mock: Bluefin's own link page, continuing the merchant that
        runs through the hero and the email. Bluefin blue, not a Stored
        colour, because the whole point is that the page wears the
