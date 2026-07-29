@@ -518,44 +518,54 @@
       100% { opacity: 0; }
     }
 
-    /* ── Sent by text: two claims, then the reminder sequence ── */
+    /* ── Sent by text: two claims, then the reminder chase ──
+       Always a dark section. Compressed so the header, both stat cards and
+       the reminder card hold on one laptop screen. */
+    .pl-sms .section-header { margin-bottom: var(--space-8); }
+
+    .pl-sms .section-header__title .highlight { color: var(--ink); }
+
     .pl-speed {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--space-4);
-      margin-top: var(--space-10);
     }
 
+    /* Stepped navy, the documented surface for cards inside dark sections
+       (brand-guidelines supporting shades), same family as the pillar grid */
     .pl-speed__card {
-      background: var(--bone);
-      border: 2px solid var(--ink);
-      padding: var(--space-8);
+      background: var(--ink-light);
+      border: 2px solid rgba(255, 255, 255, 0.16);
+      padding: var(--space-6);
     }
 
     .pl-speed__number {
       font-family: var(--font-display);
       font-weight: var(--weight-bold);
-      font-size: clamp(3.5rem, 2.5rem + 5vw, 5.5rem);
+      font-size: clamp(3rem, 2.2rem + 4vw, 4.5rem);
       line-height: 1;
       letter-spacing: -0.03em;
-      color: var(--ink);
+      color: var(--white);
     }
 
     .pl-speed__label {
-      margin-top: var(--space-4);
+      margin-top: var(--space-3);
       font-size: var(--text-base);
-      color: var(--ink);
+      color: rgba(255, 255, 255, 0.75);
       max-width: 330px;
     }
 
+    /* The reminder chase: a white card so the sequence reads like the
+       product graphics above, with the chase playing out on an 8s loop */
     .pl-remind {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-12);
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--space-10);
       align-items: center;
-      margin-top: var(--space-10);
-      padding: var(--space-8);
-      border: 2px solid var(--ink);
+      margin-top: var(--space-4);
+      padding: var(--space-6) var(--space-8);
+      background: var(--white);
+      border-radius: 10px;
     }
 
     .pl-remind__title {
@@ -564,7 +574,7 @@
       font-size: var(--text-3xl);
       letter-spacing: -0.02em;
       color: var(--ink);
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-2);
     }
 
     .pl-remind__text {
@@ -592,12 +602,14 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      border: 2px solid var(--ink);
+      border: 2px solid rgba(11, 27, 51, 0.3);
+      background: transparent;
     }
 
-    .pl-remind__dot--sent { background: var(--bone); }
-    .pl-remind__dot--nudge { background: #6E44FF; border-color: #6E44FF; }
-    .pl-remind__dot--paid { background: #31D895; border-color: #16223C; }
+    .pl-remind__dot--sent {
+      background: var(--ink);
+      border-color: var(--ink);
+    }
 
     .pl-remind__label {
       font-size: var(--text-xs);
@@ -608,43 +620,64 @@
     .pl-remind__rule {
       flex: 1;
       height: 2px;
-      background: rgba(11, 27, 51, 0.15);
+      background: rgba(11, 27, 51, 0.12);
       margin-bottom: 20px;
+      overflow: hidden;
     }
 
-    /* ── Inverted for the navy background ── */
-    .section--dark .section-header__title .highlight { color: var(--ink); }
-
-    .section--dark .pl-speed__card {
-      background: var(--ink-light);
-      border-color: rgba(255, 255, 255, 0.16);
+    .pl-remind__rule span {
+      display: block;
+      height: 100%;
+      background: var(--ink);
+      transform: scaleX(0);
+      transform-origin: left;
     }
 
-    .section--dark .pl-speed__number { color: var(--white); }
-    .section--dark .pl-speed__label { color: rgba(255, 255, 255, 0.75); }
+    /* The chase, on one shared 8s clock: sent -> line -> reminder ->
+       line -> paid, hold, reset */
+    .pl-remind__rule--1 span { animation: pl-chase-rule1 8s ease-in-out infinite; }
+    .pl-remind__rule--2 span { animation: pl-chase-rule2 8s ease-in-out infinite; }
+    .pl-remind__dot--nudge { animation: pl-chase-nudge 8s ease infinite; }
+    .pl-remind__dot--paid { animation: pl-chase-paid 8s ease infinite; }
+    .pl-remind__step:nth-child(3) .pl-remind__label { animation: pl-chase-label2 8s ease infinite; }
+    .pl-remind__step:nth-child(5) .pl-remind__label { animation: pl-chase-label3 8s ease infinite; }
 
-    .section--dark .pl-remind { border-color: rgba(255, 255, 255, 0.22); }
-    .section--dark .pl-remind__title { color: var(--white); }
-    .section--dark .pl-remind__text { color: rgba(255, 255, 255, 0.65); }
-    .section--dark .pl-remind__label { color: var(--white); }
-    .section--dark .pl-remind__rule { background: rgba(255, 255, 255, 0.2); }
-
-    .section--dark .pl-remind__dot {
-      border-color: rgba(255, 255, 255, 0.45);
+    @keyframes pl-chase-rule1 {
+      0%, 5% { transform: scaleX(0); }
+      24%, 93% { transform: scaleX(1); }
+      100% { transform: scaleX(0); }
     }
 
-    .section--dark .pl-remind__dot--sent { background: transparent; }
-
-    /* Bright blurple: standard #6E44FF fails contrast as a small mark on
-       Prussian (brand-guidelines section 3) */
-    .section--dark .pl-remind__dot--nudge {
-      background: #8F70FF;
-      border-color: #8F70FF;
+    @keyframes pl-chase-rule2 {
+      0%, 32% { transform: scaleX(0); }
+      51%, 93% { transform: scaleX(1); }
+      100% { transform: scaleX(0); }
     }
 
-    .section--dark .pl-remind__dot--paid {
-      background: #31D895;
-      border-color: #31D895;
+    @keyframes pl-chase-nudge {
+      0%, 23% { background: transparent; border-color: rgba(11, 27, 51, 0.3); transform: scale(1); }
+      27% { transform: scale(1.35); }
+      30%, 93% { background: #6E44FF; border-color: #6E44FF; transform: scale(1); }
+      100% { background: transparent; border-color: rgba(11, 27, 51, 0.3); }
+    }
+
+    @keyframes pl-chase-paid {
+      0%, 50% { background: transparent; border-color: rgba(11, 27, 51, 0.3); transform: scale(1); }
+      54% { transform: scale(1.35); }
+      57%, 93% { background: #31D895; border-color: #31D895; transform: scale(1); }
+      100% { background: transparent; border-color: rgba(11, 27, 51, 0.3); }
+    }
+
+    @keyframes pl-chase-label2 {
+      0%, 23% { opacity: 0.45; }
+      30%, 93% { opacity: 1; }
+      100% { opacity: 0.45; }
+    }
+
+    @keyframes pl-chase-label3 {
+      0%, 50% { opacity: 0.45; }
+      57%, 93% { opacity: 1; }
+      100% { opacity: 0.45; }
     }
 
     /* ── AI: paperwork in, links out ── */
@@ -876,7 +909,17 @@
       .pl-ai__bar span,
       .pl-ai__out .pl-track__row,
       .pl-track__row--live .pl-track__dot,
-      .pl-track__flip span { animation: none; }
+      .pl-track__flip span,
+      .pl-remind__rule--1 span,
+      .pl-remind__rule--2 span,
+      .pl-remind__dot--nudge,
+      .pl-remind__dot--paid,
+      .pl-remind__step .pl-remind__label { animation: none; }
+
+      /* Chase settles complete */
+      .pl-remind__rule span { transform: scaleX(1); }
+      .pl-remind__dot--nudge { background: #6E44FF; border-color: #6E44FF; }
+      .pl-remind__dot--paid { background: #31D895; border-color: #31D895; }
 
       /* Settle on the finished state: files in, read, links back */
       .pl-ai__upload,
@@ -1902,12 +1945,12 @@
     <!-- ════════════════════════════════════════ -->
     <!-- SENT BY TEXT                             -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section section--dark">
+    <section class="section section--dark pl-sms">
       <div class="container">
         <div class="section-header section-header--center section-header--wide" data-animate>
           <div class="section-header__overline">SENT BY TEXT</div>
-          <h2 class="section-header__title">A text gets <span class="highlight">paid sooner.</span></h2>
-          <p class="section-header__subtitle">People open a text in minutes and an email when they get round to it. Send the link by SMS and it lands while the job is still front of mind.</p>
+          <h2 class="section-header__title">A text gets <span class="highlight">paid faster.</span></h2>
+          <p class="section-header__subtitle">Texts get opened in minutes. Emails get opened eventually.</p>
         </div>
 
         <div class="pl-speed" data-stagger>
@@ -1931,12 +1974,12 @@
               <span class="pl-remind__dot pl-remind__dot--sent"></span>
               <span class="pl-remind__label">Link sent</span>
             </div>
-            <span class="pl-remind__rule"></span>
+            <span class="pl-remind__rule pl-remind__rule--1"><span></span></span>
             <div class="pl-remind__step">
               <span class="pl-remind__dot pl-remind__dot--nudge"></span>
               <span class="pl-remind__label">Reminder sent</span>
             </div>
-            <span class="pl-remind__rule"></span>
+            <span class="pl-remind__rule pl-remind__rule--2"><span></span></span>
             <div class="pl-remind__step">
               <span class="pl-remind__dot pl-remind__dot--paid"></span>
               <span class="pl-remind__label">Paid</span>
@@ -1951,19 +1994,8 @@
     <!-- ════════════════════════════════════════ -->
     <section class="section section--stats">
       <div class="container">
-        <div class="stats-grid" data-stagger>
-          <div class="stat">
-            <div class="stat__number" data-count-to="30" data-suffix="s">0s</div>
-            <div class="stat__label">to create and send</div>
-          </div>
-          <div class="stat">
-            <div class="stat__number" data-count-to="0">0</div>
-            <div class="stat__label">apps for customers</div>
-          </div>
-          <div class="stat">
-            <div class="stat__number" data-count-to="1">0</div>
-            <div class="stat__label">link, any amount</div>
-          </div>
+        <div class="stats-typewriter" data-animate>
+          <span class="stats-typewriter__cycle" data-typewriter-cycle="Send by text.|Send by WhatsApp.|Send by email.|AI-built links.|AI follow-ups.|Paid faster."></span>
         </div>
       </div>
     </section>
@@ -1976,7 +2008,7 @@
         <div class="section-header section-header--center" data-animate>
           <div class="section-header__overline">USE CASES</div>
           <h2 class="section-header__title">One link, many jobs.</h2>
-          <p class="section-header__subtitle">Anywhere you need paying without a card machine or an online store.</p>
+          <p class="section-header__subtitle" style="max-width: none;">Anywhere you need paying without a card machine or an online store.</p>
         </div>
 
         <div class="pillars-grid" data-stagger>
@@ -2007,13 +2039,13 @@
           <div class="card card--dark pillar-card">
             <span class="card__label">05 / 06</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h5l2.5 6-3 2.5a16 16 0 0 0 8 8L19 16.5l6 2.5v5a2 2 0 0 1-2.3 2A22 22 0 0 1 2 7.3 2 2 0 0 1 4 3z"/></svg></div>
-            <h3 class="card__title">Phone orders.</h3>
+            <h3 class="card__title">Phone.</h3>
             <p class="card__text">Take the order on a call, text the link while you talk. No card details read aloud.</p>
           </div>
           <div class="card card--dark pillar-card">
             <span class="card__label">06 / 06</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h24a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H12l-6 5v-5H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><circle cx="11" cy="15" r="1.5" fill="currentColor"/><circle cx="16" cy="15" r="1.5" fill="currentColor"/><circle cx="21" cy="15" r="1.5" fill="currentColor"/></svg></div>
-            <h3 class="card__title">DMs &amp; socials.</h3>
+            <h3 class="card__title">Socials.</h3>
             <p class="card__text">Selling in the comments or by DM? Reply with a link for the exact amount.</p>
           </div>
         </div>
