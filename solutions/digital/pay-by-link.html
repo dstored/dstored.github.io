@@ -482,7 +482,7 @@
        knowing status in real time, so the graphic shows a status changing
        rather than just sitting there. */
     .pl-track__row--live .pl-track__dot {
-      animation: pl-live-dot 9s ease-in-out infinite;
+      animation: pl-live-dot 5.5s ease-in-out infinite;
     }
 
     @keyframes pl-live-dot {
@@ -503,8 +503,8 @@
       inset: 0;
     }
 
-    .pl-track__flip span:first-child { animation: pl-live-a 9s ease-in-out infinite; }
-    .pl-track__flip span + span { animation: pl-live-b 9s ease-in-out infinite; }
+    .pl-track__flip span:first-child { animation: pl-live-a 5.5s ease-in-out infinite; }
+    .pl-track__flip span + span { animation: pl-live-b 5.5s ease-in-out infinite; }
 
     @keyframes pl-live-a {
       0%, 45% { opacity: 1; }
@@ -1758,7 +1758,6 @@
         <div class="content-split pl-ai__split">
           <div data-animate class="pl-ai__copy">
             <div class="section-header">
-              <div class="section-header__overline">AI</div>
               <h2 class="section-header__title">AI that turns files into links.</h2>
               <p class="section-header__subtitle">Drag in up to 50 PDFs, or a CSV. AI reads who owes what, for which job, against which reference, and a payment link comes back for every one. Nothing to type, nothing to copy across.</p>
             </div>
@@ -1803,7 +1802,7 @@
               </div>
               <div class="pl-ai__out">
                 <div class="pl-track__row">
-                  <span class="pl-track__dot pl-track__dot--sent"></span>
+                  <span class="pl-track__dot pl-track__dot--paid"></span>
                   <div>
                     <div class="pl-track__ref">Invoice 4292</div>
                     <div class="pl-track__status">Link ready</div>
@@ -1811,7 +1810,7 @@
                   <div class="pl-track__amount">&#163;320.00</div>
                 </div>
                 <div class="pl-track__row">
-                  <span class="pl-track__dot pl-track__dot--sent"></span>
+                  <span class="pl-track__dot pl-track__dot--paid"></span>
                   <div>
                     <div class="pl-track__ref">Invoice 4293</div>
                     <div class="pl-track__status">Link ready</div>
