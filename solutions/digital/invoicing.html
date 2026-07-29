@@ -86,7 +86,7 @@
     .phone-demo .hero__card-state.is-active { opacity: 1; }
 
     .phone-demo__screen {
-      background: #F6F3EC;
+      background: #FFFFFF;
       min-height: 640px;
       padding: 24px 20px 20px;
       display: flex;
@@ -94,92 +94,176 @@
       font-family: var(--font-body);
     }
 
-    .iv-head { font-size: 14px; font-weight: 700; color: var(--ink); text-align: center; margin-bottom: 6px; }
-    .iv-sub { font-size: 11.5px; font-weight: 500; color: rgba(11, 27, 51, 0.55); text-align: center; margin-bottom: 18px; }
-
-    /* Invoice mock */
-    .iv-invoice {
+    /* The storedpay.co invoice page, from Danny's high-fidelity design
+       file (24 July 2026): wordmark, invoice number, dates, bill-to,
+       itemised lines with thumbnails, VAT breakdown, dark pay pill. */
+    .iv2 {
       background: #FFFFFF;
-      border: 2px solid var(--ink);
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 14px;
+      padding: 12px 14px 12px;
+      font-family: var(--font-body);
+      color: #111111;
     }
 
-    .iv-invoice__bar {
-      height: 38px;
-      background: #6E44FF;
-      color: #FFFFFF;
+    .iv2__bar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 14px;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .iv2__bardot { width: 5px; height: 5px; border-radius: 50%; border: 1px solid rgba(11, 27, 51, 0.35); }
+
+    .iv2__url {
+      flex: 1;
+      margin: 0 12px;
+      height: 18px;
+      border-radius: 6px;
+      background: #F1F1F3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8.5px;
+      font-weight: 500;
+      color: rgba(11, 27, 51, 0.55);
+    }
+
+    .iv2__brand {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 13.5px;
-    }
-
-    .iv-invoice__bar span:last-child {
-      font-family: var(--font-mono);
-      font-weight: 500;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      opacity: 0.85;
-    }
-
-    .iv-invoice__body { padding: 14px; }
-
-    .iv-line {
+      font-weight: var(--weight-bold);
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-align: center;
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid rgba(11, 27, 51, 0.1);
+      margin-bottom: 9px;
+    }
+
+    .iv2__overline {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(11, 27, 51, 0.45);
+    }
+
+    .iv2__number {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 1px 0 8px;
+    }
+
+    .iv2__cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ink);
-      padding: 5px 0;
+      padding: 7px 0;
+      border-top: 1px solid rgba(11, 27, 51, 0.08);
     }
 
-    .iv-line span:last-child { font-weight: 700; white-space: nowrap; }
+    .iv2__label { font-size: 8px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(11, 27, 51, 0.45); margin-bottom: 2px; }
+    .iv2__value { font-size: 10.5px; font-weight: 600; }
+    .iv2__value small { display: block; font-size: 9.5px; font-weight: 500; color: rgba(11, 27, 51, 0.55); }
 
-    .iv-divide { border-top: 2px dashed rgba(11, 27, 51, 0.2); margin: 8px 0; }
+    .iv2__items { border-top: 1px solid rgba(11, 27, 51, 0.08); padding-top: 7px; }
 
-    .iv-total {
+    .iv2__item {
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--ink);
-      padding: 4px 0 2px;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(11, 27, 51, 0.06);
     }
 
-    .iv-due { font-size: 11px; font-weight: 500; color: rgba(11, 27, 51, 0.55); }
+    .iv2__thumb {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: #F1EDF9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-    .iv-cta {
+    .iv2__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .iv2__itemname { font-size: 10px; font-weight: 600; line-height: 1.25; }
+    .iv2__itemqty { font-size: 8.5px; font-weight: 500; color: rgba(11, 27, 51, 0.5); }
+    .iv2__itemprice { margin-left: auto; font-size: 10.5px; font-weight: 700; white-space: nowrap; }
+
+    .iv2__sumrow {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(11, 27, 51, 0.7);
+      padding: 3px 0;
+    }
+
+    .iv2__sums { padding: 6px 0 0; }
+    .iv2__sumrow span:last-child { font-weight: 600; color: #111111; }
+
+    .iv2__totalrow {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: 1px solid rgba(11, 27, 51, 0.1);
+      margin-top: 4px;
+      padding-top: 6px;
+      font-weight: 700;
+    }
+
+    .iv2__totalrow span:first-child { font-size: 11px; }
+    .iv2__totalrow span:last-child { font-size: 16px; }
+
+    .iv2__pay {
+      /* Anchored to the foot of the page, as in the design file */
       margin-top: auto;
-      height: 46px;
-      border-radius: 12px;
-      background: var(--hot);
+      height: 38px;
+      border-radius: 999px;
+      background: var(--ink);
       color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 12px;
     }
 
-    .hero__card-state.is-active .iv-cta { animation: iv-press 4s ease forwards; }
+    .hero__card-state.is-active .iv2__pay { animation: iv-press 4s ease forwards; }
 
     @keyframes iv-press {
-      0%, 80% { background: var(--hot); transform: scale(1); }
-      86%, 100% { background: #6E44FF; transform: scale(0.97); }
+      0%, 80% { background: var(--ink); transform: scale(1); }
+      86%, 100% { background: #1C3555; transform: scale(0.97); }
     }
 
-    .hero__card-state:not(.is-active) .iv-cta { background: #6E44FF; transform: scale(0.97); }
+    .hero__card-state:not(.is-active) .iv2__pay { background: #1C3555; transform: scale(0.97); }
 
-    /* Paid screen */
-    .iv-paid {
+    .iv2__foot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 8px;
+      font-size: 8.5px;
+      font-weight: 500;
+      color: rgba(11, 27, 51, 0.5);
+    }
+
+    .iv2__foot span { display: inline-flex; align-items: center; gap: 3px; }
+
+    /* Paid screen: same treatment as the pay-by-link success page */
+    .iv2--paid { display: flex; flex-direction: column; }
+
+    .iv2__paidbody {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
@@ -280,7 +364,7 @@
       .solution-hero .solution-hero__visual,
       .iv-anim-pill, .iv-anim-ring,
       .anim-clock-hour, .anim-clock-minute,
-      .hero__card-state.is-active .iv-cta,
+      .hero__card-state.is-active .iv2__pay,
       .hero__card-state.is-active .iv-tick {
         animation: none;
       }
@@ -641,30 +725,73 @@
             </div>
           </div>
           <div class="solution-hero__visual">
-            <div class="phone-demo" role="img" aria-label="An invoice from Bloom with a pay button, then paid and settled">
+            <div class="phone-demo" role="img" aria-label="A Bloom invoice on storedpay.co with itemised lines and VAT, paid with one tap">
               <div class="phone-demo__screens" data-cycle-card data-cycle-interval="4000">
-                <div class="hero__card-state is-active phone-demo__screen">
-                  <div class="iv-head">Invoice</div>
-                  <div class="iv-sub">from Bloom</div>
-                  <div class="iv-invoice">
-                    <div class="iv-invoice__bar"><span>Bloom</span><span>INV-0134</span></div>
-                    <div class="iv-invoice__body">
-                      <div class="iv-line"><span>Seasonal bouquet &times; 2</span><span>&#163;48.00</span></div>
-                      <div class="iv-line"><span>Stoneware vase</span><span>&#163;14.00</span></div>
-                      <div class="iv-line"><span>Delivery</span><span>&#163;6.00</span></div>
-                      <div class="iv-divide"></div>
-                      <div class="iv-total"><span>Total due</span><span>&#163;68.00</span></div>
-                      <div class="iv-due">Due 7 August</div>
+                <div class="hero__card-state is-active phone-demo__screen iv2">
+                  <div class="iv2__bar">
+                    <span class="iv2__bardot"></span><span class="iv2__bardot"></span><span class="iv2__bardot"></span>
+                    <div class="iv2__url">storedpay.co</div>
+                  </div>
+                  <div class="iv2__brand">
+                    <svg width="11" height="11" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="7" r="3.4" fill="#6E44FF"/><circle cx="7" cy="14" r="3.4" fill="#6E44FF"/><circle cx="17" cy="14" r="3.4" fill="#6E44FF"/><circle cx="12" cy="12.4" r="2" fill="#FFFFFF"/></svg>
+                    BLOOM
+                  </div>
+                  <div class="iv2__overline">Invoice</div>
+                  <div class="iv2__number">INV-0231</div>
+                  <div class="iv2__cols">
+                    <div><div class="iv2__label">Date</div><div class="iv2__value">14 May 2026</div></div>
+                    <div><div class="iv2__label">Due date</div><div class="iv2__value">21 May 2026</div></div>
+                  </div>
+                  <div class="iv2__cols">
+                    <div><div class="iv2__label">Bill to</div><div class="iv2__value">Sarah Mitchell<small>One World UK Limited</small></div></div>
+                    <div><div class="iv2__label">From</div><div class="iv2__value">Bloom<small>London, UK</small></div></div>
+                  </div>
+                  <div class="iv2__overline" style="margin-bottom: 2px;">Items</div>
+                  <div class="iv2__items" style="border-top: none; padding-top: 0;">
+                    <div class="iv2__item">
+                      <span class="iv2__thumb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6E44FF" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 21v-7m0 0c-3.5 0-6-2.5-6-6 3.5 0 6 2.5 6 6zm0 0c3.5 0 6-2.5 6-6-3.5 0-6 2.5-6 6z"/></svg></span>
+                      <div><div class="iv2__itemname">Wedding table arrangements</div><div class="iv2__itemqty">Qty: 6 &times; &#163;45.00</div></div>
+                      <div class="iv2__itemprice">&#163;270.00</div>
+                    </div>
+                    <div class="iv2__item">
+                      <span class="iv2__thumb"><img src="/assets/images/products/bloom-roses.png" alt="" loading="lazy"></span>
+                      <div><div class="iv2__itemname">Bridal bouquet</div><div class="iv2__itemqty">Qty: 1 &times; &#163;120.00</div></div>
+                      <div class="iv2__itemprice">&#163;120.00</div>
+                    </div>
+                    <div class="iv2__item" style="border-bottom: none;">
+                      <span class="iv2__thumb"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6E44FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
+                      <div><div class="iv2__itemname">Delivery &amp; setup</div><div class="iv2__itemqty">Qty: 1 &times; &#163;40.00</div></div>
+                      <div class="iv2__itemprice">&#163;40.00</div>
                     </div>
                   </div>
-                  <div class="iv-sub" style="text-align:left; margin-bottom:0;">Card, Apple Pay or Google Pay. No login.</div>
-                  <div class="iv-cta">Pay &#163;68.00</div>
+                  <div class="iv2__sums">
+                    <div class="iv2__sumrow"><span>Subtotal</span><span>&#163;430.00</span></div>
+                    <div class="iv2__sumrow"><span>VAT (20%)</span><span>&#163;86.00</span></div>
+                    <div class="iv2__totalrow"><span>Total due</span><span>&#163;516.00</span></div>
+                  </div>
+                  <div class="iv2__pay">Pay &#163;516.00</div>
+                  <div class="iv2__foot">
+                    <span><svg width="9" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>Secured</span>
+                    <span><svg width="9" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg>PDF</span>
+                  </div>
                 </div>
-                <div class="hero__card-state phone-demo__screen iv-paid">
-                  <svg class="iv-tick" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#31D895"/><path d="M20 33l8 8 16-17" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <div class="iv-paid__amount">&#163;68.00 paid</div>
-                  <div class="iv-paid__meta">Bloom &middot; INV-0134</div>
-                  <div class="iv-settle"><span class="iv-settle__dot"></span>Settled next working day</div>
+                <div class="hero__card-state phone-demo__screen iv2 iv2--paid">
+                  <div class="iv2__bar">
+                    <span class="iv2__bardot"></span><span class="iv2__bardot"></span><span class="iv2__bardot"></span>
+                    <div class="iv2__url">storedpay.co</div>
+                  </div>
+                  <div class="iv2__brand">
+                    <svg width="11" height="11" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="7" r="3.4" fill="#6E44FF"/><circle cx="7" cy="14" r="3.4" fill="#6E44FF"/><circle cx="17" cy="14" r="3.4" fill="#6E44FF"/><circle cx="12" cy="12.4" r="2" fill="#FFFFFF"/></svg>
+                    BLOOM
+                  </div>
+                  <div class="iv2__paidbody">
+                    <svg class="iv-tick" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="#31D895"/><path d="M15 24.5 L21 30.5 L33 17.5" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <div class="iv-paid__amount">&#163;516.00 paid</div>
+                    <div class="iv-paid__meta">Invoice INV-0231 &middot; Bloom</div>
+                  </div>
+                  <div class="iv2__foot">
+                    <span><svg width="9" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>Secured by Stored</span>
+                  </div>
                 </div>
               </div>
             </div>
