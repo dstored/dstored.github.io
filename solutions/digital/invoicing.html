@@ -328,7 +328,9 @@
       50% { opacity: 1; transform: scale(1.08); }
     }
 
-    .anim-clock-hour, .anim-clock-minute { transform-box: view-box; transform-origin: 116px 160px; }
+    /* Origin sits 28px higher than the shared clock: this page lifts the
+       face inside its canvas so it matches its neighbours' height */
+    .anim-clock-hour, .anim-clock-minute { transform-box: view-box; transform-origin: 116px 132px; }
     .anim-clock-minute { animation: why-clock-rotate 30s linear infinite; }
     .anim-clock-hour { animation: why-clock-rotate 360s linear infinite; }
     @keyframes why-clock-rotate { to { transform: rotate(360deg); } }
@@ -359,6 +361,10 @@
       gap: var(--space-4);
       margin-top: var(--space-10);
     }
+
+    /* Bone highlight on a dark section keeps ink text, or it renders
+       white-on-bone and disappears (same rule as pay-by-link's SMS section) */
+    .section--dark .section-header__title .highlight { color: var(--ink); }
 
     .iv-compare__card {
       background: var(--ink-light);
@@ -934,14 +940,14 @@
               </svg>
             </div>
             <h3 class="why-card__title">Customer taps pay.</h3>
-            <p class="why-card__text">The invoice opens on any device. Card, Apple Pay or Google Pay, no account needed.</p>
+            <p class="why-card__text">Opens on any device. Card, Apple Pay or Google Pay, no account needed.</p>
           </div>
 
           <div class="why-card">
             <div class="why-card__illustration">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="Get paid, settled next working day">
                 <ellipse cx="160" cy="244" rx="104" ry="14" fill="#D8D0C2" opacity="0.5"/>
-                <g>
+                <g transform="translate(0, -28)">
                   <ellipse cx="116" cy="160" rx="72" ry="68" fill="#FFFFFF" stroke="#16223C" stroke-width="3.2"/>
                   <ellipse cx="116" cy="160" rx="60" ry="57" fill="none" stroke="#DCE3EC" stroke-width="2.6"/>
                   <line x1="116" y1="101.47" x2="116" y2="109.97" stroke="#16223C" stroke-width="3.2" stroke-linecap="round"/>
@@ -970,7 +976,7 @@
               </svg>
             </div>
             <h3 class="why-card__title">Settled next day.</h3>
-            <p class="why-card__text">The invoice is marked paid the moment it happens. The money lands the next working day.</p>
+            <p class="why-card__text">Marked paid the moment it happens. Money lands the next working day.</p>
           </div>
         </div>
 
