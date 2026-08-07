@@ -418,15 +418,21 @@
       border-color: var(--paper);
     }
 
-    .iv-compare__card--pay .iv-compare__label { color: var(--hot); }
+    .iv-compare__card--pay .iv-compare__label {
+      color: var(--hot);
+      /* Tighter than the shared label: the display line below carries its
+         own internal leading, so the box gap shrinks to compensate */
+      margin-bottom: 2px;
+    }
 
     .iv-compare__tap {
       font-family: var(--font-display);
       font-weight: var(--weight-bold);
       font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+      line-height: 1.1;
       letter-spacing: -0.02em;
       color: var(--ink);
-      padding: var(--space-2) 0 var(--space-3);
+      padding: 0 0 var(--space-3);
     }
 
     .iv-compare__note {
