@@ -410,14 +410,15 @@
         linear-gradient(-45deg, transparent 44%, rgba(255,255,255,0.45) 44%, rgba(255,255,255,0.45) 56%, transparent 56%);
     }
 
+    /* Paper card with the pink overline: the payoff card wears the brand
+       canvas, and the answer sits right under its label rather than
+       floating in the middle of the box */
     .iv-compare__card--pay {
-      background: var(--bone);
-      border-color: var(--bone);
-      display: flex;
-      flex-direction: column;
+      background: var(--paper);
+      border-color: var(--paper);
     }
 
-    .iv-compare__card--pay .iv-compare__label { color: rgba(11, 27, 51, 0.55); }
+    .iv-compare__card--pay .iv-compare__label { color: var(--hot); }
 
     .iv-compare__tap {
       font-family: var(--font-display);
@@ -425,8 +426,7 @@
       font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
       letter-spacing: -0.02em;
       color: var(--ink);
-      margin: auto 0;
-      padding: var(--space-4) 0;
+      padding: var(--space-2) 0 var(--space-3);
     }
 
     .iv-compare__note {
