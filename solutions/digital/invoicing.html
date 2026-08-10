@@ -603,6 +603,142 @@
       max-width: 330px;
     }
 
+    /* Thread demo beside the stacked stat cards: the same story the
+       timeline below tells, played out as the customer's actual texts */
+    .iv-chase {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-4);
+      align-items: stretch;
+    }
+
+    .iv-chase .pl-speed { grid-template-columns: 1fr; }
+
+    /* The customer's messages app: a third-party surface, so it wears
+       iMessage's own colours and the system font, not Stored's */
+    .iv-thread {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .iv-thread__header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding-bottom: 12px;
+      border-bottom: 0.5px solid rgba(11, 27, 51, 0.18);
+    }
+
+    .iv-thread__avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #8E8E93;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .iv-thread__name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1C1C1E;
+    }
+
+    .iv-thread__body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+      padding-top: 12px;
+      flex: 1;
+    }
+
+    .iv-thread__stamp {
+      align-self: center;
+      font-size: 10.5px;
+      color: #8E8E93;
+    }
+
+    .iv-thread__bubble {
+      max-width: min(88%, 350px);
+      background: #E9E9EB;
+      color: #1C1C1E;
+      font-size: 13.5px;
+      line-height: 1.4;
+      padding: 8px 12px;
+      border-radius: 16px;
+      border-bottom-left-radius: 5px;
+    }
+
+    .iv-thread__link {
+      color: #1668D6;
+      text-decoration: underline;
+    }
+
+    .iv-thread__paid {
+      align-self: center;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      padding: 6px 13px;
+      border: 1.5px solid rgba(11, 27, 51, 0.14);
+      border-radius: 100px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #1C1C1E;
+    }
+
+    .iv-thread__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #31D895;
+    }
+
+    /* One 8s clock shared with the timeline below: invoice text lands as
+       the sent dot fills, the reminder bubble as the nudge dot pops (~27%),
+       the paid pill as the paid dot pops (~54%) */
+    .iv-thread__item--1 { animation: iv-thread-1 8s ease infinite; }
+    .iv-thread__item--2 { animation: iv-thread-2 8s ease infinite; transform-origin: left bottom; }
+    .iv-thread__item--3 { animation: iv-thread-3 8s ease infinite; }
+
+    @keyframes iv-thread-1 {
+      0%, 2% { opacity: 0; transform: translateY(8px); }
+      7%, 93% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(8px); }
+    }
+
+    @keyframes iv-thread-2 {
+      0%, 26% { opacity: 0; transform: translateY(8px) scale(0.96); }
+      31%, 93% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(8px) scale(0.96); }
+    }
+
+    @keyframes iv-thread-3 {
+      0%, 53% { opacity: 0; transform: scale(0.9); }
+      58%, 93% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.9); }
+    }
+
+    @media (max-width: 968px) {
+      .iv-chase { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .iv-thread__item--1,
+      .iv-thread__item--2,
+      .iv-thread__item--3 { animation: none; }
+    }
+
     /* The reminder chase: a white card so the sequence reads like the
        product graphics above, with the chase playing out on an 8s loop */
     .pl-remind {
@@ -1557,14 +1693,29 @@
           <p class="section-header__subtitle">Send every invoice by text, by email or both. Then the follow-up handles itself.</p>
         </div>
 
-        <div class="pl-speed" data-stagger>
-          <div class="pl-speed__card">
-            <div class="pl-speed__number">3x</div>
-            <p class="pl-speed__label">faster to get paid when the invoice goes out by text instead of email.</p>
+        <div class="iv-chase" data-animate>
+          <div class="iv-thread" role="img" aria-label="A text message thread: the invoice arrives by text, a reminder lands on the due date, then it is paid">
+            <div class="iv-thread__header">
+              <span class="iv-thread__avatar" aria-hidden="true">B</span>
+              <span class="iv-thread__name">Bloom</span>
+            </div>
+            <div class="iv-thread__body">
+              <div class="iv-thread__stamp iv-thread__item--1">Text message &middot; Mon 9:41</div>
+              <div class="iv-thread__bubble iv-thread__item--1">Hi Sarah, your invoice from Bloom is ready. &#163;516.00, one tap to pay: <span class="iv-thread__link">stored.link/inv-0231</span></div>
+              <div class="iv-thread__stamp iv-thread__item--2">Due date &middot; Thu 9:00</div>
+              <div class="iv-thread__bubble iv-thread__item--2">Reminder: your &#163;516.00 invoice from Bloom is due today. <span class="iv-thread__link">stored.link/inv-0231</span></div>
+              <div class="iv-thread__paid iv-thread__item--3"><span class="iv-thread__dot"></span>&#163;516.00 paid</div>
+            </div>
           </div>
-          <div class="pl-speed__card">
-            <div class="pl-speed__number">1</div>
-            <p class="pl-speed__label">tap to pay, from the invoice and from every reminder that follows it.</p>
+          <div class="pl-speed">
+            <div class="pl-speed__card">
+              <div class="pl-speed__number" data-count-to="3" data-suffix="x">0x</div>
+              <p class="pl-speed__label">faster to get paid when the invoice goes out by text instead of email.</p>
+            </div>
+            <div class="pl-speed__card">
+              <div class="pl-speed__number" data-count-to="1">0</div>
+              <p class="pl-speed__label">tap to pay, from the invoice and from every reminder that follows it.</p>
+            </div>
           </div>
         </div>
 
@@ -1581,7 +1732,7 @@
             <span class="pl-remind__rule pl-remind__rule--1"><span></span></span>
             <div class="pl-remind__step">
               <span class="pl-remind__dot pl-remind__dot--nudge"></span>
-              <span class="pl-remind__label">Reminder sent</span>
+              <span class="pl-remind__label">Reminder &middot; on the due date</span>
             </div>
             <span class="pl-remind__rule pl-remind__rule--2"><span></span></span>
             <div class="pl-remind__step">
