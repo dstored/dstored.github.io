@@ -564,6 +564,10 @@
       .iv-import__split { grid-template-columns: 1fr; }
     }
 
+    /* Bone highlight on navy inherits white text and vanishes into the
+       wash: force it back to ink on every dark section of this page */
+    .section--dark .section-header__title .highlight { color: var(--ink); }
+
     /* ── Sent by text or email, chased by AI ──
        Ported wholesale from pay-by-link's pl-sms section (same class names,
        per the pl-ai precedent): two stat cards, then the reminder chase.
@@ -1445,7 +1449,7 @@
     <section class="section section--dark">
       <div class="container">
         <div class="section-header section-header--center section-header--wide" data-animate>
-          <h2 class="section-header__title">One tap beats a bank transfer.</h2>
+          <h2 class="section-header__title">One tap <span class="highlight">beats a bank transfer.</span></h2>
           <p class="section-header__subtitle">Every step you ask a customer to take is a reason the invoice waits. A pay button removes all of them.</p>
         </div>
 
@@ -1549,8 +1553,7 @@
     <section class="section section--dark pl-sms">
       <div class="container">
         <div class="section-header section-header--center section-header--wide" data-animate>
-          <div class="section-header__overline">GET PAID SOONER</div>
-          <h2 class="section-header__title">Sent by text or email. Chased by AI.</h2>
+          <h2 class="section-header__title">Sent by text or email. <span class="highlight">Chased by AI.</span></h2>
           <p class="section-header__subtitle">Send every invoice by text, by email or both. Then the follow-up handles itself.</p>
         </div>
 
