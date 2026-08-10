@@ -574,13 +574,12 @@
        header/button structure as made-elsewhere. */
     .iv-chase {
       display: grid;
-      grid-template-columns: 360px minmax(0, 580px);
-      justify-content: space-between;
-      gap: var(--space-12);
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: var(--space-10);
       align-items: center;
     }
 
-    .iv-chase .section-header__subtitle { max-width: 520px; }
+    .iv-chase .section-header__subtitle { max-width: 560px; }
 
     /* The customer's messages app: a third-party surface, so it wears
        iMessage's own colours and the system font, not Stored's */
