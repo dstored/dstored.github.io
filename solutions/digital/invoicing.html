@@ -569,13 +569,9 @@
     .section--dark .section-header__title .highlight { color: var(--ink); }
 
     /* ── Sent by text or email, chased by AI ──
-       Ported wholesale from pay-by-link's pl-sms section (same class names,
-       per the pl-ai precedent): two stat cards, then the reminder chase.
-       Always a dark section. */
-    .pl-sms .section-header { margin-bottom: var(--space-8); }
-
-    /* One story, told once: the customer's texts at phone width on the
-       left, copy on the right. The mirror of the import split above it. */
+       The mirror of the import split above it: the customer's texts at
+       phone width on the left, headline and copy on the right, same
+       header/button structure as made-elsewhere. */
     .iv-chase {
       display: grid;
       grid-template-columns: 360px minmax(0, 580px);
@@ -584,22 +580,7 @@
       align-items: center;
     }
 
-    .iv-chase__title {
-      font-family: var(--font-display);
-      font-weight: var(--weight-bold);
-      font-size: var(--text-3xl);
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: var(--space-3);
-    }
-
-    .iv-chase__text {
-      font-size: var(--text-base);
-      color: var(--mute);
-      max-width: 480px;
-    }
-
-    .iv-chase__copy .btn { margin-top: var(--space-6); }
+    .iv-chase .section-header__subtitle { max-width: 520px; }
 
     /* The customer's messages app: a third-party surface, so it wears
        iMessage's own colours and the system font, not Stored's */
@@ -1464,13 +1445,8 @@
     <!-- ════════════════════════════════════════ -->
     <!-- SENT AND CHASED                          -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section pl-sms">
+    <section class="section">
       <div class="container">
-        <div class="section-header section-header--center section-header--wide" data-animate>
-          <h2 class="section-header__title">Sent by text or email. <span class="highlight">Chased by AI.</span></h2>
-          <p class="section-header__subtitle">Send every invoice by text, by email or both. Then the follow-up handles itself.</p>
-        </div>
-
         <div class="iv-chase">
           <div class="iv-thread" data-animate role="img" aria-label="A text message thread: the invoice arrives by text, a reminder lands on the due date, then it is paid">
             <div class="iv-thread__header">
@@ -1485,9 +1461,11 @@
               <div class="iv-thread__paid iv-thread__item--3"><span class="iv-thread__dot"></span>&#163;516.00 paid</div>
             </div>
           </div>
-          <div class="iv-chase__copy" data-animate>
-            <h3 class="iv-chase__title">Reminders that know the due date.</h3>
-            <p class="iv-chase__text">Texts get opened in minutes, so an invoice sent by text gets paid three times faster. AI watches every invoice and sends the reminder as it falls due, then keeps chasing by text and email if it runs late. The chasing stops the moment it&rsquo;s paid.</p>
+          <div data-animate>
+            <div class="section-header">
+              <h2 class="section-header__title">Sent by text or email. <span class="highlight">Chased by AI.</span></h2>
+              <p class="section-header__subtitle">Send every invoice by text, by email or both. Texts get opened in minutes, so invoices sent by text get paid three times faster. AI sends the reminder as the invoice falls due and keeps chasing by text and email if it runs late, stopping the moment it&rsquo;s paid.</p>
+            </div>
             <a href="/sign-up.html" class="btn btn--primary btn--icon-right">
               Sign up now
               <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
