@@ -330,6 +330,13 @@
       .np-progress__fill { width: 100%; }
     }
 
+    /* Hairline between two same-tone sections (invoicing pattern) */
+    .iv-rule {
+      border: 0;
+      border-top: 1px solid rgba(11, 27, 51, 0.12);
+      margin: 0;
+    }
+
     /* ── Drop the paperwork in: ported wholesale from invoicing's
        import section (pl-ai + pl-track classes, per the established
        cross-page porting precedent) ── */
@@ -1078,6 +1085,9 @@
         </div>
       </div>
     </section>
+
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="iv-rule"></div>
 
     <!-- ════════════════════════════════════════ -->
     <!-- DROP THE PAPERWORK IN                    -->
