@@ -582,6 +582,13 @@
 
     .iv-chase .section-header__subtitle { max-width: none; }
 
+    /* Divider between stacked same-tone sections */
+    .iv-rule {
+      border: 0;
+      border-top: 1px solid rgba(11, 27, 51, 0.12);
+      margin: 0;
+    }
+
     /* The customer's messages app: a third-party surface, so it wears
        iMessage's own colours and the system font, not Stored's */
     .iv-thread {
@@ -1474,6 +1481,11 @@
         </div>
       </div>
     </section>
+
+    <!-- Hairline between two same-tone sections: container width so it
+         aligns with the content edges, quiet enough to organise without
+         decorating -->
+    <div class="container"><hr class="iv-rule"></div>
 
     <!-- ════════════════════════════════════════ -->
     <!-- BRING YOUR INVOICES                      -->
