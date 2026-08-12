@@ -79,6 +79,146 @@
       max-width: 660px;
     }
 
+    /* ── Or send a link, mid-call ──
+       Ported wholesale from invoicing's sent-and-chased section (same
+       class names, per the pl-ai precedent): the customer's texts at
+       phone width on the left, headline and copy flush right. */
+    .iv-chase {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 720px);
+      justify-content: space-between;
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    .iv-chase .section-header__subtitle { max-width: none; }
+
+    /* Hairline between two same-tone sections (invoicing pattern) */
+    .iv-rule {
+      border: 0;
+      border-top: 1px solid rgba(11, 27, 51, 0.12);
+      margin: 0;
+    }
+
+    /* The customer's messages app: a third-party surface, so it wears
+       iMessage's own colours and the system font, not Stored's */
+    .iv-thread {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid rgba(11, 27, 51, 0.14);
+      box-shadow: 0 12px 32px rgba(11, 27, 51, 0.10);
+      padding: 18px 20px 20px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .iv-thread__header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding-bottom: 12px;
+      border-bottom: 0.5px solid rgba(11, 27, 51, 0.18);
+    }
+
+    .iv-thread__avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #8E8E93;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .iv-thread__name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1C1C1E;
+    }
+
+    .iv-thread__body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+      padding-top: 12px;
+      flex: 1;
+    }
+
+    .iv-thread__stamp {
+      align-self: center;
+      font-size: 10.5px;
+      color: #8E8E93;
+    }
+
+    .iv-thread__bubble {
+      max-width: min(88%, 350px);
+      background: #E9E9EB;
+      color: #1C1C1E;
+      font-size: 13.5px;
+      line-height: 1.4;
+      padding: 8px 12px;
+      border-radius: 16px;
+      border-bottom-left-radius: 5px;
+    }
+
+    .iv-thread__link {
+      color: #1668D6;
+      text-decoration: underline;
+    }
+
+    .iv-thread__paid {
+      align-self: center;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      padding: 6px 13px;
+      border: 1.5px solid rgba(11, 27, 51, 0.14);
+      border-radius: 100px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #1C1C1E;
+    }
+
+    .iv-thread__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #31D895;
+    }
+
+    /* Two beats on an 8s clock: the link lands as the call runs,
+       the paid pill follows while they're still talking */
+    .iv-thread__item--1 { animation: iv-thread-1 8s ease infinite; }
+    .iv-thread__item--3 { animation: iv-thread-3 8s ease infinite; }
+
+    @keyframes iv-thread-1 {
+      0%, 2% { opacity: 0; transform: translateY(8px); }
+      7%, 93% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(8px); }
+    }
+
+    @keyframes iv-thread-3 {
+      0%, 40% { opacity: 0; transform: scale(0.9); }
+      45%, 93% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.9); }
+    }
+
+    @media (max-width: 968px) {
+      .iv-chase { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .iv-thread__item--1,
+      .iv-thread__item--3 { animation: none; }
+    }
+
     /* Step illustrations: gentle motion */
     .vt-anim-ring {
       transform-box: fill-box;
@@ -595,6 +735,36 @@
       </div>
     </section>
 
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="iv-rule"></div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- SEND A LINK MID-CALL                     -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="iv-chase">
+          <div class="iv-thread" data-animate role="img" aria-label="A text message with a payment link sent during the call, then paid while still talking">
+            <div class="iv-thread__header">
+              <span class="iv-thread__avatar" aria-hidden="true">F</span>
+              <span class="iv-thread__name">Fade Room</span>
+            </div>
+            <div class="iv-thread__body">
+              <div class="iv-thread__stamp iv-thread__item--1">Text message &middot; during the call</div>
+              <div class="iv-thread__bubble iv-thread__item--1">Hi Jamie, here&rsquo;s the payment link for Saturday&rsquo;s booking. &#163;30.00, one tap: <span class="iv-thread__link">stored.link/fr-1042</span></div>
+              <div class="iv-thread__paid iv-thread__item--3"><span class="iv-thread__dot"></span>&#163;30.00 paid</div>
+            </div>
+          </div>
+          <div data-animate>
+            <div class="section-header">
+              <h2 class="section-header__title">Or send a link, mid-call.</h2>
+              <p class="section-header__subtitle">Some customers would rather not read a card number down the phone. Send a payment link to their mobile or email without hanging up: they pay on their own phone with card, Apple Pay or Google Pay, and you watch it settle while you talk. Nothing gets read out, nothing gets mistyped, and because the customer confirms the payment on their own device, there&rsquo;s less risk of a chargeback later.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ════════════════════════════════════════ -->
     <!-- USE CASES                                -->
     <!-- ════════════════════════════════════════ -->
@@ -696,6 +866,16 @@
             </button>
             <div class="faq-item__answer">
               <div class="faq-item__answer-inner">No. The virtual terminal runs in any modern browser on any computer. No downloads, no plugins, no card machine. Log in and take a payment.</div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question">
+              What if the customer doesn&rsquo;t want to read their card out?
+              <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">Send them a payment link instead, without hanging up. It goes to their mobile or email, they pay on their own phone with card, Apple Pay or Google Pay, and you see it settle while you are still talking. Because they confirm the payment on their own device, there is less chargeback risk than a keyed payment.</div>
             </div>
           </div>
 
