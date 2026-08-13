@@ -810,15 +810,14 @@
     @keyframes bp-state2 { 0%, 26% { opacity: 0; } 31%, 59% { opacity: 1; } 64%, 100% { opacity: 0; } }
     @keyframes bp-state3 { 0%, 59% { opacity: 0; } 64%, 95% { opacity: 1; } 100% { opacity: 0; } }
 
-    .bp-gen__head { display: flex; align-items: flex-start; justify-content: space-between; }
+    .bp-gen__head { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(11, 27, 51, 0.08); margin-bottom: 12px; }
     .bp-gen__title { font-size: 15.5px; font-weight: 700; color: #16223C; }
     .bp-gen__x { color: rgba(11, 27, 51, 0.4); font-size: 13px; line-height: 1.2; }
+    /* Only state 3 keeps a sub line; the divider now lives on the head */
     .bp-gen__sub {
       font-size: 11.5px;
       color: rgba(11, 27, 51, 0.55);
-      margin-top: 4px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(11, 27, 51, 0.08);
+      margin: -6px 0 6px;
     }
 
     .bp-gen__zone {
@@ -1288,7 +1287,6 @@
               <div class="bp-gen__chrome" aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="bp-gen__state bp-gen__state--1">
                 <div class="bp-gen__head"><span class="bp-gen__title">Generate Invoices</span><span class="bp-gen__x">&#10005;</span></div>
-                <div class="bp-gen__sub">Upload PDF invoices or a CSV file and we&rsquo;ll automatically extract the invoice details.</div>
                 <div class="bp-gen__zone">
                   <span class="bp-gen__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6E44FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4m0 0L8 8m4-4l4 4"/><path d="M4 15v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3"/></svg></span>
                   <span class="bp-gen__big">Drag &amp; drop files here</span>
@@ -1299,7 +1297,6 @@
               </div>
               <div class="bp-gen__state bp-gen__state--2">
                 <div class="bp-gen__head"><span class="bp-gen__title">Generate Invoices</span><span class="bp-gen__x">&#10005;</span></div>
-                <div class="bp-gen__sub">Upload PDF invoices or a CSV file and we&rsquo;ll automatically extract the invoice details.</div>
                 <div class="bp-gen__centre">
                   <span class="bp-gen__icon"><svg viewBox="0 0 24 24" fill="#6E44FF"><path d="M11 4l1.7 4.8L17.5 10.5l-4.8 1.7L11 17l-1.7-4.8L4.5 10.5l4.8-1.7z"/><path d="M17.5 3.5l0.8 2.2 2.2 0.8-2.2 0.8-0.8 2.2-0.8-2.2-2.2-0.8 2.2-0.8z"/></svg></span>
                   <div class="bp-gen__reading">Reading invoices&hellip;</div>
