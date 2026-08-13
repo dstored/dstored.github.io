@@ -612,6 +612,137 @@
       .pl-ai__bar span { width: 100%; }
     }
 
+
+    /* ── Chased until paid: thread left, copy right, the mirror of
+       the PDF-drop split above (ported from virtual-terminal) ── */
+    .iv-chase {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 720px);
+      justify-content: space-between;
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    .iv-chase .section-header__subtitle { max-width: none; }
+
+    /* The customer's messages app: a third-party surface, so it wears
+       iMessage's own colours and the system font, not Stored's */
+    .iv-thread {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid rgba(11, 27, 51, 0.14);
+      box-shadow: 0 12px 32px rgba(11, 27, 51, 0.10);
+      padding: 18px 20px 20px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .iv-thread__header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding-bottom: 12px;
+      border-bottom: 0.5px solid rgba(11, 27, 51, 0.18);
+    }
+
+    .iv-thread__avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #8E8E93;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .iv-thread__name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1C1C1E;
+    }
+
+    .iv-thread__body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+      padding-top: 12px;
+      flex: 1;
+    }
+
+    .iv-thread__stamp {
+      align-self: center;
+      font-size: 10.5px;
+      color: #8E8E93;
+    }
+
+    .iv-thread__bubble {
+      max-width: min(88%, 350px);
+      background: #E9E9EB;
+      color: #1C1C1E;
+      font-size: 13.5px;
+      line-height: 1.4;
+      padding: 8px 12px;
+      border-radius: 16px;
+      border-bottom-left-radius: 5px;
+    }
+
+    .iv-thread__link {
+      color: #1668D6;
+      text-decoration: underline;
+    }
+
+    .iv-thread__paid {
+      align-self: center;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      padding: 6px 13px;
+      border: 1.5px solid rgba(11, 27, 51, 0.14);
+      border-radius: 100px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #1C1C1E;
+    }
+
+    .iv-thread__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #31D895;
+    }
+
+    /* Two beats on an 8s clock: the link lands as the call runs,
+       the paid pill follows while they're still talking */
+    .iv-thread__item--1 { animation: iv-thread-1 8s ease infinite; }
+    .iv-thread__item--3 { animation: iv-thread-3 8s ease infinite; }
+
+    @keyframes iv-thread-1 {
+      0%, 2% { opacity: 0; transform: translateY(8px); }
+      7%, 93% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(8px); }
+    }
+
+    @keyframes iv-thread-3 {
+      0%, 40% { opacity: 0; transform: scale(0.9); }
+      45%, 93% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.9); }
+    }
+
+    @media (max-width: 968px) {
+      .iv-chase { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .iv-thread__item--1,
+      .iv-thread__item--3 { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -1160,6 +1291,36 @@
       </div>
     </section>
 
+
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="iv-rule"></div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CHASED UNTIL PAID                        -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="iv-chase">
+          <div class="iv-thread" data-animate role="img" aria-label="A reminder text arrives the day before an invoice is due, then it is paid">
+            <div class="iv-thread__header">
+              <span class="iv-thread__avatar" aria-hidden="true">B</span>
+              <span class="iv-thread__name">Bloom</span>
+            </div>
+            <div class="iv-thread__body">
+              <div class="iv-thread__stamp iv-thread__item--1">Text message &middot; Tue 9:00</div>
+              <div class="iv-thread__bubble iv-thread__item--1">Reminder: your &#163;240.00 invoice from Bloom is due tomorrow. One tap to pay: <span class="iv-thread__link">stored.link/inv-0244</span></div>
+              <div class="iv-thread__paid iv-thread__item--3"><span class="iv-thread__dot"></span>&#163;240.00 paid</div>
+            </div>
+          </div>
+          <div data-animate>
+            <div class="section-header">
+              <h2 class="section-header__title">Paid on time, <span class="highlight">without the chasing.</span></h2>
+              <p class="section-header__subtitle">Once the links go out, AI watches every one, nudging anything unpaid by text and email until it settles. Hundreds of payments arriving on time, and nobody spending their week chasing them. Cash flow is king, and this is how you keep it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- STATS BAND -->
     <section class="section section--stats">
