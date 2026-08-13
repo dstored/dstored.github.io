@@ -767,13 +767,34 @@
       box-shadow: 0 12px 32px rgba(11, 27, 51, 0.10);
       overflow: hidden;
       display: grid;
+      /* Row 1 is the constant window chrome; the cycling states stack in row 2 */
+      grid-template-rows: auto 1fr;
       min-height: 470px;
       font-family: var(--font-body);
       text-align: left;
     }
 
+    /* Grey window bar with three dots, so the modal reads as a real window */
+    .bp-gen__chrome {
+      grid-row: 1;
+      grid-column: 1;
+      display: flex;
+      gap: 6px;
+      padding: 10px 14px;
+      background: #F1F1F3;
+      border-bottom: 1px solid rgba(11, 27, 51, 0.08);
+    }
+
+    .bp-gen__chrome span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(11, 27, 51, 0.16);
+    }
+
     .bp-gen__state {
-      grid-area: 1 / 1;
+      grid-row: 2;
+      grid-column: 1;
       display: flex;
       flex-direction: column;
       opacity: 0;
@@ -1264,6 +1285,7 @@
           </div>
           <div class="solution-hero__visual">
             <div class="bp-gen" role="img" aria-label="The Generate Invoices screen: up to 50 PDF invoices or a CSV dropped in, read automatically, and payment requests ready to send">
+              <div class="bp-gen__chrome" aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="bp-gen__state bp-gen__state--1">
                 <div class="bp-gen__head"><span class="bp-gen__title">Generate Invoices</span><span class="bp-gen__x">&#10005;</span></div>
                 <div class="bp-gen__sub">Upload PDF invoices or a CSV file and we&rsquo;ll automatically extract the invoice details.</div>
