@@ -337,280 +337,6 @@
       margin: 0;
     }
 
-    /* ── Drop the paperwork in: ported wholesale from invoicing's
-       import section (pl-ai + pl-track classes, per the established
-       cross-page porting precedent) ── */
-    .pl-track__row {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 16px 20px;
-      background: #FFFFFF;
-    }
-
-    .pl-track__row + .pl-track__row {
-      border-top: 1px solid rgba(11, 27, 51, 0.08);
-    }
-
-    .pl-track__dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .pl-track__dot--paid { background: #31D895; }
-
-    .pl-track__ref { font-size: 14.5px; font-weight: 600; color: var(--ink); }
-
-    .pl-track__status {
-      font-family: var(--font-body);
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: rgba(11, 27, 51, 0.5);
-    }
-
-    .pl-track__amount {
-      margin-left: auto;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .pl-ai {
-      background: #FFFFFF;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    /* The chrome bar always takes the opposite tone to its section, so the
-       frame keeps a defined top edge: paper here on the navy section,
-       navy on the tracking frame that sits on paper. */
-    /* Navy chrome on the light section, matching the tracking frames:
-       a paper bar would vanish against the parchment background */
-    .pl-ai__chrome {
-      display: flex;
-      gap: 6px;
-      padding: var(--space-3) var(--space-4);
-      background: var(--ink);
-    }
-
-    .pl-ai__chrome span {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    .pl-ai__body { padding: var(--space-5); }
-
-    /* One 12s loop drives the whole sequence: the upload is clicked, files
-       land, AI reads them, links come back. Every element runs the same
-       period so the steps stay in step with each other. */
-    .pl-ai__drop {
-      position: relative;
-      border: 2px dashed rgba(11, 27, 51, 0.25);
-      border-radius: 8px;
-      padding: var(--space-5) var(--space-4);
-      text-align: center;
-    }
-
-    .pl-ai__stack { display: grid; }
-    .pl-ai__stack > * { grid-area: 1 / 1; }
-
-    .pl-ai__upload {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 9px;
-      animation: pl-ai-upload 12s ease-in-out infinite;
-    }
-
-    .pl-ai__upload svg { width: 34px; height: 34px; }
-
-    @keyframes pl-ai-upload {
-      0%, 8% { opacity: 1; transform: scale(1); }
-      10%, 12% { opacity: 1; transform: scale(0.93); }
-      16% { opacity: 1; transform: scale(1); }
-      20%, 94% { opacity: 0; transform: scale(1); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    .pl-ai__cursor {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 17px;
-      height: 17px;
-      margin: -2px 0 0 -2px;
-      animation: pl-ai-cursor 12s ease-in-out infinite;
-    }
-
-    .pl-ai__cursor svg { width: 100%; height: 100%; display: block; }
-
-    @keyframes pl-ai-cursor {
-      0% { opacity: 0; transform: translate(22px, 22px) scale(1); }
-      5% { opacity: 1; transform: translate(0, 0) scale(1); }
-      9%, 11% { opacity: 1; transform: translate(0, 0) scale(0.78); }
-      15% { opacity: 1; transform: translate(0, 0) scale(1); }
-      19%, 100% { opacity: 0; transform: translate(22px, 22px) scale(1); }
-    }
-
-    .pl-ai__files {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 7px;
-    }
-
-    .pl-ai__file {
-      width: 30px;
-      height: 40px;
-      border: 2px solid var(--ink);
-      border-radius: 4px;
-      background: var(--paper);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8px;
-      font-weight: 700;
-      color: var(--ink);
-      animation: pl-ai-file 12s ease-in-out infinite;
-    }
-
-    .pl-ai__file:nth-child(2) { animation-delay: 0.18s; }
-    .pl-ai__file:nth-child(3) { animation-delay: 0.36s; }
-    .pl-ai__file:nth-child(4) { animation-delay: 0.54s; }
-
-    @keyframes pl-ai-file {
-      0%, 15% { opacity: 0; transform: translateY(9px); }
-      22%, 94% { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(9px); }
-    }
-
-    .pl-ai__droptext {
-      font-size: 11.5px;
-      font-weight: 600;
-      color: rgba(11, 27, 51, 0.5);
-    }
-
-    .pl-ai__count {
-      display: block;
-      margin-top: 9px;
-      font-size: 11.5px;
-      font-weight: 600;
-      color: rgba(11, 27, 51, 0.5);
-      animation: pl-ai-file 12s ease-in-out infinite;
-      animation-delay: 0.7s;
-    }
-
-    .pl-ai__reading {
-      padding: 13px 0 14px;
-      animation: pl-ai-read 12s ease-in-out infinite;
-    }
-
-    @keyframes pl-ai-read {
-      0%, 22% { opacity: 0; }
-      27%, 88% { opacity: 1; }
-      94%, 100% { opacity: 0; }
-    }
-
-    .pl-ai__readlabel {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      margin-bottom: 9px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink);
-    }
-
-    .pl-ai__spark {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #6E44FF;
-      animation: pl-ai-pulse 1.6s ease-in-out infinite;
-    }
-
-    @keyframes pl-ai-pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.35); opacity: 0.6; }
-    }
-
-    .pl-ai__bar {
-      height: 5px;
-      border-radius: 999px;
-      background: var(--bone);
-      overflow: hidden;
-    }
-
-    .pl-ai__bar span {
-      display: block;
-      height: 100%;
-      width: 0;
-      border-radius: 999px;
-      background: #6E44FF;
-      animation: pl-ai-bar 12s ease-in-out infinite;
-    }
-
-    @keyframes pl-ai-bar {
-      0%, 25% { width: 0; }
-      46%, 94% { width: 100%; }
-      100% { width: 0; }
-    }
-
-    .pl-ai__out {
-      border: 1px solid rgba(11, 27, 51, 0.12);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .pl-ai__out .pl-track__row {
-      animation: pl-ai-row 12s ease-in-out infinite;
-    }
-
-    .pl-ai__out .pl-track__row:nth-child(2) { animation-delay: 0.35s; }
-
-    @keyframes pl-ai-row {
-      0%, 48% { opacity: 0; transform: translateY(9px); }
-      57%, 94% { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(9px); }
-    }
-
-    /* Light-section copy/graphic split for the import section */
-    .iv-import__split {
-      grid-template-columns: minmax(0, 580px) 470px;
-      justify-content: space-between;
-      gap: var(--space-12);
-    }
-
-    .iv-import__split .section-header__subtitle { max-width: 520px; }
-
-    @media (max-width: 968px) {
-      .iv-import__split { grid-template-columns: 1fr; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .pl-ai__file,
-      .pl-ai__count,
-      .pl-ai__spark,
-      .pl-ai__upload,
-      .pl-ai__cursor,
-      .pl-ai__reading,
-      .pl-ai__bar span,
-      .pl-ai__out .pl-track__row { animation: none; }
-
-      /* Import graphic settles on the finished state */
-      .pl-ai__upload, .pl-ai__cursor { opacity: 0; }
-      .pl-ai__file, .pl-ai__count, .pl-ai__reading, .pl-ai__out .pl-track__row { opacity: 1; transform: none; }
-      .pl-ai__bar span { width: 100%; }
-    }
 
 
     /* ── Chased until paid: thread left, copy right, the mirror of
@@ -742,6 +468,187 @@
     @media (prefers-reduced-motion: reduce) {
       .iv-thread__item--1,
       .iv-thread__item--3 { animation: none; }
+    }
+
+    /* ── Generate Invoices demo: faithful replication of the real product
+       modal (Danny's screenshots, 10 Aug 2026), cycling its three states
+       on one 12s clock: drop zone -> reading -> requests ready.
+       Stored's own product, so it keeps the product's real palette
+       (indigo actives, soft green Ready pills, orange review badge). ── */
+    .bp-gen {
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid rgba(11, 27, 51, 0.14);
+      box-shadow: 0 12px 32px rgba(11, 27, 51, 0.10);
+      overflow: hidden;
+      display: grid;
+      min-height: 470px;
+      font-family: var(--font-body);
+      text-align: left;
+    }
+
+    .bp-gen__state {
+      grid-area: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      padding: 18px 20px 20px;
+      min-width: 0;
+    }
+
+    .bp-gen__state--1 { animation: bp-state1 12s ease-in-out infinite; }
+    .bp-gen__state--2 { animation: bp-state2 12s ease-in-out infinite; }
+    .bp-gen__state--3 { animation: bp-state3 12s ease-in-out infinite; }
+
+    @keyframes bp-state1 { 0%, 26% { opacity: 1; } 31%, 95% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes bp-state2 { 0%, 26% { opacity: 0; } 31%, 59% { opacity: 1; } 64%, 100% { opacity: 0; } }
+    @keyframes bp-state3 { 0%, 59% { opacity: 0; } 64%, 95% { opacity: 1; } 100% { opacity: 0; } }
+
+    .bp-gen__head { display: flex; align-items: flex-start; justify-content: space-between; }
+    .bp-gen__title { font-size: 15.5px; font-weight: 700; color: #16223C; }
+    .bp-gen__x { color: rgba(11, 27, 51, 0.4); font-size: 13px; line-height: 1.2; }
+    .bp-gen__sub {
+      font-size: 11.5px;
+      color: rgba(11, 27, 51, 0.55);
+      margin-top: 4px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(11, 27, 51, 0.08);
+    }
+
+    .bp-gen__zone {
+      flex: 1;
+      margin-top: 14px;
+      border: 1.5px dashed rgba(11, 27, 51, 0.22);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .bp-gen__icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: #EEF0FB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .bp-gen__icon svg { width: 22px; height: 22px; }
+    .bp-gen__big { font-size: 14.5px; font-weight: 700; color: #16223C; }
+    .bp-gen__hint { font-size: 12px; color: rgba(11, 27, 51, 0.5); margin-top: 5px; line-height: 1.45; }
+
+    .bp-gen__choose {
+      margin-top: 14px;
+      padding: 8px 16px;
+      border: 1px solid rgba(11, 27, 51, 0.18);
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #16223C;
+      background: #FFFFFF;
+      box-shadow: 0 1px 2px rgba(11, 27, 51, 0.06);
+    }
+
+    .bp-gen__formats { font-size: 10.5px; color: rgba(11, 27, 51, 0.45); text-align: center; margin-top: 12px; }
+
+    .bp-gen__centre {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .bp-gen__reading { font-size: 15px; font-weight: 700; color: #16223C; margin: 12px 0; }
+
+    .bp-gen__bar {
+      width: 78%;
+      height: 7px;
+      border-radius: 999px;
+      background: #E8EAF0;
+      overflow: hidden;
+    }
+
+    .bp-gen__bar span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: #6E44FF;
+      width: 12%;
+      animation: bp-bar 12s ease-in-out infinite;
+    }
+
+    @keyframes bp-bar { 0%, 30% { width: 12%; } 58%, 100% { width: 86%; } }
+
+    .bp-gen__count { font-size: 12px; color: rgba(11, 27, 51, 0.5); margin-top: 9px; }
+    .bp-gen__steps { margin-top: 18px; text-align: left; display: grid; gap: 9px; }
+    .bp-gen__step { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #A7ACB9; }
+    .bp-gen__step::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .bp-gen__step--live { color: #6E44FF; font-weight: 600; }
+
+    .bp-gen__tabs { display: flex; gap: 18px; margin-top: 12px; border-bottom: 1px solid rgba(11, 27, 51, 0.08); }
+    .bp-gen__tab { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: rgba(11, 27, 51, 0.45); padding-bottom: 8px; }
+    .bp-gen__tab--on { color: #6E44FF; box-shadow: inset 0 -2px 0 #6E44FF; }
+    .bp-gen__tabnum {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #6E44FF;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bp-gen__tab--review .bp-gen__tabnum { background: #F5A623; }
+
+    .bp-gen__cols {
+      display: flex;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: rgba(11, 27, 51, 0.45);
+      padding: 9px 2px 7px;
+      border-bottom: 1px solid rgba(11, 27, 51, 0.06);
+    }
+
+    .bp-gen__row { display: flex; align-items: center; padding: 10px 2px; border-bottom: 1px solid rgba(11, 27, 51, 0.06); }
+    .bp-gen__cust { font-size: 12.5px; font-weight: 600; color: #16223C; width: 96px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bp-gen__ref { font-size: 11px; color: rgba(11, 27, 51, 0.45); }
+    .bp-gen__amt { margin-left: auto; font-size: 12.5px; font-weight: 700; color: #16223C; }
+
+    .bp-gen__pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 14px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(49, 216, 149, 0.14);
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #16223C;
+    }
+
+    .bp-gen__pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #31D895; }
+
+    .bp-gen__foot { margin-top: auto; display: flex; justify-content: flex-end; padding-top: 12px; }
+    .bp-gen__review { background: #6E44FF; color: #FFFFFF; font-size: 12.5px; font-weight: 600; padding: 8px 16px; border-radius: 8px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bp-gen__state--1,
+      .bp-gen__state--2,
+      .bp-gen__state--3,
+      .bp-gen__bar span { animation: none; }
+      /* Settle on the finished state: requests ready */
+      .bp-gen__state--3 { opacity: 1; }
     }
   </style>
 </head>
@@ -1233,57 +1140,47 @@
             </div>
           </div>
           <div data-animate>
-            <div class="pl-ai" role="img" aria-label="A pile of PDF invoices dropped in, read by AI, and turned into payment links">
-              <div class="pl-ai__chrome"><span></span><span></span><span></span></div>
-              <div class="pl-ai__body">
-              <div class="pl-ai__drop">
-                <div class="pl-ai__stack">
-                  <div class="pl-ai__upload">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#16223C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5"/>
-                      <path d="M4 16v2.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V16"/>
-                    </svg>
-                    <span class="pl-ai__droptext">Drop up to 50 files</span>
-                  </div>
-                  <div class="pl-ai__files-wrap">
-                    <div class="pl-ai__files">
-                      <span class="pl-ai__file">PDF</span>
-                      <span class="pl-ai__file">PDF</span>
-                      <span class="pl-ai__file">PDF</span>
-                      <span class="pl-ai__file">PDF</span>
-                    </div>
-                    <span class="pl-ai__count">12 files added</span>
-                  </div>
+            <div class="bp-gen" role="img" aria-label="The Generate Invoices screen: up to 50 PDF invoices or a CSV dropped in, read automatically, and payment requests ready to send">
+              <div class="bp-gen__state bp-gen__state--1">
+                <div class="bp-gen__head"><span class="bp-gen__title">Generate Invoices</span><span class="bp-gen__x">&#10005;</span></div>
+                <div class="bp-gen__sub">Upload PDF invoices or a CSV file and we&rsquo;ll automatically extract the invoice details.</div>
+                <div class="bp-gen__zone">
+                  <span class="bp-gen__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6E44FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4m0 0L8 8m4-4l4 4"/><path d="M4 15v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3"/></svg></span>
+                  <span class="bp-gen__big">Drag &amp; drop files here</span>
+                  <span class="bp-gen__hint">Supports up to 50 PDF invoices<br>or CSV files</span>
+                  <span class="bp-gen__choose">Choose Files</span>
                 </div>
-                <span class="pl-ai__cursor" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="#16223C" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 7.8-5.9 1.4-2.6 5.8z"/></svg>
-                </span>
+                <div class="bp-gen__formats">PDF, CSV, Excel, XML and accounting exports supported</div>
               </div>
-              <div class="pl-ai__reading">
-                <div class="pl-ai__readlabel">
-                  <span class="pl-ai__spark"></span>
-                  Reading with AI
-                </div>
-                <div class="pl-ai__bar"><span></span></div>
-              </div>
-              <div class="pl-ai__out">
-                <div class="pl-track__row">
-                  <span class="pl-track__dot pl-track__dot--paid"></span>
-                  <div>
-                    <div class="pl-track__ref">Invoice 4292</div>
-                    <div class="pl-track__status">Link ready</div>
+              <div class="bp-gen__state bp-gen__state--2">
+                <div class="bp-gen__head"><span class="bp-gen__title">Generate Invoices</span><span class="bp-gen__x">&#10005;</span></div>
+                <div class="bp-gen__sub">Upload PDF invoices or a CSV file and we&rsquo;ll automatically extract the invoice details.</div>
+                <div class="bp-gen__centre">
+                  <span class="bp-gen__icon"><svg viewBox="0 0 24 24" fill="#6E44FF"><path d="M11 4l1.7 4.8L17.5 10.5l-4.8 1.7L11 17l-1.7-4.8L4.5 10.5l4.8-1.7z"/><path d="M17.5 3.5l0.8 2.2 2.2 0.8-2.2 0.8-0.8 2.2-0.8-2.2-2.2-0.8 2.2-0.8z"/></svg></span>
+                  <div class="bp-gen__reading">Reading invoices&hellip;</div>
+                  <div class="bp-gen__bar"><span></span></div>
+                  <div class="bp-gen__count">5 of 24 files processed</div>
+                  <div class="bp-gen__steps">
+                    <span class="bp-gen__step bp-gen__step--live">Reading invoices&hellip;</span>
+                    <span class="bp-gen__step">Extracting customer details&hellip;</span>
+                    <span class="bp-gen__step">Identifying invoice totals&hellip;</span>
+                    <span class="bp-gen__step">Generating invoice requests&hellip;</span>
                   </div>
-                  <div class="pl-track__amount">&#163;320.00</div>
-                </div>
-                <div class="pl-track__row">
-                  <span class="pl-track__dot pl-track__dot--paid"></span>
-                  <div>
-                    <div class="pl-track__ref">Invoice 4293</div>
-                    <div class="pl-track__status">Link ready</div>
-                  </div>
-                  <div class="pl-track__amount">&#163;95.00</div>
                 </div>
               </div>
+              <div class="bp-gen__state bp-gen__state--3">
+                <div class="bp-gen__head"><span class="bp-gen__title">Payment Requests Ready</span><span class="bp-gen__x">&#10005;</span></div>
+                <div class="bp-gen__sub">18 payment requests are ready to create.</div>
+                <div class="bp-gen__tabs">
+                  <span class="bp-gen__tab bp-gen__tab--on"><span class="bp-gen__tabnum">1</span>Ready (18)</span>
+                  <span class="bp-gen__tab bp-gen__tab--review"><span class="bp-gen__tabnum">2</span>Review (6)</span>
+                </div>
+                <div class="bp-gen__cols"><span style="width: 96px;">Customer</span><span>Invoice #</span><span style="margin-left: auto;">Amount</span><span style="width: 68px; text-align: right;">Status</span></div>
+                <div class="bp-gen__row"><span class="bp-gen__cust">Harlow &amp; Co</span><span class="bp-gen__ref">INV-2024-010</span><span class="bp-gen__amt">&#163;1,875.00</span><span class="bp-gen__pill">Ready</span></div>
+                <div class="bp-gen__row"><span class="bp-gen__cust">Voltline</span><span class="bp-gen__ref">INV-2024-011</span><span class="bp-gen__amt">&#163;640.00</span><span class="bp-gen__pill">Ready</span></div>
+                <div class="bp-gen__row"><span class="bp-gen__cust">Crescent</span><span class="bp-gen__ref">INV-2024-012</span><span class="bp-gen__amt">&#163;2,100.00</span><span class="bp-gen__pill">Ready</span></div>
+                <div class="bp-gen__row"><span class="bp-gen__cust">Northgate</span><span class="bp-gen__ref">INV-2024-013</span><span class="bp-gen__amt">&#163;15,000.00</span><span class="bp-gen__pill">Ready</span></div>
+                <div class="bp-gen__foot"><span class="bp-gen__review">Review (6)</span></div>
               </div>
             </div>
           </div>
