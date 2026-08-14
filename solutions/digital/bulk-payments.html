@@ -802,6 +802,36 @@
       min-width: 0;
     }
 
+    /* The cursor rides in and presses Upload Files just before the
+       reading state takes over, so the click reads as what starts it */
+    .bp-gen__cursor {
+      position: absolute;
+      /* Tip lands on the right half of the Upload Files button */
+      left: calc(50% - 35px);
+      bottom: 120px;
+      width: 17px;
+      height: 17px;
+      animation: bp-cursor 12s ease-in-out infinite;
+    }
+
+    .bp-gen__cursor svg { width: 100%; height: 100%; display: block; }
+
+    @keyframes bp-cursor {
+      0%, 6% { opacity: 0; transform: translate(56px, 48px); }
+      14%, 19% { opacity: 1; transform: translate(0, 0) scale(1); }
+      21%, 22% { opacity: 1; transform: translate(0, 0) scale(0.82); }
+      24%, 26% { opacity: 1; transform: translate(0, 0) scale(1); }
+      31%, 100% { opacity: 0; transform: translate(56px, 48px); }
+    }
+
+    .bp-gen__choose { animation: bp-press 12s ease-in-out infinite; }
+
+    @keyframes bp-press {
+      0%, 20% { transform: scale(1); background: #FFFFFF; }
+      21.5%, 23% { transform: scale(0.95); background: #EFEFF3; }
+      25%, 100% { transform: scale(1); background: #FFFFFF; }
+    }
+
     .bp-gen__state--1 { animation: bp-state1 12s ease-in-out infinite; }
     .bp-gen__state--2 { animation: bp-state2 12s ease-in-out infinite; }
     .bp-gen__state--3 { animation: bp-state3 12s ease-in-out infinite; }
@@ -822,6 +852,7 @@
 
     .bp-gen__zone {
       flex: 1;
+      position: relative;
       margin-top: 14px;
       border: 1.5px dashed rgba(11, 27, 51, 0.22);
       border-radius: 10px;
@@ -951,7 +982,11 @@
       .bp-gen__state--1,
       .bp-gen__state--2,
       .bp-gen__state--3,
+      .bp-gen__cursor,
+      .bp-gen__choose,
       .bp-gen__bar span { animation: none; }
+
+      .bp-gen__cursor { opacity: 0; }
       /* Settle on the finished state: requests ready */
       .bp-gen__state--3 { opacity: 1; }
     }
@@ -1291,7 +1326,8 @@
                   <span class="bp-gen__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6E44FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4m0 0L8 8m4-4l4 4"/><path d="M4 15v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3"/></svg></span>
                   <span class="bp-gen__big">Drag &amp; drop files here</span>
                   <span class="bp-gen__hint">PDF invoices or CSV files</span>
-                  <span class="bp-gen__choose">Choose Files</span>
+                  <span class="bp-gen__choose">Upload Files</span>
+                  <span class="bp-gen__cursor" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#16223C" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 7.8-5.9 1.4-2.6 5.8z"/></svg></span>
                 </div>
               </div>
               <div class="bp-gen__state bp-gen__state--2">
