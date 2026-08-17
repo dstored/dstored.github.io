@@ -2595,7 +2595,7 @@
 }
 
 .solution-hero__inner:not(:has(.solution-hero__visual)) .solution-hero__title {
-  font-size: clamp(4.75rem, 3.2rem + 10.5vw, 9.25rem);
+  font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem);
   font-weight: 700;
   line-height: calc(0.85em + 5px);
   letter-spacing: -0.05em;

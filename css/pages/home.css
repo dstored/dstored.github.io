@@ -80,13 +80,13 @@
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(4.75rem, 3.2rem + 10.5vw, 9.25rem);
+  font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem);
   font-weight: 700;
   line-height: 0.85; /* homepage exception: no +5px, per brand-guidelines.md */
   letter-spacing: -0.05em;
   color: var(--ink);
   margin-top: 23px;
-  margin-bottom: 56px;
+  margin-bottom: 64px;
 }
 
 .hero__asterisk {
@@ -110,7 +110,7 @@
 
   .hero__title {
     margin-top: 16px;
-    margin-bottom: 43px;
+    margin-bottom: 49px;
   }
 
   .hero__subtitle {
