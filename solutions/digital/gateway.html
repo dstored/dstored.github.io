@@ -136,22 +136,14 @@
     .browser-demo__screen {
       background: #FFFFFF;
       min-height: 442px;
-      padding: 18px 18px 20px;
+      /* Extra air top and bottom now the head row is gone */
+      padding: 30px 18px 30px;
       display: flex;
       flex-direction: column;
       font-family: var(--font-body);
     }
 
     /* ── State 1: the Sun Shack checkout ── */
-    .gd-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 12px;
-    }
-
-    .gd-head__shop { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: #111111; }
-    .gd-head__label { font-size: 11px; font-weight: 500; color: #8A8A8A; }
 
     .gd-order {
       display: flex;
@@ -711,10 +703,6 @@
               <div class="browser-demo__screens" data-cycle-card data-cycle-interval="4000">
                 <!-- State 1: the checkout -->
                 <div class="hero__card-state is-active browser-demo__screen">
-                  <div class="gd-head">
-                    <span class="gd-head__shop">Sun Shack</span>
-                    <span class="gd-head__label">Checkout</span>
-                  </div>
                   <div class="gd-order">
                     <img class="gd-order__thumb" src="/assets/images/products/santiago-sunglasses.png" alt="">
                     <div>
