@@ -1,6 +1,6 @@
 /* ─── Hero ─── */
 .hero {
-  padding-top: calc(72px + var(--space-6));
+  padding-top: calc(82px + var(--space-6)); /* 72px header + 10px air (10 Aug) */
   padding-bottom: var(--space-12);
   min-height: 90vh;
   display: flex;
@@ -1106,7 +1106,7 @@
 @media (max-width: 640px) {
   .hero {
     min-height: auto;
-    padding-top: calc(72px + var(--space-10));
+    padding-top: calc(82px + var(--space-10));
   }
 
   .hero__title {

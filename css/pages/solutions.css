@@ -1,6 +1,6 @@
 /* ─── Solution Page Hero ─── */
 .solution-hero {
-  padding-top: calc(72px + var(--space-6));
+  padding-top: calc(82px + var(--space-6)); /* 72px header + 10px air (10 Aug) */
   padding-bottom: var(--space-12);
   min-height: calc(90vh + 10px);
   display: flex;

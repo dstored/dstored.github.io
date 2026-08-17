@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
   <link rel="stylesheet" href="../../css/header.css">
   <link rel="stylesheet" href="../../css/footer.css">
-  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-15">
+  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-16">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
@@ -69,15 +69,14 @@
     .solution-hero .solution-hero__visual {
       position: absolute;
       right: 0;
-      top: calc(50% - 20px);
+      top: 1px; /* = 95px into the hero: graphics never sit higher than this line (rule of 10 Aug) */
       width: 300px;
-      transform: translateY(-50%);
-      animation: paylink-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
+            animation: paylink-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
 
     @keyframes paylink-slide-in {
-      from { opacity: 0; transform: translateY(-50%) translateX(90px); }
-      to { opacity: 1; transform: translateY(-50%); }
+      from { opacity: 0; transform: translateX(90px); }
+      to { opacity: 1; transform: none; }
     }
 
     .solution-hero .solution-hero__visual .phone-demo {

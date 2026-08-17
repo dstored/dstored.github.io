@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
   <link rel="stylesheet" href="../../css/header.css">
   <link rel="stylesheet" href="../../css/footer.css">
-  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-15">
+  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-16">
   <style>
     /* Homepage-pattern hero: full-width two-line headline at homepage scale */
     .solution-hero .solution-hero__inner {
@@ -63,23 +63,19 @@
     .solution-hero__visual {
       position: absolute;
       right: 0;
-      top: calc(50% - 20px);
+      top: 1px; /* = 95px into the hero: graphics never sit higher than this line (rule of 10 Aug) */
       width: 300px;
-      transform: translateY(-50%);
-      animation: terminal-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
+            animation: terminal-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
-
-    /* translateY(-50%) must ride along in every frame or the entrance
-       animation would wipe out the vertical centring */
     @keyframes terminal-slide-in {
-      from { opacity: 0; transform: translateY(-50%) translateX(90px); }
-      to { opacity: 1; transform: translateY(-50%); }
+      from { opacity: 0; transform: translateX(90px); }
+      to { opacity: 1; transform: none; }
     }
 
     /* Uniform scale keeps the phone's true proportions */
     .solution-hero__visual .phone-demo {
-      transform: scale(0.858);
-      transform-origin: right center;
+      transform: scale(0.77);
+      transform-origin: right top; /* top-anchored since the 95px-line rule */
     }
 
     /* High-fidelity app demo phone, cycling through the payment states */
