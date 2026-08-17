@@ -64,9 +64,14 @@
     .solution-hero__visual {
       position: absolute;
       right: 0;
-      bottom: 0;
-      width: 580px;
-      height: 430px;
+      /* Aligned to the phone demos on the other hero pages (10 Aug):
+         left edge and top match the phones' rendered position, and the
+         tablet crops harder at the right as a result */
+      /* 1px here = 95px into the hero: the positioning context is the
+         inner container, which starts 94px below the hero's top */
+      top: 1px;
+      width: 257px;
+      height: 561px;
       overflow: hidden;
       border-radius: 26px 0 0 0;
       animation: pos-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
