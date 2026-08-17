@@ -70,7 +70,9 @@
       /* 1px here = 95px into the hero: the positioning context is the
          inner container, which starts 94px below the hero's top */
       top: 1px;
-      width: 257px;
+      /* 299px closes the headline-to-graphic gap to ~42px (half the
+         phone-page gap, Danny's call) while the right edge stays cut */
+      width: 299px;
       height: 561px;
       overflow: hidden;
       border-radius: 26px 0 0 0;
@@ -306,7 +308,8 @@
       /* Table card sits first, on the left, and runs to the bottom cut edge
          of the visible window (430 visual - 10 bezel - 14 screen padding) */
       order: -1;
-      height: 406px;
+      /* Runs to the bottom cut edge: 561 window - 10 bezel - 14 padding */
+      height: 537px;
       background: var(--ink);
       border-radius: 12px;
       padding: 12px 12px 10px;
@@ -408,8 +411,8 @@
     .tablet-demo__screen--paid {
       /* Size to the visible window (580 - 10 bezel wide, 430 - 10 tall),
          not the oversized till canvas, so the message centres on screen */
-      width: 570px;
-      height: 420px;
+      width: 289px;
+      height: 551px;
       align-items: center;
       justify-content: center;
       text-align: center;
