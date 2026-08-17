@@ -70,20 +70,16 @@
       /* 1px here = 95px into the hero: the positioning context is the
          inner container, which starts 94px below the hero's top */
       top: 1px;
-      /* 299px closes the headline-to-graphic gap to ~42px (half the
-         phone-page gap, Danny's call) while the right edge stays cut */
-      width: 320px;
+      /* Left edge pinned 771px from the container's left: the headline
+         ink ends at 747px once the font caps, so the gap holds at ~24px
+         on every viewport instead of ballooning between breakpoints.
+         The window just reveals more tablet as the screen widens. */
+      left: 771px;
+      width: auto;
       height: 561px;
       overflow: hidden;
       border-radius: 26px 0 0 0;
       animation: pos-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
-    }
-
-    /* Wide screens: the headline stops growing before the container
-       does, so the gap outgrows the phone pages' — widen the window to
-       match their measured gap (114px at 1920) */
-    @media (min-width: 1600px) {
-      .solution-hero__visual { width: 394px; }
     }
 
     /* Light shadowing over the cut edges */
