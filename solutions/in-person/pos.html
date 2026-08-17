@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
   <link rel="stylesheet" href="../../css/header.css">
   <link rel="stylesheet" href="../../css/footer.css">
-  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-11">
+  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-13">
   <style>
     /* Homepage-pattern hero: full-width two-line headline at homepage scale */
     .solution-hero .solution-hero__inner {
@@ -32,13 +32,13 @@
     }
 
     .solution-hero .solution-hero__inner .solution-hero__title {
-      font-size: clamp(5rem, 3.5rem + 11vw, 12rem);
+      font-size: clamp(4.75rem, 3.2rem + 10.5vw, 9.25rem);
       line-height: calc(0.85em + 5px);
       letter-spacing: -0.05em;
       margin-top: 23px;
       /* "runs the shop." carries a descender, so the fuller margin reads
          as the same optical gap as the card machines hero */
-      margin-bottom: calc(var(--space-12) * 1.5);
+      margin-bottom: 56px; /* was 72px at the 192px cap; scaled for 148px */
     }
 
     .solution-hero__asterisk {
@@ -74,7 +74,7 @@
          ink ends at 747px once the font caps, so the gap holds at ~108px
          on every viewport instead of ballooning between breakpoints.
          The window just reveals more tablet as the screen widens. */
-      left: 855px;
+      left: 684px; /* ink ends ~576px at the 148px cap; 108px gap held */
       width: auto;
       height: 561px;
       overflow: hidden;

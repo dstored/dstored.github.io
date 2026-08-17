@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
   <link rel="stylesheet" href="../../css/header.css">
   <link rel="stylesheet" href="../../css/footer.css">
-  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-11">
+  <link rel="stylesheet" href="../../css/pages/solutions.css?v=brand-13">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
@@ -54,14 +54,14 @@
     }
 
     .solution-hero .solution-hero__inner .solution-hero__title {
-      font-size: clamp(5rem, 3.5rem + 11vw, 12rem);
+      font-size: clamp(4.75rem, 3.2rem + 10.5vw, 9.25rem);
       line-height: calc(0.85em + 5px);
       letter-spacing: -0.05em;
       margin-top: 23px;
       /* Matches the homepage hero exactly: same scale, same "Get paid."
          last line with the p descender, same 72px/56px margins. Don't
          re-derive this optically; the homepage is the signed-off anchor. */
-      margin-bottom: calc(var(--space-12) * 1.5);
+      margin-bottom: 56px; /* was 72px at the 192px cap; scaled for 148px */
     }
 
     .solution-hero__asterisk {
@@ -255,7 +255,7 @@
 
       .solution-hero .solution-hero__inner .solution-hero__title {
         margin-top: 16px;
-        margin-bottom: 56px; /* homepage laptop value */
+        margin-bottom: 43px; /* laptop, scaled for 148px */
       }
     }
 
