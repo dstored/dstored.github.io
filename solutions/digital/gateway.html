@@ -96,10 +96,12 @@
       width: min(360px, 100%);
       margin: 0 0 0 auto;
       background: #FFFFFF;
-      border: 2px solid var(--ink);
+      /* Flat panel, not a device: hairline and light shadow, no thick
+         outline (rule of 10 Aug) */
+      border: 1px solid rgba(11, 27, 51, 0.14);
+      box-shadow: 0 12px 32px rgba(11, 27, 51, 0.10);
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 24px 32px 64px rgba(11, 27, 51, 0.18);
     }
 
     .browser-demo__bar {
@@ -107,7 +109,7 @@
       align-items: center;
       gap: 6px;
       padding: 10px 12px;
-      background: #F6F3EC;
+      background: var(--ink); /* chrome rule: ink bar on paper section */
       border-bottom: 2px solid var(--ink);
     }
 
@@ -115,8 +117,7 @@
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      border: 1.6px solid var(--ink);
-      background: #FFFFFF;
+      background: rgba(255, 255, 255, 0.3);
       flex-shrink: 0;
     }
 

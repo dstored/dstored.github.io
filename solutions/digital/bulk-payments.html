@@ -781,15 +781,16 @@
       display: flex;
       gap: 6px;
       padding: 10px 14px;
-      background: #F1F1F3;
-      border-bottom: 1px solid rgba(11, 27, 51, 0.08);
+      /* Chrome rule (10 Aug): opposite tone to the section. Paper hero,
+         so the bar is ink. Never grey. */
+      background: var(--ink);
     }
 
     .bp-gen__chrome span {
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: rgba(11, 27, 51, 0.16);
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .bp-gen__state {
