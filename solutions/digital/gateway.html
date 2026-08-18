@@ -47,11 +47,13 @@
   </script>
 
   <style>
+    /* Ticker (56px + 12px gap) sits flush on the fold at every height */
+    .solution-hero { min-height: calc(100vh - 68px); }
+
     /* Homepage-pattern hero: full-width headline, browser checkout demo at right */
     .solution-hero .solution-hero__inner {
       grid-template-columns: 1fr;
       gap: 0;
-      position: relative;
     }
 
     .solution-hero .solution-hero__inner .solution-hero__title {
@@ -72,8 +74,8 @@
        from the right like the device demos */
     .solution-hero .solution-hero__visual {
       position: absolute;
-      right: 0;
-      top: 1px; /* = 95px into the hero: graphics never sit higher than this line (rule of 10 Aug) */
+      right: 36px; /* same indent as the terminals device */
+      top: 135px; /* short window: centred in the hero band (hero-anchored) */
       width: 360px;
             animation: gd-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
@@ -322,7 +324,7 @@
     /* Shorter laptop screens: same compression as the reference heroes */
     @media (min-width: 769px) and (max-height: 900px) {
       .solution-hero {
-        min-height: calc(100vh - 110px);
+        min-height: calc(100vh - 68px); /* ticker flush on the fold */
         padding-top: 94px;
         padding-bottom: 42px;
       }
