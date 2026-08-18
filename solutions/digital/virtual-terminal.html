@@ -170,6 +170,27 @@
     .vt-gen__cardrow .vt-gen__input:first-child { flex: 1; }
     .vt-gen__cardrow .vt-gen__input { font-family: var(--font-mono); font-size: 11px; }
 
+    /* Card details type out while state 1 shows (gateway treatment, same 12s clock) */
+    .vt-gen__type { display: inline-block; white-space: pre; }
+    .vt-gen__type--num { clip-path: inset(0 100% 0 0); animation: vt-type-num 12s infinite; }
+    .vt-gen__type--exp { clip-path: inset(0 100% 0 0); animation: vt-type-exp 12s infinite; }
+    .vt-gen__type--cvc { clip-path: inset(0 100% 0 0); animation: vt-type-cvc 12s infinite; }
+
+    @keyframes vt-type-num {
+      0%, 5% { clip-path: inset(0 100% 0 0); animation-timing-function: steps(19); }
+      18%, 100% { clip-path: inset(0 0 0 0); }
+    }
+
+    @keyframes vt-type-exp {
+      0%, 20% { clip-path: inset(0 100% 0 0); animation-timing-function: steps(5); }
+      25%, 100% { clip-path: inset(0 0 0 0); }
+    }
+
+    @keyframes vt-type-cvc {
+      0%, 27% { clip-path: inset(0 100% 0 0); animation-timing-function: steps(3); }
+      30%, 100% { clip-path: inset(0 0 0 0); }
+    }
+
     .vt-gen__actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: auto; }
 
     .vt-gen__btn {
@@ -413,6 +434,7 @@
       /* Terminal window settles on the payment-complete state */
       .vt-gen__state--1, .vt-gen__state--2, .vt-gen__state--3, .vt-gen__spinner { animation: none; }
       .vt-gen__state--3 { opacity: 1; }
+      .vt-gen__type--num, .vt-gen__type--exp, .vt-gen__type--cvc { animation: none; clip-path: none; }
     }
 
     /* Step illustrations: gentle motion */
@@ -825,9 +847,9 @@
                 </div>
                 <div class="vt-gen__label">Payment information</div>
                 <div class="vt-gen__cardrow">
-                  <div class="vt-gen__input">4536 7464 7348 8474</div>
-                  <div class="vt-gen__input">21/30</div>
-                  <div class="vt-gen__input">123</div>
+                  <div class="vt-gen__input"><span class="vt-gen__type vt-gen__type--num">4536 7464 7348 8474</span></div>
+                  <div class="vt-gen__input"><span class="vt-gen__type vt-gen__type--exp">21/30</span></div>
+                  <div class="vt-gen__input"><span class="vt-gen__type vt-gen__type--cvc">123</span></div>
                 </div>
                 <div class="vt-gen__input">Sarah Mitchell</div>
                 <div class="vt-gen__actions">

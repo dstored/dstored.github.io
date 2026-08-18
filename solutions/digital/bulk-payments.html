@@ -58,7 +58,7 @@
 
     .solution-hero .solution-hero__visual {
       position: absolute;
-      right: 24px; /* modal right edge lands 36px inside the Sign up line (standard indent) */
+      right: 36px; /* modal right edge lands on the standard indent (box right 1302 at 1440) */
       top: 29px; /* short graphic: centred in the hero band, like gateway */
       width: 300px;
             animation: np-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
@@ -753,7 +753,7 @@
 
     /* The modal in the hero slot: wider than the phone was, compacted */
     .solution-hero .solution-hero__visual { width: 360px; }
-    .solution-hero .solution-hero__visual .bp-gen { min-height: 440px; }
+    .solution-hero .solution-hero__visual .bp-gen { min-height: 440px; width: 100%; /* the slot flexes: without this the modal shrinks to its content */ }
     .solution-hero .solution-hero__visual .bp-gen__state { padding: 16px; }
     .solution-hero .solution-hero__visual .bp-gen__cust { width: 78px; }
 
@@ -973,6 +973,7 @@
     .bp-gen__amt { margin-left: auto; padding-left: 10px; font-size: 12.5px; font-weight: 700; color: #16223C; }
 
     .bp-gen__pill {
+      margin-left: 18px;
       display: flex;
       align-items: center;
       gap: 5px;
