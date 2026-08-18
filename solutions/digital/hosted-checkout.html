@@ -28,6 +28,9 @@
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
 
   <style>
+    /* Ticker (56px + 12px gap) sits flush on the fold at every height */
+    .solution-hero { min-height: calc(100vh - 68px); }
+
     /* Homepage-pattern hero: full-width headline at homepage scale,
        customer phone demo at the right (terminals-page geometry) */
     .solution-hero .solution-hero__inner {
@@ -69,8 +72,8 @@
        the branding section further down reuses .solution-hero__visual */
     .solution-hero .solution-hero__visual {
       position: absolute;
-      right: 0;
-      top: 1px; /* = 95px into the hero: graphics never sit higher than this line (rule of 10 Aug) */
+      right: 36px; /* 36px inside the container line, matching terminals and gateway */
+      top: 1px; /* same anchor as terminals: renders on the same line at every height */
       width: 300px;
             animation: checkout-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
@@ -80,7 +83,7 @@
     }
 
     .solution-hero .solution-hero__visual .phone-demo {
-      transform: scale(0.858);
+      transform: scale(0.77); /* renders 504px tall, matching the terminals device */
       transform-origin: right top; /* scale from the 95px line, not the centre */
     }
 
