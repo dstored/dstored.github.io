@@ -28,6 +28,9 @@
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
 
   <style>
+    /* Ticker (56px + 12px gap) sits flush on the fold at every height */
+    .solution-hero { min-height: calc(100vh - 68px); }
+
     /* Homepage-pattern hero: full-width headline, phone demo at right */
     .solution-hero .solution-hero__inner {
       grid-template-columns: 1fr;
@@ -49,8 +52,8 @@
 
     .solution-hero .solution-hero__visual {
       position: absolute;
-      right: 0;
-      top: 1px; /* = 95px into the hero: graphics never sit higher than this line (rule of 10 Aug) */
+      right: 36px; /* standard indent: visible box right edge 1302 at 1440, like terminals */
+      top: 24px; /* top on the terminals line (172 at 1440) */
       width: 300px;
             animation: np-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
@@ -61,7 +64,7 @@
     }
 
     .solution-hero .solution-hero__visual .phone-demo {
-      transform: scale(0.858);
+      transform: scale(0.77); /* 654px device -> 504px, the standard graphic height */
       transform-origin: right top; /* scale from the 95px line, not the centre */
     }
 
@@ -128,6 +131,94 @@
     }
 
     .hero__card-state:not(.is-active) .np-cta { background: #6E44FF; transform: scale(0.97); }
+
+    /* ── Ticket checkout demo: the page drags down inside the frame,
+       a tap buys the ticket, the paid state follows (12s clock) ── */
+    .phone-demo__screens { height: 640px; }
+
+    .tk-s1 { padding: 0; position: relative; animation: tk-s1 12s ease-in-out infinite; }
+    .tk-s2 { animation: tk-s2 12s ease-in-out infinite; }
+
+    @keyframes tk-s1 { 0%, 58% { opacity: 1; } 63%, 95% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes tk-s2 { 0%, 58% { opacity: 0; } 63%, 95% { opacity: 1; } 100% { opacity: 0; } }
+
+    .tk-page { --tk-scroll: -121px; /* content 761px - 640px frame */ display: flex; flex-direction: column; animation: tk-scroll 12s ease-in-out infinite; }
+
+    @keyframes tk-scroll {
+      0%, 18% { transform: translateY(0); }
+      40%, 63% { transform: translateY(var(--tk-scroll, -200px)); }
+      70%, 100% { transform: translateY(0); }
+    }
+
+    .tk-media {
+      background: var(--bone);
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-shrink: 0;
+    }
+
+    .tk-media svg { width: 168px; height: auto; transform: rotate(-8deg); }
+
+    .tk-dots { display: flex; gap: 6px; }
+    .tk-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(11, 27, 51, 0.22); }
+    .tk-dots span:first-child { background: var(--ink); }
+
+    .tk-body { padding: 18px 20px 20px; display: flex; flex-direction: column; }
+    .tk-name { font-size: 16.5px; font-weight: 700; color: var(--ink); }
+    .tk-price { font-size: 14.5px; font-weight: 700; color: var(--ink); margin: 4px 0 14px; }
+
+    .tk-meta { display: grid; gap: 9px; margin-bottom: 16px; }
+    .tk-meta__row { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: rgba(11, 27, 51, 0.65); }
+    .tk-meta__row svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    .tk-desc { font-size: 12px; line-height: 1.55; color: rgba(11, 27, 51, 0.6); margin-bottom: 16px; }
+    .tk-desc a { color: var(--ink); font-weight: 600; text-decoration: underline; }
+
+    .tk-qty { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .tk-qty__label { font-size: 12px; font-weight: 600; color: var(--ink); }
+    .tk-step { display: flex; border: 1px solid rgba(11, 27, 51, 0.18); border-radius: 8px; overflow: hidden; }
+    .tk-step span { width: 30px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: rgba(11, 27, 51, 0.55); }
+    .tk-step__n { border-left: 1px solid rgba(11, 27, 51, 0.12); border-right: 1px solid rgba(11, 27, 51, 0.12); font-weight: 700; color: var(--ink); }
+
+    .tk-rule { height: 1px; background: rgba(11, 27, 51, 0.08); margin-bottom: 4px; }
+    .tk-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink); padding: 8px 0; }
+    .tk-row--total { font-weight: 700; font-size: 13.5px; }
+    .tk-row--total span:last-child { font-size: 14.5px; }
+
+    .tk-s1 .np-cta { margin-top: 10px; flex-shrink: 0; }
+
+    .hero__card-state.tk-s1 .np-cta { background: var(--hot); transform: none; animation: tk-press 12s ease-in-out infinite; }
+
+    @keyframes tk-press {
+      0%, 47% { background: var(--hot); transform: scale(1); }
+      48.5%, 51% { background: #6E44FF; transform: scale(0.97); }
+      54%, 100% { background: var(--hot); transform: scale(1); }
+    }
+
+    /* The tap that buys it: lands on the CTA once it has scrolled into place */
+    .tk-tap {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      width: 34px;
+      height: 34px;
+      margin-left: -17px;
+      border-radius: 50%;
+      background: rgba(11, 27, 51, 0.28);
+      border: 2px solid #FFFFFF;
+      opacity: 0;
+      animation: tk-tap 12s ease-in-out infinite;
+    }
+
+    @keyframes tk-tap {
+      0%, 44% { opacity: 0; transform: scale(0.4); }
+      47%, 50% { opacity: 0.9; transform: scale(1); }
+      54%, 100% { opacity: 0; transform: scale(1.35); }
+    }
 
     /* Rows that land one by one each cycle */
     .np-pop { opacity: 0; }
@@ -324,6 +415,8 @@
 
       .np-pop { opacity: 1; animation: none; }
       .np-progress__fill { width: 100%; }
+      .tk-s1, .tk-s2, .tk-page, .tk-tap, .hero__card-state.tk-s1 .np-cta { animation: none; }
+      .tk-s2 { opacity: 1; }
     }
   </style>
 </head>
@@ -629,47 +722,59 @@
             </div>
           </div>
           <div class="solution-hero__visual">
-            <div class="phone-demo" role="img" aria-label="A ticket with a QR code being scanned and admitted on the door">
-              <div class="phone-demo__screens" data-cycle-card data-cycle-interval="4000">
-                <div class="hero__card-state is-active phone-demo__screen">
-                  <div class="np-head">Your ticket</div>
-                  <div class="np-sub">Keep this ready at the door</div>
-                  <div class="np-ticket">
-                    <div class="np-ticket__bar">Friday Live Session</div>
-                    <div class="np-ticket__body">
-                      <div class="np-ticket__name">General admission</div>
-                      <div class="np-ticket__meta">Fri 31 Jul &middot; 8pm &middot; &#163;15.00</div>
-                      <div class="np-ticket__qr">
-                        <svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true">
-                          <g stroke="#16223C" stroke-width="5" fill="none">
-                            <rect x="12" y="12" width="22" height="22"/>
-                            <rect x="66" y="12" width="22" height="22"/>
-                            <rect x="12" y="66" width="22" height="22"/>
-                          </g>
-                          <g fill="#16223C">
-                            <rect x="19" y="19" width="8" height="8"/>
-                            <rect x="73" y="19" width="8" height="8"/>
-                            <rect x="19" y="73" width="8" height="8"/>
-                            <rect x="60" y="60" width="7" height="7"/>
-                            <rect x="74" y="66" width="7" height="7"/>
-                            <rect x="64" y="76" width="7" height="7"/>
-                            <rect x="80" y="80" width="7" height="7"/>
-                          </g>
-                        </svg>
+            <div class="phone-demo" role="img" aria-label="A ticket checkout on a phone: the event page scrolls down and the ticket is bought in the frame">
+              <div class="phone-demo__screens">
+                <div class="hero__card-state phone-demo__screen tk-s1">
+                  <div class="tk-page">
+                    <div class="tk-media">
+                      <svg viewBox="0 0 168 74" aria-hidden="true">
+                        <rect x="1" y="1" width="166" height="72" rx="10" fill="#6E44FF"/>
+                        <line x1="118" y1="6" x2="118" y2="68" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/>
+                        <circle cx="118" cy="0" r="7" fill="var(--bone)"/>
+                        <circle cx="118" cy="74" r="7" fill="var(--bone)"/>
+                        <text x="20" y="32" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="1">ADMIT</text>
+                        <text x="20" y="50" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="1">ONE</text>
+                        <text x="143" y="43" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="9" font-weight="600" text-anchor="middle" transform="rotate(-90 143 43)">No. 0184</text>
+                      </svg>
+                      <div class="tk-dots"><span></span><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="tk-body">
+                      <div class="tk-name">Friday Live Session</div>
+                      <div class="tk-price">&#163;15.00</div>
+                      <div class="tk-meta">
+                        <div class="tk-meta__row">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="rgba(11,27,51,0.55)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3"/></svg>
+                          Friday 31 July, 2026
+                        </div>
+                        <div class="tk-meta__row">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="rgba(11,27,51,0.55)" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.8V8l2.2 1.6"/></svg>
+                          Doors 8&thinsp;pm
+                        </div>
+                        <div class="tk-meta__row">
+                          <svg viewBox="0 0 16 16" fill="none" stroke="rgba(11,27,51,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14.5s-4.8-4.6-4.8-8A4.8 4.8 0 0 1 8 1.7a4.8 4.8 0 0 1 4.8 4.8c0 3.4-4.8 8-4.8 8Z"/><circle cx="8" cy="6.5" r="1.7"/></svg>
+                          The Corner House, Manchester
+                        </div>
                       </div>
-                      <div class="np-ticket__divide"></div>
-                      <div class="np-ticket__meta" style="margin:0;">Ticket 1 of 2 &middot; &#35;FL-0184</div>
+                      <div class="tk-desc">Live sets across two rooms from 9&thinsp;pm, with the bar open until late. Over-18s only &middot; <a>read more</a></div>
+                      <div class="tk-qty">
+                        <span class="tk-qty__label">Tickets</span>
+                        <div class="tk-step"><span>&minus;</span><span class="tk-step__n">1</span><span>+</span></div>
+                      </div>
+                      <div class="tk-rule"></div>
+                      <div class="tk-row"><span>Subtotal</span><span>&#163;15.00</span></div>
+                      <div class="tk-row tk-row--total"><span>Total</span><span>&#163;15.00</span></div>
+                      <div class="np-cta">Buy ticket</div>
                     </div>
                   </div>
-                  <div class="np-cta">Add to wallet</div>
+                  <span class="tk-tap" aria-hidden="true"></span>
                 </div>
-                <div class="hero__card-state phone-demo__screen np-paid">
+                <div class="hero__card-state phone-demo__screen np-paid tk-s2">
                   <svg class="np-tick" viewBox="0 0 48 48" fill="none" aria-hidden="true">
                     <circle cx="24" cy="24" r="24" fill="#31D895"/>
                     <path d="M15 24.5 L21 30.5 L33 17.5" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  <div class="np-paid__amount">Admitted</div>
-                  <div class="np-paid__meta">Friday Live Session &middot; ticket 1 of 2</div>
+                  <div class="np-paid__amount">&#163;15.00 paid</div>
+                  <div class="np-paid__meta">Friday Live Session &middot; General admission</div>
                 </div>
               </div>
             </div>
