@@ -421,6 +421,9 @@
          bezel the menu state shows: no thick black frame (Danny, 10 Aug) */
       position: absolute;
       inset: 10px 0 0 10px;
+      /* Inner corner follows the bezel curve: 26px outer minus 10px bezel */
+      border-radius: 16px 0 0 0;
+      overflow: hidden;
       width: auto;
       height: auto;
       align-items: center;
