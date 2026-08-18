@@ -80,8 +80,9 @@
       width: 360px;
             animation: gd-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
-    /* Narrow desktops: ease the indent so the headline keeps clearance */
-    @media (max-width: 1440px) {
+    /* Only the narrowest desktops ease the indent (headline clearance
+       drops to ~10px there); at 1360+ the full 36px indent has room */
+    @media (max-width: 1359px) {
       .solution-hero .solution-hero__visual { right: 0; }
     }
 
