@@ -28,6 +28,9 @@
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
 
   <style>
+    /* Ticker (56px + 12px gap) sits flush on the fold at every height */
+    .solution-hero { min-height: calc(100vh - 68px); }
+
     /* Homepage-pattern hero: full-width headline, phone demo at right */
     .solution-hero .solution-hero__inner {
       grid-template-columns: 1fr;
@@ -55,8 +58,8 @@
 
     .solution-hero .solution-hero__visual {
       position: absolute;
-      right: 0;
-      top: 1px; /* = 95px into the hero: graphics never sit higher than this line (rule of 10 Aug) */
+      right: 24px; /* modal right edge lands 36px inside the Sign up line (standard indent) */
+      top: 29px; /* short graphic: centred in the hero band, like gateway */
       width: 300px;
             animation: np-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
