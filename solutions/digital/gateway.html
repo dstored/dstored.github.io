@@ -75,16 +75,11 @@
        from the right like the device demos */
     .solution-hero .solution-hero__visual {
       position: absolute;
-      right: 36px; /* 36px inside the container line, like the terminals device */
+      right: -54px; /* matches the terminals device's rendered line (its wrapper resolves against the wider content box, landing 54px past the container) */
       top: 29px; /* renders ~135px into the hero: centred in the band */
       width: 360px;
             animation: gd-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
-    /* Narrow desktops: ease the indent so the headline keeps clearance */
-    @media (max-width: 1440px) {
-      .solution-hero .solution-hero__visual { right: 0; }
-    }
-
     @keyframes gd-slide-in {
       from { opacity: 0; transform: translateX(90px); }
       to { opacity: 1; transform: none; }
