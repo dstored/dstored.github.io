@@ -54,6 +54,7 @@
     .solution-hero .solution-hero__inner {
       grid-template-columns: 1fr;
       gap: 0;
+      position: relative;
     }
 
     .solution-hero .solution-hero__inner .solution-hero__title {
@@ -74,11 +75,16 @@
        from the right like the device demos */
     .solution-hero .solution-hero__visual {
       position: absolute;
-      right: 36px; /* same indent as the terminals device */
-      top: 135px; /* short window: centred in the hero band (hero-anchored) */
+      right: 36px; /* 36px inside the container line, like the terminals device */
+      top: 29px; /* renders ~135px into the hero: centred in the band */
       width: 360px;
             animation: gd-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
+    /* Narrow desktops: ease the indent so the headline keeps clearance */
+    @media (max-width: 1440px) {
+      .solution-hero .solution-hero__visual { right: 0; }
+    }
+
     @keyframes gd-slide-in {
       from { opacity: 0; transform: translateX(90px); }
       to { opacity: 1; transform: none; }
