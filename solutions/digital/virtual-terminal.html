@@ -191,7 +191,36 @@
       30%, 100% { clip-path: inset(0 0 0 0); }
     }
 
-    .vt-gen__actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: auto; }
+    .vt-gen__actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: auto; position: relative; }
+
+    /* Cursor rides in and presses Take payment once the card details finish typing,
+       so the click reads as what starts the processing state (bulk treatment) */
+    .vt-gen__cursor {
+      position: absolute;
+      left: calc(50% + 40px);
+      bottom: 6px;
+      width: 17px;
+      height: 17px;
+      animation: vt-cursor 12s ease-in-out infinite;
+    }
+
+    .vt-gen__cursor svg { width: 100%; height: 100%; display: block; }
+
+    @keyframes vt-cursor {
+      0%, 24% { opacity: 0; transform: translate(56px, 48px); }
+      30%, 32% { opacity: 1; transform: translate(0, 0) scale(1); }
+      33%, 34.5% { opacity: 1; transform: translate(0, 0) scale(0.82); }
+      35.5%, 37% { opacity: 1; transform: translate(0, 0) scale(1); }
+      41%, 100% { opacity: 0; transform: translate(56px, 48px); }
+    }
+
+    .vt-gen__btn--primary { animation: vt-press 12s ease-in-out infinite; }
+
+    @keyframes vt-press {
+      0%, 32% { transform: scale(1); background: #6E44FF; }
+      33%, 34.5% { transform: scale(0.97); background: #5A33E6; }
+      36%, 100% { transform: scale(1); background: #6E44FF; }
+    }
 
     .vt-gen__btn {
       flex: 1;
@@ -439,6 +468,8 @@
       .vt-gen__state--1, .vt-gen__state--2, .vt-gen__state--3, .vt-gen__spinner { animation: none; }
       .vt-gen__state--3 { opacity: 1; }
       .vt-gen__type--num, .vt-gen__type--exp, .vt-gen__type--cvc { animation: none; clip-path: none; }
+      .vt-gen__cursor, .vt-gen__btn--primary { animation: none; }
+      .vt-gen__cursor { opacity: 0; }
     }
 
     /* Step illustrations: gentle motion */
@@ -858,6 +889,7 @@
                 <div class="vt-gen__input">Sarah Mitchell</div>
                 <div class="vt-gen__actions">
                   <div class="vt-gen__btn vt-gen__btn--primary">Take payment</div>
+                  <span class="vt-gen__cursor" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#16223C" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 7.8-5.9 1.4-2.6 5.8z"/></svg></span>
                 </div>
               </div>
 
