@@ -194,20 +194,21 @@
     .vt-gen__actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: auto; }
 
     .vt-gen__btn {
-      height: 34px;
-      padding: 0 16px;
+      flex: 1;
+      height: 36px;
       display: flex;
       align-items: center;
+      justify-content: center;
       border-radius: 8px;
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 600;
     }
 
-    .vt-gen__btn--ghost { border: 1px solid #E2E2E2; color: #555555; background: #FFFFFF; }
     .vt-gen__btn--primary { background: #6E44FF; color: #FFFFFF; }
 
     /* States 2 and 3: the payment summary */
     .vt-gen__panel {
+      flex: 1; /* absorbs the window's free space so the totals sit at the bottom */
       background: #F8F8FA;
       border-radius: 10px;
       padding: 18px 14px;
@@ -853,7 +854,6 @@
                 </div>
                 <div class="vt-gen__input">Sarah Mitchell</div>
                 <div class="vt-gen__actions">
-                  <div class="vt-gen__btn vt-gen__btn--ghost">Cancel</div>
                   <div class="vt-gen__btn vt-gen__btn--primary">Take payment</div>
                 </div>
               </div>
