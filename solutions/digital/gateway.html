@@ -245,6 +245,30 @@
 
     /* Pink pay button: presses just before the paid state, like the
        other demos (pressed = blurple, the active detail) */
+    /* Card details type themselves in while the state is active:
+       mono font + steps() so the reveal lands one character at a time
+       (same mechanism as the pay-by-link email typing) */
+    .gd-type {
+      display: inline-block;
+      white-space: pre;
+      clip-path: inset(0 100% 0 0);
+    }
+
+    .browser-demo .hero__card-state.is-active .gd-type--card {
+      animation: gd-type-card 1.6s steps(19, end) 0.5s forwards;
+    }
+
+    .browser-demo .hero__card-state.is-active .gd-type--expiry {
+      animation: gd-type-rest 0.6s steps(7, end) 2.3s forwards;
+    }
+
+    .browser-demo .hero__card-state.is-active .gd-type--cvc {
+      animation: gd-type-rest 0.4s steps(3, end) 3.1s forwards;
+    }
+
+    @keyframes gd-type-card { to { clip-path: inset(0 0 0 0); } }
+    @keyframes gd-type-rest { to { clip-path: inset(0 0 0 0); } }
+
     .gd-pay {
       margin-top: auto;
       height: 44px;
@@ -361,6 +385,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .gd-type { clip-path: none; animation: none !important; }
+
       .solution-hero .solution-hero__visual,
       .gd-anim-pill, .gd-anim-bob,
       .anim-clock-hour, .anim-clock-minute,
@@ -734,16 +760,16 @@
                   <div class="gd-divider">or pay by card</div>
                   <div class="gd-field">
                     <div class="gd-field__label">Card number</div>
-                    <div class="gd-field__input">1234 5678 9012 3456 <span class="gd-field__brand">VISA</span></div>
+                    <div class="gd-field__input"><span class="gd-type gd-type--card">1234 5678 9012 3456</span> <span class="gd-field__brand">VISA</span></div>
                   </div>
                   <div class="gd-row">
                     <div class="gd-field">
                       <div class="gd-field__label">Expiry</div>
-                      <div class="gd-field__input">08 / 28</div>
+                      <div class="gd-field__input"><span class="gd-type gd-type--expiry">08 / 28</span></div>
                     </div>
                     <div class="gd-field">
                       <div class="gd-field__label">CVC</div>
-                      <div class="gd-field__input">&bull;&bull;&bull;</div>
+                      <div class="gd-field__input"><span class="gd-type gd-type--cvc">&bull;&bull;&bull;</span></div>
                     </div>
                   </div>
                   <div class="gd-pay">Pay &pound;125.00</div>
