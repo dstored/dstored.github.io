@@ -168,7 +168,7 @@
     .tk-media--inset {
       width: 200px;
       height: 200px;
-      margin: 22px auto 20px;
+      margin: 44px auto 30px;
       border-radius: 12px;
     }
 
@@ -229,8 +229,28 @@
 
     .tk-tick-meta { display: grid; gap: 8px; margin-top: 5px; }
 
-    .tk-redeem {
+    .tk-perf {
       margin-top: auto;
+      position: relative;
+      border-top: 1px dashed rgba(11, 27, 51, 0.22);
+      margin-bottom: 18px;
+    }
+
+    /* notches bitten out of both edges, so the line reads as a tear-off */
+    .tk-perf::before, .tk-perf::after {
+      content: "";
+      position: absolute;
+      top: -7px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--parchment, #F2EFE8);
+    }
+
+    .tk-perf::before { left: -27px; }
+    .tk-perf::after { right: -27px; }
+
+    .tk-redeem {
       height: 46px;
       border-radius: 12px;
       background: var(--hot);
@@ -866,6 +886,7 @@
                           The Corner House, Manchester
                         </div>
                       </div>
+                      <div class="tk-perf" aria-hidden="true"></div>
                       <div class="tk-redeem">Redeem ticket</div>
                     </div>
                   </div>
