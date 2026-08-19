@@ -318,6 +318,9 @@
     @media (prefers-reduced-motion: reduce) {
       .gv-s1, .gv-s2, .gv-s3, .gv-s4, .gv-s5, .gv-s1 .gv-cta, .gv-s3 .gv-cta { animation: none; opacity: 0; }
       .gv-s3 { opacity: 1; }
+      .gv-val--a, .gv-chip--a, .gv-val--b, .gv-chip--b { animation: none; }
+      .gv-val--a { opacity: 0; }
+      .gv-chip--b { background: var(--hot); border-color: var(--hot); color: #FFFFFF; }
 
       .solution-hero .solution-hero__visual,
       .np-anim-pill, .np-anim-bob,
@@ -379,10 +382,10 @@
 
     .gv-body { padding: 18px 20px 14px; display: flex; flex-direction: column; flex: 1; }
     .gv-title { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.25; }
-    .gv-desc { font-size: 12px; line-height: 1.5; color: rgba(11, 27, 51, 0.6); margin-top: 10px; }
+    .gv-desc { font-size: 12px; line-height: 1.5; color: rgba(11, 27, 51, 0.6); margin-top: 14px; }
     .gv-desc a { display: block; margin-top: 6px; color: var(--ink); font-weight: 600; text-decoration: underline; }
 
-    .gv-amounts { display: flex; gap: 8px; margin-top: 20px; }
+    .gv-amounts { display: flex; gap: 8px; margin-top: 24px; }
 
     .gv-amounts span {
       flex: 1;
@@ -437,7 +440,7 @@
       flex-shrink: 0;
     }
 
-    .gv-s1 .gv-cta { height: 42px; font-size: 13px; margin-top: 22px; animation: gv-press-buy 16s ease-in-out infinite; }
+    .gv-s1 .gv-cta { height: 44px; font-size: 13px; margin-top: 26px; animation: gv-press-buy 16s ease-in-out infinite; }
     .gv-s3 .gv-cta { animation: gv-press-redeem 16s ease-in-out infinite; }
 
     @keyframes gv-press-buy {
@@ -493,17 +496,17 @@
     .gv-card__small { font-size: 6.5px; line-height: 1.4; color: rgba(255, 255, 255, 0.5); margin-top: 8px; }
     .gv-card__eyebrow { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.75); }
 
-    .gv-qty { display: flex; align-items: center; gap: 0; margin-top: 16px; }
+    .gv-qty { display: flex; align-items: center; gap: 0; margin-top: 20px; }
     .gv-qty span {
       width: 32px; height: 30px; display: flex; align-items: center; justify-content: center;
       border: 1px solid rgba(11, 27, 51, 0.18); font-size: 13px; color: var(--ink);
     }
     .gv-qty span:nth-child(2) { border-left: 0; border-right: 0; font-weight: 700; }
 
-    .gv-express { text-align: center; font-size: 10.5px; color: rgba(11, 27, 51, 0.5); margin: 14px 0 10px; }
+    .gv-express { text-align: center; font-size: 10.5px; color: rgba(11, 27, 51, 0.5); margin: 18px 0 12px; }
 
     .gv-wallet {
-      height: 38px;
+      height: 40px;
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -518,7 +521,30 @@
     .gv-wallet--apple { background: #000000; }
     .gv-wallet svg { height: 14px; width: auto; display: block; }
 
-    .gv-more { text-align: center; font-size: 11px; color: var(--ink); text-decoration: underline; margin-top: 12px; }
+
+    /* The visitor picks a value: the chip selection moves and the amount on
+       the card follows, a beat before the card payment goes through */
+    .gv-stack { display: grid; }
+    .gv-val { grid-area: 1 / 1; }
+    .gv-val--a { animation: gv-val-a 16s ease-in-out infinite; }
+    .gv-val--b { animation: gv-val-b 16s ease-in-out infinite; }
+
+    @keyframes gv-val-a { 0%, 9% { opacity: 1; } 10.5%, 100% { opacity: 0; } }
+    @keyframes gv-val-b { 0%, 9% { opacity: 0; } 10.5%, 100% { opacity: 1; } }
+
+    .gv-chip--a { animation: gv-chip-a 16s ease-in-out infinite; }
+    .gv-chip--b { animation: gv-chip-b 16s ease-in-out infinite; }
+
+    @keyframes gv-chip-a {
+      0%, 9% { background: var(--hot); border-color: var(--hot); color: #FFFFFF; }
+      10.5%, 100% { background: #FFFFFF; border-color: rgba(11, 27, 51, 0.16); color: var(--ink); }
+    }
+
+    @keyframes gv-chip-b {
+      0%, 8% { background: #FFFFFF; border-color: rgba(11, 27, 51, 0.16); color: var(--ink); transform: scale(1); }
+      9%, 9.8% { background: #FFFFFF; border-color: rgba(11, 27, 51, 0.16); color: var(--ink); transform: scale(0.95); }
+      10.5%, 100% { background: var(--hot); border-color: var(--hot); color: #FFFFFF; transform: scale(1); }
+    }
 
 </style>
 </head>
@@ -833,7 +859,7 @@
                         <div class="gv-card__row">
                           <div>
                             <div class="gv-card__eyebrow">GIFT CARD</div>
-                            <div class="gv-card__amount">&#163;50.00</div>
+                            <div class="gv-card__amount gv-stack"><span class="gv-val gv-val--a">&#163;25.00</span><span class="gv-val gv-val--b">&#163;50.00</span></div>
                             <div class="gv-card__code">BLOOM-4K2-50</div>
                             <div class="gv-card__small">Bloom Hair Studio, 42 Bridge St, Manchester<br>Redeem in salon or online at bloomhair.co.uk</div>
                           </div>
@@ -845,13 +871,12 @@
                     <div class="gv-body">
                       <div class="gv-title">Bloom Hair Studio gift card</div>
                       <div class="gv-desc">Spend it on any cut, colour or treatment.<a>Read more</a></div>
-                      <div class="gv-amounts"><span>&#163;25</span><span class="is-picked">&#163;50</span><span>&#163;100</span></div>
+                      <div class="gv-amounts"><span class="gv-chip--a">&#163;25</span><span class="gv-chip--b">&#163;50</span><span>&#163;100</span></div>
                       <div class="gv-qty"><span>&minus;</span><span>1</span><span>+</span></div>
                       <div class="gv-cta">Pay with card</div>
                       <div class="gv-express">Express checkout</div>
                       <div class="gv-wallet gv-wallet--apple">Buy with <svg viewBox="0 0 24 28" aria-hidden="true"><path fill="#FFFFFF" d="M17.6 14.9c0-2.8 2.3-4.1 2.4-4.2-1.3-1.9-3.3-2.2-4-2.2-1.7-.2-3.3 1-4.2 1-.8 0-2.2-1-3.6-1-1.9 0-3.6 1.1-4.5 2.7-1.9 3.3-.5 8.3 1.4 11 .9 1.3 2 2.8 3.4 2.8 1.4-.1 1.9-.9 3.5-.9 1.6 0 2.1.9 3.5.9 1.5 0 2.4-1.3 3.3-2.7 1-1.5 1.5-3 1.5-3.1-.1 0-2.7-1.1-2.7-4.3zM15 6.8c.7-.9 1.2-2.1 1.1-3.4-1.1 0-2.4.7-3.2 1.7-.7.8-1.3 2.1-1.1 3.3 1.2.1 2.4-.6 3.2-1.6z"/></svg> Pay</div>
-                                            <div class="gv-more">More payment methods</div>
-                    </div>
+                                          </div>
                   </div>
                 </div>
                 <div class="hero__card-state phone-demo__screen np-paid gv-s2">
