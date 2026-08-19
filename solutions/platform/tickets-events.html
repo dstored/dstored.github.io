@@ -163,6 +163,15 @@
 
     .tk-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+    /* Ticket screen: the artwork is a smaller square inset at the top, with
+       white around it, rather than the full-bleed image of the product page */
+    .tk-media--inset {
+      width: 200px;
+      height: 200px;
+      margin: 22px auto 20px;
+      border-radius: 12px;
+    }
+
     .tk-dots {
       position: absolute;
       left: 50%;
@@ -208,7 +217,7 @@
     }
 
     /* ── Ticket screen (state 3): the bought ticket, ready to redeem ── */
-    .tk-tick-body { padding: 16px 20px 18px; display: flex; flex-direction: column; flex: 1; }
+    .tk-tick-body { padding: 0 20px 18px; display: flex; flex-direction: column; flex: 1; }
 
     .tk-tick-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
     .tk-tick-name { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.25; }
@@ -836,7 +845,7 @@
                 </div>
                 <div class="hero__card-state phone-demo__screen tk-s3">
                   <div class="tk-page">
-                    <div class="tk-media">
+                    <div class="tk-media tk-media--inset">
                       <img src="/assets/images/event-dj-friday-live.jpg" alt="" decoding="async">
                     </div>
                     <div class="tk-tick-body">
