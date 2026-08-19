@@ -169,6 +169,7 @@
       width: 200px;
       height: 200px;
       margin: 44px auto 30px;
+      border-radius: 6px; /* subtle only */
     }
 
     .tk-dots {
@@ -290,7 +291,7 @@
       background: var(--ink-light, #16223C);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
       padding: 20px 18px;
       isolation: isolate;
     }
@@ -318,8 +319,10 @@
     .ev-tile__name {
       font-family: var(--font-display);
       font-size: clamp(1rem, 0.8rem + 0.6vw, 1.35rem);
+      font-weight: 700;
       line-height: 1.08;
       letter-spacing: -0.02em;
+      white-space: nowrap; /* every type sits on one line */
       color: #FFFFFF;
       text-shadow: 0 1px 4px rgba(11, 27, 51, 0.7);
     }
@@ -378,6 +381,7 @@
       padding: 14px;
       background: #FFFFFF;
       border: 1px solid rgba(11, 27, 51, 0.12);
+      border-radius: 6px; /* subtle only */
       margin-bottom: 20px;
     }
 
@@ -1131,7 +1135,7 @@
           </figure>
           <figure class="ev-tile ev-tile--6">
             <img src="/assets/images/events/community.jpg" alt="" loading="lazy" decoding="async">
-            <figcaption class="ev-tile__name">Community events.</figcaption>
+            <figcaption class="ev-tile__name">Community.</figcaption>
             <span class="ev-tile__line">Fairs, fundraisers and fixtures, ticketed in minutes.</span>
           </figure>
         </div>
