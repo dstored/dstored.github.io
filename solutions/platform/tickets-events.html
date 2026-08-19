@@ -284,7 +284,7 @@
     .ev-tile {
       position: relative;
       margin: 0;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 1 / 1; /* square, same as the homepage merchant strip */
       overflow: hidden;
       background: var(--ink-light, #16223C);
       display: flex;
@@ -310,21 +310,21 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(to top, rgba(11, 27, 51, 0.88) 0%, rgba(11, 27, 51, 0.45) 42%, rgba(11, 27, 51, 0.12) 100%);
+      background: rgba(11, 27, 51, 0.56); /* even darkening, matching the homepage tiles */
       transition: opacity var(--duration-base, 0.3s) var(--ease-out, ease-out);
     }
 
     .ev-tile__name {
       font-family: var(--font-display);
-      font-size: clamp(1.1rem, 0.85rem + 0.7vw, 1.5rem);
-      line-height: 1.05;
+      font-size: clamp(1rem, 0.8rem + 0.6vw, 1.35rem);
+      line-height: 1.08;
       letter-spacing: -0.02em;
       color: #FFFFFF;
     }
 
     .ev-tile__line {
-      font-size: 12.5px;
-      line-height: 1.45;
+      font-size: 12px;
+      line-height: 1.42;
       color: rgba(255, 255, 255, 0.82);
       margin-top: 8px;
       opacity: 0;
@@ -352,6 +352,7 @@
     .ev-strip:hover .ev-tile__line { animation-play-state: paused; opacity: 0; transform: translateY(6px); }
     .ev-strip .ev-tile:hover .ev-tile__line { opacity: 1; transform: none; }
     .ev-tile:hover img { transform: scale(1.04); }
+    .ev-tile:hover::after { background: rgba(11, 27, 51, 0.68); }
 
     @media (max-width: 900px) {
       .ev-strip { grid-template-columns: repeat(3, 1fr); }
