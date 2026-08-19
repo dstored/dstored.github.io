@@ -28,6 +28,9 @@
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
 
   <style>
+    /* Ticker (56px + 12px gap) sits flush on the fold at every height */
+    .solution-hero { min-height: calc(100vh - 68px); }
+
     /* Homepage-pattern hero: full-width headline, phone demo at right */
     .solution-hero .solution-hero__inner {
       grid-template-columns: 1fr;
@@ -40,7 +43,7 @@
       line-height: calc(0.85em + 5px);
       letter-spacing: -0.05em;
       margin-top: 23px;
-      margin-bottom: calc(var(--space-12) * 1.5);
+      margin-bottom: 34px; /* no descender on "Redeemed." — matches bulk/tickets */
     }
 
     .solution-hero__asterisk { color: var(--hot); display: inline-block; margin-left: 0.05em; }
@@ -49,8 +52,8 @@
 
     .solution-hero .solution-hero__visual {
       position: absolute;
-      right: 0;
-      top: 1px; /* = 95px into the hero: graphics never sit higher than this line (rule of 10 Aug) */
+      right: 36px; /* standard indent: box right edge 1302 at 1440 */
+      top: 5px; /* measured: lands on the terminals line (172 at 1440) */
       width: 300px;
             animation: np-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
@@ -61,7 +64,7 @@
     }
 
     .solution-hero .solution-hero__visual .phone-demo {
-      transform: scale(0.858);
+      transform: scale(0.77); /* 654px device -> 504px, the standard graphic height */
       transform-origin: right top; /* scale from the 95px line, not the centre */
     }
 
