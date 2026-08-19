@@ -100,9 +100,11 @@
       height: 560px;
       z-index: 0;
       pointer-events: none;
-      background-image: radial-gradient(#6E44FF 2.7px, transparent 2.8px);
+      /* white dots on parchment: lighter than the paper, so it reads as
+         texture catching the light rather than a graphic */
+      background-image: radial-gradient(#FFFFFF 2.9px, transparent 3px);
       background-size: 22px 22px;
-      opacity: 0.8;
+      opacity: 0.9;
       /* fades out at the edges so it reads as a field, not a panel */
       -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
       mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
