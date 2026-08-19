@@ -87,35 +87,6 @@
       transform-origin: right top; /* scale from the 95px line, not the centre */
     }
 
-    /* Blurple dot field behind the device: texture rather than a shape.
-       Anchored to the VISIBLE device — .phone-demo scales 0.77 from its
-       top-right, so it renders 231x504 in this slot's top-right corner */
-    .solution-hero .solution-hero__visual { }
-
-    .hero-dots {
-      position: absolute;
-      right: -94px; /* measured: centres the field on the visible device */
-      top: -28px;
-      width: 420px;
-      height: 560px;
-      z-index: 0;
-      pointer-events: none;
-      /* white dots on parchment: lighter than the paper, so it reads as
-         texture catching the light rather than a graphic */
-      background-image: radial-gradient(#FFFFFF 2.9px, transparent 3px);
-      background-size: 22px 22px;
-      opacity: 0.9;
-      /* fades out at the edges so it reads as a field, not a panel */
-      -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
-      mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
-    }
-
-    .solution-hero .solution-hero__visual .phone-demo { position: relative; z-index: 1; }
-
-    @media (max-width: 968px) {
-      .hero-dots { display: none; }
-    }
-
     /* Slim customer phone: thin uniform bezel, rounder than the card machine */
     .phone-demo {
       width: min(300px, 100%);
@@ -1083,7 +1054,6 @@
             </div>
           </div>
           <div class="solution-hero__visual">
-            <span class="hero-dots" aria-hidden="true"></span>
             <div class="phone-demo" role="img" aria-label="A checkout link shared in chat, opened as a branded checkout, and paid: &#163;25 canvas tote, paid and settled">
               <div class="phone-demo__screens" data-cycle-card data-cycle-interval="4000">
                 <!-- State 1: the checkout link lands in WhatsApp -->

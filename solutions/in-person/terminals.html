@@ -101,28 +101,6 @@
       width: 100%;
     }
 
-    /* Brand asterisk at scale behind the device — colour that is ours, not
-       decoration. Anchored to the VISIBLE device: .phone-demo is scaled 0.77
-       from its top-right, so it renders 231x504 in this wrapper's top-right */
-    .hero-mark {
-      position: absolute;
-      right: -84px;
-      top: 52px; /* centres the mark on the device (measured) */
-      width: 400px;
-      height: 400px;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .hero-mark svg { width: 100%; height: 100%; display: block; }
-    .hero-mark path, .hero-mark rect { fill: #6E44FF; }
-
-    .demo-sketch .phone-demo { position: relative; z-index: 1; }
-
-    @media (max-width: 968px) {
-      .hero-mark { display: none; }
-    }
-
     /* Receipt printer slot, at the base of the forehead */
     .phone-demo::after {
       content: '';
@@ -844,13 +822,6 @@
               </div>
               <div class="solution-hero__visual">
                 <div class="demo-sketch">
-                  <span class="hero-mark" aria-hidden="true">
-                    <svg viewBox="0 0 100 100" focusable="false">
-                      <rect x="45" y="4" width="10" height="92" rx="5"/>
-                      <rect x="45" y="4" width="10" height="92" rx="5" transform="rotate(60 50 50)"/>
-                      <rect x="45" y="4" width="10" height="92" rx="5" transform="rotate(120 50 50)"/>
-                    </svg>
-                  </span>
                 <div class="phone-demo" role="img" aria-label="The Stored payment app taking a &#163;25 payment: enter amount, tap card or phone, payment approved with receipt">
                   <div class="phone-demo__screens" data-cycle-card data-cycle-interval="4000">
                     <!-- State 1: enter amount -->
