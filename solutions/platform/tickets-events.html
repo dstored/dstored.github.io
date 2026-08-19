@@ -169,7 +169,6 @@
       width: 200px;
       height: 200px;
       margin: 44px auto 30px;
-      border-radius: 12px;
     }
 
     .tk-dots {
@@ -269,6 +268,101 @@
       57%, 100% { background: var(--hot); transform: scale(1); }
     }
 
+    /* ── Use cases as a photo strip (homepage merchant-strip pattern):
+       the event type sits over the image, and the line beneath it spotlights
+       each tile in turn until the visitor hovers one ── */
+    .ev-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      width: 100%;
+      border-top: 4px solid var(--hot);
+      border-bottom: 4px solid var(--hot);
+      background: var(--ink);
+      margin-top: var(--space-12);
+    }
+
+    .ev-tile {
+      position: relative;
+      margin: 0;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--ink-light, #16223C);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px 18px;
+      isolation: isolate;
+    }
+
+    .ev-tile img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      transition: transform var(--duration-slow, 0.5s) var(--ease-out, ease-out);
+    }
+
+    /* scrim: keeps the type legible on any photo */
+    .ev-tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(to top, rgba(11, 27, 51, 0.88) 0%, rgba(11, 27, 51, 0.45) 42%, rgba(11, 27, 51, 0.12) 100%);
+      transition: opacity var(--duration-base, 0.3s) var(--ease-out, ease-out);
+    }
+
+    .ev-tile__name {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 0.85rem + 0.7vw, 1.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+
+    .ev-tile__line {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.82);
+      margin-top: 8px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--duration-base, 0.3s) var(--ease-out, ease-out),
+                  transform var(--duration-base, 0.3s) var(--ease-out, ease-out);
+    }
+
+    /* Auto-spotlight: each tile takes its turn on an 18s loop */
+    .ev-tile__line { animation: ev-spot 18s ease-in-out infinite; }
+    .ev-tile--1 .ev-tile__line { animation-delay: 0s; }
+    .ev-tile--2 .ev-tile__line { animation-delay: 3s; }
+    .ev-tile--3 .ev-tile__line { animation-delay: 6s; }
+    .ev-tile--4 .ev-tile__line { animation-delay: 9s; }
+    .ev-tile--5 .ev-tile__line { animation-delay: 12s; }
+    .ev-tile--6 .ev-tile__line { animation-delay: 15s; }
+
+    @keyframes ev-spot {
+      0%, 1% { opacity: 0; transform: translateY(6px); }
+      3%, 14% { opacity: 1; transform: none; }
+      17%, 100% { opacity: 0; transform: translateY(6px); }
+    }
+
+    /* Hovering hands control to the visitor: the loop stands down */
+    .ev-strip:hover .ev-tile__line { animation-play-state: paused; opacity: 0; transform: translateY(6px); }
+    .ev-strip .ev-tile:hover .ev-tile__line { opacity: 1; transform: none; }
+    .ev-tile:hover img { transform: scale(1.04); }
+
+    @media (max-width: 900px) {
+      .ev-strip { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .ev-strip { grid-template-columns: repeat(2, 1fr); }
+      .ev-tile { padding: 14px 12px; }
+      .ev-tile__line { display: none; }
+    }
+
     /* ── QR screen (state 4): scan on the door ── */
     .tk-scan { align-items: center; justify-content: center; text-align: center; gap: 0; }
     .tk-scan__head { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
@@ -280,7 +374,6 @@
       padding: 14px;
       background: #FFFFFF;
       border: 1px solid rgba(11, 27, 51, 0.12);
-      border-radius: 14px;
       margin-bottom: 20px;
     }
 
@@ -488,6 +581,7 @@
       .tk-s1, .tk-s2, .tk-s3, .tk-s4, .tk-s5,
       .hero__card-state.tk-s1 .np-cta, .tk-redeem { animation: none; }
       .tk-s3 { opacity: 1; }
+      .ev-tile__line { animation: none; opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -1005,43 +1099,37 @@
           <h2 class="section-header__title">Any event you can fill.</h2>
         </div>
 
-        <div class="pillars-grid" data-stagger>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">01 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><path d="M16 8v8l5 3"/></svg></div>
-            <h3 class="card__title">Gigs &amp; nights.</h3>
-            <p class="card__text">Ticket the show, scan the queue, settle the takings next working day.</p>
-          </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">02 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="4"/><path d="M4 26c0-4 4-7 8-7s8 3 8 7"/><circle cx="22" cy="13" r="3"/><path d="M19 26c0-3 3-5 6-5"/></svg></div>
-            <h3 class="card__title">Workshops.</h3>
-            <p class="card__text">Limited spots, paid upfront. No more holding places for no-shows.</p>
-          </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">03 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10h20l-2 16H8L6 10z"/><path d="M11 10V7a5 5 0 0 1 10 0v3"/></svg></div>
-            <h3 class="card__title">Classes.</h3>
-            <p class="card__text">Sell a block or a single session. Everyone arrives already paid.</p>
-          </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">04 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="24" height="22" rx="2"/><line x1="4" y1="12" x2="28" y2="12"/><line x1="10" y1="3" x2="10" y2="9"/><line x1="22" y1="3" x2="22" y2="9"/></svg></div>
-            <h3 class="card__title">Pop-ups.</h3>
-            <p class="card__text">Ticket entry for one-off events without signing up to a ticket platform.</p>
-          </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">05 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="16 4 20 12 28 13 22 19 24 28 16 23 8 28 10 19 4 13 12 12 16 4"/></svg></div>
-            <h3 class="card__title">Tastings &amp; tours.</h3>
-            <p class="card__text">Small groups, fixed capacity, deposits taken at booking.</p>
-          </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">06 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="26" x2="6" y2="18"/><line x1="13" y1="26" x2="13" y2="11"/><line x1="20" y1="26" x2="20" y2="15"/><line x1="27" y1="26" x2="27" y2="6"/></svg></div>
-            <h3 class="card__title">Community events.</h3>
-            <p class="card__text">Fairs, fundraisers and fixtures, ticketed in minutes.</p>
-          </div>
+        <div class="ev-strip" data-animate="fade">
+          <figure class="ev-tile ev-tile--1">
+            <img src="/assets/images/events/gigs.jpg" alt="" loading="lazy" decoding="async">
+            <figcaption class="ev-tile__name">Gigs &amp; nights.</figcaption>
+            <span class="ev-tile__line">Host a club night: ticket the show, scan the queue, settle next working day.</span>
+          </figure>
+          <figure class="ev-tile ev-tile--2">
+            <img src="/assets/images/events/workshops.jpg" alt="" loading="lazy" decoding="async">
+            <figcaption class="ev-tile__name">Workshops.</figcaption>
+            <span class="ev-tile__line">Run a workshop with limited spots, paid upfront. No places held for no-shows.</span>
+          </figure>
+          <figure class="ev-tile ev-tile--3">
+            <img src="/assets/images/events/classes.jpg" alt="" loading="lazy" decoding="async">
+            <figcaption class="ev-tile__name">Classes.</figcaption>
+            <span class="ev-tile__line">Sell a yoga block or a single session. Everyone arrives already paid.</span>
+          </figure>
+          <figure class="ev-tile ev-tile--4">
+            <img src="/assets/images/events/popups.jpg" alt="" loading="lazy" decoding="async">
+            <figcaption class="ev-tile__name">Pop-ups.</figcaption>
+            <span class="ev-tile__line">Ticket a one-off market or supper club without joining a ticket platform.</span>
+          </figure>
+          <figure class="ev-tile ev-tile--5">
+            <img src="/assets/images/events/tastings.jpg" alt="" loading="lazy" decoding="async">
+            <figcaption class="ev-tile__name">Tastings &amp; tours.</figcaption>
+            <span class="ev-tile__line">Small groups, fixed capacity, deposits taken at the moment of booking.</span>
+          </figure>
+          <figure class="ev-tile ev-tile--6">
+            <img src="/assets/images/events/community.jpg" alt="" loading="lazy" decoding="async">
+            <figcaption class="ev-tile__name">Community events.</figcaption>
+            <span class="ev-tile__line">Fairs, fundraisers and fixtures, ticketed in minutes.</span>
+          </figure>
         </div>
       </div>
     </section>
