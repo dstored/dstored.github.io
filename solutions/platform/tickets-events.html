@@ -278,6 +278,7 @@
       border-top: 4px solid var(--hot);
       border-bottom: 4px solid var(--hot);
       background: var(--ink);
+      gap: 1px; /* ink hairlines between tiles, matching the homepage strip */
       margin-top: var(--space-12);
     }
 
@@ -301,7 +302,7 @@
       height: 100%;
       object-fit: cover;
       z-index: -2;
-      transition: transform var(--duration-slow, 0.5s) var(--ease-out, ease-out);
+      transition: transform var(--duration-slow) var(--ease-out), filter var(--duration-base) var(--ease-out);
     }
 
     /* scrim: keeps the type legible on any photo */
@@ -310,7 +311,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: rgba(11, 27, 51, 0.56); /* even darkening, matching the homepage tiles */
+      background: rgba(11, 27, 51, 0.44); /* even and light enough that the photo still reads, dark enough to hold white type */
       transition: opacity var(--duration-base, 0.3s) var(--ease-out, ease-out);
     }
 
@@ -320,12 +321,14 @@
       line-height: 1.08;
       letter-spacing: -0.02em;
       color: #FFFFFF;
+      text-shadow: 0 1px 4px rgba(11, 27, 51, 0.7);
     }
 
     .ev-tile__line {
       font-size: 12px;
       line-height: 1.42;
-      color: rgba(255, 255, 255, 0.82);
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 3px rgba(11, 27, 51, 0.55);
       margin-top: 8px;
       opacity: 0;
       transform: translateY(6px);
@@ -352,7 +355,7 @@
     .ev-strip:hover .ev-tile__line { animation-play-state: paused; opacity: 0; transform: translateY(6px); }
     .ev-strip .ev-tile:hover .ev-tile__line { opacity: 1; transform: none; }
     .ev-tile:hover img { transform: scale(1.04); }
-    .ev-tile:hover::after { background: rgba(11, 27, 51, 0.68); }
+    .ev-tile:hover::after { background: rgba(11, 27, 51, 0.56); }
 
     @media (max-width: 900px) {
       .ev-strip { grid-template-columns: repeat(3, 1fr); }
