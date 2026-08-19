@@ -142,7 +142,7 @@
     @keyframes tk-s1 { 0%, 58% { opacity: 1; } 63%, 95% { opacity: 0; } 100% { opacity: 1; } }
     @keyframes tk-s2 { 0%, 58% { opacity: 0; } 63%, 95% { opacity: 1; } 100% { opacity: 0; } }
 
-    .tk-page { --tk-scroll: -91px; /* content 731px - 640px frame */ display: flex; flex-direction: column; animation: tk-scroll 12s ease-in-out infinite; }
+    .tk-page { --tk-scroll: -36px; /* content 676px - 640px frame */ display: flex; flex-direction: column; animation: tk-scroll 12s ease-in-out infinite; }
 
     @keyframes tk-scroll {
       0%, 18% { transform: translateY(0); }
@@ -151,45 +151,50 @@
     }
 
     .tk-media {
+      position: relative;
       background: var(--bone);
       height: 286px; /* square: matches the 286px screen width */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
       flex-shrink: 0;
+      overflow: hidden;
     }
 
-    .tk-media svg { width: 168px; height: auto; transform: rotate(-8deg); }
+    .tk-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    .tk-dots { display: flex; gap: 6px; }
-    .tk-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(11, 27, 51, 0.22); }
-    .tk-dots span:first-child { background: var(--ink); }
+    .tk-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+    }
 
-    .tk-body { padding: 26px 20px 26px; display: flex; flex-direction: column; }
-    .tk-name { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
+    .tk-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.5); }
+    .tk-dots span:first-child { background: #FFFFFF; }
+
+    .tk-body { padding: 18px 20px 22px; display: flex; flex-direction: column; }
+    .tk-name { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
     .tk-price { font-size: 14.5px; font-weight: 700; color: var(--ink); margin: 4px 0 14px; }
 
-    .tk-meta { display: grid; gap: 14px; margin-bottom: 22px; }
+    .tk-meta { display: grid; gap: 10px; margin-bottom: 16px; }
     .tk-meta__row { display: flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 500; color: rgba(11, 27, 51, 0.65); }
     .tk-meta__row svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-    .tk-desc { font-size: 12.5px; line-height: 1.55; color: rgba(11, 27, 51, 0.6); margin-bottom: 22px; }
-    .tk-desc a { display: block; margin-top: 8px; color: var(--ink); font-weight: 600; text-decoration: underline; }
+    .tk-desc { font-size: 12.5px; line-height: 1.5; color: rgba(11, 27, 51, 0.6); margin-bottom: 16px; }
+    .tk-desc a { display: block; margin-top: 6px; color: var(--ink); font-weight: 600; text-decoration: underline; }
 
-    .tk-qty { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .tk-qty { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
     .tk-qty__label { font-size: 12px; font-weight: 600; color: var(--ink); }
     .tk-step { display: flex; border: 1px solid rgba(11, 27, 51, 0.18); border-radius: 8px; overflow: hidden; }
     .tk-step span { width: 30px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: rgba(11, 27, 51, 0.55); }
     .tk-step__n { border-left: 1px solid rgba(11, 27, 51, 0.12); border-right: 1px solid rgba(11, 27, 51, 0.12); font-weight: 700; color: var(--ink); }
 
     .tk-rule { height: 1px; background: rgba(11, 27, 51, 0.08); margin-bottom: 4px; }
-    .tk-row { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink); padding: 11px 0; }
+    .tk-row { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink); padding: 9px 0; }
     .tk-row--total { font-weight: 700; font-size: 13.5px; }
     .tk-row--total span:last-child { font-size: 14.5px; }
 
-    .tk-s1 .np-cta { margin-top: 16px; flex-shrink: 0; }
+    .tk-s1 .np-cta { margin-top: 12px; flex-shrink: 0; }
 
     .hero__card-state.tk-s1 .np-cta { background: var(--hot); transform: none; animation: tk-press 12s ease-in-out infinite; }
 
@@ -727,15 +732,7 @@
                 <div class="hero__card-state phone-demo__screen tk-s1">
                   <div class="tk-page">
                     <div class="tk-media">
-                      <svg viewBox="0 0 168 74" aria-hidden="true">
-                        <rect x="1" y="1" width="166" height="72" rx="10" fill="#6E44FF"/>
-                        <line x1="118" y1="6" x2="118" y2="68" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/>
-                        <circle cx="118" cy="0" r="7" fill="var(--bone)"/>
-                        <circle cx="118" cy="74" r="7" fill="var(--bone)"/>
-                        <text x="20" y="32" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="1">ADMIT</text>
-                        <text x="20" y="50" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="1">ONE</text>
-                        <text x="143" y="43" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="9" font-weight="600" text-anchor="middle" transform="rotate(-90 143 43)">No. 0184</text>
-                      </svg>
+                      <img src="https://images.unsplash.com/photo-1541804627596-3b5b9ef58c93?w=600&amp;q=80&amp;auto=format&amp;fit=crop" alt="" loading="lazy" decoding="async">
                       <div class="tk-dots"><span></span><span></span><span></span><span></span></div>
                     </div>
                     <div class="tk-body">
