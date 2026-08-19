@@ -501,18 +501,16 @@
       transform: scale(1.04);
     }
 
-    /* Scrim keeps the white labels legible on any photo;
-       lifts on hover so the photo shows through */
+    /* Scrim keeps the white labels legible on any photo. Flat wash + fine
+       grain, matching the event tiles on tickets-events; it does NOT lighten
+       on hover — the image scale is the whole gesture, as on the other strips */
     .merchant-strip__tile::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(11, 27, 51, 0.55);
-      transition: background var(--duration-base) var(--ease-out);
-    }
-
-    .merchant-strip__tile:hover::after {
-      background: rgba(11, 27, 51, 0.3);
+      background-color: rgba(11, 27, 51, 0.44);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
+      background-size: 140px 140px;
     }
 
     .sector-strip__label {
@@ -529,6 +527,7 @@
       font-weight: var(--weight-bold);
       font-size: clamp(15px, 1.4vw, 21px);
       letter-spacing: -0.01em;
+      text-shadow: 0 1px 4px rgba(11, 27, 51, 0.7);
     }
 
     @media (max-width: 900px) {
