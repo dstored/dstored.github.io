@@ -138,13 +138,13 @@
        a tap buys the ticket, the paid state follows (12s clock) ── */
     .phone-demo__screens { height: 640px; }
 
-    .tk-s1 { padding: 0; position: relative; animation: tk-s1 20s ease-in-out infinite; }
-    .tk-s2 { animation: tk-s2 20s ease-in-out infinite; }
-    .tk-s3 { padding: 0; position: relative; animation: tk-s3 20s ease-in-out infinite; }
-    .tk-s4 { animation: tk-s4 20s ease-in-out infinite; }
-    .tk-s5 { animation: tk-s5 20s ease-in-out infinite; }
+    .tk-s1 { padding: 0; position: relative; animation: tk-s1 16s ease-in-out infinite; }
+    .tk-s2 { animation: tk-s2 16s ease-in-out infinite; }
+    .tk-s3 { padding: 0; position: relative; animation: tk-s3 16s ease-in-out infinite; }
+    .tk-s4 { animation: tk-s4 16s ease-in-out infinite; }
+    .tk-s5 { animation: tk-s5 16s ease-in-out infinite; }
 
-    /* buy -> paid -> ticket -> redeem -> QR -> redeemed, on one 20s clock */
+    /* buy -> paid -> ticket -> redeem -> QR -> redeemed, on one 16s clock */
     @keyframes tk-s1 { 0%, 22% { opacity: 1; } 26%, 96% { opacity: 0; } 100% { opacity: 1; } }
     @keyframes tk-s2 { 0%, 22% { opacity: 0; } 26%, 34% { opacity: 1; } 38%, 100% { opacity: 0; } }
     @keyframes tk-s3 { 0%, 34% { opacity: 0; } 38%, 58% { opacity: 1; } 62%, 100% { opacity: 0; } }
@@ -208,7 +208,7 @@
 
     .tk-s1 .np-cta { margin-top: auto; flex-shrink: 0; }
 
-    .hero__card-state.tk-s1 .np-cta { background: var(--hot); transform: none; animation: tk-press 20s ease-in-out infinite; }
+    .hero__card-state.tk-s1 .np-cta { background: var(--hot); transform: none; animation: tk-press 16s ease-in-out infinite; }
 
     @keyframes tk-press {
       0%, 16% { background: var(--hot); transform: scale(1); }
@@ -260,21 +260,13 @@
       justify-content: center;
       font-weight: 600;
       font-size: 14px;
-      animation: tk-press-redeem 20s ease-in-out infinite;
+      animation: tk-press-redeem 16s ease-in-out infinite;
     }
 
     @keyframes tk-press-redeem {
       0%, 52% { background: var(--hot); transform: scale(1); }
       53.5%, 55% { background: #6E44FF; transform: scale(0.97); }
       57%, 100% { background: var(--hot); transform: scale(1); }
-    }
-
-    .tk-tap--redeem { animation: tk-tap-redeem 20s ease-in-out infinite; }
-
-    @keyframes tk-tap-redeem {
-      0%, 50% { opacity: 0; transform: scale(0.4); }
-      52.5%, 54.5% { opacity: 0.9; transform: scale(1); }
-      57%, 100% { opacity: 0; transform: scale(1.35); }
     }
 
     /* ── QR screen (state 4): scan on the door ── */
@@ -297,27 +289,6 @@
     .tk-scan__name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
     .tk-scan__meta { font-size: 11.5px; color: rgba(11, 27, 51, 0.55); margin-top: 4px; }
     .tk-scan__ref { font-family: var(--font-mono); font-size: 11px; color: rgba(11, 27, 51, 0.45); margin-top: 10px; letter-spacing: 0.02em; }
-
-    /* The tap that buys it: lands on the CTA once it has scrolled into place */
-    .tk-tap, .tk-tap--redeem {
-      position: absolute;
-      left: 50%;
-      bottom: 30px;
-      width: 34px;
-      height: 34px;
-      margin-left: -17px;
-      border-radius: 50%;
-      background: rgba(11, 27, 51, 0.28);
-      border: 2px solid #FFFFFF;
-      opacity: 0;
-      animation: tk-tap 20s ease-in-out infinite;
-    }
-
-    @keyframes tk-tap {
-      0%, 14% { opacity: 0; transform: scale(0.4); }
-      16.5%, 18.5% { opacity: 0.9; transform: scale(1); }
-      21%, 100% { opacity: 0; transform: scale(1.35); }
-    }
 
     /* Rows that land one by one each cycle */
     .np-pop { opacity: 0; }
@@ -514,7 +485,7 @@
 
       .np-pop { opacity: 1; animation: none; }
       .np-progress__fill { width: 100%; }
-      .tk-s1, .tk-s2, .tk-s3, .tk-s4, .tk-s5, .tk-tap, .tk-tap--redeem,
+      .tk-s1, .tk-s2, .tk-s3, .tk-s4, .tk-s5,
       .hero__card-state.tk-s1 .np-cta, .tk-redeem { animation: none; }
       .tk-s3 { opacity: 1; }
     }
@@ -853,7 +824,6 @@
                       <div class="np-cta">Buy ticket</div>
                     </div>
                   </div>
-                  <span class="tk-tap" aria-hidden="true"></span>
                 </div>
                 <div class="hero__card-state phone-demo__screen np-paid tk-s2">
                   <svg class="np-tick" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -890,7 +860,6 @@
                       <div class="tk-redeem">Redeem ticket</div>
                     </div>
                   </div>
-                  <span class="tk-tap tk-tap--redeem" aria-hidden="true"></span>
                 </div>
                 <div class="hero__card-state phone-demo__screen tk-s4 tk-scan">
                   <div class="tk-scan__head">Scan at the door</div>
