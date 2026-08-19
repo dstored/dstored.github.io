@@ -269,6 +269,13 @@
       57%, 100% { background: var(--hot); transform: scale(1); }
     }
 
+    /* Hairline between two paper sections (shared device, as on invoicing/bulk) */
+    .iv-rule {
+      border: 0;
+      border-top: 1px solid rgba(11, 27, 51, 0.12);
+      margin: 0;
+    }
+
     /* ── Use cases as a photo strip (homepage merchant-strip pattern):
        the event type sits over the image, and the line beneath it spotlights
        each tile in turn until the visitor hovers one ── */
@@ -292,7 +299,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 20px 18px;
+      padding: 34px 18px 20px; /* uneven: nudges the block below centre */
       isolation: isolate;
     }
 
@@ -330,6 +337,9 @@
     .ev-tile__line {
       font-size: 12px;
       line-height: 1.42;
+      /* reserved height: without it a 2-line description (Community) centres
+         its tile differently and the title sits lower than its neighbours */
+      min-height: 51px;
       color: rgba(255, 255, 255, 0.9);
       text-shadow: 0 1px 3px rgba(11, 27, 51, 0.55);
       margin-top: 8px;
@@ -339,24 +349,8 @@
                   transform var(--duration-base, 0.3s) var(--ease-out, ease-out);
     }
 
-    /* Auto-spotlight: each tile takes its turn on an 18s loop */
-    .ev-tile__line { animation: ev-spot 18s ease-in-out infinite; }
-    .ev-tile--1 .ev-tile__line { animation-delay: 0s; }
-    .ev-tile--2 .ev-tile__line { animation-delay: 3s; }
-    .ev-tile--3 .ev-tile__line { animation-delay: 6s; }
-    .ev-tile--4 .ev-tile__line { animation-delay: 9s; }
-    .ev-tile--5 .ev-tile__line { animation-delay: 12s; }
-    .ev-tile--6 .ev-tile__line { animation-delay: 15s; }
-
-    @keyframes ev-spot {
-      0%, 1% { opacity: 0; transform: translateY(6px); }
-      3%, 14% { opacity: 1; transform: none; }
-      17%, 100% { opacity: 0; transform: translateY(6px); }
-    }
-
-    /* Hovering hands control to the visitor: the loop stands down */
-    .ev-strip:hover .ev-tile__line { animation-play-state: paused; opacity: 0; transform: translateY(6px); }
-    .ev-strip .ev-tile:hover .ev-tile__line { opacity: 1; transform: none; }
+    /* The description belongs to hover alone — no rotation */
+    .ev-tile:hover .ev-tile__line { opacity: 1; transform: none; }
     .ev-tile:hover img { transform: scale(1.04); }
     .ev-tile:hover::after { background: rgba(11, 27, 51, 0.56); }
 
@@ -589,7 +583,7 @@
       .tk-s1, .tk-s2, .tk-s3, .tk-s4, .tk-s5,
       .hero__card-state.tk-s1 .np-cta, .tk-redeem { animation: none; }
       .tk-s3 { opacity: 1; }
-      .ev-tile__line { animation: none; opacity: 1; transform: none; }
+      .ev-tile__line { transition: none; }
     }
   </style>
 </head>
@@ -1099,12 +1093,15 @@
       </div>
     </section>
 
+    <div class="container"><hr class="iv-rule"></div>
+
     <!-- USE CASES -->
     <section class="section">
       <div class="container">
         <div class="section-header section-header--center" data-animate>
           <div class="section-header__overline">USE CASES</div>
           <h2 class="section-header__title">Any event you can fill.</h2>
+          <p class="section-header__subtitle">Create your event and start selling tickets in minutes.</p>
         </div>
 
         <div class="ev-strip" data-animate="fade">
