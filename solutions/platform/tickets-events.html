@@ -142,7 +142,7 @@
     @keyframes tk-s1 { 0%, 58% { opacity: 1; } 63%, 95% { opacity: 0; } 100% { opacity: 1; } }
     @keyframes tk-s2 { 0%, 58% { opacity: 0; } 63%, 95% { opacity: 1; } 100% { opacity: 0; } }
 
-    .tk-page { --tk-scroll: -87px; /* content 727px - 640px frame */ display: flex; flex-direction: column; animation: tk-scroll 12s ease-in-out infinite; }
+    .tk-page { --tk-scroll: -91px; /* content 731px - 640px frame */ display: flex; flex-direction: column; animation: tk-scroll 12s ease-in-out infinite; }
 
     @keyframes tk-scroll {
       0%, 18% { transform: translateY(0); }
@@ -167,29 +167,29 @@
     .tk-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(11, 27, 51, 0.22); }
     .tk-dots span:first-child { background: var(--ink); }
 
-    .tk-body { padding: 18px 20px 20px; display: flex; flex-direction: column; }
-    .tk-name { font-size: 16.5px; font-weight: 700; color: var(--ink); }
+    .tk-body { padding: 26px 20px 26px; display: flex; flex-direction: column; }
+    .tk-name { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
     .tk-price { font-size: 14.5px; font-weight: 700; color: var(--ink); margin: 4px 0 14px; }
 
-    .tk-meta { display: grid; gap: 9px; margin-bottom: 16px; }
-    .tk-meta__row { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: rgba(11, 27, 51, 0.65); }
+    .tk-meta { display: grid; gap: 14px; margin-bottom: 22px; }
+    .tk-meta__row { display: flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 500; color: rgba(11, 27, 51, 0.65); }
     .tk-meta__row svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-    .tk-desc { font-size: 12px; line-height: 1.55; color: rgba(11, 27, 51, 0.6); margin-bottom: 16px; }
-    .tk-desc a { color: var(--ink); font-weight: 600; text-decoration: underline; }
+    .tk-desc { font-size: 12.5px; line-height: 1.55; color: rgba(11, 27, 51, 0.6); margin-bottom: 22px; }
+    .tk-desc a { display: block; margin-top: 8px; color: var(--ink); font-weight: 600; text-decoration: underline; }
 
-    .tk-qty { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .tk-qty { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
     .tk-qty__label { font-size: 12px; font-weight: 600; color: var(--ink); }
     .tk-step { display: flex; border: 1px solid rgba(11, 27, 51, 0.18); border-radius: 8px; overflow: hidden; }
     .tk-step span { width: 30px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: rgba(11, 27, 51, 0.55); }
     .tk-step__n { border-left: 1px solid rgba(11, 27, 51, 0.12); border-right: 1px solid rgba(11, 27, 51, 0.12); font-weight: 700; color: var(--ink); }
 
     .tk-rule { height: 1px; background: rgba(11, 27, 51, 0.08); margin-bottom: 4px; }
-    .tk-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink); padding: 8px 0; }
+    .tk-row { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink); padding: 11px 0; }
     .tk-row--total { font-weight: 700; font-size: 13.5px; }
     .tk-row--total span:last-child { font-size: 14.5px; }
 
-    .tk-s1 .np-cta { margin-top: 10px; flex-shrink: 0; }
+    .tk-s1 .np-cta { margin-top: 16px; flex-shrink: 0; }
 
     .hero__card-state.tk-s1 .np-cta { background: var(--hot); transform: none; animation: tk-press 12s ease-in-out infinite; }
 
@@ -740,22 +740,17 @@
                     </div>
                     <div class="tk-body">
                       <div class="tk-name">Friday Live Session</div>
-                      <div class="tk-price">&#163;15.00</div>
                       <div class="tk-meta">
                         <div class="tk-meta__row">
                           <svg viewBox="0 0 16 16" fill="none" stroke="rgba(11,27,51,0.55)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3"/></svg>
                           Friday 31 July, 2026
                         </div>
                         <div class="tk-meta__row">
-                          <svg viewBox="0 0 16 16" fill="none" stroke="rgba(11,27,51,0.55)" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.8V8l2.2 1.6"/></svg>
-                          Doors 8&thinsp;pm
-                        </div>
-                        <div class="tk-meta__row">
                           <svg viewBox="0 0 16 16" fill="none" stroke="rgba(11,27,51,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14.5s-4.8-4.6-4.8-8A4.8 4.8 0 0 1 8 1.7a4.8 4.8 0 0 1 4.8 4.8c0 3.4-4.8 8-4.8 8Z"/><circle cx="8" cy="6.5" r="1.7"/></svg>
                           The Corner House, Manchester
                         </div>
                       </div>
-                      <div class="tk-desc">Live sets across two rooms from 9&thinsp;pm, with the bar open until late. Over-18s only &middot; <a>read more</a></div>
+                      <div class="tk-desc">Live sets across two rooms from 9&thinsp;pm.<a>Read more</a></div>
                       <div class="tk-qty">
                         <span class="tk-qty__label">Tickets</span>
                         <div class="tk-step"><span>&minus;</span><span class="tk-step__n">1</span><span>+</span></div>
