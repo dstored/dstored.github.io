@@ -142,13 +142,7 @@
     @keyframes tk-s1 { 0%, 58% { opacity: 1; } 63%, 95% { opacity: 0; } 100% { opacity: 1; } }
     @keyframes tk-s2 { 0%, 58% { opacity: 0; } 63%, 95% { opacity: 1; } 100% { opacity: 0; } }
 
-    .tk-page { --tk-scroll: -36px; /* content 676px - 640px frame */ display: flex; flex-direction: column; animation: tk-scroll 12s ease-in-out infinite; }
-
-    @keyframes tk-scroll {
-      0%, 18% { transform: translateY(0); }
-      40%, 63% { transform: translateY(var(--tk-scroll, -200px)); }
-      70%, 100% { transform: translateY(0); }
-    }
+    .tk-page { min-height: 100%; display: flex; flex-direction: column; } /* fits the frame exactly: no scroll needed */
 
     .tk-media {
       position: relative;
@@ -172,29 +166,29 @@
     .tk-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.5); }
     .tk-dots span:first-child { background: #FFFFFF; }
 
-    .tk-body { padding: 18px 20px 22px; display: flex; flex-direction: column; }
-    .tk-name { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
+    .tk-body { flex: 1; padding: 14px 20px 18px; display: flex; flex-direction: column; }
+    .tk-name { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
     .tk-price { font-size: 14.5px; font-weight: 700; color: var(--ink); margin: 4px 0 14px; }
 
-    .tk-meta { display: grid; gap: 10px; margin-bottom: 16px; }
+    .tk-meta { display: grid; gap: 8px; margin-bottom: 12px; }
     .tk-meta__row { display: flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 500; color: rgba(11, 27, 51, 0.65); }
     .tk-meta__row svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-    .tk-desc { font-size: 12.5px; line-height: 1.5; color: rgba(11, 27, 51, 0.6); margin-bottom: 16px; }
-    .tk-desc a { display: block; margin-top: 6px; color: var(--ink); font-weight: 600; text-decoration: underline; }
+    .tk-desc { font-size: 12.5px; line-height: 1.5; color: rgba(11, 27, 51, 0.6); margin-bottom: 12px; }
+    .tk-desc a { display: block; margin-top: 4px; color: var(--ink); font-weight: 600; text-decoration: underline; }
 
-    .tk-qty { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .tk-qty { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
     .tk-qty__label { font-size: 12px; font-weight: 600; color: var(--ink); }
     .tk-step { display: flex; border: 1px solid rgba(11, 27, 51, 0.18); border-radius: 8px; overflow: hidden; }
     .tk-step span { width: 30px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: rgba(11, 27, 51, 0.55); }
     .tk-step__n { border-left: 1px solid rgba(11, 27, 51, 0.12); border-right: 1px solid rgba(11, 27, 51, 0.12); font-weight: 700; color: var(--ink); }
 
     .tk-rule { height: 1px; background: rgba(11, 27, 51, 0.08); margin-bottom: 4px; }
-    .tk-row { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink); padding: 9px 0; }
+    .tk-row { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink); padding: 7px 0; }
     .tk-row--total { font-weight: 700; font-size: 13.5px; }
     .tk-row--total span:last-child { font-size: 14.5px; }
 
-    .tk-s1 .np-cta { margin-top: 12px; flex-shrink: 0; }
+    .tk-s1 .np-cta { margin-top: auto; flex-shrink: 0; }
 
     .hero__card-state.tk-s1 .np-cta { background: var(--hot); transform: none; animation: tk-press 12s ease-in-out infinite; }
 
@@ -420,7 +414,7 @@
 
       .np-pop { opacity: 1; animation: none; }
       .np-progress__fill { width: 100%; }
-      .tk-s1, .tk-s2, .tk-page, .tk-tap, .hero__card-state.tk-s1 .np-cta { animation: none; }
+      .tk-s1, .tk-s2, .tk-tap, .hero__card-state.tk-s1 .np-cta { animation: none; }
       .tk-s2 { opacity: 1; }
     }
   </style>
