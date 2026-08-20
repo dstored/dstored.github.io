@@ -494,6 +494,7 @@
     .gv-card__qr { width: 40px; height: 40px; background: #FFFFFF; padding: 3px; border-radius: 3px; flex-shrink: 0; }
     .gv-card__qr svg { width: 100%; height: 100%; display: block; }
     .gv-card__small { font-size: 6.5px; line-height: 1.4; color: rgba(255, 255, 255, 0.5); margin-top: 8px; }
+    .gv-card__small b { color: #FFFFFF; font-weight: 600; }
     .gv-card__eyebrow { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.75); }
 
     .gv-qty { display: flex; align-items: center; gap: 0; margin-top: 20px; }
@@ -545,6 +546,20 @@
       9%, 9.8% { background: #FFFFFF; border-color: rgba(11, 27, 51, 0.16); color: var(--ink); transform: scale(0.95); }
       10.5%, 100% { background: var(--hot); border-color: var(--hot); color: #FFFFFF; transform: scale(1); }
     }
+
+    /* Merchant lock-up, top right of the card */
+    .gv-card__logo {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #FFFFFF;
+    }
+
+    .gv-card__logo svg { width: 15px; height: 15px; display: block; }
+    .gv-card__logo em { font-family: var(--font-display); font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: -0.01em; }
 
 </style>
 </head>
@@ -858,10 +873,11 @@
                       <div class="gv-card">
                         <div class="gv-card__row">
                           <div>
-                            <div class="gv-card__eyebrow">GIFT CARD</div>
+                            <span class="gv-card__logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><g fill="#FFFFFF"><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(72 12 12)"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(144 12 12)"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(216 12 12)"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(288 12 12)"/></g><circle cx="12" cy="12" r="2.1" fill="#0B1B33"/></svg><em>Bloom</em></span>
+                          <div class="gv-card__eyebrow">GIFT CARD</div>
                             <div class="gv-card__amount gv-stack"><span class="gv-val gv-val--a">&#163;25.00</span><span class="gv-val gv-val--b">&#163;50.00</span></div>
                             <div class="gv-card__code">BLOOM-4K2-50</div>
-                            <div class="gv-card__small">Bloom Hair Studio, 42 Bridge St, Manchester<br>Redeem in salon or online at bloomhair.co.uk</div>
+                            <div class="gv-card__small"><b>Bloom Hair Studio</b>, 42 Bridge St, Manchester<br>Redeem in salon or online at bloomhair.co.uk</div>
                           </div>
                           <span class="gv-card__qr"><svg viewBox="0 0 21 21" shape-rendering="crispEdges" aria-hidden="true"><g fill="#16223C"><path d="M0 0h7v7h-7z M1 1v5h5v-5z M2 2h3v3h-3z"/><path d="M14 0h7v7h-7z M15 1v5h5v-5z M16 2h3v3h-3z"/><path d="M0 14h7v7h-7z M1 15v5h5v-5z M2 16h3v3h-3z"/><path d="M9 0h2v2h-2z M12 2h2v2h-2z M9 4h2v2h-2z M11 6h2v2h-2z M9 8h2v2h-2z"/><path d="M0 9h2v2h-2z M3 9h2v2h-2z M6 11h2v2h-2z M12 9h2v2h-2z M15 11h2v2h-2z M18 9h2v2h-2z"/><path d="M9 12h2v2h-2z M12 14h2v2h-2z M15 15h2v2h-2z M18 13h2v2h-2z M9 16h2v2h-2z M12 18h2v2h-2z M16 19h2v2h-2z M19 17h2v2h-2z"/></g></svg></span>
                         </div>
