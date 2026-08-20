@@ -316,7 +316,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .gv-s1, .gv-s2, .gv-s3, .gv-s4, .gv-s5, .gv-s1 .gv-cta, .gv-s3 .gv-cta { animation: none; opacity: 0; }
+      .gv-s1, .gv-s2, .gv-s3, .gv-s5, .gv-s1 .gv-cta, .gv-pass__qr { animation: none; opacity: 0; }
+      .gv-pass__qr { opacity: 1; }
       .gv-s3 { opacity: 1; }
       .gv-val--a, .gv-chip--a, .gv-val--b, .gv-chip--b { animation: none; }
       .gv-val--a { opacity: 0; }
@@ -342,13 +343,11 @@
     .gv-s1 { padding: 0; position: relative; animation: gv-s1 16s ease-in-out infinite; }
     .gv-s2 { animation: gv-s2 16s ease-in-out infinite; }
     .gv-s3 { padding: 0; position: relative; animation: gv-s3 16s ease-in-out infinite; }
-    .gv-s4 { animation: gv-s4 16s ease-in-out infinite; }
     .gv-s5 { animation: gv-s5 16s ease-in-out infinite; }
 
-    @keyframes gv-s1 { 0%, 22% { opacity: 1; } 26%, 96% { opacity: 0; } 100% { opacity: 1; } }
-    @keyframes gv-s2 { 0%, 22% { opacity: 0; } 26%, 34% { opacity: 1; } 38%, 100% { opacity: 0; } }
-    @keyframes gv-s3 { 0%, 34% { opacity: 0; } 38%, 58% { opacity: 1; } 62%, 100% { opacity: 0; } }
-    @keyframes gv-s4 { 0%, 58% { opacity: 0; } 62%, 78% { opacity: 1; } 82%, 100% { opacity: 0; } }
+    @keyframes gv-s1 { 0%, 26% { opacity: 1; } 30%, 96% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes gv-s2 { 0%, 26% { opacity: 0; } 30%, 42% { opacity: 1; } 46%, 100% { opacity: 0; } }
+    @keyframes gv-s3 { 0%, 42% { opacity: 0; } 46%, 78% { opacity: 1; } 82%, 100% { opacity: 0; } }
     @keyframes gv-s5 { 0%, 78% { opacity: 0; } 82%, 96% { opacity: 1; } 100% { opacity: 0; } }
 
     .gv-page { min-height: 100%; display: flex; flex-direction: column; }
@@ -445,24 +444,8 @@
     }
 
     /* Scan screen */
-    .gv-scan { align-items: center; justify-content: center; text-align: center; }
-    .gv-scan__head { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
-    .gv-scan__sub { font-size: 11.5px; color: rgba(11, 27, 51, 0.55); margin-bottom: 20px; }
 
-    .gv-qr {
-      width: 176px;
-      height: 176px;
-      padding: 14px;
-      background: #FFFFFF;
-      border: 1px solid rgba(11, 27, 51, 0.12);
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
 
-    .gv-qr svg { width: 100%; height: 100%; display: block; }
-    .gv-scan__name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
-    .gv-scan__meta { font-size: 11.5px; color: rgba(11, 27, 51, 0.55); margin-top: 4px; }
-    .gv-scan__ref { font-family: var(--font-mono); font-size: 11px; color: rgba(11, 27, 51, 0.45); margin-top: 10px; letter-spacing: 0.02em; }
 
     /* State 1 mirrors a real gift-card product page: bag bar, image panel,
        carousel dots, quantity, recipient email, add to bag, express checkout */
@@ -632,6 +615,17 @@
     }
 
     .gv-pass__qr svg { width: 100%; height: auto; display: block; }
+
+    /* the code is scanned: two soft pulses, then the wallet gives way to the receipt */
+    .gv-pass__qr { animation: gv-scanpulse 16s ease-in-out infinite; }
+
+    @keyframes gv-scanpulse {
+      0%, 62% { transform: scale(1); box-shadow: 0 0 0 0 rgba(49, 216, 149, 0); }
+      66% { transform: scale(1.035); box-shadow: 0 0 0 7px rgba(49, 216, 149, 0.22); }
+      70% { transform: scale(1); box-shadow: 0 0 0 0 rgba(49, 216, 149, 0); }
+      74% { transform: scale(1.035); box-shadow: 0 0 0 7px rgba(49, 216, 149, 0.22); }
+      78%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(49, 216, 149, 0); }
+    }
     .gv-pass__ref { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; color: var(--ink); margin-top: 7px; }
 
     /* the passes stacked behind it */
@@ -1007,14 +1001,6 @@
                     <div class="gv-collapsed" aria-hidden="true"><span></span><span></span><span></span></div>
                   
                   </div>
-                </div>
-                <div class="hero__card-state phone-demo__screen gv-scan gv-s4">
-                  <div class="gv-scan__head">Scan at the till</div>
-                  <div class="gv-scan__sub">Hold this up to the scanner</div>
-                  <div class="gv-qr"><svg viewBox="0 0 29 29" shape-rendering="crispEdges" aria-hidden="true"><path fill="#16223C" d="M0 0h7v1h-7zM9 0h1v1h-1zM12 0h1v1h-1zM15 0h5v1h-5zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM10 1h3v1h-3zM17 1h1v1h-1zM20 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM12 2h1v1h-1zM14 2h1v1h-1zM16 2h1v1h-1zM20 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h2v1h-2zM11 3h1v1h-1zM17 3h1v1h-1zM19 3h1v1h-1zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM12 4h4v1h-4zM19 4h2v1h-2zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h3v1h-3zM13 5h3v1h-3zM17 5h1v1h-1zM20 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM8 7h1v1h-1zM10 7h2v1h-2zM13 7h1v1h-1zM15 7h1v1h-1zM18 7h3v1h-3zM0 8h1v1h-1zM2 8h5v1h-5zM9 8h1v1h-1zM11 8h2v1h-2zM14 8h2v1h-2zM17 8h3v1h-3zM22 8h5v1h-5zM0 9h1v1h-1zM3 9h1v1h-1zM15 9h1v1h-1zM18 9h3v1h-3zM22 9h3v1h-3zM28 9h1v1h-1zM1 10h1v1h-1zM3 10h1v1h-1zM5 10h2v1h-2zM8 10h4v1h-4zM15 10h1v1h-1zM18 10h1v1h-1zM20 10h2v1h-2zM3 11h1v1h-1zM10 11h3v1h-3zM14 11h3v1h-3zM18 11h2v1h-2zM22 11h2v1h-2zM25 11h1v1h-1zM27 11h1v1h-1zM1 12h1v1h-1zM6 12h3v1h-3zM15 12h3v1h-3zM25 12h2v1h-2zM1 13h1v1h-1zM5 13h1v1h-1zM8 13h1v1h-1zM10 13h1v1h-1zM12 13h3v1h-3zM16 13h5v1h-5zM22 13h3v1h-3zM28 13h1v1h-1zM2 14h1v1h-1zM6 14h4v1h-4zM13 14h3v1h-3zM17 14h1v1h-1zM23 14h4v1h-4zM0 15h2v1h-2zM5 15h1v1h-1zM9 15h1v1h-1zM13 15h1v1h-1zM16 15h2v1h-2zM19 15h3v1h-3zM27 15h1v1h-1zM0 16h1v1h-1zM2 16h2v1h-2zM6 16h1v1h-1zM9 16h3v1h-3zM14 16h1v1h-1zM18 16h2v1h-2zM25 16h2v1h-2zM0 17h1v1h-1zM3 17h1v1h-1zM7 17h1v1h-1zM10 17h2v1h-2zM16 17h2v1h-2zM19 17h1v1h-1zM21 17h4v1h-4zM26 17h1v1h-1zM28 17h1v1h-1zM0 18h1v1h-1zM2 18h1v1h-1zM4 18h3v1h-3zM8 18h1v1h-1zM10 18h3v1h-3zM15 18h1v1h-1zM17 18h2v1h-2zM22 18h2v1h-2zM26 18h1v1h-1zM0 19h1v1h-1zM2 19h1v1h-1zM10 19h2v1h-2zM14 19h2v1h-2zM18 19h1v1h-1zM20 19h1v1h-1zM22 19h2v1h-2zM27 19h1v1h-1zM0 20h1v1h-1zM4 20h3v1h-3zM8 20h1v1h-1zM11 20h2v1h-2zM16 20h2v1h-2zM20 20h5v1h-5zM26 20h3v1h-3zM8 21h3v1h-3zM13 21h2v1h-2zM17 21h1v1h-1zM20 21h1v1h-1zM24 21h5v1h-5zM0 22h7v1h-7zM12 22h3v1h-3zM18 22h3v1h-3zM22 22h1v1h-1zM24 22h3v1h-3zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h2v1h-2zM12 23h2v1h-2zM15 23h2v1h-2zM19 23h2v1h-2zM24 23h1v1h-1zM27 23h1v1h-1zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM8 24h1v1h-1zM14 24h1v1h-1zM16 24h3v1h-3zM20 24h5v1h-5zM26 24h3v1h-3zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM8 25h2v1h-2zM12 25h1v1h-1zM15 25h1v1h-1zM19 25h1v1h-1zM25 25h2v1h-2zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h4v1h-4zM13 26h2v1h-2zM16 26h1v1h-1zM18 26h2v1h-2zM22 26h6v1h-6zM0 27h1v1h-1zM6 27h1v1h-1zM10 27h1v1h-1zM12 27h1v1h-1zM14 27h1v1h-1zM20 27h2v1h-2zM25 27h1v1h-1zM27 27h1v1h-1zM0 28h7v1h-7zM8 28h1v1h-1zM10 28h1v1h-1zM12 28h1v1h-1zM16 28h4v1h-4zM21 28h2v1h-2zM26 28h1v1h-1z"/></svg></div>
-                  <div class="gv-scan__name">Bloom Hair Studio</div>
-                  <div class="gv-scan__meta">Gift voucher &middot; balance &#163;50.00</div>
-                  <div class="gv-scan__ref">BLOOM-4K2-50</div>
                 </div>
                 <div class="hero__card-state phone-demo__screen np-paid gv-s5">
                   <svg class="np-tick" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="#31D895"/><path d="M15 24.5 L21 30.5 L33 17.5" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
