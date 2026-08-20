@@ -554,24 +554,45 @@
 
     .gv-card__logo svg { width: 19px; height: 19px; display: block; }
 
-    /* Wallet strip: the voucher lives in the phone's wallet */
-    .gv-walletbar {
+    /* Wallet chrome: title and add button, as the app shows it */
+    .gv-wallettop {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 13px 0 11px;
-      border-bottom: 1px solid rgba(11, 27, 51, 0.08);
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--ink);
+      justify-content: space-between;
+      padding: 16px 18px 12px;
       flex-shrink: 0;
     }
 
-    .gv-walletbar svg { width: 11px; height: 13px; display: block; }
+    .gv-wallettop b { font-family: var(--font-display); font-size: 21px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
 
-    /* the redeem action sits off the bottom edge, not on it */
-    .gv-s3 .gv-body { padding-bottom: 44px; }
+    .gv-wallettop i {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(11, 27, 51, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    /* Other passes, collapsed at the foot of the wallet */
+    .gv-collapsed { margin-top: auto; padding: 0 14px 0; flex-shrink: 0; }
+
+    .gv-collapsed span {
+      display: block;
+      height: 30px;
+      border-radius: 10px;
+      box-shadow: 0 -3px 8px rgba(11, 27, 51, 0.14);
+    }
+
+    .gv-collapsed span + span { margin-top: -16px; }
+    .gv-collapsed span:nth-child(1) { background: #2F6FD0; }
+    .gv-collapsed span:nth-child(2) { background: #2E9E57; }
+    .gv-collapsed span:nth-child(3) { background: #D9A64B; }
 
     /* Wallet pass, built to the standard pass format: small-caps labels
        above their values, a three-up detail row, and the code in a white
@@ -960,7 +981,7 @@
                 </div>
                 <div class="hero__card-state phone-demo__screen gv-s3">
                   <div class="gv-page">
-                    <div class="gv-walletbar" aria-hidden="true"><svg viewBox="0 0 24 28" aria-hidden="true"><path fill="#16223C" d="M17.6 14.9c0-2.8 2.3-4.1 2.4-4.2-1.3-1.9-3.3-2.2-4-2.2-1.7-.2-3.3 1-4.2 1-.8 0-2.2-1-3.6-1-1.9 0-3.6 1.1-4.5 2.7-1.9 3.3-.5 8.3 1.4 11 .9 1.3 2 2.8 3.4 2.8 1.4-.1 1.9-.9 3.5-.9 1.6 0 2.1.9 3.5.9 1.5 0 2.4-1.3 3.3-2.7 1-1.5 1.5-3 1.5-3.1-.1 0-2.7-1.1-2.7-4.3zM15 6.8c.7-.9 1.2-2.1 1.1-3.4-1.1 0-2.4.7-3.2 1.7-.7.8-1.3 2.1-1.1 3.3 1.2.1 2.4-.6 3.2-1.6z"/></svg> Wallet</div>
+                    <div class="gv-wallettop" aria-hidden="true"><b>Wallet</b><i>+</i></div>
                     <div class="gv-pass">
                       <div class="gv-pass__top">
                         <div class="gv-pass__brand"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><g fill="#FFFFFF"><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(72 12 12)"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(144 12 12)"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(216 12 12)"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(288 12 12)"/></g><circle cx="12" cy="12" r="2.1" fill="#0B1B33"/></svg><span>BLOOM HAIR STUDIO</span></div>
@@ -983,10 +1004,8 @@
                         <div class="gv-pass__ref">BLOOM-4K2-50</div>
                       </div>
                     </div>
-                    <div class="gv-stackpeek" aria-hidden="true"><span></span><span></span></div>
-                    <div class="gv-body">
-                      <div class="gv-cta">Redeem voucher</div>
-                    </div>
+                    <div class="gv-collapsed" aria-hidden="true"><span></span><span></span><span></span></div>
+                  
                   </div>
                 </div>
                 <div class="hero__card-state phone-demo__screen gv-scan gv-s4">
