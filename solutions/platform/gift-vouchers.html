@@ -364,21 +364,10 @@
     }
 
 
-    .gv-card--inset { width: 210px; margin: 40px auto 26px; }
+    .gv-card--inset { width: 252px; margin: 40px auto 26px; padding: 17px 15px 15px; }
 
-    .gv-card__brand { font-family: var(--font-display); font-size: 12.5px; font-weight: 700; letter-spacing: 0.02em; }
     .gv-card__amount { font-family: var(--font-display); font-size: 26px; font-weight: 700; margin-top: 12px; letter-spacing: -0.02em; }
-    .gv-card__label { font-size: 10.5px; color: rgba(255, 255, 255, 0.6); margin-top: 2px; }
     .gv-card__code { font-family: var(--font-mono); font-size: 10.5px; color: #FFFFFF; margin-top: 10px; letter-spacing: 0.04em; }
-
-    .gv-card__mark {
-      position: absolute;
-      right: 14px;
-      top: 14px;
-      width: 34px;
-      height: 34px;
-      opacity: 0.9;
-    }
 
     .gv-body { padding: 18px 20px 14px; display: flex; flex-direction: column; flex: 1; }
     .gv-title { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.25; }
@@ -900,7 +889,18 @@
                 </div>
                 <div class="hero__card-state phone-demo__screen gv-s3">
                   <div class="gv-page">
-                    <div class="gv-card gv-card--inset"><svg class="gv-card__mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="rgba(255,255,255,0.35)"><rect x="45" y="8" width="10" height="84" rx="5"/><rect x="45" y="8" width="10" height="84" rx="5" transform="rotate(60 50 50)"/><rect x="45" y="8" width="10" height="84" rx="5" transform="rotate(120 50 50)"/></g></svg><div class="gv-card__brand">Bloom Hair Studio</div><div class="gv-card__amount">&#163;50.00</div><div class="gv-card__label">Gift voucher</div><div class="gv-card__code">BLOOM-4K2-50</div></div>
+                    <div class="gv-card gv-card--inset">
+                        <div class="gv-card__row">
+                          <div>
+                            <span class="gv-card__logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><g fill="#FFFFFF"><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(72 12 12)"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(144 12 12)"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(216 12 12)"/><ellipse cx="12" cy="5.6" rx="2.7" ry="4.1" transform="rotate(288 12 12)"/></g><circle cx="12" cy="12" r="2.1" fill="#0B1B33"/></svg></span>
+                          <div class="gv-card__eyebrow">GIFT CARD</div>
+                            <div class="gv-card__amount">&#163;50.00</div>
+                            <div class="gv-card__code">BLOOM-4K2-50</div>
+                            <div class="gv-card__small">Bloom Hair Studio, 42 Bridge St, Manchester<br>Redeem in salon or online at bloomhair.co.uk</div>
+                          </div>
+                          <span class="gv-card__qr"><svg viewBox="0 0 21 21" shape-rendering="crispEdges" aria-hidden="true"><g fill="#16223C"><path d="M0 0h7v7h-7z M1 1v5h5v-5z M2 2h3v3h-3z"/><path d="M14 0h7v7h-7z M15 1v5h5v-5z M16 2h3v3h-3z"/><path d="M0 14h7v7h-7z M1 15v5h5v-5z M2 16h3v3h-3z"/><path d="M9 0h2v2h-2z M12 2h2v2h-2z M9 4h2v2h-2z M11 6h2v2h-2z M9 8h2v2h-2z"/><path d="M0 9h2v2h-2z M3 9h2v2h-2z M6 11h2v2h-2z M12 9h2v2h-2z M15 11h2v2h-2z M18 9h2v2h-2z"/><path d="M9 12h2v2h-2z M12 14h2v2h-2z M15 15h2v2h-2z M18 13h2v2h-2z M9 16h2v2h-2z M12 18h2v2h-2z M16 19h2v2h-2z M19 17h2v2h-2z"/></g></svg></span>
+                        </div>
+                      </div>
                     <div class="gv-body">
                       <div class="gv-fact gv-fact--ok">Status: <strong>Redeemable</strong></div>
                       <div class="gv-fact">Balance: <strong>&#163;50.00</strong></div>
