@@ -515,13 +515,19 @@
        the card follows, a beat before the card payment goes through */
     .gv-stack { display: grid; }
     .gv-val { grid-area: 1 / 1; }
-    .gv-val--a { animation: gv-val-a 16s ease-in-out infinite; }
-    .gv-val--b { animation: gv-val-b 16s ease-in-out infinite; }
+    .gv-val--a { opacity: 1; animation: gv-val-a 16s ease-in-out infinite; }
+    .gv-val--b { opacity: 0; animation: gv-val-b 16s ease-in-out infinite; }
 
     @keyframes gv-val-a { 0%, 9% { opacity: 1; } 10.5%, 100% { opacity: 0; } }
     @keyframes gv-val-b { 0%, 9% { opacity: 0; } 10.5%, 100% { opacity: 1; } }
 
-    .gv-chip--a { animation: gv-chip-a 16s ease-in-out infinite; }
+    .gv-chip--a {
+      background: var(--hot);
+      border-color: var(--hot);
+      color: #FFFFFF;
+      animation: gv-chip-a 16s ease-in-out infinite;
+    }
+
     .gv-chip--b { animation: gv-chip-b 16s ease-in-out infinite; }
 
     @keyframes gv-chip-a {
