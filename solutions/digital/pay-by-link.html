@@ -16,7 +16,7 @@
   <meta property="og:image" content="/assets/images/og-default.jpg">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="../../css/variables.css?v=brand-2">
+  <link rel="stylesheet" href="../../css/variables.css?v=brand-18">
   <link rel="stylesheet" href="../../css/base.css?v=brand-2">
   <link rel="stylesheet" href="../../css/components.css?v=brand-2">
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
@@ -454,7 +454,7 @@
     }
 
     .pl-track__dot--paid { background: #31D895; }
-    .pl-track__dot--opened { background: #6E44FF; }
+    .pl-track__dot--opened { background: var(--blurple); }
     .pl-track__dot--sent { background: rgba(11, 27, 51, 0.25); }
 
     .pl-track__ref {
@@ -659,7 +659,7 @@
     @keyframes pl-chase-nudge {
       0%, 23% { background: transparent; border-color: rgba(11, 27, 51, 0.3); transform: scale(1); }
       27% { transform: scale(1.35); }
-      30%, 93% { background: #6E44FF; border-color: #6E44FF; transform: scale(1); }
+      30%, 93% { background: var(--blurple); border-color: var(--blurple); transform: scale(1); }
       100% { background: transparent; border-color: rgba(11, 27, 51, 0.3); }
     }
 
@@ -846,7 +846,7 @@
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: #6E44FF;
+      background: var(--blurple);
       animation: pl-ai-pulse 1.6s ease-in-out infinite;
     }
 
@@ -867,7 +867,7 @@
       height: 100%;
       width: 0;
       border-radius: 999px;
-      background: #6E44FF;
+      background: var(--blurple);
       animation: pl-ai-bar 12s ease-in-out infinite;
     }
 
@@ -928,7 +928,7 @@
 
       /* Chase settles complete */
       .pl-remind__rule span { transform: scaleX(1); }
-      .pl-remind__dot--nudge { background: #6E44FF; border-color: #6E44FF; }
+      .pl-remind__dot--nudge { background: var(--blurple); border-color: var(--blurple); }
       .pl-remind__dot--paid { background: #31D895; border-color: #31D895; }
 
       /* Settle on the finished state: files in, read, links back */

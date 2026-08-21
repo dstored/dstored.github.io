@@ -241,6 +241,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Selection ─── */
 ::selection {
-  background: #6E44FF; /* blurple, per brand-guidelines.md */
+  background: var(--blurple); /* blurple, per brand-guidelines.md */
   color: var(--white);
 }

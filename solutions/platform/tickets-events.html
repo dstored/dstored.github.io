@@ -16,7 +16,7 @@
   <meta property="og:image" content="/assets/images/og-default.jpg">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="../../css/variables.css?v=brand-2">
+  <link rel="stylesheet" href="../../css/variables.css?v=brand-18">
   <link rel="stylesheet" href="../../css/base.css?v=brand-2">
   <link rel="stylesheet" href="../../css/components.css?v=brand-2">
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
@@ -129,10 +129,10 @@
 
     @keyframes np-press {
       0%, 80% { background: var(--hot); transform: scale(1); }
-      86%, 100% { background: #6E44FF; transform: scale(0.97); }
+      86%, 100% { background: var(--blurple); transform: scale(0.97); }
     }
 
-    .hero__card-state:not(.is-active) .np-cta { background: #6E44FF; transform: scale(0.97); }
+    .hero__card-state:not(.is-active) .np-cta { background: var(--blurple); transform: scale(0.97); }
 
     /* ── Ticket checkout demo: the page drags down inside the frame,
        a tap buys the ticket, the paid state follows (12s clock) ── */
@@ -212,7 +212,7 @@
 
     @keyframes tk-press {
       0%, 16% { background: var(--hot); transform: scale(1); }
-      17.5%, 19% { background: #6E44FF; transform: scale(0.97); }
+      17.5%, 19% { background: var(--blurple); transform: scale(0.97); }
       21%, 100% { background: var(--hot); transform: scale(1); }
     }
 
@@ -265,7 +265,7 @@
 
     @keyframes tk-press-redeem {
       0%, 52% { background: var(--hot); transform: scale(1); }
-      53.5%, 55% { background: #6E44FF; transform: scale(0.97); }
+      53.5%, 55% { background: var(--blurple); transform: scale(0.97); }
       57%, 100% { background: var(--hot); transform: scale(1); }
     }
 
@@ -517,7 +517,7 @@
     .np-voucher__brand { font-family: var(--font-display); font-weight: 700; font-size: 13px; margin-bottom: 14px; }
     .np-voucher__amount { font-family: var(--font-display); font-weight: 700; font-size: 34px; letter-spacing: -0.02em; }
     .np-voucher__label { font-size: 10.5px; opacity: 0.65; margin-bottom: 12px; }
-    .np-voucher__code { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: #8F70FF; }
+    .np-voucher__code { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--blurple-bright); }
 
     .np-amounts { display: flex; gap: 8px; margin-bottom: 14px; }
 

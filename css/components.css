@@ -344,7 +344,7 @@
 }
 
 .marquee__separator {
-  color: #8F70FF; /* bright blurple: the navy-legible secondary, per brand-guidelines.md */
+  color: var(--blurple-bright); /* bright blurple: the navy-legible secondary, per brand-guidelines.md */
 }
 
 @keyframes marquee {

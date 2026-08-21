@@ -8,6 +8,9 @@
   --hot: #EB1857;
   --hot-hover: #D1104A;
   --hot-light: rgba(235, 24, 87, 0.1);
+  --blurple: #6E44FF;
+  --blurple-bright: #8F70FF; /* on navy: #6E44FF goes muddy against --ink */
+  --blurple-dark: #5A33E6; /* pressed state */
   --paper: #F2EFE8;
   --paper-dark: #E8E4DB;
   --mute: #586175;

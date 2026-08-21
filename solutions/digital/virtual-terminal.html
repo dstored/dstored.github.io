@@ -16,7 +16,7 @@
   <meta property="og:image" content="/assets/images/og-default.jpg">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="../../css/variables.css?v=brand-2">
+  <link rel="stylesheet" href="../../css/variables.css?v=brand-18">
   <link rel="stylesheet" href="../../css/base.css?v=brand-2">
   <link rel="stylesheet" href="../../css/components.css?v=brand-2">
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
@@ -161,8 +161,8 @@
     }
 
     .vt-gen__seg-btn--active {
-      border: 1.5px solid #6E44FF;
-      color: #6E44FF;
+      border: 1.5px solid var(--blurple);
+      color: var(--blurple);
       background: rgba(110, 68, 255, 0.05);
     }
 
@@ -217,9 +217,9 @@
     .vt-gen__btn--primary { animation: vt-press 12s ease-in-out infinite; }
 
     @keyframes vt-press {
-      0%, 32% { transform: scale(1); background: #6E44FF; }
-      33%, 34.5% { transform: scale(0.97); background: #5A33E6; }
-      36%, 100% { transform: scale(1); background: #6E44FF; }
+      0%, 32% { transform: scale(1); background: var(--blurple); }
+      33%, 34.5% { transform: scale(0.97); background: var(--blurple-dark); }
+      36%, 100% { transform: scale(1); background: var(--blurple); }
     }
 
     .vt-gen__btn {
@@ -233,7 +233,7 @@
       font-weight: 600;
     }
 
-    .vt-gen__btn--primary { background: #6E44FF; color: #FFFFFF; }
+    .vt-gen__btn--primary { background: var(--blurple); color: #FFFFFF; }
 
     /* States 2 and 3: the payment summary */
     .vt-gen__panel {
@@ -257,7 +257,7 @@
       height: 22px;
       border-radius: 50%;
       border: 2.5px solid rgba(110, 68, 255, 0.2);
-      border-top-color: #6E44FF;
+      border-top-color: var(--blurple);
       animation: vt-spin 0.9s linear infinite;
       flex-shrink: 0;
     }

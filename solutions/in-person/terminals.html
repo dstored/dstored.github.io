@@ -16,7 +16,7 @@
   <meta property="og:image" content="/assets/images/og-default.jpg">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="../../css/variables.css?v=brand-2">
+  <link rel="stylesheet" href="../../css/variables.css?v=brand-18">
   <link rel="stylesheet" href="../../css/base.css?v=brand-2">
   <link rel="stylesheet" href="../../css/components.css?v=brand-2">
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
@@ -214,13 +214,13 @@
 
     @keyframes pd-press {
       0%, 80% { background: var(--hot); transform: scale(1); }
-      86%, 94% { background: #6E44FF; transform: scale(0.96); }
-      100% { background: #6E44FF; transform: scale(0.96); }
+      86%, 94% { background: var(--blurple); transform: scale(0.96); }
+      100% { background: var(--blurple); transform: scale(0.96); }
     }
 
     /* Inactive screens hold their end states so fade-outs never snap back */
     .phone-demo .hero__card-state:not(.is-active) .pd-cta:not(.pd-cta--outline) {
-      background: #6E44FF;
+      background: var(--blurple);
       transform: scale(0.96);
     }
 

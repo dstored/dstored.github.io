@@ -1303,13 +1303,13 @@
 /* ─── Blurple secondary (brand-guidelines.md) ─── */
 /* Structural marks on navy use the bright navy-legible variant */
 .pillar-card.card--dark .card__label {
-  color: #8F70FF;
+  color: var(--blurple-bright);
 }
 
 /* Navy cards flip to blurple on hover; all text goes white */
 .pillar-card.card--dark:hover {
-  background: #6E44FF;
-  border-color: #6E44FF;
+  background: var(--blurple);
+  border-color: var(--blurple);
 }
 
 .pillar-card.card--dark:hover .card__label,
@@ -1319,7 +1319,7 @@
 
 /* Blurple strike through the crossed-out industry rate */
 .pricing-teaser__rate-old {
-  text-decoration-color: #6E44FF;
+  text-decoration-color: var(--blurple);
   text-decoration-thickness: 2px;
 }
 

@@ -1266,7 +1266,7 @@
 
 /* Small marks on navy use the bright navy-legible blurple (brand-guidelines.md) */
 .pillar-card.card--dark .card__label {
-  color: #8F70FF;
+  color: var(--blurple-bright);
 }
 
 .pillar-card .card__title {
@@ -1284,8 +1284,8 @@
 
 /* Navy cards flip to blurple on hover, matching the homepage */
 .pillar-card.card--dark:hover {
-  background: #6E44FF;
-  border-color: #6E44FF;
+  background: var(--blurple);
+  border-color: var(--blurple);
   color: var(--white);
 }
 
@@ -2238,7 +2238,7 @@
   font-weight: var(--weight-medium);
   color: rgba(11, 27, 51, 0.4);
   text-decoration: line-through;
-  text-decoration-color: #6E44FF; /* blurple strike: "we cut this" */
+  text-decoration-color: var(--blurple); /* blurple strike: "we cut this" */
   text-decoration-thickness: 2px;
   margin-bottom: var(--space-2);
   min-height: 1.6em;
