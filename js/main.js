@@ -228,16 +228,30 @@ function initStatCounters() {
   }
 }
 
-/* ─── Live counter — starts at 1,412 on 2026-05-20, +20 per day ─── */
+/* ─── Live counter — 1,945 on 2026-09-04, +18 per working day.
+   Merchants go live Mon-Fri only, so weekends add nothing ─── */
 function initLiveCounter() {
   const el = document.querySelector('[data-live-counter] .live-pill__count');
   if (!el) return;
 
-  const startDate = new Date('2026-05-20T00:00:00Z');
-  const today = new Date();
+  const START = Date.UTC(2026, 8, 4); // 4 Sep 2026, a Friday
+  const BASE = 1945;
+  const PER_WORKING_DAY = 18;
+
+  const now = new Date();
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
   const msPerDay = 1000 * 60 * 60 * 24;
-  const daysSince = Math.max(0, Math.floor((today - startDate) / msPerDay));
-  const count = 1412 + (daysSince * 20);
+  const days = Math.max(0, Math.floor((today - START) / msPerDay));
+
+  // whole weeks contribute five working days each, then walk the remainder
+  const startDay = new Date(START).getUTCDay(); // 0 Sun … 6 Sat
+  let workingDays = Math.floor(days / 7) * 5;
+  for (let i = 1; i <= days % 7; i++) {
+    const weekday = (startDay + i) % 7;
+    if (weekday !== 0 && weekday !== 6) workingDays++;
+  }
+
+  const count = BASE + (workingDays * PER_WORKING_DAY);
   el.textContent = count.toLocaleString('en-GB');
 }
 
