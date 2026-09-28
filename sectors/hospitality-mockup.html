@@ -558,7 +558,10 @@
 
     /* ---- hospitality additions ---- */
     .solution-hero .solution-hero__inner { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: var(--space-10); align-items: center; }
-    .solution-hero .hero__visual { max-width: 500px; } /* same circle as the homepage: 500x500, 2px ink ring */
+    .solution-hero .hero__visual { width: 500px; max-width: 100%; margin-left: auto; }
+    /* the drawn circle sits inside the perfect ring, on paper, exactly as the homepage asset does */
+    .solution-hero .hero__image-frame { background: var(--paper); }
+    .hero__blob { width: 100%; height: 100%; display: block; } /* same circle as the homepage: 500x500, 2px ink ring */
 
     .section-rule { border: 0; border-top: 1px solid rgba(11, 27, 51, 0.12); margin: 0; }
     .content-split .iv-thread { max-width: 380px; margin-left: auto; }
@@ -882,7 +885,13 @@
           </div>
           <div class="hero__visual" data-animate>
             <div class="hero__image-frame">
-              <img src="/assets/images/sectors/hospitality/hero.jpg" alt="A barista making coffee behind the counter" class="hero__image">
+              <svg class="hero__blob" viewBox="0 0 520 520" aria-hidden="true">
+                <defs>
+                  <clipPath id="hospBlob"><path d="M491.1 260.0C491.0 289.4 483.8 320.7 472.7 348.1C461.6 375.5 445.4 403.9 424.6 424.6C403.8 445.3 375.4 461.1 347.9 472.3C320.5 483.6 289.4 492.0 260.0 492.2C230.6 492.4 198.6 485.3 171.5 473.7C144.4 462.1 118.5 443.3 97.5 422.5C76.6 401.6 56.8 375.9 45.6 348.8C34.4 321.7 30.3 289.6 30.4 260.0C30.4 230.4 34.8 198.4 46.0 171.3C57.2 144.3 76.5 118.1 97.5 97.5C118.5 76.9 144.9 59.1 172.0 47.6C199.1 36.1 230.4 29.0 260.0 28.4C289.6 27.8 322.3 32.6 349.4 44.1C376.5 55.6 402.1 76.0 422.7 97.3C443.3 118.6 461.6 144.6 473.0 171.8C484.4 198.9 491.2 230.6 491.1 260.0Z"/></clipPath>
+                </defs>
+                <image href="/assets/images/sectors/hospitality/hero.jpg" x="0" y="0" width="520" height="520" preserveAspectRatio="xMidYMid slice" clip-path="url(#hospBlob)"></image>
+                <path d="M491.1 260.0C491.0 289.4 483.8 320.7 472.7 348.1C461.6 375.5 445.4 403.9 424.6 424.6C403.8 445.3 375.4 461.1 347.9 472.3C320.5 483.6 289.4 492.0 260.0 492.2C230.6 492.4 198.6 485.3 171.5 473.7C144.4 462.1 118.5 443.3 97.5 422.5C76.6 401.6 56.8 375.9 45.6 348.8C34.4 321.7 30.3 289.6 30.4 260.0C30.4 230.4 34.8 198.4 46.0 171.3C57.2 144.3 76.5 118.1 97.5 97.5C118.5 76.9 144.9 59.1 172.0 47.6C199.1 36.1 230.4 29.0 260.0 28.4C289.6 27.8 322.3 32.6 349.4 44.1C376.5 55.6 402.1 76.0 422.7 97.3C443.3 118.6 461.6 144.6 473.0 171.8C484.4 198.9 491.2 230.6 491.1 260.0Z" fill="none" stroke="#0B1B33" stroke-width="2.4"/>
+              </svg>
             </div>
             <div class="hero__floating-card hero__floating-card--1 float">
               <div class="hero__card-state is-active">
