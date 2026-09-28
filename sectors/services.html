@@ -33,7 +33,9 @@
     }
 
     .solution-hero .solution-hero__inner .solution-hero__title {
-      font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem);
+      font-size: clamp(4.75rem, 3.2rem + 10.5vw, 8.75rem); /* "Job done." is the
+         longest hero line on the site; capped here so it holds two lines
+         beside a full-size circle */
       line-height: calc(0.85em + 5px);
       letter-spacing: -0.05em;
       margin-top: 23px;
@@ -289,7 +291,7 @@
       display: grid;
       /* minmax(0,...) or the oversized headline forces the columns unequal;
          the text side is weighted so the headline keeps its intended lines */
-      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
       gap: 48px;
       align-items: center;
     }
