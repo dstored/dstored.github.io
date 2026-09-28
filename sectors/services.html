@@ -287,8 +287,9 @@
     /* homepage hero layout: two equal columns, 48px apart, vertically centred */
     .solution-hero .solution-hero__inner {
       display: grid;
-      /* minmax(0,...) or the oversized headline forces the columns unequal */
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      /* minmax(0,...) or the oversized headline forces the columns unequal;
+         the text side is weighted so the headline keeps its intended lines */
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
       gap: 48px;
       align-items: center;
     }
