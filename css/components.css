@@ -632,7 +632,7 @@ textarea.input {
   width: 4.5px;
   height: 4.5px;
   border-radius: 50%;
-  background: #31D895; /* emerald — semantic: live */
+  background: var(--green); /* emerald — semantic: live */
   animation: pulse-ring 2s ease-in-out infinite;
   flex-shrink: 0;
 }

@@ -262,7 +262,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #31D895; /* emerald — semantic: settled/paid */
+  background: var(--green); /* emerald — semantic: settled/paid */
   flex-shrink: 0;
 }
 
@@ -764,7 +764,7 @@
 
 .dashboard-mock__chart {
   flex: 1;
-  background: linear-gradient(180deg, rgba(49, 216, 149, 0.15) 0%, rgba(49, 216, 149, 0.02) 100%);
+  background: linear-gradient(180deg, rgba(var(--green-rgb), 0.15) 0%, rgba(var(--green-rgb), 0.02) 100%);
   border-radius: var(--radius-md);
   min-height: 160px;
   position: relative;
@@ -780,8 +780,8 @@
   height: 60%;
   background: linear-gradient(180deg,
     transparent 0%,
-    rgba(49, 216, 149, 0.08) 30%,
-    rgba(49, 216, 149, 0.2) 100%
+    rgba(var(--green-rgb), 0.08) 30%,
+    rgba(var(--green-rgb), 0.2) 100%
   );
   clip-path: polygon(0% 80%, 10% 60%, 25% 70%, 40% 30%, 55% 45%, 70% 15%, 85% 35%, 100% 10%, 100% 100%, 0% 100%);
 }

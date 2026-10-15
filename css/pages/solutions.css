@@ -1148,7 +1148,7 @@
 /* ─── Trust line ───
    Trustpilot is named in words and linked to the public profile instead of
    showing their logo (Danny's call, 24 July 2026). The star is a plain
-   five-point star in Stored green #31D895, deliberately NOT Trustpilot's
+   five-point star in Stored green (--green), deliberately NOT Trustpilot's
    #00B67A rounded badge. The number sits in [data-trustpilot-rating] so
    scripts/update-trustpilot-rating.mjs can refresh it weekly. */
 .trust-line {
@@ -1410,7 +1410,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #31D895;
+  background: var(--green);
   flex-shrink: 0;
 }
 
