@@ -80,9 +80,7 @@
 
 .hero__title {
   font-family: var(--font-display);
-  /* 12.5% under the site-wide hero cap so "anywhere.*" fits on one line
-     beside the photo (Danny, 20 Oct 2026) */
-  font-size: clamp(4.15rem, 2.8rem + 9.2vw, 8.75rem);
+  font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem);
   font-weight: 700;
   line-height: 0.85; /* homepage exception: no +5px, per brand-guidelines.md */
   letter-spacing: -0.05em;
@@ -1112,7 +1110,7 @@
   }
 
   .hero__title {
-    font-size: clamp(2.625rem, 2.19rem + 4.375vw, 4.375rem);
+    font-size: clamp(3rem, 2.5rem + 5vw, 5rem);
   }
 
   .pillars-grid {
