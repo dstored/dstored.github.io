@@ -662,3 +662,46 @@ textarea.input {
     white-space: nowrap;
   }
 }
+
+/* ─── Phones: hero first, graphic after (Emily's layout, approved by Danny
+   23 Oct 2026). Below 1024px the demo graphic used to sit above the
+   headline and push the buttons off the first screen; it now follows them,
+   and the gaps around the hero tighten on phones. ─── */
+@media (max-width: 1024px) {
+  .solution-hero__visual {
+    order: 1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__title,
+  .solution-hero__title {
+    margin-top: 0 !important;
+    margin-bottom: var(--space-5) !important;
+  }
+
+  body .hero__actions,
+  body .solution-hero__actions {
+    gap: 8px;
+    margin-top: var(--space-6);
+  }
+
+  body .hero__actions .btn--lg,
+  body .solution-hero__actions .btn--lg {
+    padding: 0.625rem 0.8125rem;
+  }
+
+  body .proof-strip,
+  body .solution-hero__trust {
+    margin-top: var(--space-5);
+    font-size: 0.8125rem;
+  }
+
+  .proof-strip .trust-line__star,
+  .solution-hero__trust .trust-line__star {
+    width: 18px;
+    height: 18px;
+    vertical-align: -3px;
+    margin-right: 6px;
+  }
+}

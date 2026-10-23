@@ -19,7 +19,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../../css/variables.css?v=green-1">
   <link rel="stylesheet" href="../../css/base.css?v=brand-2">
-  <link rel="stylesheet" href="../../css/components.css?v=oneline-1">
+  <link rel="stylesheet" href="../../css/components.css?v=mobile-1">
   <link rel="stylesheet" href="../../css/animations.css?v=brand-2">
   <link rel="stylesheet" href="../../css/header.css">
   <link rel="stylesheet" href="../../css/footer.css">
@@ -724,6 +724,21 @@
       .cd-pop-1, .cd-pop-2, .cd-pop-3 {
         opacity: 1;
         animation: none;
+      }
+    }
+
+    /* Shorter laptop screens: the same compression as the payment gateway
+       page, so the ticker sits flush on the fold (Danny, 23 Oct 2026) */
+    @media (min-width: 769px) and (max-height: 900px) {
+      .solution-hero {
+        min-height: calc(100vh - 68px); /* ticker flush on the fold */
+        padding-top: 94px;
+        padding-bottom: 42px;
+      }
+
+      .solution-hero .solution-hero__inner .solution-hero__title {
+        margin-top: 16px;
+        margin-bottom: 56px;
       }
     }
   </style>
