@@ -1345,17 +1345,6 @@
   margin-top: var(--space-6);
 }
 
-/* A section headline that stays on one line on desktop: lifts the 720px
-   header cap. Narrower screens wrap as normal. */
-@media (min-width: 1024px) {
-  .section-header--one-line {
-    max-width: none;
-  }
-
-  .section-header--one-line .section-header__title {
-    white-space: nowrap;
-  }
-}
 
 @media (max-width: 1024px) {
   .hero__proof {
