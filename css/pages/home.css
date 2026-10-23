@@ -1327,3 +1327,52 @@
 .cta-band__title {
   line-height: 0.85;
 }
+
+/* ─── Hero Trustpilot line and one-line section headline (Emily's proposal,
+   approved by Danny 23 Oct 2026) ─── */
+.proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 4px;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+
+.hero__proof {
+  margin-top: var(--space-6);
+}
+
+/* A section headline that stays on one line on desktop: lifts the 720px
+   header cap. Narrower screens wrap as normal. */
+@media (min-width: 1024px) {
+  .section-header--one-line {
+    max-width: none;
+  }
+
+  .section-header--one-line .section-header__title {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero__proof {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .proof-strip {
+    margin-top: var(--space-5);
+    font-size: 0.8125rem;
+  }
+
+  .proof-strip .trust-line__star {
+    width: 18px;
+    height: 18px;
+    vertical-align: -3px;
+    margin-right: 6px;
+  }
+}
