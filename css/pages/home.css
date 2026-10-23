@@ -1376,3 +1376,14 @@
     margin-right: 6px;
   }
 }
+
+/* Counter, headline, subtitle and buttons sit 5px higher; the Trustpilot
+   line under them stays put (Danny, 23 Oct 2026). A relative offset moves
+   them without changing the layout around them. */
+.hero__content > .live-pill,
+.hero__title,
+.hero__subtitle,
+.hero__actions {
+  position: relative;
+  top: -5px;
+}
