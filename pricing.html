@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing: 1.2% flat card payment rate | Stored</title>
-  <meta name="description" content="Transparent card payment pricing for UK businesses. One flat 1.2% rate, in person and online, under £200,000 annual volume. Bespoke rates above.">
+  <title>Pricing: 1% flat rate, online and offline | Stored</title>
+  <meta name="description" content="One flat 1% rate on card payments, online and in person, under £200k a year. No punitive contracts and no price rises mid-contract.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.joinstored.com/pricing.html">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Pricing: 1.2% flat card payment rate | Stored">
-  <meta property="og:description" content="Transparent card payment pricing for UK businesses. One flat 1.2% rate, in person and online, under £200,000 annual volume. Bespoke rates above.">
+  <meta property="og:title" content="Pricing: 1% flat rate, online and offline | Stored">
+  <meta property="og:description" content="One flat 1% rate on card payments, online and in person, under £200k a year. No punitive contracts and no price rises mid-contract.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.joinstored.com/pricing.html">
   <meta property="og:image" content="https://www.joinstored.com/assets/images/og-default.jpg">
@@ -504,6 +504,12 @@
       .rc-pop { opacity: 1; animation: none; }
       .segment-card__bar-fill { transition: none; width: var(--fill, 40%); }
     }
+    /* "Terminals. Free over £100k a year." only fits one line from 1280px;
+       between 1024 and 1279 it wraps like any other section headline */
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      body .section-header--one-line { max-width: 720px; }
+      body .section-header--one-line .section-header__title { white-space: normal; }
+    }
   </style>
 </head>
 <body class="pricing-page">
@@ -594,7 +600,7 @@
           <a href="/solutions/digital/virtual-terminal.html" class="mega-menu__link">
             <div class="mega-menu__link-text">
               <span class="mega-menu__link-title">Virtual Terminal</span>
-              <span class="mega-menu__link-desc">MOTO payments, PCI compliant</span>
+              <span class="mega-menu__link-desc">Card payments over the phone</span>
             </div>
           </a>
           <a href="/solutions/digital/bulk-payments.html" class="mega-menu__link">
@@ -800,7 +806,7 @@
       <div class="container">
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
-            <h1 class="solution-hero__title">1.2%.<br><span style="white-space: nowrap;">Flat.<span class="solution-hero__asterisk">*</span></span></h1>
+            <h1 class="solution-hero__title">1%.<br><span style="white-space: nowrap;">Flat.<span class="solution-hero__asterisk">*</span></span></h1>
             <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>one flat rate on card payments, in person and online, for merchants under &pound;200,000 a year. Bespoke rates above.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up.html" class="btn btn--primary btn--lg btn--icon-right">
@@ -814,24 +820,24 @@
             </div>
           </div>
           <div class="solution-hero__visual">
-            <div class="receipt-demo" role="img" aria-label="A receipt for a one hundred pound sale with a one pound twenty card fee at 1.2 per cent, settled the next working day">
+            <div class="receipt-demo" role="img" aria-label="A receipt for a one hundred pound sale with a one pound card fee at 1 per cent, settled the next working day">
               <div class="receipt-demo__screens" data-cycle-card data-cycle-interval="4000">
                 <div class="hero__card-state is-active receipt-demo__screen">
                   <div class="rc-head">Sun Shack</div>
                   <div class="rc-sub">Card payment &middot; 10:24</div>
                   <div class="rc-divide"></div>
                   <div class="rc-row rc-pop rc-pop--1"><span>Sale</span><span>&pound;100.00</span></div>
-                  <div class="rc-row rc-pop rc-pop--2"><span>Card fee &middot; 1.2%</span><span>&pound;1.20</span></div>
+                  <div class="rc-row rc-pop rc-pop--2"><span>Card fee &middot; 1%</span><span>&pound;1.00</span></div>
                   <div class="rc-divide"></div>
-                  <div class="rc-row rc-row--total rc-pop rc-pop--3"><span>You receive</span><span>&pound;98.80</span></div>
-                  <div class="rc-flat">One flat rate. 1.2%.</div>
+                  <div class="rc-row rc-row--total rc-pop rc-pop--3"><span>You receive</span><span>&pound;99.00</span></div>
+                  <div class="rc-flat">One flat rate. 1%.</div>
                 </div>
                 <div class="hero__card-state receipt-demo__screen rc-settled">
                   <svg class="rc-tick" viewBox="0 0 58 58" fill="none" aria-hidden="true">
                     <circle cx="29" cy="29" r="26" style="fill: var(--green)" stroke="#16223C" stroke-width="3"/>
                     <path d="M18 30l8 8 14-16" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  <div class="rc-settled__amount">&pound;98.80</div>
+                  <div class="rc-settled__amount">&pound;99.00</div>
                   <div class="rc-settled__meta">In your account the next working day.</div>
                   <div class="rc-settled__pill"><span class="rc-settled__dot"></span>SETTLED</div>
                 </div>
@@ -852,10 +858,10 @@
 
     <div class="marquee">
       <div class="marquee__track">
-        <span class="marquee__item">1.2% FLAT <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">1% FLAT <span class="marquee__separator">&rarr;</span></span>
         <span class="marquee__item">IN PERSON <span class="marquee__separator">&rarr;</span></span>
         <span class="marquee__item">ONLINE <span class="marquee__separator">&rarr;</span></span>
-        <span class="marquee__item">&pound;14/MO <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">FREE TERMINALS OVER &pound;100K <span class="marquee__separator">&rarr;</span></span>
         <span class="marquee__item">NO HIDDEN FEES <span class="marquee__separator">&rarr;</span></span>
         <span class="marquee__item">NO LOCK-IN <span class="marquee__separator">&rarr;</span></span>
       </div>
@@ -878,7 +884,7 @@
             <span class="segment-card__tag">UNDER &pound;200K A YEAR</span>
             <h3 class="segment-card__title">Published rate.<br>Start today.</h3>
             <div>
-              <div class="segment-card__rate" data-count-to="1.2" data-decimals="1" data-suffix="%">0.0%</div>
+              <div class="segment-card__rate" data-count-to="1" data-decimals="0" data-suffix="%">0%</div>
               <div class="segment-card__rate-label">flat, in person and online.</div>
             </div>
             <p class="segment-card__text">All-in pricing for small and growing UK businesses. No auth fees, no PCI fees, no monthly minimums, no contracts.</p>
@@ -922,41 +928,41 @@
       <div class="container">
         <div class="section-header" data-animate>
           <div class="section-header__overline">UNDER &pound;200K &middot; PUBLISHED RATE</div>
-          <h2 class="section-header__title">In person and online. 1.2%.</h2>
+          <h2 class="section-header__title">In person and online. 1%.</h2>
           <p class="section-header__subtitle">One flat rate covers contactless, chip &amp; PIN, wallets, gateway, pay-by-link, invoicing and virtual terminal.</p>
         </div>
 
         <div class="headline-rate" data-animate>
           <div>
-            <div class="headline-rate__big" data-count-to="1.2" data-decimals="1" data-suffix="%">0.0%</div>
+            <div class="headline-rate__big" data-count-to="1" data-decimals="0" data-suffix="%">0%</div>
             <div class="headline-rate__label">per card transaction, every channel</div>
           </div>
           <div>
             <div class="headline-rate__text">A single, transparent rate for Visa, Mastercard, Maestro and all major wallets, in person and online. No tiered surcharges. No surprises on your statement.</div>
-            <p class="headline-rate__text" style="margin-top: var(--space-4);"><strong>Hardware from &pound;14/month.</strong> Countertop, portable and mobile terminals available on monthly rental or outright purchase.</p>
+            <p class="headline-rate__text" style="margin-top: var(--space-4);"><strong>Terminals free when you process &pound;100,000 or more a year.</strong> Under that, rent from &pound;14 a month or buy outright from &pound;299.</p>
           </div>
         </div>
 
         <div class="rate-tiles" data-stagger>
           <div class="rate-tile">
             <span class="rate-tile__label">In-person</span>
-            <div class="rate-tile__rate">1.2%</div>
+            <div class="rate-tile__rate">1%</div>
             <span class="rate-tile__sub">Contactless, chip &amp; PIN, wallets.</span>
           </div>
           <div class="rate-tile">
             <span class="rate-tile__label">Online</span>
-            <div class="rate-tile__rate">1.2%</div>
+            <div class="rate-tile__rate">1%</div>
             <span class="rate-tile__sub">Gateway, pay-by-link, invoicing.</span>
           </div>
           <div class="rate-tile">
             <span class="rate-tile__label">Virtual terminal</span>
-            <div class="rate-tile__rate">1.2%</div>
-            <span class="rate-tile__sub">MOTO &middot; PCI compliant.</span>
+            <div class="rate-tile__rate">1%</div>
+            <span class="rate-tile__sub">Card payments over the phone.</span>
           </div>
           <div class="rate-tile">
             <span class="rate-tile__label">Terminal hardware</span>
-            <div class="rate-tile__rate">&pound;14<span style="font-size: var(--text-lg); color: var(--text-secondary);">/mo</span></div>
-            <span class="rate-tile__sub">Or buy outright from &pound;299.</span>
+            <div class="rate-tile__rate">Free</div>
+            <span class="rate-tile__sub">Over &pound;100k a year. Otherwise &pound;14/mo, or &pound;299 to buy.</span>
           </div>
         </div>
       </div>
@@ -967,17 +973,17 @@
     <!-- ════════════════════════════════════════ -->
     <section class="section">
       <div class="container">
-        <div class="section-header section-header--center" data-animate>
+        <div class="section-header section-header--center section-header--one-line" data-animate>
           <div class="section-header__overline">HARDWARE</div>
-          <h2 class="section-header__title">Terminals. From &pound;14 a month.</h2>
-          <p class="section-header__subtitle">Countertop, portable and mobile, on monthly rental or outright purchase from &pound;299. Pre-configured, shipped next working day.</p>
+          <h2 class="section-header__title">Terminals. Free over &pound;100k a year.</h2>
+          <p class="section-header__subtitle">Free when you process &pound;100,000 or more a year. Under that, &pound;14 a month to rent or &pound;299 to buy. Countertop, portable and mobile, pre-configured and shipped next working day.</p>
         </div>
 
         <div class="included-grid" data-stagger>
           <div class="included-card" style="border-top: 3px solid var(--border-light);">
             <div class="included-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="4" width="16" height="20" rx="2"/><line x1="12" y1="9" x2="20" y2="9"/><line x1="12" y1="28" x2="20" y2="28"/><line x1="16" y1="24" x2="16" y2="28"/></svg></div>
             <div class="included-card__title">Countertop.</div>
-            <p class="included-card__text">Fixed at the till. Contactless, chip &amp; PIN and wallets, all at the same 1.2% flat rate.</p>
+            <p class="included-card__text">Fixed at the till. Contactless, chip &amp; PIN and wallets, all at the same 1% flat rate.</p>
           </div>
 
           <div class="included-card" style="border-top: 3px solid var(--hot);">
@@ -1116,7 +1122,7 @@
           <div class="capability-card">
             <div class="capability-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/></svg></div>
             <div class="capability-card__title">Additional terminals.</div>
-            <p class="capability-card__text">Bolt on extra hardware as you grow. &pound;14/month per device, or buy outright.</p>
+            <p class="capability-card__text">Bolt on extra terminals as you grow.</p>
           </div>
         </div>
       </div>
@@ -1179,7 +1185,7 @@
               <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </button>
             <div class="faq-item__answer">
-              <div class="faq-item__answer-inner">Annual card volume. Under &pound;200,000 a year, the published 1.2% flat rate applies, in person and online. Over &pound;200,000, we price bespoke because the economics change, and we want to win your business on rate.</div>
+              <div class="faq-item__answer-inner">Annual card volume. Under &pound;200,000 a year, the published 1% flat rate applies, in person and online. Over &pound;200,000, we price bespoke because the economics change, and we want to win your business on rate.</div>
             </div>
           </div>
 
