@@ -49,6 +49,27 @@
     a.pillar-card { text-decoration: none; color: inherit; display: flex; }
     a.pillar-card .card__link { color: inherit; }
 
+    /* The number label sits as tall as the icon, so long titles start
+       below it instead of running into it */
+    .pillars-grid > .pillar-card .card__label { min-height: 56px; }
+    @media (max-width: 420px) {
+      .pillars-grid > .pillar-card .card__title { font-size: var(--text-3xl); }
+    }
+
+    /* Seven sectors: four across then three on desktop, pairs on tablet
+       with the last card full width, so no row is left with one card */
+    @media (min-width: 1360px) {
+      .pillars-grid { grid-template-columns: repeat(12, 1fr); }
+      .pillars-grid > .pillar-card { grid-column: span 3; }
+      .pillars-grid > .pillar-card:nth-child(n+5) { grid-column: span 4; }
+      .pillars-grid > .pillar-card .card__title { font-size: var(--text-3xl); }
+    }
+    @media (min-width: 769px) and (max-width: 1359px) {
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .pillars-grid > .pillar-card .card__title { font-size: var(--text-3xl); }
+      .pillars-grid > .pillar-card:last-child { grid-column: span 2; }
+    }
+
     /* Shorter laptop screens: same compression as the homepage hero,
        so subtitle and CTA hold above the fold on a 13" screen */
     @media (min-width: 769px) and (max-height: 900px) {
@@ -228,20 +249,26 @@
           <div class="mega-menu__column-title">Service &amp; trade</div>
           <a href="/sectors/services.html" class="mega-menu__link">
             <div class="mega-menu__link-text">
-              <span class="mega-menu__link-title">Services</span>
-              <span class="mega-menu__link-desc">Trades, agencies &amp; field teams</span>
+              <span class="mega-menu__link-title">Trades</span>
+              <span class="mega-menu__link-desc">Tradespeople &amp; field teams</span>
+            </div>
+          </a>
+          <a href="/sectors/professional-services.html" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Professional services</span>
+              <span class="mega-menu__link-desc">Accountants, agencies &amp; consultants</span>
             </div>
           </a>
           <a href="/sectors/b2b.html" class="mega-menu__link">
             <div class="mega-menu__link-text">
               <span class="mega-menu__link-title">B2B</span>
-              <span class="mega-menu__link-desc">Net-term invoicing &amp; MOTO</span>
+              <span class="mega-menu__link-desc">Invoices &amp; telephone payments</span>
             </div>
           </a>
           <a href="/sectors/wholesale.html" class="mega-menu__link">
             <div class="mega-menu__link-text">
               <span class="mega-menu__link-title">Wholesale</span>
-              <span class="mega-menu__link-desc">Bulk billing &amp; ERP integrations</span>
+              <span class="mega-menu__link-desc">Bulk billing &amp; trade accounts</span>
             </div>
           </a>
         </div>
@@ -326,7 +353,8 @@
         <a href="/sectors/hospitality.html" class="mobile-nav__link">Hospitality</a>
         <a href="/sectors/beauty-wellness.html" class="mobile-nav__link">Beauty &amp; Wellness</a>
         <a href="/sectors/retail.html" class="mobile-nav__link">Retail</a>
-        <a href="/sectors/services.html" class="mobile-nav__link">Services</a>
+        <a href="/sectors/services.html" class="mobile-nav__link">Trades</a>
+        <a href="/sectors/professional-services.html" class="mobile-nav__link">Professional services</a>
         <a href="/sectors/b2b.html" class="mobile-nav__link">B2B</a>
         <a href="/sectors/wholesale.html" class="mobile-nav__link">Wholesale</a>
       </div>
@@ -399,48 +427,55 @@
       <div class="container">
         <div class="section-header section-header--center section-header--tight section-header--wide" data-animate>
           <div class="section-header__overline">SECTORS</div>
-          <h2 class="section-header__title">Six trades. <span class="highlight">One account.</span></h2>
+          <h2 class="section-header__title">Seven sectors. <span class="highlight">One account.</span></h2>
           <p class="section-header__subtitle">Pick your sector and see how Stored fits it.</p>
         </div>
 
         <div class="pillars-grid" data-stagger>
           <a href="/sectors/hospitality.html" class="card card--dark pillar-card">
-            <span class="card__label">01 / 06</span>
+            <span class="card__label">01 / 07</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-4 5-7 12-7s12 3 12 7H4z"/><line x1="4" y1="18" x2="28" y2="18"/><path d="M5 22c0 2 2 4 5 4h12c3 0 5-2 5-4"/></svg></div>
             <h3 class="card__title">Hospitality.</h3>
             <p class="card__text">Restaurants, bars and caf&eacute;s. Fast terminals and POS built for service.</p>
             <span class="card__link">Explore <span aria-hidden="true">&rarr;</span></span>
           </a>
           <a href="/sectors/beauty-wellness.html" class="card card--dark pillar-card">
-            <span class="card__label">02 / 06</span>
+            <span class="card__label">02 / 07</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4c-3 0-5 2-5 5v10c0 3 2 5 5 5s5-2 5-5V9c0-3-2-5-5-5z"/><path d="M11 24l-2 4h14l-2-4"/></svg></div>
             <h3 class="card__title">Beauty &amp; wellness.</h3>
             <p class="card__text">Salons, spas and clinics. Deposits by link, cards at the chair.</p>
             <span class="card__link">Explore <span aria-hidden="true">&rarr;</span></span>
           </a>
           <a href="/sectors/retail.html" class="card card--dark pillar-card">
-            <span class="card__label">03 / 06</span>
+            <span class="card__label">03 / 07</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10h20l-2 16H8L6 10z"/><path d="M11 10V7a5 5 0 0 1 10 0v3"/></svg></div>
             <h3 class="card__title">Retail.</h3>
             <p class="card__text">Single shops to multi-store. POS and terminals with one view of takings.</p>
             <span class="card__link">Explore <span aria-hidden="true">&rarr;</span></span>
           </a>
           <a href="/sectors/services.html" class="card card--dark pillar-card">
-            <span class="card__label">04 / 06</span>
+            <span class="card__label">04 / 07</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18l4-4M12 16l-3 3a4 4 0 0 0 5.7 5.7l3-3M20 16l3-3a4 4 0 0 0-5.7-5.7l-3 3"/></svg></div>
-            <h3 class="card__title">Services.</h3>
-            <p class="card__text">Trades, agencies and field teams. Send a payment link the moment the job is done.</p>
+            <h3 class="card__title">Trades.</h3>
+            <p class="card__text">Tradespeople and field teams. Get paid on the doorstep, by link or by invoice.</p>
+            <span class="card__link">Explore <span aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a href="/sectors/professional-services.html" class="card card--dark pillar-card">
+            <span class="card__label">05 / 07</span>
+            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="24" height="16" rx="1"/><path d="M12 10V7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3"/><line x1="4" y1="17" x2="28" y2="17"/></svg></div>
+            <h3 class="card__title">Professional services.</h3>
+            <p class="card__text">Accountants, agencies and consultants. A payment link with every invoice, or the card taken on a call.</p>
             <span class="card__link">Explore <span aria-hidden="true">&rarr;</span></span>
           </a>
           <a href="/sectors/b2b.html" class="card card--dark pillar-card">
-            <span class="card__label">05 / 06</span>
+            <span class="card__label">06 / 07</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h14l4 4v20H7z"/><path d="M11 13h10M11 18h10M11 23h6"/></svg></div>
             <h3 class="card__title">B2B.</h3>
             <p class="card__text">Invoices with a pay button, card payments by phone, every receipt tracked.</p>
             <span class="card__link">Explore <span aria-hidden="true">&rarr;</span></span>
           </a>
           <a href="/sectors/wholesale.html" class="card card--dark pillar-card">
-            <span class="card__label">06 / 06</span>
+            <span class="card__label">07 / 07</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="5" width="10" height="10"/><rect x="5" y="17" width="10" height="10"/><rect x="17" y="17" width="10" height="10"/></svg></div>
             <h3 class="card__title">Wholesale.</h3>
             <p class="card__text">Bulk invoice runs, trade counter cards, payments tracked to the account.</p>
@@ -510,7 +545,8 @@
             <a href="/sectors/hospitality.html" class="footer__link">Hospitality</a>
             <a href="/sectors/beauty-wellness.html" class="footer__link">Beauty &amp; Wellness</a>
             <a href="/sectors/retail.html" class="footer__link">Retail</a>
-            <a href="/sectors/services.html" class="footer__link">Services</a>
+            <a href="/sectors/services.html" class="footer__link">Trades</a>
+            <a href="/sectors/professional-services.html" class="footer__link">Professional services</a>
             <a href="/sectors/b2b.html" class="footer__link">B2B</a>
             <a href="/sectors/wholesale.html" class="footer__link">Wholesale</a>
             <a href="/sectors/" class="footer__link">All Sectors</a>
