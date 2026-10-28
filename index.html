@@ -24,6 +24,43 @@
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/pages/home.css?v=nudge-2">
+  <link rel="stylesheet" href="css/pages/blog.css?v=blog-1">
+
+  <style>
+    /* Homepage blog teaser: the blog index featured card */
+    @media (min-width: 769px) { .home-blog__sub { max-width: none; white-space: nowrap; } }
+    /* Featured post: navy panel with the brand asterisk */
+    .rc--featured { display: grid; grid-template-columns: 1fr 1fr; }
+
+    .rc--featured .rc__panel {
+      min-height: 320px;
+      background: var(--ink);
+      border-bottom: none;
+      border-right: 2px solid var(--ink);
+      position: relative;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .rc--featured .rc__panel-label { position: absolute; top: var(--space-5); left: var(--space-5); color: var(--blurple-bright); }
+
+    .rc__panel-mark { width: 148px; height: 148px; margin: auto; }
+
+    .rc--featured .rc__body { padding: var(--space-8); }
+
+    .rc__title-lg {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-bold);
+      line-height: var(--leading-tight);
+      letter-spacing: -0.03em;
+    }
+
+    @media (max-width: 880px) {
+      .rc--featured { grid-template-columns: 1fr; }
+      .rc--featured .rc__panel { border-right: none; border-bottom: 2px solid var(--ink); min-height: 220px; }
+    }
+  </style>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
@@ -819,46 +856,22 @@
       <div class="container">
         <div class="section-header section-header--tight" data-animate>
           <h2 class="section-header__title">Payments, explained.</h2>
-          <p class="section-header__subtitle" style="max-width: none; white-space: nowrap;">Articles, guides and how-tos for UK businesses taking payment.</p>
+          <p class="section-header__subtitle home-blog__sub">Practical articles for UK businesses taking payment.</p>
         </div>
 
-        <div class="grid grid--3" data-stagger>
-          <article class="card card--bordered resource-card">
-            <div class="resource-card__image">
-              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80&auto=format&fit=crop" alt="Hand holding a card terminal at checkout" loading="lazy">
-              <span class="resource-card__category">Guide</span>
-            </div>
-            <div class="resource-card__content">
-              <div class="resource-card__meta">14 May 2026 &middot; 6 min read</div>
-              <h3 class="heading-sm">How to choose the right card machine for your business</h3>
-              <p class="body-sm text-muted" style="margin-top: var(--space-2);">A practical guide for UK businesses comparing terminals, features and pricing.</p>
-              <span class="card__link" style="margin-top: var(--space-4);">Read guide <span>&rarr;</span></span>
-            </div>
-          </article>
-          <article class="card card--bordered resource-card">
-            <div class="resource-card__image">
-              <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800&q=80&auto=format&fit=crop" alt="Phone displaying a payment link" loading="lazy">
-              <span class="resource-card__category">Article</span>
-            </div>
-            <div class="resource-card__content">
-              <div class="resource-card__meta">7 May 2026 &middot; 4 min read</div>
-              <h3 class="heading-sm">Pay-by-link: the fastest way to get paid remotely</h3>
-              <p class="body-sm text-muted" style="margin-top: var(--space-2);">Why more service businesses are switching to payment links in 2026.</p>
-              <span class="card__link" style="margin-top: var(--space-4);">Read article <span>&rarr;</span></span>
-            </div>
-          </article>
-          <article class="card card--bordered resource-card">
-            <div class="resource-card__image">
-              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80&auto=format&fit=crop" alt="Receipt and calculator on a desk" loading="lazy">
-              <span class="resource-card__category">Guide</span>
-            </div>
-            <div class="resource-card__content">
-              <div class="resource-card__meta">28 April 2026 &middot; 8 min read</div>
-              <h3 class="heading-sm">Understanding payment processing fees in the UK</h3>
-              <p class="body-sm text-muted" style="margin-top: var(--space-2);">Everything you need to know about interchange, scheme fees and markups.</p>
-              <span class="card__link" style="margin-top: var(--space-4);">Read guide <span>&rarr;</span></span>
-            </div>
-          </article>
+        <div data-animate>
+        <a href="/blog/how-to-take-payments-online-as-a-uk-small-business.html" class="rc rc--featured">
+          <div class="rc__panel"><span class="rc__panel-label">Online payments</span><svg class="rc__panel-mark" viewBox="0 0 120 120" aria-hidden="true"><g stroke="#EB1857" stroke-width="14" stroke-linecap="round"><line x1="60" y1="16" x2="60" y2="104"/><line x1="21.9" y1="38" x2="98.1" y2="82"/><line x1="21.9" y1="82" x2="98.1" y2="38"/></g></svg></div>
+          <div class="rc__body">
+            <div class="rc__meta">16 Oct 2026 &middot; 3 min read</div>
+            <h3 class="rc__title-lg">How to take payments online as a UK small business.</h3>
+            <p class="body-sm text-muted" style="margin-top: var(--space-3);">Four ways to get paid online, what each one suits, and what to check before you pick a provider.</p>
+            <span class="card__link">Read the article <span>&rarr;</span></span>
+          </div>
+        </a>
+        </div>
+        <div style="text-align: center; margin-top: var(--space-10);" data-animate>
+          <a href="/blog/" class="btn btn--secondary btn--lg">Read the blog</a>
         </div>
       </div>
     </section>
@@ -952,7 +965,6 @@
           <div class="footer__column-title">Resources</div>
           <div class="footer__links">
             <a href="/blog/" class="footer__link">Blog</a>
-            <a href="/guides/" class="footer__link">Guides</a>
             <a href="/resources/" class="footer__link">All resources</a>
           </div>
         </div>
