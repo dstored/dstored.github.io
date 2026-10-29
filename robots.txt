@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.storedpayments.com/sitemap.xml
+Sitemap: https://storedpayments.com/sitemap.xml
