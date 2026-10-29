@@ -123,10 +123,7 @@
   font-size: var(--text-base);
   font-weight: var(--weight-bold);
   color: var(--ink);
-  /* Wide enough for the channel list on one line under the opener; on
-     smaller laptops it borrows the gutter beside the photo to get there */
-  max-width: 562px;
-  margin-right: calc(-1 * var(--space-12));
+  max-width: 480px;
   margin-bottom: calc(var(--space-8) + 15px);
   letter-spacing: -0.005em;
   line-height: var(--leading-normal);
