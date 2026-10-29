@@ -109,6 +109,11 @@
     margin-right: 0;
   }
 
+  /* The desktop line break after "pay;" would leave a short line on a phone */
+  .hero__subtitle-break {
+    display: none;
+  }
+
   .hero__actions,
   .hero__proof {
     justify-content: flex-start;
