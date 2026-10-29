@@ -51,6 +51,27 @@
     padding-right: 0;
   }
 
+  /* ...but the illustration above the text stays centred */
+  .why-card__illustration {
+    align-self: center;
+  }
+
+  /* Product cards: the title wraps clear of the corner icon */
+  .pillar-card .card__title {
+    padding-right: 64px;
+  }
+
+  @media (max-width: 400px) {
+    .pillar-card__icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .pillar-card .card__title {
+      padding-right: 44px;
+    }
+  }
+
   /* Stat counters */
   .stat,
   .stats-grid,
