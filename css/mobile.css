@@ -1,0 +1,152 @@
+/* ════════════════════════════════════════════════════════ */
+/* Mobile rules, loaded last on every page so they win.      */
+/* Text reads left-aligned on phones; only images, graphics  */
+/* and product mock-ups stay centred (Danny, 29 Oct 2026).   */
+/* ════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  /* Side gutters: the desktop's 3x padding left 264px of text on a 390px phone */
+  .container,
+  .header__inner {
+    padding-left: var(--container-pad);
+    padding-right: var(--container-pad);
+  }
+
+  /* A mouse-wheel hint means nothing on a touch screen */
+  .scroll-hint {
+    display: none;
+  }
+
+  /* Heroes size to their content: a text-only hero no longer floats in the
+     middle of a full-height block */
+  .solution-hero {
+    min-height: 0;
+  }
+
+  /* Section headers */
+  .section-header,
+  .section-header--center,
+  .section--why-stored .section-header {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .section-header__subtitle {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Highlighted phrases may wrap on a phone rather than run off the side */
+  .section-header__title,
+  .section-header__title .highlight {
+    white-space: normal;
+  }
+
+  /* Why cards */
+  .why-card {
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Stat counters */
+  .stat,
+  .stats-grid,
+  .section--stats .stats-grid {
+    text-align: left;
+  }
+
+  /* Numbered steps */
+  .step {
+    text-align: left;
+  }
+
+  .step__number {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Buttons under a section */
+  .section-cta {
+    text-align: left;
+  }
+
+  .section-cta-row,
+  .why-cta {
+    justify-content: flex-start;
+  }
+
+  /* Homepage hero */
+  .hero .container {
+    text-align: left;
+  }
+
+  .hero__subtitle {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .hero__actions,
+  .hero__proof {
+    justify-content: flex-start;
+  }
+
+  /* Contact hero */
+  .contact-hero__content {
+    text-align: left;
+  }
+
+  .contact-hero__content .solution-hero__subtitle {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .contact-hero__content .solution-hero__actions {
+    justify-content: flex-start;
+  }
+
+  /* 404 */
+  .error-page {
+    text-align: left;
+  }
+
+  .error-page__text,
+  .error-page__links {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .error-page__actions {
+    justify-content: flex-start;
+  }
+
+  /* Sign up */
+  .signin-link {
+    text-align: left;
+  }
+
+  /* Single columns where two would overflow */
+  .pl-track__split {
+    grid-template-columns: 1fr;
+  }
+
+  /* !important beats the Guides page's inline four-column grid */
+  .capability-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hero headlines whose longest written line runs off a phone screen at the
+     standard size: scaled to the screen width instead */
+  .solution-hero .solution-hero__inner .solution-hero__title.fit-phone,
+  .contact-hero__content .solution-hero__title.fit-phone {
+    font-size: min(clamp(4.75rem, 3.2rem + 10.5vw, 10rem), 17vw);
+  }
+
+  /* Wide legal tables scroll inside themselves, not the page */
+  .legal-content table {
+    display: block;
+    overflow-x: auto;
+  }
+}

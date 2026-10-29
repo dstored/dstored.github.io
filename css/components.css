@@ -441,6 +441,17 @@
   color: var(--ink);
 }
 
+/* ─── Section call to action: a button row under a section, centred on
+   desktop and left-aligned on phones (css/mobile.css) ─── */
+.section-cta {
+  text-align: center;
+  margin-top: var(--space-10);
+}
+
+.section-cta-row {
+  justify-content: center;
+}
+
 /* ─── Section header ─── */
 .section-header--tight {
   margin-bottom: calc(var(--space-6) + 5px) !important;
