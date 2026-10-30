@@ -1135,6 +1135,14 @@
    or the bone box overlaps the line above (same fix as the homepage) */
 .section-header__title:has(.highlight) {
   line-height: 1.1;
+  isolation: isolate;
+}
+
+/* The bone box sits behind the words, so tails of y, g and p on the line
+   above stay visible instead of being cut off by the box */
+.section-header__title .highlight {
+  position: relative;
+  z-index: -1;
 }
 
 /* Sectors headline: the looser 1.1 line-height is what stops the bone

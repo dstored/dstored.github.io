@@ -509,10 +509,13 @@
 .section--sectors .section-header__title {
   font-size: var(--text-5xl);
   line-height: 1.1;
+  isolation: isolate;
 }
 
 .section--sectors .section-header__title .highlight {
   background: var(--bone);
+  position: relative;
+  z-index: -1;
   padding: 0.05em 0.15em;
   white-space: nowrap;
   box-decoration-break: clone;
