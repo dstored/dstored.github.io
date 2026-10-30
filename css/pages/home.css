@@ -1168,9 +1168,12 @@
   -webkit-box-decoration-break: clone;
 }
 
-@media (max-width: 880px) {
+/* One line only where it fits (1019px of type): narrower screens get two
+   balanced lines instead of a sideways scroll */
+@media (max-width: 1279px) {
   .section--why-stored .section-header__title {
     white-space: normal;
+    text-wrap: balance;
   }
 }
 
