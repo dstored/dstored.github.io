@@ -149,7 +149,7 @@
       </nav>
 
       <div class="header__actions">
-        <a href="#" class="btn btn--secondary btn--sm">Sign in</a>
+        <a href="https://s.joinstored.com/portal/auth/login" class="btn btn--secondary btn--sm">Sign in</a>
         <a href="/sign-up" class="btn btn--primary btn--sm">Sign up</a>
       </div>
 
@@ -409,7 +409,7 @@
     <div class="mobile-nav__actions">
       <a href="/sign-up" class="btn btn--primary">Sign up</a>
       <a href="/book-a-demo" class="btn btn--secondary">Book a demo</a>
-      <a href="#" class="btn btn--ghost">Sign in</a>
+      <a href="https://s.joinstored.com/portal/auth/login" class="btn btn--ghost">Sign in</a>
     </div>
   </div>
 
@@ -455,7 +455,7 @@
               <div class="form-card__overline">PICK YOUR TIME</div>
               <h2 class="form-card__title">Book your demo.</h2>
               <p class="form-card__sub">Tell us what you want to see. We&rsquo;ll confirm by email.</p>
-              <form class="form-stack" onsubmit="event.preventDefault();">
+              <form class="form-stack" data-email-form="sales@joinstored.com" data-email-subject="Book a demo request">
                 <div class="form-row">
                   <div class="form-group">
                     <label class="form-label" for="demo-name">Full name</label>
@@ -494,7 +494,7 @@
                   Request my demo
                   <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
-                <p class="form-meta">By submitting, you agree to our <a href="/privacy-policy" style="color: inherit; text-decoration: underline;">Privacy Policy</a>. We&rsquo;ll only use these details to organise your demo.</p>
+                <p class="form-meta">This opens your email app with your request ready to send to our sales team. By sending, you agree to our <a href="/privacy-policy" style="color: inherit; text-decoration: underline;">Privacy Policy</a>. We&rsquo;ll only use these details to organise your demo.</p>
               </form>
             </div>
           </div>
@@ -633,5 +633,6 @@
   </footer>
 
   <script src="js/main.js?v=counter-3"></script>
+  <script src="/js/email-form.js?v=1"></script>
 </body>
 </html>

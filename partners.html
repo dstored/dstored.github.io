@@ -135,7 +135,7 @@
       </nav>
 
       <div class="header__actions">
-        <a href="#" class="btn btn--secondary btn--sm">Sign in</a>
+        <a href="https://s.joinstored.com/portal/auth/login" class="btn btn--secondary btn--sm">Sign in</a>
         <a href="/sign-up" class="btn btn--primary btn--sm">Sign up</a>
       </div>
 
@@ -394,7 +394,7 @@
     <div class="mobile-nav__actions">
       <a href="/sign-up" class="btn btn--primary">Sign up</a>
       <a href="/book-a-demo" class="btn btn--secondary">Book a demo</a>
-      <a href="#" class="btn btn--ghost">Sign in</a>
+      <a href="https://s.joinstored.com/portal/auth/login" class="btn btn--ghost">Sign in</a>
     </div>
   </div>
 
@@ -602,10 +602,10 @@
           <p class="section-header__subtitle">Tell us about your business and we&rsquo;ll come back to you.</p>
         </div>
 
-        <form style="max-width: 640px; margin: 0 auto; display: grid; gap: var(--space-5);" data-animate>
+        <form style="max-width: 640px; margin: 0 auto; display: grid; gap: var(--space-5);" data-animate data-email-form="hello@joinstored.com" data-email-subject="Partner enquiry">
           <div class="form-group">
             <label class="form-label" for="company">Company name</label>
-            <input class="input input--lg" type="text" id="company" name="company" placeholder="Acme Payments Ltd">
+            <input class="input input--lg" type="text" id="company" name="company" required placeholder="Acme Payments Ltd">
           </div>
           <div class="form-group">
             <label class="form-label" for="partner-type">Partner type</label>
@@ -620,11 +620,11 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="name">Contact name</label>
-            <input class="input input--lg" type="text" id="name" name="name" placeholder="Jane Smith">
+            <input class="input input--lg" type="text" id="name" name="name" required placeholder="Jane Smith">
           </div>
           <div class="form-group">
             <label class="form-label" for="email">Work email</label>
-            <input class="input input--lg" type="email" id="email" name="email" placeholder="jane@company.com">
+            <input class="input input--lg" type="email" id="email" name="email" required placeholder="jane@company.com">
           </div>
           <div class="form-group">
             <label class="form-label" for="phone">Phone</label>
@@ -634,7 +634,8 @@
             <label class="form-label" for="about">Tell us about your business</label>
             <textarea class="input input--lg" id="about" name="about" rows="5" placeholder="Who do you serve, how many merchants, what are you looking for in a payments partner?"></textarea>
           </div>
-          <button type="submit" class="btn btn--primary btn--lg" style="justify-self: start;">Submit enquiry</button>
+          <button type="submit" class="btn btn--primary btn--lg" style="justify-self: start;">Send enquiry</button>
+          <p class="form-meta" style="font-size: var(--text-xs); color: var(--text-secondary); margin: 0;">This opens your email app with your enquiry ready to send to hello@joinstored.com.</p>
         </form>
       </div>
     </section>
@@ -784,5 +785,6 @@
   </footer>
 
   <script src="js/main.js?v=counter-3"></script>
+  <script src="/js/email-form.js?v=1"></script>
 </body>
 </html>

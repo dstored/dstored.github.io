@@ -1961,7 +1961,7 @@
   margin-top: var(--space-2);
 }
 
-/* ─── Brutalist form card (sign-up / book-a-demo / contact-sales) ─── */
+/* ─── Brutalist form card (sign-up / book-a-demo) ─── */
 .form-card--brutalist {
   background: var(--white);
   border: 2px solid var(--ink);
