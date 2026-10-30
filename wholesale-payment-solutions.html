@@ -26,6 +26,9 @@
   <link rel="stylesheet" href="/css/pages/solutions.css?v=ticks-1">
 
   <style>
+    /* The ticker sits on the bottom of the first screen, as on the product pages */
+    .solution-hero { min-height: calc(100vh - 68px); }
+
     /* Text-led hero: full-width headline at homepage scale, no device visual */
     .solution-hero .solution-hero__inner {
       grid-template-columns: 1fr;
@@ -83,7 +86,7 @@
        so subtitle and CTA hold above the fold on a 13" screen */
     @media (min-width: 769px) and (max-height: 900px) {
       .solution-hero {
-        min-height: calc(100vh - 110px);
+        min-height: calc(100vh - 68px); /* ticker flush on the fold */
         padding-top: 94px;
         padding-bottom: 42px;
       }
