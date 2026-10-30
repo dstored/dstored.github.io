@@ -1,0 +1,164 @@
+/* Cookie banner (js/consent.js adds the markup and this stylesheet).
+ * Bottom-left of the screen, buttons under the text. Accept all is the
+ * filled blurple button; Reject all and Manage sit right next to it at
+ * exactly the same size, so saying no is as easy as saying yes (ICO guidance).
+ * No option is pre-ticked. */
+
+.consent {
+  position: fixed;
+  left: var(--space-6);
+  bottom: var(--space-6);
+  z-index: 1000;
+  width: min(34rem, calc(100vw - 2 * var(--space-6)));
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  font-family: var(--font-body);
+}
+
+.consent[hidden] { display: none; }
+
+.consent__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  padding: var(--space-6);
+}
+
+.consent__title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.consent__body {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.consent__body a {
+  color: var(--ink);
+  font-weight: var(--weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.consent__panel {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-medium);
+}
+
+.consent__panel[hidden] { display: none; }
+
+.consent__option {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.consent__option strong {
+  display: block;
+  font-weight: var(--weight-semibold);
+}
+
+.consent__option input {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.125rem 0 0;
+  accent-color: var(--blurple);
+  cursor: pointer;
+}
+
+.consent__option--locked { cursor: default; opacity: 0.75; }
+.consent__option--locked input { cursor: default; }
+
+/* Under the text: three buttons, one size, side by side; stacked on phones */
+.consent__actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.consent__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: 1.2;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out),
+              color var(--duration-base) var(--ease-out);
+}
+
+.consent__btn[hidden] { display: none; }
+
+.consent__btn:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.consent__btn--accept {
+  background: var(--blurple);
+  color: var(--white);
+}
+
+.consent__btn--accept:hover {
+  background: var(--blurple-dark);
+  color: var(--white);
+}
+
+.consent__btn:focus-visible,
+.consent__option input:focus-visible,
+.consent-open:focus-visible {
+  outline: 3px solid var(--blurple);
+  outline-offset: 2px;
+}
+
+/* Footer "Cookie preferences": a button that looks like its neighbours. */
+.consent-open {
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .consent {
+    left: var(--space-2);
+    bottom: var(--space-2);
+    width: calc(100vw - 2 * var(--space-2));
+    box-shadow: 4px 4px 0 var(--ink);
+    max-height: calc(100vh - var(--space-4));
+    overflow-y: auto;
+  }
+
+  .consent__inner {
+    grid-template-columns: 1fr;
+    padding: var(--space-4);
+  }
+
+  .consent__actions {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+}
