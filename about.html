@@ -25,14 +25,11 @@
   <link rel="stylesheet" href="css/pages/solutions.css?v=highlight-1">
 
   <style>
+    /* Text-led hero: full-width display headline, no photo */
+    .solution-hero .solution-hero__inner { display: block; }
+
     /* The ticker sits on the bottom of the first screen, as on the product pages */
     .solution-hero { min-height: calc(100vh - 68px); }
-
-    /* Text-led hero: full-width display headline, no device */
-    .solution-hero .solution-hero__inner {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
 
     .solution-hero .solution-hero__inner .solution-hero__title {
       font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem);
@@ -45,33 +42,6 @@
     .solution-hero__asterisk { color: var(--hot); display: inline-block; margin-left: 0.05em; }
     .solution-hero__subtitle-asterisk { color: var(--hot); margin-right: 0.4em; }
     .solution-hero__subtitle { max-width: 660px; }
-
-    /* Subtle motion in the step illustrations */
-    .ab-anim-pill {
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: ab-pill-pulse 2.8s ease-in-out infinite;
-    }
-
-    @keyframes ab-pill-pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.07); }
-    }
-
-    .ab-anim-bob {
-      transform-box: view-box;
-      animation: ab-bob 3.4s ease-in-out infinite;
-    }
-
-    @keyframes ab-bob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    .anim-clock-hour, .anim-clock-minute { transform-box: view-box; transform-origin: 116px 160px; }
-    .anim-clock-minute { animation: about-clock-rotate 30s linear infinite; }
-    .anim-clock-hour { animation: about-clock-rotate 360s linear infinite; }
-    @keyframes about-clock-rotate { to { transform: rotate(360deg); } }
 
     /* Shorter laptop screens: keep subtitle and CTA above the fold */
     @media (min-width: 769px) and (max-height: 900px) {
@@ -87,17 +57,390 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .solution-hero .solution-hero__inner .solution-hero__title {
-        font-size: clamp(3rem, 2.5rem + 5vw, 5rem);
+    /* The Stored story: heading beside the intro, timeline across the page */
+    .about-story__top {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: var(--space-16);
+      align-items: end;
+    }
+
+    .about-story__top .section-header { margin-bottom: 0; }
+
+    .about-story__intro p {
+      margin: 0;
+      max-width: 640px;
+      color: var(--ink);
+      line-height: var(--leading-relaxed);
+    }
+
+    /* Timeline: a row of steps you swipe or step through, starting at 2022 */
+    .about-timeline { margin-top: var(--space-12); }
+
+    .about-timeline__controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .about-timeline__years {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .about-timeline__year {
+      padding: 6px 12px;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--ink);
+      background: transparent;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .about-timeline__year:hover { background: var(--white); }
+
+    .about-timeline__year[aria-current="true"] {
+      color: var(--white);
+      background: var(--ink);
+    }
+
+    .about-timeline__arrows { display: flex; gap: var(--space-2); flex-shrink: 0; }
+
+    .about-timeline__arrow {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      color: var(--ink);
+      background: var(--white);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+    }
+
+    .about-timeline__arrow:hover:not(:disabled) { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--hot); }
+    .about-timeline__arrow:disabled { opacity: 0.35; cursor: default; box-shadow: none; }
+    .about-timeline__arrow svg { width: 20px; height: 20px; }
+
+    .about-timeline__track {
+      display: flex;
+      gap: var(--space-6);
+      margin: 0;
+      padding: 0 0 var(--space-2);
+      list-style: none;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .about-timeline__track::-webkit-scrollbar { display: none; }
+    .about-timeline__track:focus-visible { outline: 2px solid var(--hot); outline-offset: 4px; }
+
+    /* Each step: a dot on a shared line, then a card */
+    .about-timeline__step {
+      position: relative;
+      flex: 0 0 clamp(280px, 30%, 380px);
+      padding-top: var(--space-8);
+      scroll-snap-align: start;
+    }
+
+    .about-timeline__step::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 0;
+      right: calc(-1 * var(--space-6));
+      height: 2px;
+      background: var(--ink);
+    }
+
+    .about-timeline__step:last-child::before { right: 0; }
+
+    .about-timeline__step::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--hot);
+    }
+
+    /* Stats count up without moving the text beneath: the final figure,
+       invisible, holds the space and the counting figure sits over it */
+    .stat__number { position: relative; white-space: nowrap; }
+    .stat__hold { visibility: hidden; }
+    .stat__live { position: absolute; top: 0; left: 0; right: 0; }
+
+    .about-timeline__card {
+      height: 100%;
+      container-type: inline-size;
+      padding: var(--space-6);
+      background: var(--white);
+      border: 2px solid var(--ink);
+    }
+
+    .about-timeline__date {
+      margin-bottom: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .about-timeline__card h3 {
+      margin: 0 0 var(--space-3);
+      font-family: var(--font-display);
+      /* Headings stay on one line: they shrink with a narrow card */
+      font-size: min(var(--text-xl), 8.8cqi);
+      font-weight: var(--weight-bold);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .about-timeline__card p {
+      margin: 0;
+      font-size: var(--text-sm);
+      line-height: var(--leading-relaxed);
+      color: var(--text-secondary);
+    }
+
+    /* What's next: navy, so the future step reads differently */
+    .about-timeline__step--next .about-timeline__card { background: var(--ink); }
+    .about-timeline__step--next .about-timeline__card h3,
+    .about-timeline__step--next .about-timeline__date { color: var(--white); }
+    .about-timeline__step--next .about-timeline__card p { color: rgba(255, 255, 255, 0.85); }
+
+    .about-timeline__progress {
+      height: 4px;
+      margin-top: var(--space-6);
+      background: var(--border-light);
+    }
+
+    .about-timeline__progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--hot);
+      transition: width 0.15s linear;
+    }
+
+    @media (max-width: 640px) {
+      .about-timeline__arrows { display: none; }
+      /* Five equal year buttons on one line */
+      .about-timeline__controls { display: block; }
+      .about-timeline__years { flex-wrap: nowrap; gap: 4px; }
+      .about-timeline__years li { flex: 1 1 0; }
+      .about-timeline__year { width: 100%; padding: 5px 0; letter-spacing: 0.02em; }
+
+      /* Let the row run to the screen edges so the next card peeks in */
+      .about-timeline__track {
+        gap: var(--space-4);
+        margin-inline: calc(50% - 50vw);
+        padding-inline: calc(50vw - 50%);
       }
+
+      .about-timeline__step { flex-basis: min(320px, 80vw); scroll-snap-align: center; }
+      .about-timeline__step::before { right: calc(-1 * var(--space-4)); }
+      .about-timeline__card { padding: var(--space-5); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .ab-anim-pill, .ab-anim-bob,
-      .anim-clock-hour, .anim-clock-minute {
-        animation: none;
+      .about-timeline__track { scroll-behavior: auto; }
+    }
+
+
+    .about-timeline__card a {
+      color: var(--ink);
+      font-weight: var(--weight-semibold);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .about-timeline__card a:hover { color: var(--hot); }
+
+    /* Why we exist: navy panel, pink offset shadow */
+    .about-purpose {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--space-8);
+      align-items: center;
+      margin-top: var(--space-16);
+      padding: var(--space-10);
+      background: var(--ink);
+      border: 2px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--hot);
+    }
+
+    .about-purpose__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: var(--weight-bold);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--white);
+    }
+
+    .about-purpose__text {
+      margin: 0;
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Founders: photo beside two short bios */
+    .about-founders {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+
+    /* The founders photo sits in the same blob frame as the page heroes */
+    .about-founders__photo {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #FFFFFF;
+      border: 2px solid var(--ink);
+    }
+
+    .about-founders__photo svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Chairman: same layout as the founders, photo on the right */
+    @media (min-width: 1025px) {
+      .about-founders--flip .about-founders__photo { order: 2; }
+    }
+    .about-chairman-section { padding-top: 0; }
+
+    /* Each bio on its own card, styled like the timeline cards */
+    .about-founder {
+      margin-top: var(--space-4);
+      padding: var(--space-6);
+      background: var(--white);
+      border: 2px solid var(--ink);
+    }
+
+    .section-header__overline + .about-founder { margin-top: var(--space-5); }
+
+    .about-founder__name {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--space-3);
+      margin-bottom: var(--space-2);
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-bold);
+      color: var(--ink);
+    }
+
+    .about-founder__role {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+
+    .about-founder p,
+    .about-founders__why {
+      margin: 0;
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+    }
+
+    .about-founders__why {
+      margin-top: var(--space-5);
+    }
+
+    /* The closing line about the team sits on a navy card under the bios */
+    .about-founder + .about-founders__why {
+      margin-top: var(--space-4);
+      padding: var(--space-6);
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .pillar-card .card__title { padding-right: 64px; }
+
+    .about-founders-section { padding-bottom: calc(var(--space-section) * 0.55); }
+    /* How we work: card titles stay on two lines. The type scales with the
+       card (less the 64px kept clear of the icon), and tablets get two columns */
+    .about-values .pillar-card { container-type: inline-size; }
+    .about-values .pillar-card .card__title { font-size: min(var(--text-4xl), calc((100cqi - 64px) / 6.1)); }
+    @media (min-width: 769px) and (max-width: 1279px) {
+      .about-values .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .about-values { padding-top: calc(var(--space-section) * 0.55); padding-bottom: var(--space-section); }
+
+    /* Stats: columns sized to their content with equal space between them,
+       so the three figures look evenly spaced whatever their width */
+    /* Below 1024px three big figures side by side don't fit: stack them */
+    @media (min-width: 769px) and (max-width: 1023px) {
+      .section--stats .stats-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+    }
+
+    @media (min-width: 1024px) {
+      .section--stats .stats-grid {
+        grid-template-columns: repeat(3, auto);
+        justify-content: space-evenly;
       }
+    }
+
+
+    .about-founders .section-header__title { font-size: var(--text-4xl); }
+
+    /* The one-line section heading is too wide for small laptops: let it wrap */
+    @media (max-width: 1279px) {
+      body .section-header--one-line .section-header__title { white-space: normal; }
+    }
+
+    @media (max-width: 1024px) {
+      .about-story__top,
+      .about-founders,
+      .about-purpose {
+        grid-template-columns: 1fr;
+        gap: var(--space-10);
+      }
+
+      .about-purpose { gap: var(--space-4); padding: var(--space-8); }
+    }
+
+    @media (max-width: 640px) {
+      .about-purpose { padding: var(--space-6); box-shadow: 4px 4px 0 var(--hot); }
+      .about-purpose__title { font-size: var(--text-3xl); }
+      .about-purpose__text { font-size: var(--text-base); }
     }
   </style>
 
@@ -408,14 +751,14 @@
       <div class="container">
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
-            <h1 class="solution-hero__title">The whole<br><span style="white-space: nowrap;">job.<span class="solution-hero__asterisk">*</span></span></h1>
-            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>taking the payment and running what follows it. Stored is a UK payments company: card machines, online payments and the platform behind them, settled next working day.</p>
+            <h1 class="solution-hero__title fit-phone">However,<br><span style="white-space: nowrap;">wherever.<span class="solution-hero__asterisk">*</span></span></h1>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>your customers want to pay, you&rsquo;re covered. That&rsquo;s why Stored was founded in 2022.</p>
             <div class="solution-hero__actions">
-              <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
-                Sign up now
+              <a href="/contact" class="btn btn--primary btn--lg btn--icon-right">
+                Contact us
                 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
-              <a href="/pricing" class="btn btn--secondary btn--lg">See pricing</a>
+              <a href="/careers" class="btn btn--secondary btn--lg">See careers</a>
             </div>
             <div class="solution-hero__trust">
               <a class="solution-hero__trust-text trust-line" href="https://uk.trustpilot.com/review/joinstored.com" target="_blank" rel="noopener noreferrer"><span class="trust-line__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" style="fill: var(--green)"/></svg></span>Rated <strong data-trustpilot-rating>4.9</strong> out of 5 stars on <strong class="trust-line__name">Trustpilot</strong>.</a>
@@ -436,115 +779,193 @@
       <div class="marquee__track">
         <span class="marquee__item">IN PERSON <span class="marquee__separator">&rarr;</span></span>
         <span class="marquee__item">ONLINE <span class="marquee__separator">&rarr;</span></span>
-        <span class="marquee__item">ONE PLATFORM <span class="marquee__separator">&rarr;</span></span>
-        <span class="marquee__item">UK <span class="marquee__separator">&rarr;</span></span>
-        <span class="marquee__item">NEXT DAY <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">BY LINK <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">BY PHONE <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">BY INVOICE <span class="marquee__separator">&rarr;</span></span>
         <span class="marquee__item">STORED <span class="marquee__separator">&rarr;</span></span>
       </div>
     </div>
 
     <!-- ════════════════════════════════════════ -->
-    <!-- WHAT WE DO                               -->
+    <!-- THE STORED STORY                         -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section section--compact" id="below-hero">
+    <section class="section" id="below-hero">
       <div class="container">
-        <div class="section-header section-header--center section-header--tight section-header--wide" data-animate>
-          <h2 class="section-header__title">One partner for the <span class="highlight">whole job.</span></h2>
-          <p class="section-header__subtitle">Take the payment, run the shop, get settled. One platform, one contract.</p>
-        </div>
-
-        <div class="why-grid" data-stagger>
-          <div class="why-card">
-            <div class="why-card__illustration">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="A card machine taking a card payment">
-                <ellipse cx="160" cy="244" rx="104" ry="13" fill="#D8D0C2" opacity="0.5"/>
-                <rect x="112" y="84" width="96" height="148" rx="14" fill="#FFFFFF" stroke="#16223C" stroke-width="3.2"/>
-                <rect x="126" y="100" width="68" height="44" rx="6" fill="#DCE3EC" stroke="#16223C" stroke-width="2.6"/>
-                <path d="M147 122l9 9 17-17" fill="none" stroke="#6E44FF" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="136" cy="166" r="7" fill="#F3EEE5" stroke="#16223C" stroke-width="2.4"/>
-                <circle cx="160" cy="166" r="7" fill="#F3EEE5" stroke="#16223C" stroke-width="2.4"/>
-                <circle cx="184" cy="166" r="7" fill="#F3EEE5" stroke="#16223C" stroke-width="2.4"/>
-                <circle cx="136" cy="190" r="7" fill="#F3EEE5" stroke="#16223C" stroke-width="2.4"/>
-                <circle cx="160" cy="190" r="7" fill="#F3EEE5" stroke="#16223C" stroke-width="2.4"/>
-                <circle cx="184" cy="190" r="7" fill="#F3EEE5" stroke="#16223C" stroke-width="2.4"/>
-                <circle cx="136" cy="214" r="7" fill="#F3EEE5" stroke="#16223C" stroke-width="2.4"/>
-                <circle cx="160" cy="214" r="7" fill="#F3EEE5" stroke="#16223C" stroke-width="2.4"/>
-                <circle cx="184" cy="214" r="7" fill="#F3EEE5" stroke="#16223C" stroke-width="2.4"/>
-                <g class="ab-anim-bob">
-                  <g transform="rotate(-12 106 66)">
-                    <rect x="60" y="38" width="88" height="56" rx="8" fill="#EB1857" stroke="#16223C" stroke-width="3"/>
-                    <rect x="72" y="52" width="18" height="14" rx="3" fill="#FFFFFF" stroke="#16223C" stroke-width="2.4"/>
-                    <line x1="72" y1="80" x2="118" y2="80" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
-                  </g>
-                </g>
-              </svg>
-            </div>
-            <h3 class="why-card__title">Take payment.</h3>
-            <p class="why-card__text">Card machines, online checkout, payment links and QR. Every way a UK customer wants to pay.</p>
+        <div class="about-story__top">
+          <div class="section-header" data-animate>
+            <div class="section-header__overline">OUR STORY</div>
+            <h2 class="section-header__title">The Stored <span class="highlight">story.</span></h2>
           </div>
-
-          <div class="why-card">
-            <div class="why-card__illustration">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="A reporting dashboard showing the day&#39;s takings">
-                <ellipse cx="160" cy="244" rx="104" ry="13" fill="#D8D0C2" opacity="0.5"/>
-                <rect x="60" y="60" width="200" height="156" rx="10" fill="#FFFFFF" stroke="#16223C" stroke-width="3.2"/>
-                <line x1="60" y1="90" x2="260" y2="90" stroke="#16223C" stroke-width="2.8"/>
-                <circle cx="76" cy="75" r="3.4" fill="#16223C"/>
-                <circle cx="90" cy="75" r="3.4" fill="#16223C"/>
-                <circle cx="104" cy="75" r="3.4" fill="#16223C"/>
-                <rect x="84" y="152" width="24" height="40" fill="#DCE3EC" stroke="#16223C" stroke-width="2.6"/>
-                <rect x="124" y="134" width="24" height="58" fill="#C2CDDC" stroke="#16223C" stroke-width="2.6"/>
-                <g class="ab-anim-pill"><rect x="164" y="112" width="24" height="80" fill="#EB1857" stroke="#16223C" stroke-width="2.6"/></g>
-                <rect x="204" y="144" width="24" height="48" fill="#F3EEE5" stroke="#16223C" stroke-width="2.6"/>
-                <line x1="76" y1="192" x2="244" y2="192" stroke="#16223C" stroke-width="2.8" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <h3 class="why-card__title">Run the shop.</h3>
-            <p class="why-card__text">Orders, refunds, reporting and brand control on the platform behind every payment.</p>
-          </div>
-
-          <div class="why-card">
-            <div class="why-card__illustration">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="Get paid, settled next working day">
-                <ellipse cx="160" cy="244" rx="104" ry="14" fill="#D8D0C2" opacity="0.5"/>
-                <g>
-                  <ellipse cx="116" cy="160" rx="72" ry="68" fill="#FFFFFF" stroke="#16223C" stroke-width="3.2"/>
-                  <ellipse cx="116" cy="160" rx="60" ry="57" fill="none" stroke="#DCE3EC" stroke-width="2.6"/>
-                  <line x1="116" y1="101.47" x2="116" y2="109.97" stroke="#16223C" stroke-width="3.2" stroke-linecap="round"/>
-                  <line x1="178" y1="160" x2="169" y2="160" stroke="#16223C" stroke-width="3.2" stroke-linecap="round"/>
-                  <line x1="116" y1="218.53" x2="116" y2="210.03" stroke="#16223C" stroke-width="3.2" stroke-linecap="round"/>
-                  <line x1="54" y1="160" x2="63" y2="160" stroke="#16223C" stroke-width="3.2" stroke-linecap="round"/>
-                  <g class="anim-clock-hour"><line x1="116" y1="160" x2="113" y2="129" stroke="#16223C" stroke-width="4.8" stroke-linecap="round"/></g>
-                  <g class="anim-clock-minute"><line x1="116" y1="160" x2="150" y2="138" stroke="#6E44FF" stroke-width="4.8" stroke-linecap="round"/></g>
-                  <circle cx="116" cy="160" r="5.6" fill="#16223C"/>
-                </g>
-                <g>
-                  <g>
-                    <path d="M 196 206 L 196 225 A 48 17 0 0 0 292 225 L 292 206 Z" fill="#C2CDDC" stroke="#16223C" stroke-width="2.8" stroke-linejoin="round"/>
-                    <ellipse cx="244" cy="206" rx="48" ry="17" fill="#DCE3EC" stroke="#16223C" stroke-width="2.8"/>
-                  </g>
-                  <g>
-                    <path d="M 196 187 L 196 206 A 48 17 0 0 0 292 206 L 292 187 Z" fill="#C2CDDC" stroke="#16223C" stroke-width="2.8" stroke-linejoin="round"/>
-                    <ellipse cx="244" cy="187" rx="48" ry="17" fill="#FFFFFF" stroke="#16223C" stroke-width="2.8"/>
-                  </g>
-                  <g>
-                    <path d="M 196 168 L 196 187 A 48 17 0 0 0 292 187 L 292 168 Z" fill="#D1104A" stroke="#16223C" stroke-width="2.8" stroke-linejoin="round"/>
-                    <ellipse cx="244" cy="168" rx="48" ry="17" fill="#EB1857" stroke="#16223C" stroke-width="2.8"/>
-                  </g>
-                  <text x="244" y="169" text-anchor="middle" dominant-baseline="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="23" fill="#FFFFFF">&#163;</text>
-                </g>
-              </svg>
-            </div>
-            <h3 class="why-card__title">Get settled.</h3>
-            <p class="why-card__text">Money in your account the next working day. No waiting on your own cash.</p>
+          <div class="about-story__intro" data-animate>
+            <p class="body-lg">Customers find you on Instagram, in a WhatsApp chat or walking past your door, and want to pay right there. Stored started from a simple belief: wherever they find you, you should be able to take their payment, all through one account.</p>
           </div>
         </div>
 
-        <div class="section-cta" data-animate>
-          <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
-            Sign up now
-            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+        <div class="about-timeline" data-animate>
+          <div class="about-timeline__controls">
+            <ul class="about-timeline__years" aria-label="Jump to a year">
+              <li><button type="button" class="about-timeline__year" data-target="timeline-2022" aria-current="true">2022</button></li>
+              <li><button type="button" class="about-timeline__year" data-target="timeline-2023">2023</button></li>
+              <li><button type="button" class="about-timeline__year" data-target="timeline-2024">2024</button></li>
+              <li><button type="button" class="about-timeline__year" data-target="timeline-2025">2025</button></li>
+              <li><button type="button" class="about-timeline__year" data-target="timeline-2026">2026</button></li>
+              <li><button type="button" class="about-timeline__year" data-target="timeline-today">Today</button></li>
+              <li><button type="button" class="about-timeline__year" data-target="timeline-next">Next</button></li>
+            </ul>
+            <div class="about-timeline__arrows">
+              <button type="button" class="about-timeline__arrow" data-dir="-1" aria-label="Earlier" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button type="button" class="about-timeline__arrow" data-dir="1" aria-label="Later">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+          <ol class="about-timeline__track" tabindex="0" aria-label="Stored timeline, 2022 to next">
+          <li class="about-timeline__step" id="timeline-2022">
+            <div class="about-timeline__card">
+              <div class="about-timeline__date">2022</div>
+              <h3>Two founders, one idea.</h3>
+              <p>Danny Howe and Lee Hart leave senior roles at WorldFirst (Alipay) and Clover. They&rsquo;d both seen it: the way customers buy had changed, but payments hadn&rsquo;t.</p>
+            </div>
+          </li>
+          <li class="about-timeline__step" id="timeline-2023">
+            <div class="about-timeline__card">
+              <div class="about-timeline__date">2023</div>
+              <h3>Starting with shoppers.</h3>
+              <p>The first Stored app lets shoppers save what they find on social media and buy it later. It shows us where buying really starts, and where payments let it down.</p>
+            </div>
+          </li>
+          <li class="about-timeline__step" id="timeline-2024">
+            <div class="about-timeline__card">
+              <div class="about-timeline__date">2024</div>
+              <h3>Turning to merchants.</h3>
+              <p>Hosted checkouts built for selling on social media and WhatsApp. We&rsquo;re named in the <a href="https://startups.co.uk/startups-100/2024/stored/" target="_blank" rel="noopener noreferrer">Startups 100</a> and a finalist for London&rsquo;s Fintech Startup of the Year.</p>
+            </div>
+          </li>
+          <li class="about-timeline__step" id="timeline-2025">
+            <div class="about-timeline__card">
+              <div class="about-timeline__date">2025</div>
+              <h3>Beyond social.</h3>
+              <p>Stored becomes an all-in-one, full-stack digital payments platform: pay by link, plus a virtual terminal for phone payments.</p>
+            </div>
+          </li>
+          <li class="about-timeline__step" id="timeline-2026">
+            <div class="about-timeline__card">
+              <div class="about-timeline__date">2026</div>
+              <h3>Worldpay partnership.</h3>
+              <p>Stored powers Worldpay&rsquo;s payment links, reaching merchants who want to take payment however and wherever their customers find them.</p>
+            </div>
+          </li>
+          <li class="about-timeline__step" id="timeline-today">
+            <div class="about-timeline__card">
+              <div class="about-timeline__date">Today</div>
+              <h3>One account, one price.</h3>
+              <p>Card machines, EPOS, online checkout, payment links, invoicing and phone payments. Simple, transparent pricing: one flat rate.</p>
+            </div>
+          </li>
+          <li class="about-timeline__step about-timeline__step--next" id="timeline-next">
+            <div class="about-timeline__card">
+              <div class="about-timeline__date">Coming soon</div>
+              <h3>Subscriptions.</h3>
+              <p>Set up and manage customer subscriptions on a regular billing cycle, so Stored covers every way your business gets paid, online and offline.</p>
+            </div>
+          </li>
+          </ol>
+          <div class="about-timeline__progress" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="about-purpose" data-animate>
+          <h3 class="about-purpose__title">Why we exist.</h3>
+          <p class="about-purpose__text">Businesses deserve more. Today they juggle separate providers, channels and systems that don&rsquo;t talk to each other. Our vision is one operating system for your business, where you get paid, manage your money and use your own data to make decisions that help you grow. Payments are where we started, but our commitment is we won&rsquo;t just help you get paid. We will help you sell more.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- STATS                                    -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--stats">
+      <div class="container">
+        <div class="stats-grid" data-stagger>
+          <div class="stat">
+            <div class="stat__number"><span class="stat__hold" aria-hidden="true">$1bn+</span><span class="stat__live">$<span data-count-to="999" data-suffix="m" data-final="1bn+">0m</span></span></div>
+            <div class="stat__label">a year in payments through Stored</div>
+            <div class="stat__sublabel">annualised payment volume, and growing</div>
+          </div>
+          <div class="stat">
+            <div class="stat__number"><span class="stat__hold" aria-hidden="true">65+</span><span class="stat__live" data-count-to="65" data-suffix="+">0+</span></div>
+            <div class="stat__label">people at Stored</div>
+            <div class="stat__sublabel">building it every day</div>
+          </div>
+          <div class="stat">
+            <div class="stat__number"><span class="stat__hold" aria-hidden="true">4.9</span><span class="stat__live" data-trustpilot-rating data-count-to="4.9" data-decimals="1">0.0</span></div>
+            <div class="stat__label">out of 5 on Trustpilot</div>
+            <div class="stat__sublabel">rated by our customers</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- FOUNDERS                                 -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--white about-founders-section">
+      <div class="container">
+        <div class="about-founders">
+          <figure class="about-founders__photo" data-animate>
+            <svg viewBox="0 0 500 500" role="img" aria-label="Stored co-founders Danny Howe and Lee Hart sitting together on a staircase in Stored T-shirts">
+              <defs>
+                <mask id="foundersBlobMask">
+                  <rect width="500" height="500" fill="black"/>
+                  <path d="M488.3 250.0C487.6 261.1 486.5 272.1 484.7 283.0C482.8 293.8 480.5 304.7 477.4 315.2C474.4 325.8 470.6 336.1 466.3 346.3C462.1 356.5 457.4 366.6 451.9 376.2C446.5 385.8 440.1 395.0 433.4 403.9C426.7 412.8 419.5 421.5 411.8 429.7C404.0 437.8 395.8 446.0 386.8 452.8C377.8 459.6 367.7 465.4 357.5 470.4C347.3 475.4 336.5 479.5 325.7 482.8C314.8 486.2 303.6 488.7 292.4 490.5C281.2 492.4 269.8 493.5 258.5 493.9C247.2 494.3 235.8 493.9 224.5 492.9C213.2 491.9 201.9 490.0 190.7 487.7C179.6 485.4 168.4 482.7 157.4 479.1C146.5 475.6 135.5 471.4 125.1 466.3C114.7 461.2 104.3 455.4 94.9 448.5C85.5 441.6 76.6 433.6 68.8 425.0C61.0 416.4 53.9 406.7 47.9 396.8C41.9 386.9 37.0 376.2 32.6 365.6C28.3 355.0 24.4 344.1 21.6 333.1C18.7 322.2 17.0 311.0 15.4 299.9C13.8 288.8 12.6 277.7 12.1 266.6C11.5 255.6 11.5 244.4 12.1 233.4C12.6 222.3 13.6 211.2 15.4 200.1C17.2 189.1 19.5 178.0 22.6 167.2C25.8 156.5 29.7 145.7 34.5 135.4C39.3 125.2 45.0 115.1 51.3 105.6C57.6 96.2 64.6 86.8 72.4 78.5C80.2 70.1 88.9 62.4 98.0 55.4C107.0 48.4 116.8 42.1 126.8 36.6C136.8 31.2 147.4 26.3 158.1 22.5C168.8 18.7 180.0 16.1 191.1 13.7C202.2 11.4 213.4 9.7 224.6 8.4C235.8 7.1 247.2 6.2 258.5 6.1C269.9 6.0 281.3 6.7 292.7 7.9C304.1 9.2 315.6 10.9 326.8 13.7C338.0 16.5 349.1 20.3 359.8 24.8C370.6 29.3 381.3 34.5 391.3 40.5C401.3 46.6 411.2 53.4 420.1 61.1C429.0 68.7 437.6 77.3 444.9 86.5C452.2 95.7 458.5 106.0 464.0 116.3C469.5 126.6 474.3 137.5 477.9 148.5C481.5 159.6 483.7 171.1 485.5 182.5C487.4 193.8 488.4 205.2 488.8 216.4C489.3 227.7 489.0 238.9 488.3 250.0Z" fill="white"/>
+                </mask>
+              </defs>
+              <image href="/assets/images/about/stored-founders.webp" x="0" y="0" width="500" height="500" preserveAspectRatio="xMidYMid slice" mask="url(#foundersBlobMask)"></image>
+              <path d="M488.3 250.0C487.6 261.1 486.5 272.1 484.7 283.0C482.8 293.8 480.5 304.7 477.4 315.2C474.4 325.8 470.6 336.1 466.3 346.3C462.1 356.5 457.4 366.6 451.9 376.2C446.5 385.8 440.1 395.0 433.4 403.9C426.7 412.8 419.5 421.5 411.8 429.7C404.0 437.8 395.8 446.0 386.8 452.8C377.8 459.6 367.7 465.4 357.5 470.4C347.3 475.4 336.5 479.5 325.7 482.8C314.8 486.2 303.6 488.7 292.4 490.5C281.2 492.4 269.8 493.5 258.5 493.9C247.2 494.3 235.8 493.9 224.5 492.9C213.2 491.9 201.9 490.0 190.7 487.7C179.6 485.4 168.4 482.7 157.4 479.1C146.5 475.6 135.5 471.4 125.1 466.3C114.7 461.2 104.3 455.4 94.9 448.5C85.5 441.6 76.6 433.6 68.8 425.0C61.0 416.4 53.9 406.7 47.9 396.8C41.9 386.9 37.0 376.2 32.6 365.6C28.3 355.0 24.4 344.1 21.6 333.1C18.7 322.2 17.0 311.0 15.4 299.9C13.8 288.8 12.6 277.7 12.1 266.6C11.5 255.6 11.5 244.4 12.1 233.4C12.6 222.3 13.6 211.2 15.4 200.1C17.2 189.1 19.5 178.0 22.6 167.2C25.8 156.5 29.7 145.7 34.5 135.4C39.3 125.2 45.0 115.1 51.3 105.6C57.6 96.2 64.6 86.8 72.4 78.5C80.2 70.1 88.9 62.4 98.0 55.4C107.0 48.4 116.8 42.1 126.8 36.6C136.8 31.2 147.4 26.3 158.1 22.5C168.8 18.7 180.0 16.1 191.1 13.7C202.2 11.4 213.4 9.7 224.6 8.4C235.8 7.1 247.2 6.2 258.5 6.1C269.9 6.0 281.3 6.7 292.7 7.9C304.1 9.2 315.6 10.9 326.8 13.7C338.0 16.5 349.1 20.3 359.8 24.8C370.6 29.3 381.3 34.5 391.3 40.5C401.3 46.6 411.2 53.4 420.1 61.1C429.0 68.7 437.6 77.3 444.9 86.5C452.2 95.7 458.5 106.0 464.0 116.3C469.5 126.6 474.3 137.5 477.9 148.5C481.5 159.6 483.7 171.1 485.5 182.5C487.4 193.8 488.4 205.2 488.8 216.4C489.3 227.7 489.0 238.9 488.3 250.0Z" fill="none" stroke="#0B1B33" stroke-width="2.4" stroke-linejoin="round"/>
+            </svg>
+          </figure>
+
+          <div class="about-founders__content" data-animate>
+            <div class="section-header__overline">THE FOUNDERS</div>
+            <div class="about-founder">
+              <div class="about-founder__name">Danny Howe</div>
+              <p>Eleven years at WorldFirst (Alipay), joining around employee 50 and rising to Managing Director on the exec team through its sale to Ant Group. He saw first hand how a fintech grows, and how much of that comes down to culture.</p>
+            </div>
+
+            <div class="about-founder">
+              <div class="about-founder__name">Lee Hart</div>
+              <p>Nine years at Clover (Fiserv), from SME Sales Director to General Manager and a seat on the board of First Data Europe. He knows what businesses need from a payments provider, and where they get let down.</p>
+            </div>
+
+            <p class="about-founders__why">They&rsquo;d be the first to say they didn&rsquo;t build Stored alone. Everyone who&rsquo;s joined has shaped it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CHAIRMAN                                 -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--white about-chairman-section">
+      <div class="container">
+        <div class="about-founders about-founders--flip">
+          <figure class="about-founders__photo" data-animate>
+            <!-- Placeholder until Jonathan's photo arrives: swap the initials for an <image> as in the founders frame -->
+            <svg viewBox="0 0 500 500" role="img" aria-label="Jonathan Quin, Chairman of Stored">
+              <path d="M488.3 250.0C487.6 261.1 486.5 272.1 484.7 283.0C482.8 293.8 480.5 304.7 477.4 315.2C474.4 325.8 470.6 336.1 466.3 346.3C462.1 356.5 457.4 366.6 451.9 376.2C446.5 385.8 440.1 395.0 433.4 403.9C426.7 412.8 419.5 421.5 411.8 429.7C404.0 437.8 395.8 446.0 386.8 452.8C377.8 459.6 367.7 465.4 357.5 470.4C347.3 475.4 336.5 479.5 325.7 482.8C314.8 486.2 303.6 488.7 292.4 490.5C281.2 492.4 269.8 493.5 258.5 493.9C247.2 494.3 235.8 493.9 224.5 492.9C213.2 491.9 201.9 490.0 190.7 487.7C179.6 485.4 168.4 482.7 157.4 479.1C146.5 475.6 135.5 471.4 125.1 466.3C114.7 461.2 104.3 455.4 94.9 448.5C85.5 441.6 76.6 433.6 68.8 425.0C61.0 416.4 53.9 406.7 47.9 396.8C41.9 386.9 37.0 376.2 32.6 365.6C28.3 355.0 24.4 344.1 21.6 333.1C18.7 322.2 17.0 311.0 15.4 299.9C13.8 288.8 12.6 277.7 12.1 266.6C11.5 255.6 11.5 244.4 12.1 233.4C12.6 222.3 13.6 211.2 15.4 200.1C17.2 189.1 19.5 178.0 22.6 167.2C25.8 156.5 29.7 145.7 34.5 135.4C39.3 125.2 45.0 115.1 51.3 105.6C57.6 96.2 64.6 86.8 72.4 78.5C80.2 70.1 88.9 62.4 98.0 55.4C107.0 48.4 116.8 42.1 126.8 36.6C136.8 31.2 147.4 26.3 158.1 22.5C168.8 18.7 180.0 16.1 191.1 13.7C202.2 11.4 213.4 9.7 224.6 8.4C235.8 7.1 247.2 6.2 258.5 6.1C269.9 6.0 281.3 6.7 292.7 7.9C304.1 9.2 315.6 10.9 326.8 13.7C338.0 16.5 349.1 20.3 359.8 24.8C370.6 29.3 381.3 34.5 391.3 40.5C401.3 46.6 411.2 53.4 420.1 61.1C429.0 68.7 437.6 77.3 444.9 86.5C452.2 95.7 458.5 106.0 464.0 116.3C469.5 126.6 474.3 137.5 477.9 148.5C481.5 159.6 483.7 171.1 485.5 182.5C487.4 193.8 488.4 205.2 488.8 216.4C489.3 227.7 489.0 238.9 488.3 250.0Z" fill="var(--paper)"/>
+              <text x="250" y="250" text-anchor="middle" dominant-baseline="central" font-family="var(--font-display)" font-weight="700" font-size="150" fill="#0B1B33">JQ</text>
+              <path d="M488.3 250.0C487.6 261.1 486.5 272.1 484.7 283.0C482.8 293.8 480.5 304.7 477.4 315.2C474.4 325.8 470.6 336.1 466.3 346.3C462.1 356.5 457.4 366.6 451.9 376.2C446.5 385.8 440.1 395.0 433.4 403.9C426.7 412.8 419.5 421.5 411.8 429.7C404.0 437.8 395.8 446.0 386.8 452.8C377.8 459.6 367.7 465.4 357.5 470.4C347.3 475.4 336.5 479.5 325.7 482.8C314.8 486.2 303.6 488.7 292.4 490.5C281.2 492.4 269.8 493.5 258.5 493.9C247.2 494.3 235.8 493.9 224.5 492.9C213.2 491.9 201.9 490.0 190.7 487.7C179.6 485.4 168.4 482.7 157.4 479.1C146.5 475.6 135.5 471.4 125.1 466.3C114.7 461.2 104.3 455.4 94.9 448.5C85.5 441.6 76.6 433.6 68.8 425.0C61.0 416.4 53.9 406.7 47.9 396.8C41.9 386.9 37.0 376.2 32.6 365.6C28.3 355.0 24.4 344.1 21.6 333.1C18.7 322.2 17.0 311.0 15.4 299.9C13.8 288.8 12.6 277.7 12.1 266.6C11.5 255.6 11.5 244.4 12.1 233.4C12.6 222.3 13.6 211.2 15.4 200.1C17.2 189.1 19.5 178.0 22.6 167.2C25.8 156.5 29.7 145.7 34.5 135.4C39.3 125.2 45.0 115.1 51.3 105.6C57.6 96.2 64.6 86.8 72.4 78.5C80.2 70.1 88.9 62.4 98.0 55.4C107.0 48.4 116.8 42.1 126.8 36.6C136.8 31.2 147.4 26.3 158.1 22.5C168.8 18.7 180.0 16.1 191.1 13.7C202.2 11.4 213.4 9.7 224.6 8.4C235.8 7.1 247.2 6.2 258.5 6.1C269.9 6.0 281.3 6.7 292.7 7.9C304.1 9.2 315.6 10.9 326.8 13.7C338.0 16.5 349.1 20.3 359.8 24.8C370.6 29.3 381.3 34.5 391.3 40.5C401.3 46.6 411.2 53.4 420.1 61.1C429.0 68.7 437.6 77.3 444.9 86.5C452.2 95.7 458.5 106.0 464.0 116.3C469.5 126.6 474.3 137.5 477.9 148.5C481.5 159.6 483.7 171.1 485.5 182.5C487.4 193.8 488.4 205.2 488.8 216.4C489.3 227.7 489.0 238.9 488.3 250.0Z" fill="none" stroke="#0B1B33" stroke-width="2.4" stroke-linejoin="round"/>
+            </svg>
+          </figure>
+
+          <div class="about-founders__content" data-animate>
+            <div class="section-header__overline">OUR CHAIRMAN</div>
+            <div class="about-founder">
+              <div class="about-founder__name">Jonathan Quin</div>
+              <p>One of UK fintech&rsquo;s success stories: he co-founded WorldFirst, grew it into a cross-border payments leader and sold it to Ant Group (Alipay) for around $650m. As Chairman, he&rsquo;s backing Stored to do it again.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -552,7 +973,7 @@
     <!-- ════════════════════════════════════════ -->
     <!-- HOW WE WORK                              -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section">
+    <section class="section about-values">
       <div class="container">
         <div class="section-header section-header--center" data-animate>
           <div class="section-header__overline">HOW WE WORK</div>
@@ -562,65 +983,39 @@
         <div class="pillars-grid" data-stagger>
           <div class="card card--dark pillar-card">
             <span class="card__label">01 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14L16 5l12 9v13H4V14z"/><path d="M12 27v-8h8v8"/></svg></div>
-            <h3 class="card__title">Merchant first.</h3>
-            <p class="card__text">Built for the person running the shift, not the procurement deck.</p>
+            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="24" height="20" rx="2"/><line x1="4" y1="12" x2="28" y2="12"/><circle cx="9" cy="18" r="1.5" fill="currentColor"/><line x1="14" y1="18" x2="23" y2="18"/><line x1="14" y1="22" x2="20" y2="22"/></svg></div>
+            <h3 class="card__title">Simple, on purpose.</h3>
+            <p class="card__text">Payments are complicated enough. We build to take effort out of your day.</p>
           </div>
           <div class="card card--dark pillar-card">
             <span class="card__label">02 / 06</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h20v22H6z"/><line x1="11" y1="11" x2="21" y2="11"/><line x1="11" y1="16" x2="21" y2="16"/><line x1="11" y1="21" x2="17" y2="21"/></svg></div>
-            <h3 class="card__title">Plain English.</h3>
-            <p class="card__text">Contracts and support you can read without a lawyer in the room.</p>
+            <h3 class="card__title">Pricing you can read.</h3>
+            <p class="card__text">Clear terms, no surprise charges. If it costs money, you&rsquo;ll know before you sign.</p>
           </div>
           <div class="card card--dark pillar-card">
             <span class="card__label">03 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="24" height="20" rx="2"/><line x1="4" y1="12" x2="28" y2="12"/><circle cx="9" cy="18" r="1.5" fill="currentColor"/><line x1="14" y1="18" x2="23" y2="18"/><line x1="14" y1="22" x2="20" y2="22"/></svg></div>
-            <h3 class="card__title">One platform.</h3>
-            <p class="card__text">Payments and the operation behind them in one place, not five logins.</p>
+            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 4 20 0 24M16 4c-4 4-4 20 0 24"/></svg></div>
+            <h3 class="card__title">Wherever you sell.</h3>
+            <p class="card__text">At the counter, online, by link, by phone or by invoice. One provider for all of it.</p>
           </div>
           <div class="card card--dark pillar-card">
             <span class="card__label">04 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 4 20 0 24M16 4c-4 4-4 20 0 24"/></svg></div>
-            <h3 class="card__title">Built in the UK.</h3>
-            <p class="card__text">A UK payments company, built for how UK businesses actually trade.</p>
+            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="4"/><path d="M4 26c0-4.4 3.6-8 8-8s8 3.6 8 8"/><circle cx="22" cy="12" r="3"/><path d="M21 18.2c3.9.5 7 3.8 7 7.8"/></svg></div>
+            <h3 class="card__title">Real people, on call.</h3>
+            <p class="card__text">Call us and you&rsquo;ll speak to someone who knows your account and wants to fix it.</p>
           </div>
           <div class="card card--dark pillar-card">
             <span class="card__label">05 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4l10 4v8c0 7-4.5 10.5-10 12-5.5-1.5-10-5-10-12V8l10-4z"/><path d="M11.5 16.5l3 3 6-6"/></svg></div>
-            <h3 class="card__title">Reliability first.</h3>
-            <p class="card__text">When money is moving, dependable beats clever every single day.</p>
+            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg></div>
+            <h3 class="card__title">Paid next working day.</h3>
+            <p class="card__text">Card payments in your account the next working day, because cash flow can&rsquo;t wait.</p>
           </div>
           <div class="card card--dark pillar-card">
             <span class="card__label">06 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg></div>
-            <h3 class="card__title">Next working day.</h3>
-            <p class="card__text">Your money reaches your account the next working day. That one is a promise.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════ -->
-    <!-- PARTNERS & CAREERS                       -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="section section--white">
-      <div class="container">
-        <div class="content-split" data-animate>
-          <div>
-            <div class="section-header__overline">PARTNERS</div>
-            <h2 class="section-header__title">Built on solid rails.</h2>
-            <p class="body-lg text-muted" style="margin-top: var(--space-4); max-width: 480px;">
-              Worldpay, Cashflows and Stripe carry the rails under every Stored payment. We build the software and the service; they bring the scale.
-            </p>
-            <a href="/partners" class="btn btn--secondary" style="margin-top: var(--space-8);">Partner with us</a>
-          </div>
-          <div>
-            <div class="section-header__overline">CAREERS</div>
-            <h2 class="section-header__title">Come and build it.</h2>
-            <p class="body-lg text-muted" style="margin-top: var(--space-4); max-width: 480px;">
-              Card machines, online payments and the platform behind them. There is a lot left to build, and we would rather build it with you.
-            </p>
-            <a href="/careers" class="btn btn--primary" style="margin-top: var(--space-8);">See careers</a>
+            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h22v14H14l-6 5v-5H5z"/><line x1="10" y1="12" x2="22" y2="12"/><line x1="10" y1="16" x2="18" y2="16"/></svg></div>
+            <h3 class="card__title">Listen, then build.</h3>
+            <p class="card__text">Many of our best features started as a merchant telling us what was missing.</p>
           </div>
         </div>
       </div>
@@ -727,5 +1122,53 @@
   </footer>
 
   <script src="js/main.js?v=counter-3"></script>
+  <script>
+    // About timeline: arrows and year buttons step through; progress follows the scroll
+    (function () {
+      var root = document.querySelector('.about-timeline');
+      if (!root) return;
+      var track = root.querySelector('.about-timeline__track');
+      var steps = Array.prototype.slice.call(track.children);
+      var years = root.querySelectorAll('.about-timeline__year');
+      var prev = root.querySelector('[data-dir="-1"]');
+      var next = root.querySelector('[data-dir="1"]');
+      var bar = root.querySelector('.about-timeline__progress span');
+
+      // Phones centre each card; wider screens line cards up on the left
+      function centred() { return getComputedStyle(steps[0]).scrollSnapAlign.indexOf('center') > -1; }
+
+      function goTo(i) {
+        i = Math.max(0, Math.min(steps.length - 1, i));
+        steps[i].scrollIntoView({ block: 'nearest', inline: centred() ? 'center' : 'start' });
+      }
+
+      function current() {
+        var t = track.getBoundingClientRect(), c = centred(), best = 0, bestD = Infinity;
+        steps.forEach(function (s, i) {
+          var r = s.getBoundingClientRect();
+          var d = c ? Math.abs(r.left + r.width / 2 - (t.left + t.width / 2)) : Math.abs(r.left - t.left);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        return best;
+      }
+
+      function update() {
+        var max = track.scrollWidth - track.clientWidth;
+        var atEnd = track.scrollLeft >= max - 2;
+        var i = atEnd ? steps.length - 1 : current();
+        prev.disabled = track.scrollLeft <= 2;
+        next.disabled = atEnd;
+        bar.style.width = ((track.scrollLeft + track.clientWidth) / track.scrollWidth) * 100 + '%';
+        years.forEach(function (y, n) { y.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+      }
+
+      prev.addEventListener('click', function () { goTo(current() - 1); });
+      next.addEventListener('click', function () { goTo(current() + 1); });
+      years.forEach(function (y, n) { y.addEventListener('click', function () { goTo(n); }); });
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
 </body>
 </html>
