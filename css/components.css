@@ -261,7 +261,7 @@
   flex-shrink: 0;
   width: 24px;
   height: 24px;
-  color: var(--blurple);
+  color: var(--ink); /* list arrows are structure, not the blurple active detail (Danny, 4 Nov 2026) */
   margin-top: 2px;
 }
 
@@ -616,6 +616,64 @@ textarea.input {
   font-weight: var(--weight-medium);
 }
 
+/* ─── Phone carousel ─── */
+/* A [data-phone-carousel] grid becomes one swipeable row on phones, one
+   full-width card at a time, moving on its own (js/main.js) with dots
+   underneath (Danny, 3-4 Nov 2026). Homepage Six ways, Card machines. */
+.carousel-dots {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  /* The gap matches the gutter so the next card starts exactly at the
+     screen edge instead of peeking in */
+  body .container [data-phone-carousel] {
+    display: flex;
+    gap: var(--container-pad);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--container-pad);
+    margin-inline: calc(-1 * var(--container-pad));
+    padding-inline: var(--container-pad);
+    scrollbar-width: none;
+  }
+
+  body .container [data-phone-carousel]::-webkit-scrollbar {
+    display: none;
+  }
+
+  body .container [data-phone-carousel] > * {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  /* Dots are a graphic, so they centre under the card */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+  }
+
+  .carousel-dots__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: width var(--duration-base) var(--ease-out),
+                background var(--duration-base) var(--ease-out);
+  }
+
+  .carousel-dots__dot.is-active {
+    width: 28px;
+    border-radius: 5px;
+    background: var(--ink);
+  }
+}
+
 /* ─── Live counter pill ─── */
 .live-pill {
   display: inline-flex;
@@ -691,10 +749,29 @@ textarea.input {
     margin-bottom: var(--space-5) !important;
   }
 
+  /* 16px clear between buttons once the primary's 6px shadow is counted
+     (Danny, 3 Nov 2026) */
   body .hero__actions,
   body .solution-hero__actions {
-    gap: 8px;
+    gap: var(--space-4) calc(var(--space-4) + 6px);
     margin-top: var(--space-6);
+  }
+
+  /* "Let's get paid." matches the homepage's "Get paid." on phones
+     (Danny, 4 Nov 2026) */
+  .cta-band__title {
+    font-size: 30vw;
+    margin-bottom: var(--space-10);
+  }
+
+  .cta-band__footer {
+    row-gap: var(--space-10);
+  }
+
+  /* Less air above "Let's get paid." on phones: 64px, not 96px
+     (Danny, 4 Nov 2026) */
+  .cta-band {
+    padding-top: var(--space-16);
   }
 
   body .hero__actions .btn--lg,
@@ -715,4 +792,13 @@ textarea.input {
     vertical-align: -3px;
     margin-right: 6px;
   }
+}
+
+/* Hairline between two back-to-back sections of the same colour: container
+   width so it lines up with the content, quiet enough to organise without
+   decorating (Danny, 4 Nov 2026) */
+.section-rule {
+  border: 0;
+  border-top: 1px solid rgba(11, 27, 51, 0.12);
+  margin: 0;
 }

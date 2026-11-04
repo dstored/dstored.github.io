@@ -20,11 +20,11 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/css/variables.css?v=green-1">
   <link rel="stylesheet" href="/css/base.css?v=brand-2">
-  <link rel="stylesheet" href="/css/components.css?v=mobile-1">
+  <link rel="stylesheet" href="/css/components.css?v=rule-1">
   <link rel="stylesheet" href="/css/animations.css?v=brand-2">
-  <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/pages/solutions.css?v=highlight-1">
+  <link rel="stylesheet" href="/css/header.css?v=menu-6">
+  <link rel="stylesheet" href="/css/footer.css?v=two-col-1">
+  <link rel="stylesheet" href="/css/pages/solutions.css?v=pillars-3">
   <style>
     /* Ticker (56px + 12px gap) sits flush on the fold at every height */
     .solution-hero { min-height: calc(100vh - 68px); }
@@ -508,13 +508,57 @@
         font-size: clamp(3rem, 2.5rem + 5vw, 5rem);
       }
     }
+
+    /* Phones: the card machine sits in front of a bordered circle, like the
+       homepage's photo frame, with one floating card, so it reads as a
+       graphic rather than a loose screenshot (Danny, 4 Nov 2026) */
+    .cm-float {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .solution-hero .solution-hero__visual {
+        position: relative;
+        right: auto; /* the desktop 36px nudge off the edge */
+        padding: var(--space-6) 0;
+      }
+
+      .solution-hero .solution-hero__visual > .demo-sketch {
+        position: relative;
+      }
+
+      .cm-float {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        position: absolute;
+        right: 4px;
+        bottom: 6px; /* across the phone's bottom edge, clear of every screen */
+        padding: var(--space-2) var(--space-3);
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-xl);
+        font-size: 0.8125rem;
+        font-weight: var(--weight-medium);
+        color: var(--ink);
+        animation: float 4s var(--ease-in-out) infinite;
+      }
+
+      .cm-float__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        flex-shrink: 0;
+      }
+    }
   </style>
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=2">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=2">
-  <link rel="stylesheet" href="/css/mobile.css?v=3">
+  <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
 <body>
 
@@ -694,16 +738,6 @@
           </a>
         </div>
 
-        <div class="mega-menu__column">
-          <div class="mega-menu__column-title">Browse</div>
-          <a href="/sectors/" class="mega-menu__link">
-            <div class="mega-menu__link-text">
-              <span class="mega-menu__link-title">All sectors</span>
-              <span class="mega-menu__link-desc">Every sector Stored serves</span>
-            </div>
-          </a>
-        </div>
-
         <div class="mega-menu__promo">
           <div>
             <div class="mega-menu__promo-title">Not sure which fits?</div>
@@ -777,7 +811,6 @@
     <div class="mobile-nav__section" data-mobile-accordion>
       <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Sectors</button>
       <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-        <a href="/sectors/" class="mobile-nav__link">All sectors</a>
         <a href="/hospitality-payment-solutions" class="mobile-nav__link">Hospitality</a>
         <a href="/beauty-wellness-payment-solutions" class="mobile-nav__link">Beauty &amp; wellness</a>
         <a href="/retail-payment-solutions" class="mobile-nav__link">Retail</a>
@@ -817,10 +850,10 @@
       <div class="container">
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
-            <h1 class="solution-hero__title">Tap, paid,<br><span style="white-space: nowrap;">settled.<span class="solution-hero__asterisk">*</span></span></h1>
+            <h1 class="solution-hero__title" style="--fit-em: 4.14">Tap, paid,<br><span style="white-space: nowrap;">settled.<span class="solution-hero__asterisk">*</span></span></h1>
             <div class="solution-hero__row">
               <div class="solution-hero__row-text">
-                <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>in your account the next working day. Countertop, portable and mobile card machines, pre-configured and ready out of the box.</p>
+                <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>to your account next working day. Countertop and portable card machines, pre-configured and ready out of the box.</p>
                 <div class="solution-hero__actions">
                   <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
                     Sign up now
@@ -833,6 +866,7 @@
             </div>
               </div>
               <div class="solution-hero__visual">
+                <div class="hero-blob" aria-hidden="true"><svg viewBox="0 0 500 500"><path d="M488.3 250.0C487.6 261.1 486.5 272.1 484.7 283.0C482.8 293.8 480.5 304.7 477.4 315.2C474.4 325.8 470.6 336.1 466.3 346.3C462.1 356.5 457.4 366.6 451.9 376.2C446.5 385.8 440.1 395.0 433.4 403.9C426.7 412.8 419.5 421.5 411.8 429.7C404.0 437.8 395.8 446.0 386.8 452.8C377.8 459.6 367.7 465.4 357.5 470.4C347.3 475.4 336.5 479.5 325.7 482.8C314.8 486.2 303.6 488.7 292.4 490.5C281.2 492.4 269.8 493.5 258.5 493.9C247.2 494.3 235.8 493.9 224.5 492.9C213.2 491.9 201.9 490.0 190.7 487.7C179.6 485.4 168.4 482.7 157.4 479.1C146.5 475.6 135.5 471.4 125.1 466.3C114.7 461.2 104.3 455.4 94.9 448.5C85.5 441.6 76.6 433.6 68.8 425.0C61.0 416.4 53.9 406.7 47.9 396.8C41.9 386.9 37.0 376.2 32.6 365.6C28.3 355.0 24.4 344.1 21.6 333.1C18.7 322.2 17.0 311.0 15.4 299.9C13.8 288.8 12.6 277.7 12.1 266.6C11.5 255.6 11.5 244.4 12.1 233.4C12.6 222.3 13.6 211.2 15.4 200.1C17.2 189.1 19.5 178.0 22.6 167.2C25.8 156.5 29.7 145.7 34.5 135.4C39.3 125.2 45.0 115.1 51.3 105.6C57.6 96.2 64.6 86.8 72.4 78.5C80.2 70.1 88.9 62.4 98.0 55.4C107.0 48.4 116.8 42.1 126.8 36.6C136.8 31.2 147.4 26.3 158.1 22.5C168.8 18.7 180.0 16.1 191.1 13.7C202.2 11.4 213.4 9.7 224.6 8.4C235.8 7.1 247.2 6.2 258.5 6.1C269.9 6.0 281.3 6.7 292.7 7.9C304.1 9.2 315.6 10.9 326.8 13.7C338.0 16.5 349.1 20.3 359.8 24.8C370.6 29.3 381.3 34.5 391.3 40.5C401.3 46.6 411.2 53.4 420.1 61.1C429.0 68.7 437.6 77.3 444.9 86.5C452.2 95.7 458.5 106.0 464.0 116.3C469.5 126.6 474.3 137.5 477.9 148.5C481.5 159.6 483.7 171.1 485.5 182.5C487.4 193.8 488.4 205.2 488.8 216.4C489.3 227.7 489.0 238.9 488.3 250.0Z" fill="var(--blurple)" stroke="#0B1B33" stroke-width="2.4" stroke-linejoin="round"/></svg></div>
                 <div class="demo-sketch">
                 <div class="phone-demo" role="img" aria-label="The Stored payment app taking a &#163;25 payment: enter amount, tap card or phone, payment approved with receipt">
                   <div class="phone-demo__screens" data-cycle-card data-cycle-interval="4000">
@@ -901,6 +935,7 @@
                   </div>
                 </div>
                 </div>
+                <div class="cm-float" aria-hidden="true"><span class="cm-float__dot"></span>Settled next working day</div>
               </div>
             </div>
           </div>
@@ -935,10 +970,10 @@
       <div class="container">
         <div class="section-header section-header--center section-header--tight section-header--wide" data-animate>
           <h2 class="section-header__title">Three machines. One standard.</h2>
-          <p class="section-header__subtitle">Every terminal ships pre-configured, ready to go.</p>
+          <p class="section-header__subtitle">Every terminal ships pre-configured, ready to start taking payments.</p>
         </div>
 
-        <div class="device-grid" data-stagger>
+        <div class="device-grid" data-stagger data-phone-carousel aria-label="Three card machines">
           <div class="device-card">
             <div class="device-card__image" style="background-image: url('https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=600&q=80&auto=format&fit=crop'); background-size: cover; background-position: center; color: transparent;">Countertop terminal</div>
             <div class="device-card__body">
@@ -973,7 +1008,7 @@
     <section class="section section--stats">
       <div class="container">
         <div class="stats-typewriter" data-animate>
-          <span class="stats-typewriter__cycle" data-typewriter-cycle="Fastest tap.|Flattest rate.|Quickest cash.|Fairest price.|Calmest support.|Sharpest setup."></span>
+          <span class="stats-typewriter__cycle" style="--fit-em: 7.64" data-typewriter-cycle="Fastest tap.|Flattest rate.|Quickest cash.|Fairest price.|Calmest support.|Sharpest setup."></span>
         </div>
       </div>
     </section>
@@ -1187,7 +1222,9 @@
     <!-- ════════════════════════════════════════ -->
     <!-- CASE STUDY                               -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section section--dark">
+    <!-- Parchment, not navy: it sits between the navy pricing section and the
+         navy CTA band (Danny, 4 Nov 2026) -->
+    <section class="section">
       <div class="container">
         <div class="section-header section-header--center section-header--wide" data-animate>
           <div class="section-header__overline">CASE STUDY</div>
@@ -1211,6 +1248,9 @@
         </div>
       </div>
     </section>
+
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="section-rule"></div>
 
     <!-- ════════════════════════════════════════ -->
     <!-- FAQ                                      -->
@@ -1347,7 +1387,6 @@
             <a href="/professional-services-payment-solutions" class="footer__link">Professional services</a>
             <a href="/b2b-payment-solutions" class="footer__link">B2B</a>
             <a href="/wholesale-payment-solutions" class="footer__link">Wholesale</a>
-            <a href="/sectors/" class="footer__link">All sectors</a>
           </div>
         </div>
 
@@ -1383,6 +1422,6 @@
     </div>
   </footer>
 
-  <script src="/js/main.js?v=counter-3"></script>
+  <script src="/js/main.js?v=pillars-3"></script>
 </body>
 </html>

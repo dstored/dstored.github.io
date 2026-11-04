@@ -20,11 +20,11 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/variables.css?v=green-1">
   <link rel="stylesheet" href="css/base.css?v=brand-2">
-  <link rel="stylesheet" href="css/components.css?v=mobile-1">
+  <link rel="stylesheet" href="css/components.css?v=rule-1">
   <link rel="stylesheet" href="css/animations.css?v=brand-2">
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/pages/home.css?v=why-wrap-1">
+  <link rel="stylesheet" href="css/header.css?v=menu-6">
+  <link rel="stylesheet" href="css/footer.css?v=two-col-1">
+  <link rel="stylesheet" href="css/pages/home.css?v=stats-1">
   <link rel="stylesheet" href="css/pages/blog.css?v=blog-1">
 
   <style>
@@ -84,7 +84,7 @@
     }
   }
   </script>
-  <link rel="stylesheet" href="/css/mobile.css?v=3">
+  <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
 <body>
 
@@ -264,16 +264,6 @@
           </a>
         </div>
 
-        <div class="mega-menu__column">
-          <div class="mega-menu__column-title">Browse</div>
-          <a href="/sectors/" class="mega-menu__link">
-            <div class="mega-menu__link-text">
-              <span class="mega-menu__link-title">All sectors</span>
-              <span class="mega-menu__link-desc">Every sector Stored serves</span>
-            </div>
-          </a>
-        </div>
-
         <div class="mega-menu__promo">
           <div>
             <div class="mega-menu__promo-title">Not sure which fits?</div>
@@ -347,7 +337,6 @@
     <div class="mobile-nav__section" data-mobile-accordion>
       <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Sectors</button>
       <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-        <a href="/sectors/" class="mobile-nav__link">All sectors</a>
         <a href="/hospitality-payment-solutions" class="mobile-nav__link">Hospitality</a>
         <a href="/beauty-wellness-payment-solutions" class="mobile-nav__link">Beauty &amp; wellness</a>
         <a href="/retail-payment-solutions" class="mobile-nav__link">Retail</a>
@@ -496,7 +485,7 @@
           <h2 class="section-header__title">Six ways to take payment.</h2>
         </div>
 
-        <div class="pillars-grid" data-stagger>
+        <div class="pillars-grid" data-stagger data-phone-carousel aria-label="Six ways to take payment">
           <!-- In-Person — dark -->
           <a href="/card-machines" class="card card--dark pillar-card">
             <span class="card__label">01 / 06</span>
@@ -564,15 +553,12 @@
           <a href="/virtual-terminal" class="card card--dark pillar-card">
             <span class="card__label">05 / 06</span>
             <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="2" width="16" height="28" rx="3"/>
-                <line x1="13" y1="26" x2="19" y2="26"/>
-                <rect x="11" y="10" width="10" height="6.5" rx="0.5"/>
-                <line x1="11" y1="13" x2="21" y2="13"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/>
               </svg>
             </div>
             <h3 class="card__title">Phone.</h3>
-            <p class="card__text">Turn any iPhone, iPad or Android into a card terminal. No hardware.</p>
+            <p class="card__text">Take card payments over the phone, safely and securely, with our virtual terminal.</p>
             <span class="card__link">Learn more <span>&rarr;</span></span>
           </a>
 
@@ -841,12 +827,14 @@
             <div class="pricing-teaser__rate-card">
               <div class="pricing-teaser__rate-label">in-person</div>
               <div class="pricing-teaser__rate-note">Contactless, chip &amp; PIN, wallets.</div>
-              <div class="pricing-teaser__rate-number" data-count-to="1" data-decimals="0" data-suffix="%">0%</div>
+              <div class="pricing-teaser__rate-number"><span data-count-to="1" data-decimals="0" data-suffix="%">0%</span><span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>blended rate</div>
             </div>
             <div class="pricing-teaser__rate-card">
               <div class="pricing-teaser__rate-label">online</div>
               <div class="pricing-teaser__rate-note">Gateway, pay by link, invoicing.</div>
-              <div class="pricing-teaser__rate-number" data-count-to="1" data-decimals="0" data-suffix="%">0%</div>
+              <div class="pricing-teaser__rate-number"><span data-count-to="1" data-decimals="0" data-suffix="%">0%</span><span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>blended rate</div>
             </div>
             <div class="pricing-teaser__rate-card">
               <div class="pricing-teaser__rate-label">terminals</div>
@@ -957,7 +945,6 @@
             <a href="/professional-services-payment-solutions" class="footer__link">Professional services</a>
             <a href="/b2b-payment-solutions" class="footer__link">B2B</a>
             <a href="/wholesale-payment-solutions" class="footer__link">Wholesale</a>
-            <a href="/sectors/" class="footer__link">All sectors</a>
           </div>
         </div>
 
@@ -993,6 +980,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=counter-3"></script>
+  <script src="js/main.js?v=pillars-3"></script>
 </body>
 </html>

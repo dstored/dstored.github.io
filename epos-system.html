@@ -20,11 +20,11 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/css/variables.css?v=green-1">
   <link rel="stylesheet" href="/css/base.css?v=brand-2">
-  <link rel="stylesheet" href="/css/components.css?v=mobile-1">
+  <link rel="stylesheet" href="/css/components.css?v=rule-1">
   <link rel="stylesheet" href="/css/animations.css?v=brand-2">
-  <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/pages/solutions.css?v=highlight-1">
+  <link rel="stylesheet" href="/css/header.css?v=menu-6">
+  <link rel="stylesheet" href="/css/footer.css?v=two-col-1">
+  <link rel="stylesheet" href="/css/pages/solutions.css?v=pillars-3">
   <style>
     /* Homepage-pattern hero: full-width two-line headline at homepage scale */
     .solution-hero .solution-hero__inner {
@@ -474,12 +474,14 @@
 
     .merchant-strip {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      /* Hairline between tiles, like the homepage merchant tiles (Danny, 4 Nov 2026) */
+      gap: 1px;
       width: 100%;
       border-top: 4px solid var(--hot);
       border-bottom: 4px solid var(--hot);
       margin-top: var(--space-12);
-      background: var(--ink);
+      background: color-mix(in srgb, var(--ink) 72%, var(--white));
     }
 
     .merchant-strip__tile {
@@ -503,16 +505,17 @@
       transform: scale(1.04);
     }
 
-    /* Scrim keeps the white labels legible on any photo. Flat wash + fine
-       grain, matching the event tiles on tickets-events; it does NOT lighten
-       on hover — the image scale is the whole gesture, as on the other strips */
+    /* Warm, darker lens like the merchant photos on the homepage: a touch of
+       sepia and a brown tint bring the white labels forward (Danny, 4 Nov 2026) */
+    .merchant-strip__tile img {
+      filter: sepia(0.35) saturate(0.9) brightness(0.72) contrast(1.05);
+    }
+
     .merchant-strip__tile::after {
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgba(11, 27, 51, 0.44);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
-      background-size: 140px 140px;
+      background: rgba(48, 30, 14, 0.22);
     }
 
     .sector-strip__label {
@@ -533,7 +536,7 @@
     }
 
     @media (max-width: 900px) {
-      .merchant-strip { grid-template-columns: repeat(3, 1fr); }
+      .merchant-strip { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 480px) {
@@ -542,7 +545,12 @@
 
     @media (max-width: 968px) {
       .solution-hero__visual {
-        position: static;
+        /* relative, not static: keeps the cut-edge shadow (::after) on the
+           tablet instead of spreading over the headline (Danny, 4 Nov 2026) */
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
         margin-top: var(--space-10);
         width: min(560px, 100%);
         height: 380px;
@@ -590,7 +598,7 @@
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=2">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=2">
-  <link rel="stylesheet" href="/css/mobile.css?v=3">
+  <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
 <body>
 
@@ -770,16 +778,6 @@
           </a>
         </div>
 
-        <div class="mega-menu__column">
-          <div class="mega-menu__column-title">Browse</div>
-          <a href="/sectors/" class="mega-menu__link">
-            <div class="mega-menu__link-text">
-              <span class="mega-menu__link-title">All sectors</span>
-              <span class="mega-menu__link-desc">Every sector Stored serves</span>
-            </div>
-          </a>
-        </div>
-
         <div class="mega-menu__promo">
           <div>
             <div class="mega-menu__promo-title">Not sure which fits?</div>
@@ -853,7 +851,6 @@
     <div class="mobile-nav__section" data-mobile-accordion>
       <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Sectors</button>
       <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-        <a href="/sectors/" class="mobile-nav__link">All sectors</a>
         <a href="/hospitality-payment-solutions" class="mobile-nav__link">Hospitality</a>
         <a href="/beauty-wellness-payment-solutions" class="mobile-nav__link">Beauty &amp; wellness</a>
         <a href="/retail-payment-solutions" class="mobile-nav__link">Retail</a>
@@ -893,7 +890,7 @@
       <div class="container">
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
-            <h1 class="solution-hero__title">Runs the<br><span style="white-space: nowrap;">shop.<span class="solution-hero__asterisk">*</span></span></h1>
+            <h1 class="solution-hero__title" style="--fit-em: 3.89">Runs the<br><span style="white-space: nowrap;">shop.<span class="solution-hero__asterisk">*</span></span></h1>
             <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>the EPOS and till system for table, counter and bookings, with inventory, staff and reporting built in.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
@@ -991,10 +988,10 @@
         <div class="section-header section-header--center section-header--one-line" data-animate>
           <div class="section-header__overline">FEATURES</div>
           <h2 class="section-header__title">Everything you need, built in.</h2>
-          <p class="section-header__subtitle">No bolt-ons. No third-party patchwork. Standard.</p>
+          <p class="section-header__subtitle">No bolt-ons. No third-party patchwork.</p>
         </div>
 
-        <div class="pillars-grid" data-stagger>
+        <div class="pillars-grid" data-stagger data-phone-carousel>
           <div class="card card--dark pillar-card">
             <span class="card__label">01 / 06</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h4l3 16h16l3-11H9"/><circle cx="12" cy="26" r="2"/><circle cx="24" cy="26" r="2"/></svg></div>
@@ -1040,19 +1037,8 @@
     <!-- ════════════════════════════════════════ -->
     <section class="section section--stats">
       <div class="container">
-        <div class="stats-grid" data-stagger>
-          <div class="stat">
-            <div class="stat__number" data-count-to="1.2" data-decimals="1" data-suffix="%">0%</div>
-            <div class="stat__label">flat on every card</div>
-          </div>
-          <div class="stat">
-            <div class="stat__number" data-count-to="1">0</div>
-            <div class="stat__label">system runs the whole shop</div>
-          </div>
-          <div class="stat">
-            <div class="stat__number" data-count-to="0">0</div>
-            <div class="stat__label">contracts or monthly minimums</div>
-          </div>
+        <div class="stats-typewriter" data-animate>
+          <span class="stats-typewriter__cycle" style="--fit-em: 6.1" data-typewriter-cycle="One system.|Live stock.|Scan to order.|Split the bill.|Tips pooled.|Live reports."></span>
         </div>
       </div>
     </section>
@@ -1068,7 +1054,7 @@
           <p class="section-header__subtitle">From a full counter setup to a till that runs on the terminal in your hand.</p>
         </div>
 
-        <div class="device-grid" data-stagger>
+        <div class="device-grid" data-stagger data-phone-carousel aria-label="Hardware setups">
           <div class="device-card">
             <div class="device-card__image" style="background-image: url('https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=600&q=80&auto=format&fit=crop'); background-size: cover; background-position: center; color: transparent;">Countertop till setup</div>
             <div class="device-card__body">
@@ -1097,13 +1083,16 @@
       </div>
     </section>
 
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="section-rule"></div>
+
     <!-- ════════════════════════════════════════ -->
     <!-- SECTOR RELEVANCE                         -->
     <!-- ════════════════════════════════════════ -->
     <section class="section section--sectors">
       <div class="container">
         <div class="section-header" data-animate>
-          <h2 class="section-header__title">Caf&eacute;s. Salons. Shops. Trades. Warehouses.<br><span class="highlight">Built for every kind of business.</span></h2>
+          <h2 class="section-header__title">Caf&eacute;s. Bars. Shops. Salons.<br><span class="highlight">Built for how you serve.</span></h2>
         </div>
 
         <div class="trustpilot-strip" data-animate>
@@ -1112,34 +1101,24 @@
 
         <div class="merchant-strip" data-animate="fade">
           <a href="/hospitality-payment-solutions" class="merchant-strip__tile">
-            <img src="https://images.unsplash.com/photo-1538334421852-687c439c92f4?w=600&q=80&auto=format&fit=crop" alt="Warm restaurant interior" loading="lazy">
-            <span class="sector-strip__label">Hospitality</span>
+            <img src="/assets/images/sectors/pos/cafe-restaurant.jpg" alt="Server bringing a dish to a table in a busy restaurant" loading="lazy">
+            <span class="sector-strip__label">Cafés &amp; Restaurants</span>
           </a>
-          <a href="/beauty-wellness-payment-solutions" class="merchant-strip__tile">
-            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80&auto=format&fit=crop" alt="Hair salon chairs and mirrors" loading="lazy">
-            <span class="sector-strip__label">Beauty &amp; Wellness</span>
+          <a href="/hospitality-payment-solutions" class="merchant-strip__tile">
+            <img src="/assets/images/sectors/pos/bar-pub.jpg" alt="Bartender pouring a pint at the bar" loading="lazy">
+            <span class="sector-strip__label">Bars &amp; Pubs</span>
           </a>
           <a href="/retail-payment-solutions" class="merchant-strip__tile">
-            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&q=80&auto=format&fit=crop" alt="Clothing boutique interior" loading="lazy">
-            <span class="sector-strip__label">Retail</span>
+            <img src="/assets/images/sectors/pos/shop.jpg" alt="Shop assistant scanning an item at a boutique till" loading="lazy">
+            <span class="sector-strip__label">Shops</span>
           </a>
-          <a href="/payments-for-tradespeople" class="merchant-strip__tile">
-            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80&auto=format&fit=crop" alt="Electrician at work" loading="lazy">
-            <span class="sector-strip__label">Trades</span>
-          </a>
-          <a href="/b2b-payment-solutions" class="merchant-strip__tile">
-            <img src="https://images.unsplash.com/photo-1562564055-71e051d33c19?w=600&q=80&auto=format&fit=crop" alt="Signing a business agreement" loading="lazy">
-            <span class="sector-strip__label">B2B</span>
-          </a>
-          <a href="/wholesale-payment-solutions" class="merchant-strip__tile">
-            <img src="https://images.unsplash.com/photo-1672552226380-486fe900b322?w=600&q=80&auto=format&fit=crop" alt="Warehouse pallets and boxes" loading="lazy">
-            <span class="sector-strip__label">Wholesale</span>
+          <a href="/beauty-wellness-payment-solutions" class="merchant-strip__tile">
+            <img src="/assets/images/sectors/pos/salon.jpg" alt="Hairdresser cutting a client's hair in a salon" loading="lazy">
+            <span class="sector-strip__label">Salons &amp; Hairdressers</span>
           </a>
         </div>
       </div>
     </section>
-
-
 
     <!-- ════════════════════════════════════════ -->
     <!-- CASE STUDY                               -->
@@ -1291,7 +1270,6 @@
             <a href="/professional-services-payment-solutions" class="footer__link">Professional services</a>
             <a href="/b2b-payment-solutions" class="footer__link">B2B</a>
             <a href="/wholesale-payment-solutions" class="footer__link">Wholesale</a>
-            <a href="/sectors/" class="footer__link">All sectors</a>
           </div>
         </div>
 
@@ -1327,6 +1305,6 @@
     </div>
   </footer>
 
-  <script src="/js/main.js?v=counter-3"></script>
+  <script src="/js/main.js?v=pillars-3"></script>
 </body>
 </html>

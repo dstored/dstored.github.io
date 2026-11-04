@@ -1290,6 +1290,17 @@
   color: rgba(255, 255, 255, 0.75);
 }
 
+/* Cards with no "Learn more" link: split the spare height above the title and
+   below the text, so the copy sits a little lower and the bottom gap closes
+   while the card keeps its size (Danny, 4 Nov 2026) */
+div.pillar-card:not(:has(a)) .card__title {
+  margin-top: auto;
+}
+
+div.pillar-card:not(:has(a)) .card__text {
+  margin-bottom: auto;
+}
+
 /* Navy cards flip to blurple on hover, matching the homepage */
 .pillar-card.card--dark:hover {
   background: var(--blurple);
@@ -2383,7 +2394,7 @@
   flex-shrink: 0;
   width: 20px;
   height: 20px;
-  color: var(--blurple);
+  color: var(--ink); /* list arrows are ink, like .feature-list__icon */
   margin-top: 0.1em;
 }
 

@@ -275,8 +275,10 @@
   right: 0;
   bottom: 0;
   background: var(--paper);
-  z-index: var(--z-sticky);
-  padding: 96px var(--container-pad) var(--space-8);
+  /* Just under the header, so the logo and the cross that closes the menu
+     stay on top of it (Danny, 4 Nov 2026) */
+  z-index: calc(var(--z-sticky) - 1);
+  padding: 72px var(--container-pad) var(--space-8); /* first item starts just under the logo */
   overflow-y: auto;
   opacity: 0;
   visibility: hidden;
@@ -294,13 +296,48 @@
   padding: var(--space-4) 0;
 }
 
+/* Section titles (Solutions, Sectors, Company) look like the plain links
+   beside them (Pricing, Resources), with a chevron to show they open
+   (Danny, 4 Nov 2026) */
 .mobile-nav__section-title {
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   padding: var(--space-3) 0;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  line-height: 1.5; /* same row height as the plain links */
+  color: var(--ink);
+  text-align: left;
+}
+
+.mobile-nav__section-title::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  margin-right: 4px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.mobile-nav__section.is-open .mobile-nav__section-title::after {
+  transform: translateY(2px) rotate(-135deg);
+}
+
+/* Links inside an opened section sit a step down from the titles; 10px
+   above and below gives each one a 44px tap area */
+[data-mobile-accordion-content] .mobile-nav__link {
+  padding: 10px 0;
+  min-height: 44px;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+[data-mobile-accordion-content] .mobile-nav__link:last-child {
+  padding-bottom: var(--space-3);
 }
 
 .mobile-nav__link {
@@ -317,8 +354,27 @@
 .mobile-nav__actions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  /* 14px clear between buttons once Sign up's 6px shadow is counted */
+  gap: var(--space-5);
   padding-top: var(--space-6);
+}
+
+/* Sign up, Book a demo and Sign in stay pinned to the bottom of the open
+   menu, even when a long section is opened (Danny, 4 Nov 2026) */
+@media (max-width: 1024px) {
+  .mobile-nav {
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+
+  .mobile-nav__actions {
+    position: sticky;
+    bottom: 0;
+    margin-top: auto;
+    padding: var(--space-5) 0 calc(var(--space-5) + env(safe-area-inset-bottom));
+    background: var(--paper);
+    border-top: 1px solid var(--border-light);
+  }
 }
 
 /* ─── Responsive ─── */
@@ -332,7 +388,7 @@
   }
 
   .mobile-nav {
-    display: block;
+    display: flex;
   }
 
   .header__actions {

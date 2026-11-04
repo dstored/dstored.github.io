@@ -23,6 +23,20 @@
     min-height: 0;
   }
 
+  /* Cycling phrase on the pink band: sized from its longest phrase
+     (--fit-em, in ems, set on each page) so every phrase holds one line
+     (Danny, 4 Nov 2026) */
+  .stats-typewriter__cycle {
+    font-size: calc((100vw - 2 * var(--container-pad)) * 0.96 / var(--fit-em, 6));
+    white-space: nowrap;
+  }
+
+  /* The section straight after the ticker starts 64px below it, as on the
+     homepage; the compact sections used to leave 96px (Danny, 4 Nov 2026) */
+  .marquee + .section {
+    padding-top: var(--space-16);
+  }
+
   /* Section headers */
   .section-header,
   .section-header--center,
@@ -43,17 +57,32 @@
     white-space: normal;
   }
 
-  /* Why cards */
+  /* A highlight box is taller than a tight line, so on two lines it ran
+     over the line above; highlighted headings get room for the box
+     (Danny, 4 Nov 2026) */
+  .section-header__title:has(.highlight) {
+    line-height: 1.35;
+  }
+
+  /* Why cards: the one place phone text centres, under its centred
+     illustration (Danny, 4 Nov 2026), with tighter gaps between cards */
   .why-card {
-    align-items: flex-start;
-    text-align: left;
     padding-left: 0;
     padding-right: 0;
   }
 
-  /* ...but the illustration above the text stays centred */
+  .section--why-stored .section-header {
+    margin-bottom: var(--space-10);
+  }
+
+  .why-grid {
+    gap: var(--space-6);
+    margin-top: 0;
+  }
+
   .why-card__illustration {
-    align-self: center;
+    max-width: 150px;
+    margin-bottom: var(--space-4);
   }
 
   /* Product cards: the title wraps clear of the corner icon */
@@ -94,9 +123,24 @@
     text-align: left;
   }
 
-  .section-cta-row,
-  .why-cta {
+  .section-cta-row {
     justify-content: flex-start;
+  }
+
+  /* A button under centred cards centres with them: always centred when its
+     section is (Danny, 4 Nov 2026) */
+  .why-grid ~ .section-cta {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: var(--space-12);
+  }
+
+  /* Sign up under the centred why cards centres with them, closer to the
+     last card (Danny, 4 Nov 2026) */
+  .why-cta {
+    justify-content: center;
+    margin-top: var(--space-12);
   }
 
   /* Homepage hero */
@@ -163,16 +207,282 @@
     grid-template-columns: 1fr !important;
   }
 
-  /* Hero headlines whose longest written line runs off a phone screen at the
-     standard size: scaled to the screen width instead */
-  .solution-hero .solution-hero__inner .solution-hero__title.fit-phone,
-  .contact-hero__content .solution-hero__title.fit-phone {
-    font-size: min(clamp(4.75rem, 3.2rem + 10.5vw, 10rem), 17vw);
+  /* Every page hero mirrors the homepage on phones (Danny, 4 Nov 2026).
+     The headline's longest written line fills about 92% of the screen:
+     --fit-em on each H1 is that line's width in ems, so the size is
+     worked out per page. Short headlines stop at the homepage's 30vw. */
+  /* Headline sits a clear step below the logo; with no live counter
+     above it, 84px felt cramped (Danny, 4 Nov 2026) */
+  body .solution-hero {
+    padding-top: 104px !important;
+  }
+
+  body .solution-hero .solution-hero__title {
+    margin-top: 0 !important;
+    font-size: min(30vw, calc((100vw - 2 * var(--container-pad)) * 0.92 / var(--fit-em, 4))) !important;
+    /* 24px to the subtitle: these headlines are smaller than "Get paid.",
+       so the homepage's 40px left the text floating (Danny, 4 Nov 2026) */
+    margin-bottom: var(--space-6) !important;
+    /* A few px more between the two lines so descenders (p, g, y) clear the
+       tall letters below (t, l, d) (Danny, 4 Nov 2026) */
+    line-height: calc(0.85em + 10px) !important;
+  }
+
+  /* Same gaps as the homepage hero below the headline: subtitle 32px,
+     buttons 24px, Trustpilot 48px to the picture */
+  /* Book a demo and Sign up put the headline in its own grid row: the
+     24px grid gap already makes the space */
+  body .solution-hero .solution-hero__inner > .solution-hero__title {
+    margin-bottom: 0 !important;
+  }
+
+  body .solution-hero .solution-hero__subtitle {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  body .solution-hero .solution-hero__actions {
+    margin-top: var(--space-8) !important;
+  }
+
+  body .solution-hero .solution-hero__trust {
+    margin-top: var(--space-6) !important;
+  }
+
+  body .solution-hero .solution-hero__visual {
+    margin-top: var(--space-12) !important;
+  }
+
+  /* The tall phone mock-ups were 654px, most of a phone screen to scroll
+     past; three-quarters size keeps them readable (Danny, 4 Nov 2026).
+     zoom shrinks the layout box too, so no gap is left behind. */
+  body .solution-hero .solution-hero__visual > .phone-demo,
+  body .solution-hero .solution-hero__visual > .demo-sketch {
+    zoom: 0.75;
+  }
+
+  /* Payment gateway checkout: sized to sit inside the blob frame, like the
+     card machine on its page, rather than spill past it (Danny, 4 Nov 2026) */
+  body .solution-hero .solution-hero__visual > .browser-demo {
+    zoom: 0.72;
+  }
+
+  /* The other screen graphics: about 260px wide, so they sit inside the
+     blob frame like the checkout. POS keeps its tablet running off the
+     screen edge, with no frame (Danny, 4 Nov 2026) */
+  body .solution-hero .solution-hero__visual > .bp-gen { width: 348px; zoom: 0.75; }
+  body .solution-hero .solution-hero__visual > .vt-gen { zoom: 0.87; }
+  body .solution-hero .solution-hero__visual > .receipt-demo { zoom: 0.8; }
+
+  /* Card machines shrinks its phone with transform: scale(), which keeps
+     the full-size gap underneath; zoom does the sizing on phones instead */
+  body .solution-hero .solution-hero__visual .phone-demo {
+    transform: none !important;
+  }
+
+  /* Hero graphics centre on the screen (graphics may centre on phones) */
+  body .solution-hero .solution-hero__visual {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    transform: none !important; /* no sideways nudge on phones */
+  }
+
+  body .solution-hero .solution-hero__visual > .demo-sketch {
+    width: 300px; /* same phone width as the other pages */
+  }
+
+  /* Every floating hero graphic sits in front of the homepage photo frame:
+     an ink-bordered white circle around the hand-drawn blob, blurple where
+     the photo would be. 24px of padding above and below puts the graphic
+     74px under the Trustpilot line and 83px over the ticker on every page
+     (Danny, 4 Nov 2026) */
+  body .solution-hero .solution-hero__visual:has(> .hero-blob) {
+    position: relative;
+    right: auto;
+    top: auto;
+    left: auto;
+    padding: var(--space-6) 0;
+  }
+
+  /* POS has no frame but keeps the same gaps; margins, not padding, so the
+     cut-edge shading stays on the tablet */
+  body .solution-hero .solution-hero__visual:has(> .tablet-demo) {
+    margin-top: calc(var(--space-12) + var(--space-6)) !important;
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-blob {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(380px, calc(100vw - 12px)); /* past the gutters, never off screen */
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--ink);
+    overflow: hidden;
+  }
+
+  .hero-blob svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  body .solution-hero .solution-hero__visual > .hero-blob ~ :not(.cm-float) {
+    position: relative;
+  }
+
+  /* Smaller frame for graphics further down a page, like the checkout
+     branding card (Danny, 4 Nov 2026) */
+  .brand-demo:has(> .hero-blob) {
+    position: relative;
+    padding: var(--space-6) 0;
+  }
+
+  .brand-demo > .hero-blob ~ * {
+    position: relative;
+  }
+
+  .hero-blob--small {
+    width: min(320px, calc(100vw - 12px));
+  }
+
+  /* Graphics beside copy (split sections) sit in the blob frame too, sized
+     to fit inside it (Danny, 4 Nov 2026) */
+  .split-visual:has(> .hero-blob) {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-6) 0;
+    min-height: min(380px, calc(100vw - 12px)); /* never shorter than the blob */
+  }
+
+  .split-visual:has(> .hero-blob--small) {
+    min-height: min(320px, calc(100vw - 12px));
+  }
+
+  .split-visual > .hero-blob ~ * {
+    position: relative;
+  }
+
+  .split-visual > .platform-mock,
+  .split-visual > .pl-ai {
+    width: 348px;
+    zoom: 0.8;
+  }
+
+  .split-visual > .pl-brandcard {
+    zoom: 0.85;
+  }
+
+  /* Text-thread sections (Invoicing, Virtual terminal, Bulk payment links):
+     words first, then the thread in the blob frame (Danny, 4 Nov 2026) */
+  .iv-chase {
+    row-gap: var(--space-12);
+  }
+
+  .iv-chase:has(.btn) {
+    row-gap: var(--space-16); /* room for the button's shadow */
+  }
+
+  .iv-chase > .split-visual {
+    order: 2;
+  }
+
+  .iv-chase > div > .section-header:last-child {
+    margin-bottom: 0;
+  }
+
+  .split-visual > .iv-thread {
+    width: 278px;
+    min-height: 300px;
+  }
+
+  /* When the copy column ends with its header, the grid gap is the only
+     space before the graphic */
+  .content-split > div > .section-header:last-child {
+    margin-bottom: 0;
+  }
+
+  /* A list straight under a section header sits 24px below the words, as
+     on Pricing */
+  .section-header:has(+ .bd-list) {
+    margin-bottom: var(--space-6);
+  }
+
+  /* Stats on every page: one compact row each, number on the left and its
+     words beside it, instead of three tall stacked blocks. The rows share
+     one number column (subgrid), so the words line up even when one number
+     is wider than the others (Danny, 4 Nov 2026) */
+  .section--stats {
+    padding: var(--space-10) 0;
+  }
+
+  .section--stats .stats-grid {
+    grid-template-columns: minmax(3.5rem, max-content) 1fr;
+    column-gap: var(--space-5);
+    row-gap: 0;
+  }
+
+  .section--stats .stat {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: auto auto;
+    align-items: center;
+    padding: var(--space-5) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .section--stats .stat:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .section--stats .stat:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Pages with a wide number (100%, $1bn+) set a smaller --stat-size on
+     their stats grid so the words beside it keep room */
+  .section--stats .stat__number {
+    grid-row: 1 / 3;
+    font-size: var(--stat-size, 5.5rem);
+    white-space: nowrap;
+  }
+
+  .section--stats .stat__label {
+    align-self: end;
+    margin-top: 0;
+  }
+
+  .section--stats .stat__sublabel {
+    align-self: start;
+  }
+
+  .section--stats .stat__label:last-child {
+    grid-row: 1 / 3;
+    align-self: center;
   }
 
   /* Wide legal tables scroll inside themselves, not the page */
   .legal-content table {
     display: block;
     overflow-x: auto;
+  }
+}
+
+/* The hero blob frame is a phone-only device */
+@media (min-width: 641px) {
+  .hero-blob {
+    display: none;
   }
 }

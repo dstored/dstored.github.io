@@ -143,13 +143,11 @@
   }
 }
 
+/* Phones keep two link columns side by side instead of one long stack;
+   the labels are short enough to fit (Danny, 4 Nov 2026) */
 @media (max-width: 640px) {
   .footer__top {
-    grid-template-columns: 1fr;
-  }
-
-  .footer__brand {
-    grid-column: span 1;
+    gap: var(--space-10) var(--space-6);
   }
 
   .footer__bottom {

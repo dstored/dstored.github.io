@@ -20,11 +20,11 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/css/variables.css?v=green-1">
   <link rel="stylesheet" href="/css/base.css?v=brand-2">
-  <link rel="stylesheet" href="/css/components.css?v=mobile-1">
+  <link rel="stylesheet" href="/css/components.css?v=rule-1">
   <link rel="stylesheet" href="/css/animations.css?v=brand-2">
-  <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/pages/solutions.css?v=highlight-1">
+  <link rel="stylesheet" href="/css/header.css?v=menu-6">
+  <link rel="stylesheet" href="/css/footer.css?v=two-col-1">
+  <link rel="stylesheet" href="/css/pages/solutions.css?v=pillars-3">
 
   <style>
     /* The ticker sits on the bottom of the first screen, as on the product pages */
@@ -314,8 +314,17 @@
       .solution-hero .hero__image-frame { max-width: 420px; }
     }
 
+    /* Phones: the photo frame shows under Trustpilot, as on the homepage:
+       a touch narrower than the screen, with smaller floating cards so they
+       clear the faces (Danny, 4 Nov 2026) */
     @media (max-width: 640px) {
-      .solution-hero .hero__visual { display: none; }
+      .solution-hero .hero__visual { max-width: 90%; margin: 0 auto; } /* the grid gap gives the 48px */
+      .hero__floating-card { padding: var(--space-2) var(--space-3); gap: var(--space-2); font-size: 0.75rem; }
+      .hero__card-state { gap: var(--space-2); }
+      .hero__card-icon { width: 28px; height: 28px; }
+      .hero__card-icon svg { width: 14px; height: 14px; }
+      .hero__card-label { font-size: 0.6875rem; }
+      .hero__card-status { width: 6px; height: 6px; }
     }
 
 </style>
@@ -324,7 +333,7 @@
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=2">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=2">
-  <link rel="stylesheet" href="/css/mobile.css?v=3">
+  <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
 <body>
 
@@ -504,16 +513,6 @@
           </a>
         </div>
 
-        <div class="mega-menu__column">
-          <div class="mega-menu__column-title">Browse</div>
-          <a href="/sectors/" class="mega-menu__link">
-            <div class="mega-menu__link-text">
-              <span class="mega-menu__link-title">All sectors</span>
-              <span class="mega-menu__link-desc">Every sector Stored serves</span>
-            </div>
-          </a>
-        </div>
-
         <div class="mega-menu__promo">
           <div>
             <div class="mega-menu__promo-title">Not sure which fits?</div>
@@ -587,7 +586,6 @@
     <div class="mobile-nav__section" data-mobile-accordion>
       <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Sectors</button>
       <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-        <a href="/sectors/" class="mobile-nav__link">All sectors</a>
         <a href="/hospitality-payment-solutions" class="mobile-nav__link">Hospitality</a>
         <a href="/beauty-wellness-payment-solutions" class="mobile-nav__link">Beauty &amp; wellness</a>
         <a href="/retail-payment-solutions" class="mobile-nav__link">Retail</a>
@@ -625,7 +623,7 @@
       <div class="container">
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
-            <h1 class="solution-hero__title">By the<br><span style="white-space: nowrap;">pallet.<span class="solution-hero__asterisk">*</span></span></h1>
+            <h1 class="solution-hero__title" style="--fit-em: 3.25">By the<br><span style="white-space: nowrap;">pallet.<span class="solution-hero__asterisk">*</span></span></h1>
             <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>sell in bulk, bill in bulk. The whole invoice run in one upload, a payment link for every account.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
@@ -788,6 +786,9 @@
       </div>
     </section>
 
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="section-rule"></div>
+
     <!-- PLATFORM PILLARS -->
     <section class="section">
       <div class="container">
@@ -796,7 +797,7 @@
           <h2 class="section-header__title">Built for selling in bulk.</h2>
         </div>
 
-        <div class="pillars-grid" data-stagger>
+        <div class="pillars-grid" data-stagger data-phone-carousel>
           <div class="card card--dark pillar-card">
             <span class="card__label">01 / 06</span>
             <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="26" x2="6" y2="18"/><line x1="13" y1="26" x2="13" y2="11"/><line x1="20" y1="26" x2="20" y2="15"/><line x1="27" y1="26" x2="27" y2="6"/></svg></div>
@@ -840,7 +841,7 @@
     <!-- STATS BAND -->
     <section class="section section--stats">
       <div class="container">
-        <div class="stats-grid" data-stagger>
+        <div class="stats-grid" style="--stat-size: 4rem" data-stagger>
           <div class="stat">
             <div class="stat__number" data-count-to="1">0</div>
             <div class="stat__label">upload for the whole invoice run</div>
@@ -977,7 +978,6 @@
             <a href="/professional-services-payment-solutions" class="footer__link">Professional services</a>
             <a href="/b2b-payment-solutions" class="footer__link">B2B</a>
             <a href="/wholesale-payment-solutions" class="footer__link">Wholesale</a>
-            <a href="/sectors/" class="footer__link">All sectors</a>
           </div>
         </div>
 
@@ -1013,6 +1013,6 @@
     </div>
   </footer>
 
-  <script src="/js/main.js?v=counter-3"></script>
+  <script src="/js/main.js?v=pillars-3"></script>
 </body>
 </html>

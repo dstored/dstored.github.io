@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFloatingCardCycle();
   initTypewriters();
   initTypewriterCycle();
+  initPhoneCarousels();
 });
 
 /* ─── Typewriter — types out text character by character on scroll-in ─── */
@@ -173,6 +174,94 @@ function initFloatingCardCycle() {
   customCards.forEach(d => setInterval(() => advance(d), d.hold));
 }
 
+/* ─── Phone carousel — on phones a [data-phone-carousel] grid becomes one
+   swipeable row (home.css). Dots underneath show which card you're on; it
+   moves on by itself every few seconds while on screen. Holding a card
+   pauses it, swiping or tapping a dot moves it straight away, and it carries
+   on by itself once they let go. ─── */
+function initPhoneCarousels() {
+  const phone = window.matchMedia('(max-width: 640px)');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.querySelectorAll('[data-phone-carousel]').forEach(track => {
+    const cards = [...track.children];
+    if (cards.length < 2) return;
+
+    // Name the row after its section heading when the page doesn't
+    if (!track.hasAttribute('aria-label')) {
+      const heading = track.closest('section')?.querySelector('h2');
+      if (heading) track.setAttribute('aria-label', heading.textContent.trim());
+    }
+
+    const dots = document.createElement('div');
+    dots.className = 'carousel-dots';
+    const buttons = cards.map((card, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'carousel-dots__dot';
+      b.setAttribute('aria-label', `Show card ${i + 1} of ${cards.length}`);
+      b.addEventListener('click', () => { go(i); run(); });
+      dots.appendChild(b);
+      return b;
+    });
+    track.after(dots);
+
+    let current = 0;
+    let timer = null;
+    let onScreen = false;
+    let held = false;
+
+    const step = () => cards[1].offsetLeft - cards[0].offsetLeft;
+
+    function go(i) {
+      track.scrollTo({ left: step() * i, behavior: still.matches ? 'auto' : 'smooth' });
+    }
+
+    function mark() {
+      const i = Math.min(cards.length - 1, Math.max(0, Math.round(track.scrollLeft / step())));
+      if (i === current && buttons[i].classList.contains('is-active')) return;
+      current = i;
+      buttons.forEach((b, n) => {
+        b.classList.toggle('is-active', n === i);
+        b.setAttribute('aria-current', n === i ? 'true' : 'false');
+      });
+    }
+
+    // Restarting the timer on every call means the next move always comes a
+    // full interval after the visitor last touched it
+    function run() {
+      clearInterval(timer);
+      timer = null;
+      if (held || still.matches || !phone.matches || !onScreen) return;
+      timer = setInterval(() => go((current + 1) % cards.length), 3500);
+    }
+
+    function hold() {
+      held = true;
+      run();
+    }
+
+    function release() {
+      held = false;
+      run();
+    }
+
+    track.addEventListener('scroll', mark, { passive: true });
+    track.addEventListener('touchstart', hold, { passive: true });
+    track.addEventListener('touchend', release, { passive: true });
+    track.addEventListener('touchcancel', release, { passive: true });
+    track.addEventListener('wheel', run, { passive: true });
+
+    new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      run();
+    }, { threshold: 0.5 }).observe(track);
+
+    phone.addEventListener('change', run);
+    mark();
+  });
+}
+
 /* ─── Stat counters — animate 0 → target when they scroll into view ─── */
 function initStatCounters() {
   const counters = document.querySelectorAll('[data-count-to]');
@@ -325,10 +414,18 @@ function initMobileNav() {
   const mobileNav = document.querySelector('.mobile-nav');
   if (!toggle || !mobileNav) return;
 
-  toggle.addEventListener('click', () => {
-    const isOpen = toggle.classList.toggle('is-open');
+  const setOpen = (isOpen) => {
+    toggle.classList.toggle('is-open', isOpen);
     mobileNav.classList.toggle('is-open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     document.body.style.overflow = isOpen ? 'hidden' : '';
+  };
+
+  toggle.addEventListener('click', () => setOpen(!toggle.classList.contains('is-open')));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle.classList.contains('is-open')) setOpen(false);
   });
 
   const mobileAccordions = mobileNav.querySelectorAll('[data-mobile-accordion]');
@@ -337,8 +434,10 @@ function initMobileNav() {
     const content = accordion.querySelector('[data-mobile-accordion-content]');
     if (!trigger || !content) return;
 
+    trigger.setAttribute('aria-expanded', 'false');
     trigger.addEventListener('click', () => {
       const isOpen = accordion.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
       content.style.maxHeight = isOpen ? content.scrollHeight + 'px' : '0';
     });
   });

@@ -506,8 +506,9 @@
   max-width: 100%;
 }
 
+/* Same size as every other homepage section heading (Danny, 4 Nov 2026);
+   only the line height opens up to fit the highlight */
 .section--sectors .section-header__title {
-  font-size: var(--text-5xl);
   line-height: 1.1;
   isolation: isolate;
 }
@@ -1109,11 +1110,20 @@
 @media (max-width: 640px) {
   .hero {
     min-height: auto;
-    padding-top: calc(82px + var(--space-10));
+    padding-top: 80px; /* counter sits just under the logo */
   }
 
-  .hero__title {
-    font-size: clamp(3rem, 2.5rem + 5vw, 5rem);
+  /* "paid.*" fills about 90% of the phone's width; a little air before the
+     subtitle, a little less before the buttons (Danny, 3 Nov 2026).
+     !important beats the shared phone hero margin in components.css */
+  .hero .hero__title {
+    font-size: 30vw;
+    margin-top: calc(var(--space-4) + 5px) !important;
+    margin-bottom: var(--space-10) !important;
+  }
+
+  .hero__subtitle {
+    margin-bottom: var(--space-8);
   }
 
   .pillars-grid {
@@ -1124,13 +1134,40 @@
     min-height: 240px;
   }
 
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
+  /* Hero photo a touch narrower than the screen (Danny, 3 Nov 2026) */
+  .hero__visual {
+    max-width: 90%;
   }
 
-  .stat__number {
-    font-size: var(--text-5xl);
+  /* Floating cards about a quarter smaller so the top one clears the
+     shopkeeper's face (Danny, 4 Nov 2026) */
+  .hero__floating-card {
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+    font-size: 0.75rem;
+  }
+
+  .hero__card-state {
+    gap: var(--space-2);
+  }
+
+  .hero__card-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .hero__card-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hero__card-label {
+    font-size: 0.6875rem;
+  }
+
+  .hero__card-status {
+    width: 6px;
+    height: 6px;
   }
 
   .partners-grid {
@@ -1142,8 +1179,25 @@
     gap: var(--space-4);
   }
 
-  .section--sectors .section-header__title {
-    font-size: var(--text-3xl);
+  /* Built for real businesses: the Trustpilot line sits close under the
+     heading and the photos follow sooner (Danny, 4 Nov 2026) */
+  .section--sectors .section-header {
+    margin-bottom: var(--space-5);
+  }
+
+  .section--sectors .trustpilot-strip {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .section--sectors .merchant-strip {
+    margin-top: var(--space-8);
+  }
+
+  /* Rate cards: the label sits close over its line of detail
+     (Danny, 4 Nov 2026) */
+  .pricing-teaser__rate-label {
+    margin-bottom: var(--space-2);
   }
 }
 
