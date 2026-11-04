@@ -202,3 +202,72 @@
     start();
   }
 })();
+
+/* Conversion events for Tag Manager.
+ *
+ * Tells Tag Manager when a visitor clicks a key button or sends a lead form.
+ * The events wait in the dataLayer and only reach Google Analytics, Google Ads
+ * or Microsoft Ads if the visitor has accepted cookies (GTM isn't loaded
+ * otherwise). Buttons are recognised by where they go, so new ones are
+ * tracked without any change here.
+ *  - cta_click:     cta (sign_up, book_a_demo, pricing, custom_quote),
+ *                   cta_text and cta_location (header, menu, mobile_menu,
+ *                   hero, page, bottom_banner, footer)
+ *  - generate_lead: form (book_a_demo, sign_up, contact_sales,
+ *                   contact_press, partner). Contact form Support messages
+ *                   are not leads. The forms open the visitor's email app,
+ *                   so this means they pressed submit, not that they sent it.
+ */
+(function () {
+  window.dataLayer = window.dataLayer || [];
+
+  function page(path) {
+    return path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  }
+
+  function ctaFor(link) {
+    var url = new URL(link.href, location.href);
+    if (url.origin !== location.origin) return null;
+    var path = page(url.pathname);
+    if (/custom quote/i.test(link.textContent) || (path === '/contact' && url.searchParams.get('topic') === 'sales')) return 'custom_quote';
+    return { '/sign-up': 'sign_up', '/book-a-demo': 'book_a_demo', '/pricing': 'pricing' }[path] || null;
+  }
+
+  function locationOf(el) {
+    if (el.closest('.mega-menu')) return 'menu';
+    if (el.closest('.mobile-nav')) return 'mobile_menu';
+    if (el.closest('header')) return 'header';
+    if (el.closest('footer')) return 'footer';
+    if (el.closest('.cta-band')) return 'bottom_banner';
+    if (el.closest('.hero, .solution-hero')) return 'hero';
+    return 'page';
+  }
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href]');
+    if (!link) return;
+    var cta = ctaFor(link);
+    if (!cta) return;
+    window.dataLayer.push({
+      event: 'cta_click',
+      cta: cta,
+      cta_text: link.textContent.replace(/\s+/g, ' ').trim(),
+      cta_location: locationOf(link)
+    });
+  }, true);
+
+  // Runs before each form's own script, and only once the browser has
+  // accepted the form as filled in.
+  var forms = { '/book-a-demo': 'book_a_demo', '/sign-up': 'sign_up', '/partners': 'partner' };
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    var name = null;
+    if (form.hasAttribute('data-contact-form')) {
+      var topic = form.topic && form.topic.value;
+      if (topic === 'sales' || topic === 'press') name = 'contact_' + topic;
+    } else if (form.hasAttribute('data-email-form')) {
+      name = forms[page(location.pathname)] || null;
+    }
+    if (name) window.dataLayer.push({ event: 'generate_lead', form: name });
+  }, true);
+})();
