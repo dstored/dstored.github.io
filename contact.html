@@ -32,14 +32,53 @@
     /* The ticker sits on the bottom of the first screen, as on the product pages */
     .solution-hero { min-height: calc(100vh - 68px); }
 
-    /* Centred text-led hero at full display scale */
-    .contact-hero__content {
-      text-align: center;
-      max-width: 960px;
-      margin: 0 auto;
+    /* Two-column hero: text left, photo right (as About and Careers) */
+    .solution-hero .solution-hero__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+      gap: 48px;
+      align-items: center;
     }
 
-    .contact-hero__content .solution-hero__title {
+    .hero__visual { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
+
+    .hero__image-frame {
+      width: 100%;
+      max-width: 560px;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero__blob { width: 100%; height: 100%; display: block; }
+
+    /* Beside the photo the headline needs a smaller cap to clear it */
+    @media (min-width: 1361px) {
+      body .solution-hero .solution-hero__inner .solution-hero__title { font-size: 7.5rem; }
+    }
+
+    /* Smaller laptops: keep the photo beside the headline and scale the headline to fit */
+    @media (min-width: 1025px) and (max-width: 1360px) {
+      body .solution-hero .solution-hero__inner .solution-hero__title { font-size: 8.5vw; }
+    }
+
+    /* Short screens with the photo beside the text: keep it clear of the header and the ticker */
+    @media (min-width: 1025px) and (max-height: 900px) {
+      .hero__image-frame { max-width: min(560px, calc(100vh - 260px)); }
+    }
+
+    @media (max-width: 1024px) {
+      .solution-hero .solution-hero__inner { grid-template-columns: 1fr; gap: 0; }
+      .hero__visual { margin: var(--space-10) auto 0; }
+      .hero__image-frame { max-width: 420px; }
+    }
+
+    /* Phones: the photo shows under Trustpilot, as on the homepage and sector pages */
+    @media (max-width: 640px) {
+      .hero__visual { max-width: 90%; margin: var(--space-12) auto 0; }
+    }
+
+    .solution-hero .solution-hero__inner .solution-hero__title {
       font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem);
       line-height: calc(0.85em + 5px);
       letter-spacing: -0.05em;
@@ -48,26 +87,63 @@
     }
 
     .solution-hero__asterisk { color: var(--hot); display: inline-block; margin-left: 0.05em; }
-    .solution-hero__subtitle-asterisk { color: var(--hot); margin-right: 0.4em; }
 
-    .contact-hero__content .solution-hero__subtitle {
-      max-width: 620px;
-      margin-left: auto;
-      margin-right: auto;
+    /* Shorter laptop screens: keep the CTAs above the fold */
+    @media (min-width: 769px) and (max-height: 900px) {
+      .solution-hero {
+        min-height: calc(100vh - 110px);
+        padding-top: 94px;
+        padding-bottom: 42px;
+      }
+
+      .solution-hero .solution-hero__inner .solution-hero__title {
+        margin-top: 16px;
+        margin-bottom: 26px;
+      }
     }
 
-    .contact-hero__content .solution-hero__actions { justify-content: center; }
-
-    /* Four routing cards, collapsing sensibly */
-    .pillars-grid--routes { grid-template-columns: repeat(4, 1fr); }
-
-    @media (max-width: 1100px) {
-      .pillars-grid--routes { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 768px) {
+      .solution-hero .solution-hero__inner .solution-hero__title {
+        font-size: clamp(3rem, 2.5rem + 5vw, 5rem);
+      }
     }
+
+    /* Contact form: one card, routed to the right inbox by topic */
+    .contact-form-card { max-width: 760px; margin: 0 auto; }
+    .contact-form { display: grid; gap: var(--space-5); }
+    .contact-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+    .contact-form .form-group { margin: 0; }
+    .contact-form .input { width: 100%; }
+    .contact-form textarea.input { min-height: 160px; resize: vertical; }
+    .contact-form textarea.input:focus::placeholder { color: transparent; }
+    .contact-form__optional { color: var(--text-secondary); font-weight: var(--weight-regular); }
+    .contact-form__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
+    .contact-form__note { font-size: var(--text-sm); color: var(--text-secondary); margin: 0; }
 
     @media (max-width: 640px) {
-      .pillars-grid--routes { grid-template-columns: 1fr; }
+      .contact-form__row { grid-template-columns: 1fr; }
     }
+
+    /* Partners: a simple pointer to the enquiry form on the Partners page */
+    .contact-partner {
+      max-width: 760px;
+      margin: var(--space-10) auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--border-medium);
+    }
+    .contact-partner__title { font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: -0.02em; margin: 0; }
+
+    /* Tighter gap from the form down to Find us */
+    .contact-route { padding-bottom: calc(var(--space-section) * 0.55); }
+    .contact-find-section { padding-top: calc(var(--space-section) * 0.55); }
+
+    .contact-find a { color: inherit; text-decoration: none; }
+    .contact-find a:hover { text-decoration: underline; }
 
     /* Drawn HQ illustration */
     .contact-illustration {
@@ -83,16 +159,6 @@
     @keyframes contact-bob {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
-    }
-
-    /* Laptop-height compression: subtitle + CTA hold above the fold on a 13" screen */
-    @media (max-height: 900px) {
-      .solution-hero { padding-top: calc(82px + var(--space-4)); }
-      .contact-hero__content .solution-hero__title {
-        font-size: clamp(4rem, 3rem + 7vw, 8rem);
-        margin-bottom: var(--space-6);
-      }
-      .contact-hero__content .solution-hero__trust { margin-top: var(--space-8); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -384,19 +450,35 @@
     <!-- HERO -->
     <section class="solution-hero">
       <div class="container">
-        <div class="contact-hero__content" data-animate>
-          <h1 class="solution-hero__title fit-phone" style="--fit-em: 4.54">Talk to<br><span style="white-space: nowrap;">a human.<span class="solution-hero__asterisk">*</span></span></h1>
-          <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>sales, support, press and partners. One page, every way to reach us.</p>
-          <div class="solution-hero__actions">
-            <a href="#below-hero" class="btn btn--primary btn--lg btn--icon-right">
-              Pick a route
-              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a href="/pricing" class="btn btn--secondary btn--lg">See pricing</a>
-          </div>
-          <div class="solution-hero__trust">
+        <div class="solution-hero__inner">
+          <div class="solution-hero__content" data-animate>
+            <h1 class="solution-hero__title fit-phone" style="--fit-em: 4.54">Talk to<br><span style="white-space: nowrap;">a human.<span class="solution-hero__asterisk">*</span></span></h1>
+            <div class="solution-hero__actions">
+              <a href="#below-hero" class="btn btn--primary btn--lg btn--icon-right">
+                Ways to contact us
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="/about" class="btn btn--secondary btn--lg">About Stored</a>
+            </div>
+            <div class="solution-hero__trust">
               <a class="solution-hero__trust-text trust-line" href="https://uk.trustpilot.com/review/joinstored.com" target="_blank" rel="noopener noreferrer"><span class="trust-line__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" style="fill: var(--green)"/></svg></span>Rated <strong data-trustpilot-rating>4.9</strong> out of 5 stars on <strong class="trust-line__name">Trustpilot</strong>.</a>
             </div>
+          </div>
+          <div class="hero__visual" data-animate>
+            <div class="hero__image-frame">
+              <svg class="hero__blob" viewBox="0 0 500 500" role="img" aria-label="A woman smiling while she talks on the phone">
+                <defs>
+                  <mask id="contactBlobMask">
+                    <rect width="500" height="500" fill="black"/>
+                    <path d="M488.3 250.0C487.6 261.1 486.5 272.1 484.7 283.0C482.8 293.8 480.5 304.7 477.4 315.2C474.4 325.8 470.6 336.1 466.3 346.3C462.1 356.5 457.4 366.6 451.9 376.2C446.5 385.8 440.1 395.0 433.4 403.9C426.7 412.8 419.5 421.5 411.8 429.7C404.0 437.8 395.8 446.0 386.8 452.8C377.8 459.6 367.7 465.4 357.5 470.4C347.3 475.4 336.5 479.5 325.7 482.8C314.8 486.2 303.6 488.7 292.4 490.5C281.2 492.4 269.8 493.5 258.5 493.9C247.2 494.3 235.8 493.9 224.5 492.9C213.2 491.9 201.9 490.0 190.7 487.7C179.6 485.4 168.4 482.7 157.4 479.1C146.5 475.6 135.5 471.4 125.1 466.3C114.7 461.2 104.3 455.4 94.9 448.5C85.5 441.6 76.6 433.6 68.8 425.0C61.0 416.4 53.9 406.7 47.9 396.8C41.9 386.9 37.0 376.2 32.6 365.6C28.3 355.0 24.4 344.1 21.6 333.1C18.7 322.2 17.0 311.0 15.4 299.9C13.8 288.8 12.6 277.7 12.1 266.6C11.5 255.6 11.5 244.4 12.1 233.4C12.6 222.3 13.6 211.2 15.4 200.1C17.2 189.1 19.5 178.0 22.6 167.2C25.8 156.5 29.7 145.7 34.5 135.4C39.3 125.2 45.0 115.1 51.3 105.6C57.6 96.2 64.6 86.8 72.4 78.5C80.2 70.1 88.9 62.4 98.0 55.4C107.0 48.4 116.8 42.1 126.8 36.6C136.8 31.2 147.4 26.3 158.1 22.5C168.8 18.7 180.0 16.1 191.1 13.7C202.2 11.4 213.4 9.7 224.6 8.4C235.8 7.1 247.2 6.2 258.5 6.1C269.9 6.0 281.3 6.7 292.7 7.9C304.1 9.2 315.6 10.9 326.8 13.7C338.0 16.5 349.1 20.3 359.8 24.8C370.6 29.3 381.3 34.5 391.3 40.5C401.3 46.6 411.2 53.4 420.1 61.1C429.0 68.7 437.6 77.3 444.9 86.5C452.2 95.7 458.5 106.0 464.0 116.3C469.5 126.6 474.3 137.5 477.9 148.5C481.5 159.6 483.7 171.1 485.5 182.5C487.4 193.8 488.4 205.2 488.8 216.4C489.3 227.7 489.0 238.9 488.3 250.0Z" fill="white"/>
+                  </mask>
+                </defs>
+                <!-- Placeholder: Unsplash photo by Vitaly Gariev (Unsplash licence), to be replaced with a real Stored photo -->
+                <image href="/assets/images/contact/hero-placeholder.jpg" x="0" y="0" width="500" height="500" preserveAspectRatio="xMidYMid slice" mask="url(#contactBlobMask)"></image>
+                <path d="M488.3 250.0C487.6 261.1 486.5 272.1 484.7 283.0C482.8 293.8 480.5 304.7 477.4 315.2C474.4 325.8 470.6 336.1 466.3 346.3C462.1 356.5 457.4 366.6 451.9 376.2C446.5 385.8 440.1 395.0 433.4 403.9C426.7 412.8 419.5 421.5 411.8 429.7C404.0 437.8 395.8 446.0 386.8 452.8C377.8 459.6 367.7 465.4 357.5 470.4C347.3 475.4 336.5 479.5 325.7 482.8C314.8 486.2 303.6 488.7 292.4 490.5C281.2 492.4 269.8 493.5 258.5 493.9C247.2 494.3 235.8 493.9 224.5 492.9C213.2 491.9 201.9 490.0 190.7 487.7C179.6 485.4 168.4 482.7 157.4 479.1C146.5 475.6 135.5 471.4 125.1 466.3C114.7 461.2 104.3 455.4 94.9 448.5C85.5 441.6 76.6 433.6 68.8 425.0C61.0 416.4 53.9 406.7 47.9 396.8C41.9 386.9 37.0 376.2 32.6 365.6C28.3 355.0 24.4 344.1 21.6 333.1C18.7 322.2 17.0 311.0 15.4 299.9C13.8 288.8 12.6 277.7 12.1 266.6C11.5 255.6 11.5 244.4 12.1 233.4C12.6 222.3 13.6 211.2 15.4 200.1C17.2 189.1 19.5 178.0 22.6 167.2C25.8 156.5 29.7 145.7 34.5 135.4C39.3 125.2 45.0 115.1 51.3 105.6C57.6 96.2 64.6 86.8 72.4 78.5C80.2 70.1 88.9 62.4 98.0 55.4C107.0 48.4 116.8 42.1 126.8 36.6C136.8 31.2 147.4 26.3 158.1 22.5C168.8 18.7 180.0 16.1 191.1 13.7C202.2 11.4 213.4 9.7 224.6 8.4C235.8 7.1 247.2 6.2 258.5 6.1C269.9 6.0 281.3 6.7 292.7 7.9C304.1 9.2 315.6 10.9 326.8 13.7C338.0 16.5 349.1 20.3 359.8 24.8C370.6 29.3 381.3 34.5 391.3 40.5C401.3 46.6 411.2 53.4 420.1 61.1C429.0 68.7 437.6 77.3 444.9 86.5C452.2 95.7 458.5 106.0 464.0 116.3C469.5 126.6 474.3 137.5 477.9 148.5C481.5 159.6 483.7 171.1 485.5 182.5C487.4 193.8 488.4 205.2 488.8 216.4C489.3 227.7 489.0 238.9 488.3 250.0Z" fill="none" stroke="#0B1B33" stroke-width="2.4" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
       <a href="#below-hero" class="scroll-hint" aria-label="Scroll down">
@@ -420,75 +502,69 @@
     </div>
 
     <!-- ROUTING CARDS -->
-    <section class="section" id="below-hero">
+    <section class="section contact-route" id="below-hero">
       <div class="container">
         <div class="section-header section-header--center" data-animate>
           <div class="section-header__overline">HOW CAN WE HELP?</div>
           <h2 class="section-header__title">Pick a route.</h2>
         </div>
 
-        <div class="pillars-grid pillars-grid--routes" data-stagger data-phone-carousel>
-          <a href="/book-a-demo" class="card card--dark pillar-card" style="text-decoration: none;">
-            <span class="card__label">01 / 04</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <text x="16" y="22" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="600" fill="currentColor" stroke="none">&pound;</text>
-              </svg>
+        <div class="form-card form-card--brutalist contact-form-card" id="contact-form" data-animate>
+          <!-- Static site, so the form opens the visitor's email app addressed to the inbox for their topic (see the script at the end of the page) -->
+          <form class="contact-form" data-contact-form>
+            <div class="contact-form__row">
+              <div class="form-group">
+                <label class="form-label" for="cf-topic">What&rsquo;s it about?</label>
+                <select class="input" id="cf-topic" name="topic" required>
+                  <option value="">Choose one</option>
+                  <option value="sales">Sales</option>
+                  <option value="support">Support</option>
+                  <option value="press">Press</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cf-phone">Contact number <span class="contact-form__optional">(optional)</span></label>
+                <input class="input" id="cf-phone" name="phone" type="tel" autocomplete="tel">
+              </div>
             </div>
-            <h3 class="card__title">Sales.</h3>
-            <p class="card__text">Talk to a payments specialist about your business.</p>
-            <span class="card__label" style="margin-top: auto;">Talk to sales &rarr;</span>
-          </a>
-          <a href="mailto:support@joinstored.com" class="card card--dark pillar-card" style="text-decoration: none;">
-            <span class="card__label">02 / 04</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 18.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 4h3a2 2 0 012 1.72c.1.96.34 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 11.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.36 1.85.6 2.81.7A2 2 0 0122 18.92z"/>
-              </svg>
+            <div class="form-group">
+              <label class="form-label" for="cf-subject">Subject</label>
+              <input class="input" id="cf-subject" name="subject" type="text" required>
             </div>
-            <h3 class="card__title">Support.</h3>
-            <p class="card__text">Existing customer? Email our UK-based support team.</p>
-            <span class="card__label" style="margin-top: auto;">support@joinstored.com</span>
-          </a>
-          <a href="mailto:press@joinstored.com" class="card card--dark pillar-card" style="text-decoration: none;">
-            <span class="card__label">03 / 04</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="6" width="24" height="20" rx="2"/>
-                <line x1="9" y1="12" x2="23" y2="12"/>
-                <line x1="9" y1="17" x2="23" y2="17"/>
-                <line x1="9" y1="22" x2="18" y2="22"/>
-              </svg>
+            <div class="form-group">
+              <label class="form-label" for="cf-message">Description</label>
+              <textarea class="input" id="cf-message" name="message" rows="6" required placeholder="Tell us more about your query"></textarea>
             </div>
-            <h3 class="card__title">Press.</h3>
-            <p class="card__text">Media enquiries, brand assets and spokesperson availability.</p>
-            <span class="card__label" style="margin-top: auto;">press@joinstored.com</span>
-          </a>
-          <a href="/partners" class="card card--dark pillar-card" style="text-decoration: none;">
-            <span class="card__label">04 / 04</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="13" r="4"/>
-                <circle cx="21" cy="13" r="4"/>
-                <path d="M4 26c0-3.866 3.134-7 7-7M21 19c3.866 0 7 3.134 7 7"/>
-              </svg>
+            <div class="contact-form__actions">
+              <button type="submit" class="btn btn--primary btn--lg btn--icon-right">
+                Send message
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <p class="contact-form__note">This opens your email app with your message ready to send.</p>
             </div>
-            <h3 class="card__title">Partners.</h3>
-            <p class="card__text">ISOs, referral partners and integrations. Let&rsquo;s grow together.</p>
-            <span class="card__label" style="margin-top: auto;">Partner with us &rarr;</span>
+          </form>
+        </div>
+
+        <div class="contact-partner" data-animate>
+          <h3 class="contact-partner__title">Interested in becoming a partner?</h3>
+          <a href="/partners#partner-enquiry" class="btn btn--secondary btn--icon-right">
+            Make a partner enquiry
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>
     </section>
 
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="section-rule"></div>
+
     <!-- CONTACT DETAILS -->
-    <section class="section section--white">
+    <section class="section section--white contact-find-section">
       <div class="container">
         <div class="content-split" data-animate>
           <div>
-            <div class="section-header__overline">STORED HQ</div>
             <h2 class="section-header__title">Find us.</h2>
-            <div class="feature-list" data-stagger style="margin-top: var(--space-8);">
+            <div class="feature-list contact-find" data-stagger style="margin-top: var(--space-8);">
               <div class="feature-list__item">
                 <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-7.5-7-12a7 7 0 1114 0c0 4.5-7 12-7 12z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
                 <span class="feature-list__text"><span class="mono-meta">For post</span><br>Stored Tech Limited<br>27 Old Gloucester St<br>London WC1N 3AX</span>
@@ -496,10 +572,6 @@
               <div class="feature-list__item">
                 <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span class="feature-list__text"><span class="mono-meta">Phone</span><br><a href="tel:+448081607433">0808 160 7433</a></span>
-              </div>
-              <div class="feature-list__item">
-                <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/></svg>
-                <span class="feature-list__text"><span class="mono-meta">Email</span><br><a href="mailto:hello@joinstored.com">hello@joinstored.com</a></span>
               </div>
               <div class="feature-list__item">
                 <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -602,5 +674,23 @@
   </footer>
 
   <script src="js/main.js?v=pillars-3"></script>
+  <script>
+    (function () {
+      var form = document.querySelector('[data-contact-form]');
+      if (!form) return;
+      var inbox = { sales: 'sales@joinstored.com', support: 'support@joinstored.com', press: 'hello@joinstored.com' };
+      // Links such as /contact?topic=sales open with that topic already chosen
+      var topic = new URLSearchParams(window.location.search).get('topic');
+      if (inbox[topic]) form.topic.value = topic;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var body = form.message.value.trim();
+        if (form.phone.value.trim()) body += '\n\nContact number: ' + form.phone.value.trim();
+        window.location.href = 'mailto:' + inbox[form.topic.value] +
+          '?subject=' + encodeURIComponent(form.subject.value.trim()) +
+          '&body=' + encodeURIComponent(body);
+      });
+    })();
+  </script>
 </body>
 </html>
