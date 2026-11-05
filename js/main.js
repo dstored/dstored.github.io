@@ -414,9 +414,17 @@ function initMobileNav() {
   const mobileNav = document.querySelector('.mobile-nav');
   if (!toggle || !mobileNav) return;
 
+  // Marks the menu when it is long enough to scroll, so header.css shows
+  // just one line above the pinned buttons
+  const checkOverflow = () => {
+    mobileNav.classList.toggle('has-overflow', mobileNav.scrollHeight > mobileNav.clientHeight + 1);
+  };
+  window.addEventListener('resize', checkOverflow);
+
   const setOpen = (isOpen) => {
     toggle.classList.toggle('is-open', isOpen);
     mobileNav.classList.toggle('is-open', isOpen);
+    checkOverflow();
     toggle.setAttribute('aria-expanded', String(isOpen));
     toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -454,6 +462,8 @@ function initMobileNav() {
       const isOpen = accordion.classList.toggle('is-open');
       trigger.setAttribute('aria-expanded', String(isOpen));
       content.style.maxHeight = isOpen ? content.scrollHeight + 'px' : '0';
+      content.addEventListener('transitionend', checkOverflow, { once: true });
+      setTimeout(checkOverflow, 400);
       if (!isOpen) return;
       // Wait for the section to finish opening, then bring it into view
       let done = false;

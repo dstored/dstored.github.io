@@ -373,6 +373,17 @@
     flex-shrink: 0;
   }
 
+  /* One line above the buttons, never two: the bar draws its own line only
+     when the menu is long enough to scroll behind it, and the last section
+     then drops its line */
+  .mobile-nav:not(.has-overflow) .mobile-nav__actions {
+    border-top-color: transparent;
+  }
+
+  .mobile-nav.has-overflow > .mobile-nav__section:nth-last-child(2) {
+    border-bottom: none;
+  }
+
   .mobile-nav__actions {
     position: sticky;
     bottom: 0;
