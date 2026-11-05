@@ -428,6 +428,21 @@ function initMobileNav() {
     if (e.key === 'Escape' && toggle.classList.contains('is-open')) setOpen(false);
   });
 
+  // Scroll the menu so an opened section's links clear the pinned buttons
+  // at the bottom, without pushing its title up under the logo
+  const revealSection = (accordion) => {
+    const navTop = mobileNav.getBoundingClientRect().top;
+    const actions = mobileNav.querySelector('.mobile-nav__actions');
+    const visibleBottom = actions
+      ? actions.getBoundingClientRect().top
+      : mobileNav.getBoundingClientRect().bottom;
+    const rect = accordion.getBoundingClientRect();
+    const overflow = rect.bottom + 8 - visibleBottom;
+    const room = rect.top - (navTop + 72);
+    const delta = Math.min(overflow, room);
+    if (delta > 0) mobileNav.scrollBy({ top: delta, behavior: 'smooth' });
+  };
+
   const mobileAccordions = mobileNav.querySelectorAll('[data-mobile-accordion]');
   mobileAccordions.forEach(accordion => {
     const trigger = accordion.querySelector('[data-mobile-accordion-trigger]');
@@ -439,6 +454,12 @@ function initMobileNav() {
       const isOpen = accordion.classList.toggle('is-open');
       trigger.setAttribute('aria-expanded', String(isOpen));
       content.style.maxHeight = isOpen ? content.scrollHeight + 'px' : '0';
+      if (!isOpen) return;
+      // Wait for the section to finish opening, then bring it into view
+      let done = false;
+      const reveal = () => { if (!done) { done = true; revealSection(accordion); } };
+      content.addEventListener('transitionend', reveal, { once: true });
+      setTimeout(reveal, 400);
     });
   });
 }

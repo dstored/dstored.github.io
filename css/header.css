@@ -367,6 +367,12 @@
     padding-bottom: 0;
   }
 
+  /* Opened sections make the menu longer and scroll, rather than squashing
+     under the pinned buttons */
+  .mobile-nav > * {
+    flex-shrink: 0;
+  }
+
   .mobile-nav__actions {
     position: sticky;
     bottom: 0;
@@ -374,6 +380,14 @@
     padding: var(--space-5) 0 calc(var(--space-5) + env(safe-area-inset-bottom));
     background: var(--paper);
     border-top: 1px solid var(--border-light);
+  }
+
+  /* Sign in is plain text, so it sits closer under Book a demo than the
+     gap between the two boxed buttons */
+  .mobile-nav__actions .btn--ghost {
+    margin-top: calc(var(--space-2) * -1);
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 
