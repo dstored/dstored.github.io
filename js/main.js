@@ -11,7 +11,143 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypewriters();
   initTypewriterCycle();
   initPhoneCarousels();
+  initStreaks();
 });
+
+/* ─── Streaks — the ribbon from Emily's value posters, run behind a product
+   graphic so it sits on something instead of floating (Danny, 12 Nov 2026).
+   Mark the graphic's wrapper with data-streak="blurple" (paper), "pink"
+   (navy) or "navy" (pink). The ribbon comes in off the edge beside the
+   graphic, passes behind it and leaves through the bottom, away from the
+   copy; it is redrawn whenever the layout changes. ─── */
+function initStreaks() {
+  const graphics = document.querySelectorAll('[data-streak]');
+  if (!graphics.length) return;
+  const colours = { blurple: 'var(--blurple)', pink: 'var(--hot)', navy: 'var(--ink)' };
+  const NS = 'http://www.w3.org/2000/svg';
+
+  const fmt = (p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+  const steps = 160;
+
+  // Smooth (Catmull-Rom) centre line through the points
+  const centreLine = (pts) => {
+    const P = (i) => pts[Math.max(0, Math.min(pts.length - 1, i))];
+    const line = [];
+    for (let k = 0; k <= steps; k++) {
+      const u = (k / steps) * (pts.length - 1);
+      const i = Math.min(Math.floor(u), pts.length - 2);
+      const t = u - i;
+      const [p0, p1, p2, p3] = [P(i - 1), P(i), P(i + 1), P(i + 2)];
+      const f = (a, b, c, d) => 0.5 * (2 * b + (c - a) * t + (2 * a - 5 * b + 4 * c - d) * t * t + (3 * b - a - 3 * c + d) * t * t * t);
+      line.push([f(p0[0], p1[0], p2[0], p3[0]), f(p0[1], p1[1], p2[1], p3[1])]);
+    }
+    return line;
+  };
+
+  // The centre line filled out to a ribbon that swells a little in the
+  // middle, like the poster streaks
+  const ribbon = (pts, thick) => {
+    const line = centreLine(pts);
+    const left = [];
+    const right = [];
+    line.forEach((pt, k) => {
+      const a = line[Math.max(0, k - 1)];
+      const b = line[Math.min(line.length - 1, k + 1)];
+      const len = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+      const nx = -(b[1] - a[1]) / len;
+      const ny = (b[0] - a[0]) / len;
+      const half = (thick * (0.85 + 0.3 * Math.sin((k / steps) * Math.PI))) / 2;
+      left.push([pt[0] + nx * half, pt[1] + ny * half]);
+      right.push([pt[0] - nx * half, pt[1] - ny * half]);
+    });
+    return 'M' + left.map(fmt).join('L') + 'L' + right.reverse().map(fmt).join('L') + 'Z';
+  };
+
+  // Draws itself in when the section comes into view, as the graphic pulls in
+  const reveal = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-drawn');
+      reveal.unobserve(entry.target);
+    });
+  }, { threshold: 0.2 });
+
+  graphics.forEach((graphic, n) => {
+    const section = graphic.closest('section');
+    if (!section) return;
+    section.classList.add('has-streak');
+    const wrap = document.createElement('div');
+    wrap.className = 'streak';
+    wrap.setAttribute('aria-hidden', 'true');
+    const svg = document.createElementNS(NS, 'svg');
+    const path = document.createElementNS(NS, 'path');
+    path.setAttribute('fill', colours[graphic.dataset.streak] || colours.blurple);
+    // The filled ribbon is revealed through a mask: a fat stroke along its
+    // centre line whose dash runs from the entry edge to the exit
+    const mask = document.createElementNS(NS, 'mask');
+    mask.id = 'streak-mask-' + n;
+    mask.setAttribute('maskUnits', 'userSpaceOnUse');
+    const spine = document.createElementNS(NS, 'path');
+    spine.setAttribute('class', 'streak__spine');
+    spine.setAttribute('pathLength', '1');
+    mask.appendChild(spine);
+    path.setAttribute('mask', `url(#${mask.id})`);
+    svg.append(mask, path);
+    wrap.appendChild(svg);
+    section.prepend(wrap);
+    reveal.observe(section);
+
+    const draw = () => {
+      const s = section.getBoundingClientRect();
+      if (!s.width || !s.height) return;
+      // The graphic itself: the biggest child that is not the old phone frame
+      let g = graphic.getBoundingClientRect();
+      let best = 0;
+      [...graphic.children].forEach((child) => {
+        if (child.matches('.hero-blob, .cm-float')) return;
+        const r = child.getBoundingClientRect();
+        if (r.width * r.height > best) { best = r.width * r.height; g = r; }
+      });
+      const W = s.width;
+      const H = s.height;
+      const gw = g.width;
+      const gh = g.height;
+      const gl = g.left - s.left;
+      const gt = g.top - s.top;
+      // Mirror the route when the graphic sits on the left of the copy
+      const onLeft = gl + gw / 2 < W / 2 - 1 && W > 640;
+      const x = (v) => (onLeft ? W - v : v);
+      const L = onLeft ? W - (gl + gw) : gl;
+      // A soft S: in high off the edge, behind the graphic, out low
+      const pts = [
+        [W + 120, gt - 0.25 * gh],
+        [L + gw * 1.02, gt + 0.12 * gh],
+        [L + gw * 0.55, gt + 0.55 * gh],
+        [L - 0.12 * gw, gt + 0.95 * gh],
+        [L - 0.3 * gw, H + 120],
+      ].map(([px, py]) => [x(px), py]);
+      const thick = Math.max(44, Math.min(92, W * 0.064));
+      svg.setAttribute('width', W);
+      svg.setAttribute('height', H);
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      path.setAttribute('d', ribbon(pts, thick));
+      spine.setAttribute('d', 'M' + centreLine(pts).map(fmt).join('L'));
+      spine.setAttribute('stroke-width', thick * 1.6);
+    };
+
+    let queued = false;
+    const redraw = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => { queued = false; draw(); });
+    };
+    draw();
+    new ResizeObserver(redraw).observe(section);
+    // Scroll-in animations move the graphic into place: redraw once they land
+    section.addEventListener('transitionend', redraw);
+    window.addEventListener('load', redraw);
+  });
+}
 
 /* ─── Typewriter — types out text character by character on scroll-in ─── */
 function initTypewriters() {

@@ -804,6 +804,53 @@ textarea.input {
 }
 
 /* ════════════════════════════════════════════════════════ */
+/* Streaks — the ribbon from Emily's value posters, drawn by */
+/* initStreaks() behind a [data-streak] product graphic.     */
+/* Blurple on parchment, pink on navy, navy on pink; it      */
+/* replaces the phone-only circle frame (Danny, 12 Nov 2026) */
+/* ════════════════════════════════════════════════════════ */
+.has-streak {
+  position: relative;
+  isolation: isolate; /* ribbon paints above the section's own background */
+}
+
+.streak {
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* behind the copy and the graphic */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.streak svg {
+  display: block;
+}
+
+/* Draws itself in from the edge as the section comes into view */
+.streak__spine {
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
+}
+
+.has-streak.is-drawn .streak__spine {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .streak__spine {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
+
+.has-streak .hero-blob {
+  display: none;
+}
+
+/* ════════════════════════════════════════════════════════ */
 /* Stats band typewriter — replaces the static stats grid    */
 /* with a single cycling phrase on the pink band (shared).   */
 /* ════════════════════════════════════════════════════════ */
