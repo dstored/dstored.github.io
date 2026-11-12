@@ -2492,62 +2492,6 @@ div.pillar-card:not(:has(a)) .card__text {
 .solution-hero__inner--reverse .solution-hero__visual { order: 1; }
 
 /* ════════════════════════════════════════════════════════ */
-/* Stats band typewriter — replaces the static stats grid    */
-/* with a single cycling adjective on the orange band.       */
-/* ════════════════════════════════════════════════════════ */
-.stats-typewriter {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: var(--space-2);
-}
-
-.stats-typewriter__lead {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.025em;
-  color: var(--white);
-  opacity: 0.85;
-}
-
-.stats-typewriter__cycle {
-  font-family: var(--font-display);
-  /* Sized so the longest phrase ("Calmest support.") holds one line */
-  font-size: clamp(3.5rem, 10.8vw - 12px, 9rem);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  color: var(--white);
-  min-height: 1em;
-  display: inline-flex;
-  align-items: center;
-}
-
-.stats-typewriter__cycle.is-cycling::after {
-  content: '';
-  display: inline-block;
-  width: 0.06em;
-  height: 0.78em;
-  background: var(--white);
-  margin-left: 0.06em;
-  vertical-align: -0.05em;
-  animation: stats-caret-blink 0.65s steps(2) infinite;
-}
-
-@keyframes stats-caret-blink {
-  50% { opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stats-typewriter__cycle.is-cycling::after {
-    animation: none;
-  }
-}
-
-/* ════════════════════════════════════════════════════════ */
 /* "Why-card" pattern (mirrored from home.css)               */
 /* Used on solution pages for 3-pillar illustrated rows.     */
 /* ════════════════════════════════════════════════════════ */
