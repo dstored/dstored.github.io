@@ -2818,9 +2818,9 @@ div.pillar-card:not(:has(a)) .card__text {
 /* Loyalty: stamp card */
 .glimpse__stamps {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin: 12px 0 10px;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  margin: 10px 0 8px;
 }
 
 .glimpse__stamps i {
