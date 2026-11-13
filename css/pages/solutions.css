@@ -188,6 +188,10 @@
   transition: all var(--duration-base) var(--ease-out);
 }
 
+.device-grid--square .device-card {
+  border-radius: 0;
+}
+
 .device-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
