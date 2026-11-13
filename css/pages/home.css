@@ -1618,6 +1618,14 @@
   margin-top: 4px;
 }
 
+.glimpse__pay {
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse__pay {
+  background: var(--blurple);
+}
+
 .glimpse--chat {
   width: 240px;
   background: none;
@@ -1714,7 +1722,8 @@
 @media (prefers-reduced-motion: reduce) {
   .glimpse,
   .pillar-card__btn,
-  .glimpse--terminal .glimpse__contactless {
+  .glimpse--terminal .glimpse__contactless,
+  .glimpse__pay {
     transition: none;
   }
 }
