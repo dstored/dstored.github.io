@@ -134,7 +134,13 @@ function initStreaks() {
       g.right = g.left + g.width;
       g.bottom = g.top + g.height;
       const W = s.width;
-      const H = s.height;
+      // A small gap under the section (the ticker's top margin) is bridged,
+      // so the ribbon runs right into whatever sits below
+      const next = section.nextElementSibling;
+      const gap = next ? Math.round(parseFloat(getComputedStyle(next).marginTop) || 0) : 0;
+      const bridge = gap > 0 && gap <= 40 ? gap : 0;
+      wrap.style.bottom = -bridge + 'px';
+      const H = s.height + bridge;
       const gw = g.width;
       const gh = g.height;
       const gl = g.left - s.left;
@@ -158,7 +164,7 @@ function initStreaks() {
       // the side as it passes behind, a bend back the other way, then out
       // through the bottom
       const cx = L + gw / 2;
-      const thick = Math.max(44, Math.min(92, W * 0.064));
+      const thick = Math.max(31, Math.min(64, W * 0.045));
       const from = stacked || across ? [W + thick * 2, gt - 0.15 * gh] : [cx + 0.3 * gw, -thick * 2];
       // Each bend's radius stays at least ~2x the ribbon's half-width, so
       // the inside of the bend rounds as neatly as the outside

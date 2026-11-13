@@ -822,6 +822,13 @@ textarea.input {
   pointer-events: none;
 }
 
+/* Above the ticker the ribbon carries on across the ticker's 12px top margin
+   (main.js bridges it), so the section mustn't clip its bottom edge */
+.has-streak:has(+ .marquee) {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
 .streak svg {
   display: block;
 }
