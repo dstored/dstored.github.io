@@ -219,7 +219,9 @@
       display: flex;
       gap: 8px;
       width: 720px;
-      height: 540px;
+      /* Fills the screen, which now runs down to the ticker (Danny, 13 Nov 2026) */
+      height: 100%;
+      min-height: 0;
     }
 
     .till__main {
@@ -255,7 +257,11 @@
     .till__grid {
       display: grid;
       grid-template-columns: repeat(4, 150px);
-      grid-auto-rows: 128px;
+      /* Three rows share the height down to the bill's bottom edge */
+      grid-template-rows: repeat(3, 1fr);
+      flex: 1;
+      min-height: 0;
+      margin-bottom: 16px;
       gap: 6px;
     }
 
@@ -318,7 +324,7 @@
       order: -1;
       /* Stops 16px short of the bottom cut edge so a strip of the
          screen's paper shows beneath the panel (Danny, 10 Aug) */
-      height: 464px;
+      height: calc(100% - 16px);
       background: var(--ink);
       border-radius: 12px;
       padding: 12px 12px 10px;
