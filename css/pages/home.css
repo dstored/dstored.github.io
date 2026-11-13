@@ -1555,8 +1555,9 @@
 }
 
 .glimpse__amount small {
-  font-size: 14px;
-  vertical-align: top;
+  font-size: inherit;
+  vertical-align: baseline;
+  margin-right: 1px;
 }
 
 .glimpse__hint {
