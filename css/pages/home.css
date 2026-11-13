@@ -1461,7 +1461,7 @@
   height: 190px;
   display: grid;
   place-items: center;
-  background: var(--bone);
+  background: var(--white);
 }
 
 .pillar-card__body {
@@ -1522,7 +1522,7 @@
   background: var(--white);
   color: var(--ink);
   border-radius: 14px;
-  box-shadow: 0 14px 32px rgba(11, 27, 51, 0.16);
+  box-shadow: 0 0 0 1px rgba(11, 27, 51, 0.08), 0 14px 32px rgba(11, 27, 51, 0.14);
   font-size: 12px;
   line-height: 1.4;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -1611,7 +1611,7 @@
   border-radius: 16px 16px 16px 4px;
   padding: 10px 12px;
   line-height: 1.5;
-  box-shadow: 0 14px 32px rgba(11, 27, 51, 0.16);
+  box-shadow: 0 0 0 1px rgba(11, 27, 51, 0.08), 0 14px 32px rgba(11, 27, 51, 0.14);
 }
 
 .glimpse__bubble u {
