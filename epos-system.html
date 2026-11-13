@@ -1318,5 +1318,28 @@
   </footer>
 
   <script src="/js/main.js?v=streak-6"></script>
+  <script>
+    /* Desktop: run the POS tablet down to the bottom of the hero so it meets
+       the ticker with no gap (Danny, 13 Nov 2026). Below 969px the tablet
+       sits in the flow with its own height. */
+    (function () {
+      var vis = document.querySelector('.solution-hero__visual');
+      if (!vis) return;
+      var hero = vis.closest('section');
+      var wide = window.matchMedia('(min-width: 969px)');
+      function fit() {
+        if (!wide.matches) { vis.style.height = ''; return; }
+        vis.style.height = '';
+        var next = hero.nextElementSibling;
+        var floor = next && next.classList.contains('marquee') ? next.getBoundingClientRect().top : hero.getBoundingClientRect().bottom;
+        var gap = floor - vis.getBoundingClientRect().top;
+        if (gap > 0) vis.style.height = Math.round(gap) + 'px';
+      }
+      fit();
+      window.addEventListener('resize', fit);
+      window.addEventListener('load', fit);
+      if (document.fonts) document.fonts.ready.then(fit);
+    })();
+  </script>
 </body>
 </html>
