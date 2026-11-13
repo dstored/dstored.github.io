@@ -1461,8 +1461,7 @@
   height: 190px;
   display: grid;
   place-items: center;
-  background: radial-gradient(90% 120% at 50% 100%, #1D3A63, #0F2442 70%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bone);
 }
 
 .pillar-card__body {
@@ -1523,7 +1522,7 @@
   background: var(--white);
   color: var(--ink);
   border-radius: 14px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 14px 32px rgba(11, 27, 51, 0.16);
   font-size: 12px;
   line-height: 1.4;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -1612,7 +1611,7 @@
   border-radius: 16px 16px 16px 4px;
   padding: 10px 12px;
   line-height: 1.5;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 14px 32px rgba(11, 27, 51, 0.16);
 }
 
 .glimpse__bubble u {
@@ -1622,8 +1621,8 @@
 .glimpse__paid {
   margin: 10px 0 0 auto;
   width: max-content;
-  background: rgba(var(--green-rgb), 0.15);
-  color: var(--green);
+  background: var(--green);
+  color: var(--ink);
   border-radius: 20px;
   padding: 5px 10px;
   font-weight: 600;
@@ -1699,4 +1698,8 @@
   .pillar-card__btn {
     transition: none;
   }
+}
+
+.glimpse__paid i {
+  background: var(--ink);
 }
