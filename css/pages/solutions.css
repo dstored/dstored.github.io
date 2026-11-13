@@ -2587,3 +2587,304 @@ div.pillar-card:not(:has(a)) .card__text {
   letter-spacing: -0.05em;
   color: var(--ink);
 }
+
+/* ─── EPOS features: product-glimpse cards, mirroring the homepage six-ways
+   cards (Danny, 13 Nov 2026). White stage with a small product snippet,
+   navy text block below. These cards aren't links, so no button row. ─── */
+.pillar-card.pillar-card--glimpse {
+  padding: 0;
+  min-height: 0;
+  border: 0;
+  overflow: hidden;
+  background: var(--ink);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+  transition: box-shadow 0.25s ease;
+}
+
+.pillar-card.pillar-card--glimpse:hover {
+  background: var(--ink);
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px rgba(143, 112, 255, 0.6);
+}
+
+.pillar-card--glimpse .pillar-card__stage {
+  height: 210px;
+  display: grid;
+  place-items: center;
+  background: var(--white);
+}
+
+.pillar-card--glimpse .pillar-card__body {
+  padding: var(--space-5) var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pillar-card.pillar-card--glimpse .card__label,
+.pillar-card.pillar-card--glimpse:hover .card__label {
+  padding-right: 0;
+  margin-bottom: var(--space-2);
+  color: var(--blurple-bright);
+}
+
+.pillar-card.pillar-card--glimpse .card__title {
+  font-size: var(--text-3xl);
+  margin-top: 0;
+  margin-bottom: var(--space-3);
+}
+
+.pillar-card.pillar-card--glimpse .card__text,
+.pillar-card.pillar-card--glimpse:hover .card__text {
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 0;
+}
+
+.pillar-card--glimpse .glimpse {
+  background: var(--white);
+  color: var(--ink);
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(11, 27, 51, 0.08), 0 14px 32px rgba(11, 27, 51, 0.14);
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 14px;
+  width: 236px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pillar-card--glimpse:hover .glimpse {
+  transform: translateY(-4px);
+}
+
+.glimpse b { font-weight: 600; }
+
+/* Ordering: a ticket */
+.glimpse__ticket-head,
+.glimpse__line,
+.glimpse__stamps-head,
+.glimpse__report-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.glimpse__ticket-head {
+  padding-bottom: 8px;
+  margin-bottom: 6px;
+  border-bottom: 1px dashed rgba(11, 27, 51, 0.15);
+}
+
+.glimpse__ticket-head span,
+.glimpse__stamps-head span,
+.glimpse__report-head span,
+.glimpse__report-foot {
+  color: var(--mute);
+}
+
+.glimpse__line { padding: 3px 0; }
+
+.glimpse__line--mod {
+  color: var(--mute);
+  padding-left: 10px;
+  font-size: 11px;
+}
+
+.glimpse__line--mod b { font-weight: 500; }
+
+.glimpse__line--total {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(11, 27, 51, 0.08);
+  font-weight: 600;
+  align-items: center;
+}
+
+.glimpse__line--total em {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--white);
+  background: var(--ink);
+  border-radius: 20px;
+  padding: 3px 9px;
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse__line--total em {
+  background: var(--blurple);
+}
+
+/* Inventory: stock levels */
+.glimpse__stock {
+  display: grid;
+  grid-template-columns: 84px 1fr 52px;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  white-space: nowrap;
+}
+
+.glimpse__stock + .glimpse__stock { border-top: 1px solid rgba(11, 27, 51, 0.06); }
+
+.glimpse__stock i {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(var(--ink), var(--ink)) no-repeat 0 0 / var(--fill) 100%, #EEF0F4;
+}
+
+.glimpse__stock i.is-low {
+  background: linear-gradient(var(--hot), var(--hot)) no-repeat 0 0 / var(--fill) 100%, #EEF0F4;
+}
+
+.glimpse__stock b { text-align: right; }
+
+.glimpse__low { color: var(--hot); }
+
+/* Staff: who's on */
+.glimpse__shift {
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  white-space: nowrap;
+}
+
+.glimpse__shift + .glimpse__shift { border-top: 1px solid rgba(11, 27, 51, 0.06); }
+
+.glimpse__shift i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #D5D9E0;
+}
+
+.glimpse__shift i.is-on { background: var(--green); }
+.glimpse__shift i.is-break { background: var(--blurple); }
+.glimpse__shift b { color: var(--mute); font-weight: 500; }
+
+/* QR codes: table code and order sent */
+.glimpse.glimpse--table {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 250px;
+}
+
+.glimpse__table-qr {
+  width: 88px;
+  height: 88px;
+  flex: none;
+  fill: var(--ink);
+  display: block;
+}
+
+.glimpse__table-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.glimpse__table-copy b { font-size: 15px; }
+.glimpse__table-copy span { color: var(--mute); }
+
+.glimpse__table-copy em {
+  margin-top: 8px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  width: max-content;
+  border-radius: 20px;
+  padding: 3px 9px 3px 8px;
+  background: #EEF0F4;
+  transition: background 0.25s ease;
+}
+
+.glimpse__table-copy em i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+  background: var(--mute);
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse__table-copy em { background: var(--green); }
+.pillar-card--glimpse:hover .glimpse__table-copy em i { background: var(--ink); }
+
+/* Loyalty: stamp card */
+.glimpse__stamps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 12px 0 10px;
+}
+
+.glimpse__stamps i {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(11, 27, 51, 0.2);
+}
+
+.glimpse__stamps i.is-on {
+  border: 0;
+  background: var(--ink);
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse__stamps i.is-on { background: var(--blurple); }
+
+.glimpse__stamps-foot {
+  color: var(--mute);
+  font-size: 11px;
+}
+
+/* Reporting: today's sales */
+.glimpse__report-head b { font-size: 15px; }
+
+.glimpse__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 64px;
+  margin: 12px 0 6px;
+}
+
+.glimpse__bars i {
+  flex: 1;
+  height: var(--h);
+  border-radius: 3px 3px 0 0;
+  background: #DDE1E8;
+}
+
+.glimpse__bars i.is-peak {
+  background: var(--ink);
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse__bars i.is-peak { background: var(--blurple); }
+
+.glimpse__report-foot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+@media (max-width: 640px) {
+  .pillar-card--glimpse .pillar-card__stage { height: 188px; }
+  .pillar-card--glimpse .pillar-card__body { padding: var(--space-4) var(--space-6) var(--space-5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar-card--glimpse .glimpse,
+  .glimpse__line--total em,
+  .glimpse__table-copy em,
+  .glimpse__table-copy em i,
+  .glimpse__stamps i.is-on,
+  .glimpse__bars i.is-peak {
+    transition: none;
+  }
+}
