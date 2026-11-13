@@ -29,17 +29,19 @@ function initStreaks() {
   const fmt = (p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1);
   const steps = 160;
 
-  // Smooth (Catmull-Rom) centre line through the points
-  const centreLine = (pts) => {
-    const P = (i) => pts[Math.max(0, Math.min(pts.length - 1, i))];
+  // Centre line: a straight run from `from` to `to` with one full sine wave
+  // laid along it, which gives the S. `amp` is the swing either side.
+  const centreLine = ([from, to, amp]) => {
+    const dx = to[0] - from[0];
+    const dy = to[1] - from[1];
+    const len = Math.hypot(dx, dy) || 1;
+    const nx = -dy / len;
+    const ny = dx / len;
     const line = [];
     for (let k = 0; k <= steps; k++) {
-      const u = (k / steps) * (pts.length - 1);
-      const i = Math.min(Math.floor(u), pts.length - 2);
-      const t = u - i;
-      const [p0, p1, p2, p3] = [P(i - 1), P(i), P(i + 1), P(i + 2)];
-      const f = (a, b, c, d) => 0.5 * (2 * b + (c - a) * t + (2 * a - 5 * b + 4 * c - d) * t * t + (3 * b - a - 3 * c + d) * t * t * t);
-      line.push([f(p0[0], p1[0], p2[0], p3[0]), f(p0[1], p1[1], p2[1], p3[1])]);
+      const t = k / steps;
+      const w = amp * Math.sin(2 * Math.PI * t);
+      line.push([from[0] + dx * t + nx * w, from[1] + dy * t + ny * w]);
     }
     return line;
   };
@@ -114,25 +116,60 @@ function initStreaks() {
       const gh = g.height;
       const gl = g.left - s.left;
       const gt = g.top - s.top;
+      // Stacked when the heading sits above the graphic rather than beside
+      // it (phones, tablets): the ribbon then comes in from the side just
+      // above the graphic, clear of the copy
+      const head = section.querySelector('h1, h2');
+      const hr = head && head.getBoundingClientRect();
+      const overlaps = !!(hr && hr.left < g.right && hr.right > g.left);
+      const stacked = W <= 640 || (overlaps && hr.bottom <= g.top + 10);
+      // Copy under the graphic instead: the S runs across behind it, in off
+      // the right above it and out the left just under it
+      const across = !stacked && overlaps && hr.top >= g.bottom - 10;
       // Mirror the route when the graphic sits on the left of the copy
-      const onLeft = gl + gw / 2 < W / 2 - 1 && W > 640;
+      const onLeft = !stacked && !across && gl + gw / 2 < W / 2 - 1;
       const x = (v) => (onLeft ? W - v : v);
       const L = onLeft ? W - (gl + gw) : gl;
-      // An S: in off the edge, swings across behind the top of the graphic,
-      // turns back the other way under it, then out through the bottom
-      // The bends poke out past the graphic (at least ~190px either side), so
-      // the S still reads behind a narrow phone or a full-width card
+      // An S: in through the top just right of the graphic, a bend out to
+      // the side as it passes behind, a bend back the other way, then out
+      // through the bottom
       const cx = L + gw / 2;
-      const amp = Math.max(gw * 0.58, Math.min(W * 0.13, 190));
-      const pts = [
-        [W + 120, gt - 0.05 * gh],
-        [cx + 0.25 * amp, gt + 0.04 * gh],
-        [cx - 0.8 * amp, gt + 0.3 * gh],
-        [cx, gt + 0.55 * gh],
-        [cx + 0.85 * amp, gt + 0.8 * gh],
-        [cx - 0.1 * amp, H + 120],
-      ].map(([px, py]) => [x(px), py]);
       const thick = Math.max(44, Math.min(92, W * 0.064));
+      const from = stacked || across ? [W + thick * 2, gt - 0.15 * gh] : [cx + 0.3 * gw, -thick * 2];
+      // Each bend's radius stays at least ~2x the ribbon's half-width, so
+      // the inside of the bend rounds as neatly as the outside
+      const route = (shift, scale) => {
+        const a = [from[0] + shift, from[1]];
+        const b = across ? [-thick * 2, gt + gh * 0.95] : [cx - 0.25 * gw + shift, H + thick * 2];
+        const len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        const maxAmp = (len * len) / (4 * Math.PI * Math.PI * 2 * thick * 0.575);
+        const amp = Math.min(Math.max(gw * 0.4, 130), maxAmp) * scale;
+        return [[x(a[0]), a[1]], [x(b[0]), b[1]], onLeft ? amp : -amp];
+      };
+      // Never behind the copy: every line of text in the section, padded by
+      // the ribbon's half-width. Try a smaller swing first, then move the
+      // whole S further from the copy, until it is clear.
+      const pad = thick * 0.6 + 12;
+      const words = [];
+      const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT);
+      const range = document.createRange();
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        if (!node.textContent.trim() || node.parentElement.closest('[data-streak], .streak')) continue;
+        range.selectNodeContents(node);
+        [...range.getClientRects()].forEach((r) => {
+          if (r.width) words.push([r.left - s.left - pad, r.top - s.top - pad, r.right - s.left + pad, r.bottom - s.top + pad]);
+        });
+      }
+      const clear = (pts) => centreLine(pts).every(([px, py]) =>
+        !words.some(([l, t, r, b]) => px > l && px < r && py > t && py < b));
+      let pts = route(0, 1);
+      search: for (const shift of [0, 0.1, 0.2, 0.3, 0.45, 0.6, 0.8, 1].map((f) => f * gw)) {
+        for (const scale of [1, 0.75, 0.5, 0.3, 0.15]) {
+          const tryPts = route(shift, scale);
+          if (clear(tryPts)) { pts = tryPts; break search; }
+          pts = tryPts;
+        }
+      }
       svg.setAttribute('width', W);
       svg.setAttribute('height', H);
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
