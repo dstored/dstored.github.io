@@ -1705,7 +1705,7 @@
   background: var(--blurple);
 }
 
-/* Link glimpse: Paid waits in grey, turns into a green pill on hover */
+/* Link glimpse: grey Unpaid, turns into a green Paid pill on hover */
 
 .glimpse__status {
   align-items: center;
@@ -1730,6 +1730,18 @@
 
 .pillar-card--glimpse:hover .glimpse__status .glimpse__done {
   background: var(--ink);
+}
+
+.glimpse__now-paid {
+  display: none;
+}
+
+.pillar-card--glimpse:hover .glimpse__unpaid {
+  display: none;
+}
+
+.pillar-card--glimpse:hover .glimpse__now-paid {
+  display: inline;
 }
 
 @media (prefers-reduced-motion: reduce) {
