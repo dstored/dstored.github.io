@@ -1731,3 +1731,54 @@
 .glimpse__paid i {
   background: var(--ink);
 }
+
+/* Chat glimpse: pill reads "Sent" in blurple, turns to green "Paid" on hover */
+
+.glimpse--chat .glimpse__paid {
+  background: var(--blurple);
+  color: var(--white);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.glimpse--chat .glimpse__paid i {
+  background: var(--white);
+  transition: background 0.25s ease;
+}
+
+.glimpse__state {
+  display: inline-grid;
+}
+
+.glimpse__state > span {
+  grid-area: 1 / 1;
+  transition: opacity 0.25s ease;
+}
+
+.glimpse__state-paid {
+  opacity: 0;
+}
+
+.pillar-card--glimpse:hover .glimpse--chat .glimpse__paid {
+  background: var(--green);
+  color: var(--ink);
+}
+
+.pillar-card--glimpse:hover .glimpse--chat .glimpse__paid i {
+  background: var(--ink);
+}
+
+.pillar-card--glimpse:hover .glimpse__state-sent {
+  opacity: 0;
+}
+
+.pillar-card--glimpse:hover .glimpse__state-paid {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glimpse--chat .glimpse__paid,
+  .glimpse--chat .glimpse__paid i,
+  .glimpse__state > span {
+    transition: none;
+  }
+}
