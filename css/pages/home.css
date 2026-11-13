@@ -1831,7 +1831,7 @@
 }
 
 .pillar-card--glimpse:hover .glimpse__paid-step {
-  color: #1EAA74; /* a shade darker than --green so the word reads on white */
+  color: #12875A; /* darker than --green so the word reads on white; the dot keeps --green */
 }
 
 .pillar-card--glimpse:hover .glimpse__status .glimpse__done {
