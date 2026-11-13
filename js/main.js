@@ -46,8 +46,8 @@ function initStreaks() {
     return line;
   };
 
-  // The centre line filled out to a ribbon that swells a little in the
-  // middle, like the poster streaks
+  // The centre line filled out to a ribbon of even width, like the poster
+  // streaks
   const ribbon = (pts, thick) => {
     const line = centreLine(pts);
     const left = [];
@@ -58,7 +58,7 @@ function initStreaks() {
       const len = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
       const nx = -(b[1] - a[1]) / len;
       const ny = (b[0] - a[0]) / len;
-      const half = (thick * (0.85 + 0.3 * Math.sin((k / steps) * Math.PI))) / 2;
+      const half = thick / 2;
       left.push([pt[0] + nx * half, pt[1] + ny * half]);
       right.push([pt[0] - nx * half, pt[1] - ny * half]);
     });
@@ -99,17 +99,40 @@ function initStreaks() {
     section.prepend(wrap);
     reveal.observe(section);
 
+    // Where an element sits in the section once any scroll-in movement has
+    // finished: layout offsets ignore transforms, so the route doesn't shift
+    // while the graphic or copy is still sliding in
+    const settled = (el) => {
+      let left = 0;
+      let top = 0;
+      let node = el;
+      while (node && node !== section) {
+        left += node.offsetLeft;
+        top += node.offsetTop;
+        node = node.offsetParent;
+      }
+      if (node !== section) return null;
+      return { left, top, width: el.offsetWidth, height: el.offsetHeight };
+    };
+
     const draw = () => {
       const s = section.getBoundingClientRect();
       if (!s.width || !s.height) return;
       // The graphic itself: the biggest child that is not the old phone frame
-      let g = graphic.getBoundingClientRect();
+      let gEl = graphic;
       let best = 0;
       [...graphic.children].forEach((child) => {
         if (child.matches('.hero-blob, .cm-float')) return;
-        const r = child.getBoundingClientRect();
-        if (r.width * r.height > best) { best = r.width * r.height; g = r; }
+        const area = child.offsetWidth * child.offsetHeight;
+        if (area > best) { best = area; gEl = child; }
       });
+      const gb = settled(gEl);
+      const gr = gEl.getBoundingClientRect();
+      const g = gb
+        ? { left: s.left + gb.left, top: s.top + gb.top, width: gb.width, height: gb.height }
+        : { left: gr.left, top: gr.top, width: gr.width, height: gr.height };
+      g.right = g.left + g.width;
+      g.bottom = g.top + g.height;
       const W = s.width;
       const H = s.height;
       const gw = g.width;
@@ -120,7 +143,8 @@ function initStreaks() {
       // it (phones, tablets): the ribbon then comes in from the side just
       // above the graphic, clear of the copy
       const head = section.querySelector('h1, h2');
-      const hr = head && head.getBoundingClientRect();
+      const hb = head && settled(head);
+      const hr = hb && { left: s.left + hb.left, right: s.left + hb.left + hb.width, top: s.top + hb.top, bottom: s.top + hb.top + hb.height };
       const overlaps = !!(hr && hr.left < g.right && hr.right > g.left);
       const stacked = W <= 640 || (overlaps && hr.bottom <= g.top + 10);
       // Copy under the graphic instead: the S runs across behind it, in off
@@ -156,8 +180,14 @@ function initStreaks() {
       for (let node = walker.nextNode(); node; node = walker.nextNode()) {
         if (!node.textContent.trim() || node.parentElement.closest('[data-streak], .streak')) continue;
         range.selectNodeContents(node);
+        // Take out any slide-in movement still applied to the text
+        const el = node.parentElement;
+        const eb = settled(el);
+        const er = el.getBoundingClientRect();
+        const dx = eb ? er.left - s.left - eb.left : 0;
+        const dy = eb ? er.top - s.top - eb.top : 0;
         [...range.getClientRects()].forEach((r) => {
-          if (r.width) words.push([r.left - s.left - pad, r.top - s.top - pad, r.right - s.left + pad, r.bottom - s.top + pad]);
+          if (r.width) words.push([r.left - s.left - dx - pad, r.top - s.top - dy - pad, r.right - s.left - dx + pad, r.bottom - s.top - dy + pad]);
         });
       }
       const clear = (pts) => centreLine(pts).every(([px, py]) =>
@@ -178,17 +208,26 @@ function initStreaks() {
       spine.setAttribute('stroke-width', thick * 1.6);
     };
 
+    // Once the ribbon has started drawing it only moves if the width
+    // changes (a resize or rotation), so it never jolts after drawing in
     let queued = false;
+    let drawnWidth = 0;
     const redraw = () => {
       if (queued) return;
       queued = true;
-      requestAnimationFrame(() => { queued = false; draw(); });
+      requestAnimationFrame(() => {
+        queued = false;
+        const w = section.offsetWidth;
+        if (section.classList.contains('is-drawn') && w === drawnWidth) return;
+        drawnWidth = w;
+        draw();
+      });
     };
+    drawnWidth = section.offsetWidth;
     draw();
     new ResizeObserver(redraw).observe(section);
-    // Scroll-in animations move the graphic into place: redraw once they land
-    section.addEventListener('transitionend', redraw);
     window.addEventListener('load', redraw);
+    if (document.fonts) document.fonts.ready.then(redraw);
   });
 }
 
