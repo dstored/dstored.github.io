@@ -118,13 +118,19 @@ function initStreaks() {
       const onLeft = gl + gw / 2 < W / 2 - 1 && W > 640;
       const x = (v) => (onLeft ? W - v : v);
       const L = onLeft ? W - (gl + gw) : gl;
-      // A soft S: in high off the edge, behind the graphic, out low
+      // An S: in off the edge, swings across behind the top of the graphic,
+      // turns back the other way under it, then out through the bottom
+      // The bends poke out past the graphic (at least ~190px either side), so
+      // the S still reads behind a narrow phone or a full-width card
+      const cx = L + gw / 2;
+      const amp = Math.max(gw * 0.58, Math.min(W * 0.13, 190));
       const pts = [
-        [W + 120, gt - 0.25 * gh],
-        [L + gw * 1.02, gt + 0.12 * gh],
-        [L + gw * 0.55, gt + 0.55 * gh],
-        [L - 0.12 * gw, gt + 0.95 * gh],
-        [L - 0.3 * gw, H + 120],
+        [W + 120, gt - 0.05 * gh],
+        [cx + 0.25 * amp, gt + 0.04 * gh],
+        [cx - 0.8 * amp, gt + 0.3 * gh],
+        [cx, gt + 0.55 * gh],
+        [cx + 0.85 * amp, gt + 0.8 * gh],
+        [cx - 0.1 * amp, H + 120],
       ].map(([px, py]) => [x(px), py]);
       const thick = Math.max(44, Math.min(92, W * 0.064));
       svg.setAttribute('width', W);
