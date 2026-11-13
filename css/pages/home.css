@@ -1768,6 +1768,33 @@
 .glimpse--link {
   width: 250px;
   padding: 12px;
+  overflow: hidden;
+}
+
+/* Window bar with the three traffic-light dots */
+.glimpse__chrome {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: -12px -12px 12px;
+  padding: 9px 12px;
+  background: #F3F4F7;
+  border-bottom: 1px solid rgba(11, 27, 51, 0.08);
+}
+
+.glimpse__chrome i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #FF5F57;
+}
+
+.glimpse__chrome i:nth-child(2) {
+  background: #FEBC2E;
+}
+
+.glimpse__chrome i:nth-child(3) {
+  background: #28C840;
 }
 
 .glimpse__url {
