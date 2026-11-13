@@ -1788,17 +1788,14 @@
   background: var(--blurple);
 }
 
-/* Link glimpse: grey Unpaid, turns into a green Paid pill on hover */
+/* Link glimpse: grey Unpaid, turns to green Paid on hover */
 
 .glimpse__status {
   align-items: center;
 }
 
 .glimpse__paid-step {
-  margin: -4px 0;
-  padding: 4px 10px;
-  border-radius: 20px;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: color 0.25s ease;
 }
 
 .glimpse__status .glimpse__done {
@@ -1807,12 +1804,11 @@
 }
 
 .pillar-card--glimpse:hover .glimpse__paid-step {
-  background: var(--green);
-  color: var(--ink);
+  color: var(--green);
 }
 
 .pillar-card--glimpse:hover .glimpse__status .glimpse__done {
-  background: var(--ink);
+  background: var(--green);
 }
 
 .glimpse__now-paid {
