@@ -2835,7 +2835,8 @@ div.pillar-card:not(:has(a)) .card__text {
   transition: background 0.25s ease;
 }
 
-.pillar-card--glimpse:hover .glimpse__stamps i.is-on { background: var(--blurple); }
+/* Only the newest stamp lights up */
+.pillar-card--glimpse:hover .glimpse__stamps i.is-on:nth-child(7) { background: var(--blurple); }
 
 .glimpse__stamps-foot {
   color: var(--mute);
