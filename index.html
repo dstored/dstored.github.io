@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="css/animations.css?v=brand-2">
   <link rel="stylesheet" href="css/header.css?v=menu-8">
   <link rel="stylesheet" href="css/footer.css?v=two-col-1">
-  <link rel="stylesheet" href="css/pages/home.css?v=stats-1">
+  <link rel="stylesheet" href="css/pages/home.css?v=glimpse-1">
   <link rel="stylesheet" href="css/pages/blog.css?v=blog-1">
 
   <style>
@@ -487,92 +487,69 @@
 
         <div class="pillars-grid" data-stagger data-phone-carousel aria-label="Six ways to take payment">
           <!-- In-Person — dark -->
-          <a href="/card-machines" class="card card--dark pillar-card">
-            <span class="card__label">01 / 06</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <path d="M11 11c3 3 3 7 0 10"/>
-                <path d="M16 8c5 5 5 11 0 16"/>
-                <path d="M21 5c7 7 7 15 0 22"/>
-              </svg>
+          <a href="/card-machines" class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--terminal"><div class="glimpse__amount"><small>£</small>25.00</div><div class="glimpse__hint">Tap, insert or swipe</div><div class="glimpse__dots"><i></i><i></i><i></i></div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">01 / 06</span>
+              <h3 class="card__title">In-person.</h3>
+              <p class="card__text">Card machine bundles &amp; point of sale terminals, ready to tap out of the box.</p>
+              <span class="card__link">Learn more <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-            <h3 class="card__title">In-person.</h3>
-            <p class="card__text">Card machine bundles &amp; point of sale terminals, ready to tap out of the box.</p>
-            <span class="card__link">Learn more <span>&rarr;</span></span>
           </a>
 
           <!-- Online — dark -->
-          <a href="/payment-gateway" class="card card--dark pillar-card">
-            <span class="card__label">02 / 06</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="10 10 4 16 10 22"/>
-                <polyline points="22 10 28 16 22 22"/>
-                <line x1="19" y1="6" x2="13" y2="26"/>
-              </svg>
+          <a href="/payment-gateway" class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--form"><div class="glimpse__row"><span>Card number</span><b>•••• 4242</b></div><div class="glimpse__row"><span>Expiry</span><b>08 / 28</b></div><div class="glimpse__pay">Pay £42.00</div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">02 / 06</span>
+              <h3 class="card__title">Website.</h3>
+              <p class="card__text">Drop-in checkout, Shopify, WooCommerce, custom: we plug in.</p>
+              <span class="card__link">Learn more <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-            <h3 class="card__title">Website.</h3>
-            <p class="card__text">Drop-in checkout, Shopify, WooCommerce, custom: we plug in.</p>
-            <span class="card__link">Learn more <span>&rarr;</span></span>
           </a>
 
           <!-- Social — dark -->
-          <a href="/online-checkout" class="card card--dark pillar-card">
-            <span class="card__label">03 / 06</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none">
-                <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.8"/>
-                <text x="16" y="22" text-anchor="middle" fill="currentColor" font-size="18" font-weight="500" font-family="Inter, sans-serif">@</text>
-              </svg>
+          <a href="/online-checkout" class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--chat"><div class="glimpse__bubble">Here’s the link for your order<br><u>stored.link/kiln-mug</u></div><div class="glimpse__paid"><i></i>Paid · £18.00</div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">03 / 06</span>
+              <h3 class="card__title">Social.</h3>
+              <p class="card__text">Share a link to Instagram, TikTok, WhatsApp. Get paid in two taps.</p>
+              <span class="card__link">Learn more <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-            <h3 class="card__title">Social.</h3>
-            <p class="card__text">Share a link to Instagram, TikTok, WhatsApp. Get paid in two taps.</p>
-            <span class="card__link">Learn more <span>&rarr;</span></span>
           </a>
 
           <!-- QR — dark -->
-          <a href="/online-checkout" class="card card--dark pillar-card">
-            <span class="card__label">04 / 06</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
-                <rect x="3" y="3" width="10" height="10"/>
-                <rect x="6" y="6" width="4" height="4" fill="currentColor" stroke="none"/>
-                <rect x="19" y="3" width="10" height="10"/>
-                <rect x="22" y="6" width="4" height="4" fill="currentColor" stroke="none"/>
-                <rect x="3" y="19" width="10" height="10"/>
-                <rect x="6" y="22" width="4" height="4" fill="currentColor" stroke="none"/>
-                <path d="M19 19h4v4h-4zM25 19h4M25 23h-2M19 25v4M23 25v4M27 25h2v4h-4v-2" stroke-linecap="round"/>
-              </svg>
+          <a href="/online-checkout" class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--qr"><svg viewBox="0 0 21 21" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="0" y="3" width="1" height="1"/><rect x="0" y="4" width="1" height="1"/><rect x="0" y="5" width="1" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="0" y="10" width="1" height="1"/><rect x="0" y="12" width="1" height="1"/><rect x="0" y="14" width="1" height="1"/><rect x="0" y="15" width="1" height="1"/><rect x="0" y="16" width="1" height="1"/><rect x="0" y="17" width="1" height="1"/><rect x="0" y="18" width="1" height="1"/><rect x="0" y="19" width="1" height="1"/><rect x="0" y="20" width="1" height="1"/><rect x="1" y="0" width="1" height="1"/><rect x="1" y="6" width="1" height="1"/><rect x="1" y="11" width="1" height="1"/><rect x="1" y="12" width="1" height="1"/><rect x="1" y="14" width="1" height="1"/><rect x="1" y="20" width="1" height="1"/><rect x="2" y="0" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="2" y="14" width="1" height="1"/><rect x="2" y="16" width="1" height="1"/><rect x="2" y="17" width="1" height="1"/><rect x="2" y="18" width="1" height="1"/><rect x="2" y="20" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="3" y="4" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="3" y="9" width="1" height="1"/><rect x="3" y="10" width="1" height="1"/><rect x="3" y="14" width="1" height="1"/><rect x="3" y="16" width="1" height="1"/><rect x="3" y="17" width="1" height="1"/><rect x="3" y="18" width="1" height="1"/><rect x="3" y="20" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="4" y="2" width="1" height="1"/><rect x="4" y="3" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/><rect x="4" y="9" width="1" height="1"/><rect x="4" y="11" width="1" height="1"/><rect x="4" y="14" width="1" height="1"/><rect x="4" y="16" width="1" height="1"/><rect x="4" y="17" width="1" height="1"/><rect x="4" y="18" width="1" height="1"/><rect x="4" y="20" width="1" height="1"/><rect x="5" y="0" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="5" y="12" width="1" height="1"/><rect x="5" y="14" width="1" height="1"/><rect x="5" y="20" width="1" height="1"/><rect x="6" y="0" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="6" y="4" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="6" y="14" width="1" height="1"/><rect x="6" y="15" width="1" height="1"/><rect x="6" y="16" width="1" height="1"/><rect x="6" y="17" width="1" height="1"/><rect x="6" y="18" width="1" height="1"/><rect x="6" y="19" width="1" height="1"/><rect x="6" y="20" width="1" height="1"/><rect x="8" y="0" width="1" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="8" y="9" width="1" height="1"/><rect x="8" y="10" width="1" height="1"/><rect x="8" y="14" width="1" height="1"/><rect x="8" y="15" width="1" height="1"/><rect x="8" y="19" width="1" height="1"/><rect x="8" y="20" width="1" height="1"/><rect x="9" y="1" width="1" height="1"/><rect x="9" y="4" width="1" height="1"/><rect x="9" y="6" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="9" y="11" width="1" height="1"/><rect x="9" y="14" width="1" height="1"/><rect x="9" y="16" width="1" height="1"/><rect x="9" y="19" width="1" height="1"/><rect x="10" y="0" width="1" height="1"/><rect x="10" y="2" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="10" y="7" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="10" y="12" width="1" height="1"/><rect x="10" y="15" width="1" height="1"/><rect x="10" y="17" width="1" height="1"/><rect x="10" y="20" width="1" height="1"/><rect x="11" y="1" width="1" height="1"/><rect x="11" y="2" width="1" height="1"/><rect x="11" y="6" width="1" height="1"/><rect x="11" y="7" width="1" height="1"/><rect x="11" y="11" width="1" height="1"/><rect x="11" y="12" width="1" height="1"/><rect x="11" y="16" width="1" height="1"/><rect x="11" y="17" width="1" height="1"/><rect x="13" y="9" width="1" height="1"/><rect x="13" y="10" width="1" height="1"/><rect x="13" y="14" width="1" height="1"/><rect x="13" y="15" width="1" height="1"/><rect x="13" y="19" width="1" height="1"/><rect x="13" y="20" width="1" height="1"/><rect x="14" y="0" width="1" height="1"/><rect x="14" y="1" width="1" height="1"/><rect x="14" y="2" width="1" height="1"/><rect x="14" y="3" width="1" height="1"/><rect x="14" y="4" width="1" height="1"/><rect x="14" y="5" width="1" height="1"/><rect x="14" y="6" width="1" height="1"/><rect x="14" y="9" width="1" height="1"/><rect x="14" y="11" width="1" height="1"/><rect x="14" y="14" width="1" height="1"/><rect x="14" y="16" width="1" height="1"/><rect x="14" y="19" width="1" height="1"/><rect x="15" y="0" width="1" height="1"/><rect x="15" y="6" width="1" height="1"/><rect x="15" y="10" width="1" height="1"/><rect x="15" y="12" width="1" height="1"/><rect x="15" y="15" width="1" height="1"/><rect x="15" y="17" width="1" height="1"/><rect x="15" y="20" width="1" height="1"/><rect x="16" y="0" width="1" height="1"/><rect x="16" y="2" width="1" height="1"/><rect x="16" y="3" width="1" height="1"/><rect x="16" y="4" width="1" height="1"/><rect x="16" y="6" width="1" height="1"/><rect x="16" y="11" width="1" height="1"/><rect x="16" y="12" width="1" height="1"/><rect x="16" y="16" width="1" height="1"/><rect x="16" y="17" width="1" height="1"/><rect x="17" y="0" width="1" height="1"/><rect x="17" y="2" width="1" height="1"/><rect x="17" y="3" width="1" height="1"/><rect x="17" y="4" width="1" height="1"/><rect x="17" y="6" width="1" height="1"/><rect x="18" y="0" width="1" height="1"/><rect x="18" y="2" width="1" height="1"/><rect x="18" y="3" width="1" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="18" y="6" width="1" height="1"/><rect x="18" y="9" width="1" height="1"/><rect x="18" y="10" width="1" height="1"/><rect x="18" y="14" width="1" height="1"/><rect x="18" y="15" width="1" height="1"/><rect x="18" y="19" width="1" height="1"/><rect x="18" y="20" width="1" height="1"/><rect x="19" y="0" width="1" height="1"/><rect x="19" y="6" width="1" height="1"/><rect x="19" y="9" width="1" height="1"/><rect x="19" y="11" width="1" height="1"/><rect x="19" y="14" width="1" height="1"/><rect x="19" y="16" width="1" height="1"/><rect x="19" y="19" width="1" height="1"/><rect x="20" y="0" width="1" height="1"/><rect x="20" y="1" width="1" height="1"/><rect x="20" y="2" width="1" height="1"/><rect x="20" y="3" width="1" height="1"/><rect x="20" y="4" width="1" height="1"/><rect x="20" y="5" width="1" height="1"/><rect x="20" y="6" width="1" height="1"/><rect x="20" y="10" width="1" height="1"/><rect x="20" y="12" width="1" height="1"/><rect x="20" y="15" width="1" height="1"/><rect x="20" y="17" width="1" height="1"/><rect x="20" y="20" width="1" height="1"/></svg><span>Table 12</span></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">04 / 06</span>
+              <h3 class="card__title">QR.</h3>
+              <p class="card__text">Stick it on a table, a flyer, a window. They scan, they pay.</p>
+              <span class="card__link">Learn more <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-            <h3 class="card__title">QR.</h3>
-            <p class="card__text">Stick it on a table, a flyer, a window. They scan, they pay.</p>
-            <span class="card__link">Learn more <span>&rarr;</span></span>
           </a>
 
           <!-- Phone — dark -->
-          <a href="/virtual-terminal" class="card card--dark pillar-card">
-            <span class="card__label">05 / 06</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/>
-              </svg>
+          <a href="/virtual-terminal" class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--form"><div class="glimpse__row"><span>Card number</span><b>4929 •••• 1187</b></div><div class="glimpse__row"><span>Amount</span><b>£120.00</b></div><div class="glimpse__pay">Charge card</div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">05 / 06</span>
+              <h3 class="card__title">Phone.</h3>
+              <p class="card__text">Take card payments over the phone, safely and securely, with our virtual terminal.</p>
+              <span class="card__link">Learn more <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-            <h3 class="card__title">Phone.</h3>
-            <p class="card__text">Take card payments over the phone, safely and securely, with our virtual terminal.</p>
-            <span class="card__link">Learn more <span>&rarr;</span></span>
           </a>
 
           <!-- Links — dark -->
-          <a href="/payment-links" class="card card--dark pillar-card">
-            <span class="card__label">06 / 06</span>
-            <div class="pillar-card__icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 18l4-4M12 16l-3 3a4 4 0 005.7 5.7l3-3M20 16l3-3a4 4 0 00-5.7-5.7l-3 3"/>
-              </svg>
+          <a href="/payment-links" class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--link"><div class="glimpse__url">stored.link/boiler-150</div><div class="glimpse__status"><span><i class="glimpse__opened"></i>Opened</span><span><i class="glimpse__done"></i>Paid</span></div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">06 / 06</span>
+              <h3 class="card__title">Links.</h3>
+              <p class="card__text">Pay-by-link with tracking, branding, reminders, reconciliation.</p>
+              <span class="card__link">Learn more <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-            <h3 class="card__title">Links.</h3>
-            <p class="card__text">Pay-by-link with tracking, branding, reminders, reconciliation.</p>
-            <span class="card__link">Learn more <span>&rarr;</span></span>
           </a>
         </div>
       </div>
