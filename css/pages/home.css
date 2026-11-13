@@ -1534,11 +1534,8 @@
 
 .glimpse--terminal {
   width: 196px;
-  padding: 16px 18px 14px;
-  border-radius: 18px;
-  border: 6px solid #111;
+  padding: 20px 18px 16px;
   text-align: center;
-  box-shadow: 0 22px 44px rgba(11, 27, 51, 0.22), 0 6px 14px rgba(11, 27, 51, 0.12);
 }
 
 .glimpse__amount {
