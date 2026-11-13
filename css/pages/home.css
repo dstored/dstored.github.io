@@ -1558,7 +1558,7 @@
 }
 
 .pillar-card--glimpse:hover .glimpse--terminal .glimpse__contactless {
-  background: var(--hot);
+  background: var(--blurple);
 }
 
 .glimpse__amount {
