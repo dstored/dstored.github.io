@@ -164,7 +164,7 @@ function initStreaks() {
       // the side as it passes behind, a bend back the other way, then out
       // through the bottom
       const cx = L + gw / 2;
-      const thick = Math.max(31, Math.min(64, W * 0.045));
+      const thick = Math.max(36, Math.min(74, W * 0.052));
       const from = stacked || across ? [W + thick * 2, gt - 0.15 * gh] : [cx + 0.3 * gw, -thick * 2];
       // Each bend's radius stays at least ~2x the ribbon's half-width, so
       // the inside of the bend rounds as neatly as the outside
