@@ -197,6 +197,11 @@
 /* Navy text block under a white image area, like the homepage cards */
 .device-grid--square .device-card__image {
   background-color: var(--white);
+  transition: background-color 0.25s ease;
+}
+
+.device-grid--square .device-card:hover .device-card__image {
+  background-color: var(--paper);
 }
 
 .device-grid--square .device-card__body {
