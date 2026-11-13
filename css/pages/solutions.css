@@ -190,6 +190,25 @@
 
 .device-grid--square .device-card {
   border-radius: 0;
+  border: 0;
+  background: var(--ink);
+}
+
+/* Navy text block under a white image area, like the homepage cards */
+.device-grid--square .device-card__image {
+  background-color: var(--white);
+}
+
+.device-grid--square .device-card__body {
+  color: var(--white);
+}
+
+.device-grid--square .device-card__badge {
+  color: var(--blurple-bright);
+}
+
+.device-grid--square .device-card__desc {
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .device-card:hover {
