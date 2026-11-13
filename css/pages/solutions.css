@@ -2889,3 +2889,39 @@ div.pillar-card:not(:has(a)) .card__text {
     transition: none;
   }
 }
+
+/* EPOS features as five cards: Ordering is a tall feature card on the left,
+   the other four sit in a 2x2 beside it (Danny, 13 Nov 2026). The feature's
+   white stage grows to fill the height so its navy block lines up with the
+   bottom row's. */
+@media (min-width: 769px) {
+  .pillars-grid--feature {
+    grid-template-columns: 1.25fr 1fr 1fr;
+  }
+
+  .pillars-grid--feature > :first-child {
+    grid-row: span 2;
+  }
+
+  .pillars-grid--feature > :first-child .pillar-card__stage {
+    height: auto;
+    flex: 1;
+  }
+
+  .pillars-grid--feature > :first-child .pillar-card__body {
+    flex: none;
+  }
+
+  .pillars-grid--feature > :first-child .glimpse {
+    width: 260px;
+  }
+}
+
+/* Phones: the feature's stage is short, so its bill drops to three items */
+.glimpse__total--short { display: none; }
+
+@media (max-width: 768px) {
+  .glimpse__line--extra,
+  .glimpse__total--full { display: none; }
+  .glimpse__total--short { display: inline; }
+}
