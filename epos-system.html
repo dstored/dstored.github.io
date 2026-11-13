@@ -600,6 +600,8 @@
     }
     /* Sectors headline: all four sectors on one line on desktop */
     @media (min-width: 900px) { .section--sectors .section-header { max-width: none; } }
+    /* Sectors strip sits closer to the FAQ now the case study is gone (as on the homepage) */
+    .section--sectors { padding-bottom: var(--space-8); }
   </style>
 
   <!-- Favicon -->
@@ -1121,7 +1123,7 @@
 
         <div class="merchant-strip" data-animate="fade">
           <a href="/hospitality-payment-solutions" class="merchant-strip__tile">
-            <img src="/assets/images/sectors/pos/cafe-restaurant.jpg" alt="Server bringing a dish to a table in a busy restaurant" loading="lazy">
+            <img src="/assets/images/sectors/hospitality/hero.jpg?v=3" alt="Smiling server behind a bar with a card machine on the counter" loading="lazy" style="object-position: 35% center;">
             <span class="sector-strip__label">Cafés &amp; Restaurants</span>
           </a>
           <a href="/hospitality-payment-solutions" class="merchant-strip__tile">
@@ -1139,6 +1141,8 @@
         </div>
       </div>
     </section>
+
+    <div class="container"><hr class="section-rule"></div>
 
     <!-- ════════════════════════════════════════ -->
     <!-- FAQ                                      -->
