@@ -1458,7 +1458,7 @@
 }
 
 .pillar-card__stage {
-  height: 190px;
+  height: 210px;
   display: grid;
   place-items: center;
   background: var(--white);
@@ -1682,7 +1682,7 @@
   }
 
   .pillar-card__stage {
-    height: 170px;
+    height: 188px;
   }
 
   .pillar-card__body {
