@@ -1553,6 +1553,14 @@
   color: var(--white);
 }
 
+.glimpse--terminal .glimpse__contactless {
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse--terminal .glimpse__contactless {
+  background: var(--hot);
+}
+
 .glimpse__amount {
   font-family: var(--font-display);
   font-size: 28px;
@@ -1705,7 +1713,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .glimpse,
-  .pillar-card__btn {
+  .pillar-card__btn,
+  .glimpse--terminal .glimpse__contactless {
     transition: none;
   }
 }
