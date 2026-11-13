@@ -1533,11 +1533,12 @@
 }
 
 .glimpse--terminal {
-  width: 128px;
-  padding: 16px 14px;
+  width: 196px;
+  padding: 16px 18px 14px;
   border-radius: 18px;
   border: 6px solid #111;
   text-align: center;
+  box-shadow: 0 22px 44px rgba(11, 27, 51, 0.22), 0 6px 14px rgba(11, 27, 51, 0.12);
 }
 
 .glimpse__amount {
@@ -1553,21 +1554,17 @@
 
 .glimpse__hint {
   color: var(--mute);
-  font-size: 10px;
-  margin: 4px 0 10px;
+  font-size: 11px;
+  white-space: nowrap;
+  margin: 4px 0 8px;
 }
 
-.glimpse__dots {
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-}
-
-.glimpse__dots i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--blurple);
+.glimpse__contactless {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin: 0 auto;
+  color: var(--blurple);
 }
 
 .glimpse--form {
