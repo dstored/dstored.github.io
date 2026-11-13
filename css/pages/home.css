@@ -1536,6 +1536,16 @@
   width: 196px;
   padding: 20px 18px 16px;
   text-align: center;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.glimpse--terminal .glimpse__hint {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.glimpse--terminal .glimpse__contactless {
+  color: var(--white);
 }
 
 .glimpse__amount {
