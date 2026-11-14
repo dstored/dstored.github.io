@@ -919,18 +919,6 @@
     @media (max-width: 480px) {
       .context-panel__item { grid-template-columns: 1fr; gap: var(--space-2); }
     }
-    /* Two navy sections back to back: a faint white hairline at the seam,
-       container width, the navy version of .section-rule */
-    .iv-latepay + .section--dark { position: relative; }
-    .iv-latepay + .section--dark::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(100% - 6 * var(--container-pad), var(--container-wide) - 6 * var(--container-pad));
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
-    }
 </style>
 
   <!-- Favicon -->
@@ -1470,35 +1458,6 @@
     </section>
 
     <!-- ════════════════════════════════════════ -->
-    <!-- WHY CARD ON THE INVOICE                  -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="section section--dark">
-      <div class="container">
-        <div class="section-header section-header--center section-header--wide" data-animate>
-          <h2 class="section-header__title">One tap <span class="highlight">beats a bank transfer.</span></h2>
-          <p class="section-header__subtitle">Every step you ask a customer to take is a reason the invoice waits. A pay button removes all of them.</p>
-        </div>
-
-        <div class="iv-compare" data-stagger>
-          <div class="iv-compare__card">
-            <div class="iv-compare__label">A bank transfer asks them to</div>
-            <ul class="iv-compare__list">
-              <li>Open their banking app and add you as a payee</li>
-              <li>Type your account number and sort code without a slip</li>
-              <li>Copy the reference exactly, or you reconcile by hand</li>
-              <li>Do it later, which is where invoices go to wait</li>
-            </ul>
-          </div>
-          <div class="iv-compare__card iv-compare__card--pay">
-            <div class="iv-compare__label">The invoice asks them to</div>
-            <div class="iv-compare__tap">Tap pay. Done.</div>
-            <p class="iv-compare__note">Card, Apple Pay or Google Pay, on the invoice itself. Nothing to type, nothing to look up, nothing to put off.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════ -->
     <!-- SENT AND CHASED                          -->
     <!-- ════════════════════════════════════════ -->
     <section class="section">
@@ -1613,6 +1572,35 @@
       <div class="container">
         <div class="stats-typewriter" data-animate>
           <span class="stats-typewriter__cycle" style="--fit-em: 6.83" data-typewriter-cycle="Pay built in.|One tap to pay.|No logins.|Tracked live.|Paid next day."></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- WHY CARD ON THE INVOICE                  -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="section-header section-header--center section-header--wide" data-animate>
+          <h2 class="section-header__title">One tap <span class="highlight">beats a bank transfer.</span></h2>
+          <p class="section-header__subtitle">Every step you ask a customer to take is a reason the invoice waits. A pay button removes all of them.</p>
+        </div>
+
+        <div class="iv-compare" data-stagger>
+          <div class="iv-compare__card">
+            <div class="iv-compare__label">A bank transfer asks them to</div>
+            <ul class="iv-compare__list">
+              <li>Open their banking app and add you as a payee</li>
+              <li>Type your account number and sort code without a slip</li>
+              <li>Copy the reference exactly, or you reconcile by hand</li>
+              <li>Do it later, which is where invoices go to wait</li>
+            </ul>
+          </div>
+          <div class="iv-compare__card iv-compare__card--pay">
+            <div class="iv-compare__label">The invoice asks them to</div>
+            <div class="iv-compare__tap">Tap pay. Done.</div>
+            <p class="iv-compare__note">Card, Apple Pay or Google Pay, on the invoice itself. Nothing to type, nothing to look up, nothing to put off.</p>
+          </div>
         </div>
       </div>
     </section>
