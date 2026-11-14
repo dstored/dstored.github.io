@@ -212,12 +212,13 @@
 
     .tk-s1 .np-cta { margin-top: auto; flex-shrink: 0; }
 
-    .hero__card-state.tk-s1 .np-cta { background: var(--hot); transform: none; animation: tk-press 16s ease-in-out infinite; }
+    /* Buy ticket in black (Danny, 14 Nov 2026); the press lightens it a touch */
+    .hero__card-state.tk-s1 .np-cta { background: var(--ink); transform: none; animation: tk-press 16s ease-in-out infinite; }
 
     @keyframes tk-press {
-      0%, 16% { background: var(--hot); transform: scale(1); }
-      17.5%, 19% { background: var(--blurple); transform: scale(0.97); }
-      21%, 100% { background: var(--hot); transform: scale(1); }
+      0%, 16% { background: var(--ink); transform: scale(1); }
+      17.5%, 19% { background: var(--ink-lighter); transform: scale(0.97); }
+      21%, 100% { background: var(--ink); transform: scale(1); }
     }
 
     /* ── Ticket screen (state 3): the bought ticket, ready to redeem ── */
@@ -918,7 +919,7 @@
                           The Corner House, Manchester
                         </div>
                       </div>
-                      <div class="tk-desc">DJ sets across two rooms from 9&thinsp;pm.<a>Read more</a></div>
+                      <div class="tk-desc">Live bands across two rooms from 9&thinsp;pm.<a>Read more</a></div>
                       <div class="tk-qty">
                         <span class="tk-qty__label">Tickets</span>
                         <div class="tk-step"><span>&minus;</span><span class="tk-step__n">1</span><span>+</span></div>
