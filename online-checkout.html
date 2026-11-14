@@ -750,7 +750,33 @@
         margin-bottom: 56px;
       }
     }
-  </style>
+  
+    /* Market context: copy on the left, a panel of third-party figures on
+       the right (same as professional services' late-payment panel) */
+    .context-split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+    .context-split .section-header { text-align: left; margin: 0; max-width: 560px; }
+    .context-split .section-header__subtitle { margin-left: 0; }
+    .context-panel { --fig: clamp(2.25rem, 3.6vw, var(--text-5xl)); border-radius: var(--radius-xl); padding: clamp(1.75rem, 3vw, 2.75rem); }
+    .context-panel__overline { font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase; margin-bottom: var(--space-4); }
+    .context-panel__list { list-style: none; margin: 0; padding: 0; }
+    .context-panel__item { padding: var(--space-5) 0; display: grid; grid-template-columns: calc(var(--fig) * 3.75) 1fr; gap: var(--space-5); align-items: center; }
+    .context-panel__item + .context-panel__item { border-top: 1px solid var(--rule); }
+    .context-panel__figure { font-family: var(--font-display); font-weight: 600; font-size: var(--fig); line-height: 1; letter-spacing: -0.03em; white-space: nowrap; }
+    .context-panel__text { font-size: var(--text-base); line-height: 1.45; }
+    .context-panel__source { font-size: var(--text-xs); line-height: 1.5; margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--rule); }
+    .context-panel__source a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+    .context-panel--paper { --rule: rgba(11,27,51,.14); background: #fff; color: var(--ink); border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+    .context-panel--paper .context-panel__overline { color: var(--hot); }
+    .context-panel--paper .context-panel__text,
+    .context-panel--paper .context-panel__source { color: var(--mute); }
+    @media (max-width: 900px) {
+      .context-split { grid-template-columns: 1fr; }
+      .context-split .section-header { max-width: none; }
+    }
+    @media (max-width: 480px) {
+      .context-panel__item { grid-template-columns: 1fr; gap: var(--space-2); }
+    }
+</style>
 
   <!-- Schema -->
   <script type="application/ld+json">
@@ -1183,7 +1209,7 @@
         <div class="section-header section-header--center" data-animate>
           <div class="section-header__overline">FEATURES</div>
           <h2 class="section-header__title">Everything you need to sell online.</h2>
-          <p class="section-header__subtitle">No website, no developer, no waiting. Standard.</p>
+          <p class="section-header__subtitle">No website, no developer, no waiting. Just go live.</p>
         </div>
 
         <div class="pillars-grid" data-stagger data-phone-carousel>
@@ -1464,37 +1490,30 @@
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════ -->
-    <!-- CASE STUDY                               -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="section section--dark">
-      <div class="container">
-        <div class="section-header section-header--center" data-animate>
-          <div class="section-header__overline">CASE STUDY</div>
-          <h2 class="section-header__title">Live in an afternoon, not a sprint.</h2>
-        </div>
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="section-rule"></div>
 
-        <div class="case-study" data-animate>
-          <div class="case-study__image">
-            <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80&auto=format&fit=crop" alt="Founder placing an online order on a laptop" loading="lazy">
-          </div>
-          <div class="case-study__content">
-            <blockquote class="case-study__quote">&ldquo;I&rsquo;m not a developer. I had a checkout page live, branded and taking payments before lunch.&rdquo;</blockquote>
-            <div class="case-study__attribution">
-              <div class="case-study__avatar"></div>
-              <div>
-                <div class="case-study__name">Maya Linwood</div>
-                <div class="case-study__role">Founder, Linwood Ceramics</div>
-              </div>
-            </div>
-          </div>
+    <!-- SELLING ONLINE: MARKET CONTEXT -->
+    <section class="section">
+      <div class="container context-split">
+        <div class="section-header" data-animate>
+          <h2 class="section-header__title">Live in an afternoon, <span class="highlight">not a sprint.</span></h2>
+          <p class="section-header__subtitle">More than a quarter of retail spending now happens online, and most small firms still don&rsquo;t sell there. A hosted checkout gets you selling without a website build or a developer.</p>
         </div>
+        <aside class="context-panel context-panel--paper" aria-label="Selling online in the UK" data-animate>
+          <div class="context-panel__overline">Selling online in the UK</div>
+          <ul class="context-panel__list">
+            <li class="context-panel__item"><span class="context-panel__figure">28.8%</span><span class="context-panel__text">of retail sales in Great Britain were made online in September 2026</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">23%</span><span class="context-panel__text">of small and medium employers sell to customers online, against 65% who use tech to run the business</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">25%+</span><span class="context-panel__text">rise in Visa and Mastercard scheme and processing fees since 2017, costing businesses at least &pound;170m a year</span></li>
+          </ul>
+          <p class="context-panel__source">Sources: <a href="https://www.ons.gov.uk/businessindustryandtrade/retailindustry/bulletins/retailsales/september2026" rel="noopener" target="_blank">Retail sales, Great Britain</a>, Office for National Statistics, October 2026; <a href="https://www.gov.uk/government/statistics/small-business-survey-2024-businesses-with-employees/longitudinal-small-business-survey-2024-sme-employers-businesses-with-1-to-249-employees" rel="noopener" target="_blank">Longitudinal Small Business Survey 2024</a>, Department for Business and Trade, September 2025; <a href="https://www.psr.org.uk/publications/market-reviews/mr22110-market-review-of-card-scheme-and-processing-fees-final-report/" rel="noopener" target="_blank">Card scheme and processing fees review</a>, Payment Systems Regulator, March 2025.</p>
+        </aside>
       </div>
     </section>
 
-
-
-
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="section-rule"></div>
 
     <!-- ════════════════════════════════════════ -->
     <!-- FAQ                                      -->
