@@ -773,7 +773,10 @@
     /* On navy the ink outline and shadow vanish: white edge, pink shadow */
     .section--dark .context-panel--paper { border-color: #fff; box-shadow: 10px 10px 0 var(--hot); }
     .section--dark .context-split .section-header__title .highlight { color: var(--ink); }
-    @media (max-width: 900px) {
+    /* A little more room between lines so the bone box clears the line above */
+    .context-split .section-header__title:has(.highlight) { line-height: 1.24; }
+    .context-split .section-header__title:has(.highlight) + .section-header__subtitle { margin-top: var(--space-5); }
+    @media (max-width: 1100px) {
       .context-split { grid-template-columns: 1fr; }
       .context-split .section-header { max-width: none; }
     }
@@ -1504,9 +1507,9 @@
         <aside class="context-panel context-panel--paper" aria-label="What it takes to build an online shop" data-animate>
           <div class="context-panel__overline">Building an online shop</div>
           <ul class="context-panel__list">
-            <li class="context-panel__item"><span class="context-panel__figure">&pound;5&ndash;10k</span><span class="context-panel__text">for a freelance designer to build a small to medium online shop, plus about &pound;2,000 a year to maintain it</span></li>
-            <li class="context-panel__item"><span class="context-panel__figure">2&ndash;6<small>months</small></span><span class="context-panel__text">for an agency to design, build and launch a small ecommerce site</span></li>
-            <li class="context-panel__item"><span class="context-panel__figure">2&ndash;4<small>weeks</small></span><span class="context-panel__text">to launch, even on a no&#8209;code ecommerce platform</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">&pound;5&ndash;10k</span><span class="context-panel__text">for a freelancer, then &pound;2k a year upkeep</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">2&ndash;6<small>months</small></span><span class="context-panel__text">for an agency to build and launch one</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">2&ndash;4<small>weeks</small></span><span class="context-panel__text">to launch, even on a no&#8209;code platform</span></li>
           </ul>
           <p class="context-panel__source">Published estimates from <a href="https://www.godaddy.com/resources/uk/smallbusiness/how-much-should-an-ecommerce-website-cost" rel="noopener" target="_blank">GoDaddy UK</a>, December 2025; <a href="https://www.parrotcreative.co.uk/how-much-does-an-ecommerce-website-cost-in-the-uk/" rel="noopener" target="_blank">Parrot Creative</a>, May 2026; and <a href="https://www.xero.com/uk/guides/how-to-start-an-e-commerce-business/" rel="noopener" target="_blank">Xero UK</a>, June 2026.</p>
         </aside>
