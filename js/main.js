@@ -67,7 +67,9 @@ function initStreaks() {
 
   // A smooth line through a list of points (Catmull-Rom), for a ribbon that
   // runs on through two sections
-  const through = (pts) => {
+  const through = (raw) => {
+    // Points on top of each other (two graphics in line) would kink the edge
+    const pts = raw.filter((q, k) => !k || Math.hypot(q[0] - raw[k - 1][0], q[1] - raw[k - 1][1]) > 4);
     const line = [];
     const p = [pts[0], ...pts, pts[pts.length - 1]];
     for (let i = 1; i < p.length - 2; i++) {
@@ -139,13 +141,15 @@ function initStreaks() {
   };
 
   // The next section along when only a hairline sits between, and it has a
-  // graphic with a streak of the same colour
-  const partnerOf = (sec, colour) => {
+  // graphic with a streak of the same colour. A graphic marked
+  // data-streak-join joins the next ribbon whatever its colour, blending from
+  // one colour to the other where the sections meet (Danny, 14 Nov 2026)
+  const partnerOf = (sec, colour, join) => {
     let next = sec.nextElementSibling;
     while (next && next.tagName === 'DIV' && next.children.length === 1 && next.querySelector(':scope > hr')) next = next.nextElementSibling;
     if (!next || next.tagName !== 'SECTION') return null;
     const g = next.querySelector('[data-streak]');
-    return g && g.dataset.streak === colour && g.closest('section') === next ? next : null;
+    return g && (join || g.dataset.streak === colour) && g.closest('section') === next ? next : null;
   };
 
   // Draws itself in when the section comes into view, as the graphic pulls in
@@ -167,7 +171,8 @@ function initStreaks() {
     wrap.setAttribute('aria-hidden', 'true');
     const svg = document.createElementNS(NS, 'svg');
     const path = document.createElementNS(NS, 'path');
-    path.setAttribute('fill', colours[graphic.dataset.streak] || colours.blurple);
+    const ownFill = colours[graphic.dataset.streak] || colours.blurple;
+    path.setAttribute('fill', ownFill);
     // The filled ribbon is revealed through a mask: a fat stroke along its
     // centre line whose dash runs from the entry edge to the exit
     const mask = document.createElementNS(NS, 'mask');
@@ -203,7 +208,24 @@ function initStreaks() {
     // the first draws one ribbon that runs on behind both graphics, crossing
     // between the sections in the gap clear of the copy (Danny, 14 Nov 2026).
     // If no clear route is found, each section keeps its own.
-    const partner = partnerOf(section, graphic.dataset.streak);
+    const partner = partnerOf(section, graphic.dataset.streak, graphic.hasAttribute('data-streak-join'));
+    const partnerColour = partner && partner.querySelector('[data-streak]').dataset.streak;
+    // A colour change along a joined ribbon: a short blend across the seam
+    let blend = null;
+    if (partner && partnerColour !== graphic.dataset.streak) {
+      blend = document.createElementNS(NS, 'linearGradient');
+      blend.id = 'streak-blend-' + n;
+      blend.setAttribute('gradientUnits', 'userSpaceOnUse');
+      blend.setAttribute('x1', '0');
+      blend.setAttribute('x2', '0');
+      [ownFill, colours[partnerColour] || colours.blurple].forEach((c, k) => {
+        const stop = document.createElementNS(NS, 'stop');
+        stop.setAttribute('offset', String(k));
+        stop.setAttribute('style', 'stop-color: ' + c);
+        blend.appendChild(stop);
+      });
+      svg.prepend(blend);
+    }
     const chain = (s, thick) => {
       if (!partner || s.width <= 768) return false;
       const bGraphic = partner.querySelector('[data-streak]');
@@ -247,6 +269,11 @@ function initStreaks() {
           svg.setAttribute('height', H);
           svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
           path.setAttribute('d', ribbonOf(line, thick));
+          if (blend) {
+            blend.setAttribute('y1', s.height - thick * 1.5);
+            blend.setAttribute('y2', s.height + thick * 1.5);
+            path.setAttribute('fill', `url(#${blend.id})`);
+          }
           spine.setAttribute('d', 'M' + line.map(fmt).join('L'));
           spine.setAttribute('stroke-width', thick * 1.6);
           return true;
@@ -263,6 +290,7 @@ function initStreaks() {
       if (partner) {
         const thickC = Math.max(36, Math.min(74, s.width * 0.052));
         if (chain(s, thickC)) return;
+        path.setAttribute('fill', ownFill);
         if (partner.classList.contains('streak-chained')) {
           partner.classList.remove('streak-chained');
           if (partner._streakDraw) partner._streakDraw();
