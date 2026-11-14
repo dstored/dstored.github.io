@@ -142,8 +142,8 @@ function initStreaks() {
 
   // The next section along when only a hairline sits between, and it has a
   // graphic with a streak of the same colour. A graphic marked
-  // data-streak-join joins the next ribbon whatever its colour, blending from
-  // one colour to the other where the sections meet (Danny, 14 Nov 2026)
+  // data-streak-join joins the next ribbon whatever its colour, switching
+  // colour exactly where the sections meet (Danny, 14 Nov 2026)
   const partnerOf = (sec, colour, join) => {
     let next = sec.nextElementSibling;
     while (next && next.tagName === 'DIV' && next.children.length === 1 && next.querySelector(':scope > hr')) next = next.nextElementSibling;
@@ -210,7 +210,7 @@ function initStreaks() {
     // If no clear route is found, each section keeps its own.
     const partner = partnerOf(section, graphic.dataset.streak, graphic.hasAttribute('data-streak-join'));
     const partnerColour = partner && partner.querySelector('[data-streak]').dataset.streak;
-    // A colour change along a joined ribbon: a short blend across the seam
+    // A colour change along a joined ribbon, where the two sections meet
     let blend = null;
     if (partner && partnerColour !== graphic.dataset.streak) {
       blend = document.createElementNS(NS, 'linearGradient');
@@ -218,9 +218,11 @@ function initStreaks() {
       blend.setAttribute('gradientUnits', 'userSpaceOnUse');
       blend.setAttribute('x1', '0');
       blend.setAttribute('x2', '0');
-      [ownFill, colours[partnerColour] || colours.blurple].forEach((c, k) => {
+      // A clean change of colour exactly at the seam, no blend (Danny)
+      const second = colours[partnerColour] || colours.blurple;
+      [[0, ownFill], [0.5, ownFill], [0.5, second], [1, second]].forEach(([at, c]) => {
         const stop = document.createElementNS(NS, 'stop');
-        stop.setAttribute('offset', String(k));
+        stop.setAttribute('offset', String(at));
         stop.setAttribute('style', 'stop-color: ' + c);
         blend.appendChild(stop);
       });
