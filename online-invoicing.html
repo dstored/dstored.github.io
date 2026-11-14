@@ -378,6 +378,12 @@
 
     .pl-ai__body { padding: var(--space-5); }
 
+    /* "Paid here." highlight: a slightly shorter bone box, trimmed from the
+       top, so it clears "Made elsewhere." above (Danny, 14 Nov 2026) */
+    .iv-import__split .section-header__title .highlight {
+      background: linear-gradient(var(--bone), var(--bone)) no-repeat 0 100% / 100% 86%;
+    }
+
     /* On navy the ink title bar vanishes: paper bar, as on payment links */
     .section--dark .pl-ai__chrome { background: var(--paper); }
     .section--dark .pl-ai__chrome span { background: rgba(11, 27, 51, 0.18); }
