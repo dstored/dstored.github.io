@@ -3385,7 +3385,7 @@ div.pillar-card:not(:has(a)) .card__text {
   transition: background 0.25s ease;
 }
 
-.pillar-card--glimpse:hover .glimpse__voucher-top { background: var(--blurple); }
+/* Voucher stays navy on hover; only the pill flips to Redeemed (Danny, 14 Nov 2026) */
 
 .glimpse__voucher-top span {
   display: block;
