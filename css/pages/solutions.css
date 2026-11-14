@@ -3340,6 +3340,16 @@ div.pillar-card:not(:has(a)) .card__text {
 .glimpse__item > span { color: var(--mute); }
 .glimpse__item b { margin-left: auto; }
 
+.glimpse__thumb {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #EEF0F4;
+  margin-right: 4px;
+}
+
 .glimpse__dot {
   width: 8px;
   height: 8px;
