@@ -762,6 +762,7 @@
     .context-panel__item { padding: var(--space-5) 0; display: grid; grid-template-columns: calc(var(--fig) * 3.75) 1fr; gap: var(--space-5); align-items: center; }
     .context-panel__item + .context-panel__item { border-top: 1px solid var(--rule); }
     .context-panel__figure { font-family: var(--font-display); font-weight: 600; font-size: var(--fig); line-height: 1; letter-spacing: -0.03em; white-space: nowrap; }
+    .context-panel__figure small { font-size: 0.3em; font-weight: 600; letter-spacing: 0; margin-left: 0.2em; }
     .context-panel__text { font-size: var(--text-base); line-height: 1.45; }
     .context-panel__source { font-size: var(--text-xs); line-height: 1.5; margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--rule); }
     .context-panel__source a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
@@ -769,6 +770,9 @@
     .context-panel--paper .context-panel__overline { color: var(--hot); }
     .context-panel--paper .context-panel__text,
     .context-panel--paper .context-panel__source { color: var(--mute); }
+    /* On navy the ink outline and shadow vanish: white edge, pink shadow */
+    .section--dark .context-panel--paper { border-color: #fff; box-shadow: 10px 10px 0 var(--hot); }
+    .section--dark .context-split .section-header__title .highlight { color: var(--ink); }
     @media (max-width: 900px) {
       .context-split { grid-template-columns: 1fr; }
       .context-split .section-header { max-width: none; }
@@ -1490,11 +1494,8 @@
       </div>
     </section>
 
-    <!-- Hairline between two same-tone sections -->
-    <div class="container"><hr class="section-rule"></div>
-
-    <!-- SELLING ONLINE: MARKET CONTEXT -->
-    <section class="section">
+    <!-- BUILDING AN ONLINE SHOP: MARKET CONTEXT -->
+    <section class="section section--dark">
       <div class="container context-split">
         <div class="section-header" data-animate>
           <h2 class="section-header__title">Live in an afternoon, <span class="highlight">not a sprint.</span></h2>
@@ -1504,16 +1505,13 @@
           <div class="context-panel__overline">Building an online shop</div>
           <ul class="context-panel__list">
             <li class="context-panel__item"><span class="context-panel__figure">&pound;5&ndash;10k</span><span class="context-panel__text">for a freelance designer to build a small to medium online shop, plus about &pound;2,000 a year to maintain it</span></li>
-            <li class="context-panel__item"><span class="context-panel__figure">2&ndash;6</span><span class="context-panel__text">months for an agency to design, build and launch a small ecommerce site</span></li>
-            <li class="context-panel__item"><span class="context-panel__figure">2&ndash;4</span><span class="context-panel__text">weeks to launch even on a no-code ecommerce platform</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">2&ndash;6<small>months</small></span><span class="context-panel__text">for an agency to design, build and launch a small ecommerce site</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">2&ndash;4<small>weeks</small></span><span class="context-panel__text">to launch, even on a no&#8209;code ecommerce platform</span></li>
           </ul>
           <p class="context-panel__source">Published estimates from <a href="https://www.godaddy.com/resources/uk/smallbusiness/how-much-should-an-ecommerce-website-cost" rel="noopener" target="_blank">GoDaddy UK</a>, December 2025; <a href="https://www.parrotcreative.co.uk/how-much-does-an-ecommerce-website-cost-in-the-uk/" rel="noopener" target="_blank">Parrot Creative</a>, May 2026; and <a href="https://www.xero.com/uk/guides/how-to-start-an-e-commerce-business/" rel="noopener" target="_blank">Xero UK</a>, June 2026.</p>
         </aside>
       </div>
     </section>
-
-    <!-- Hairline between two same-tone sections -->
-    <div class="container"><hr class="section-rule"></div>
 
     <!-- ════════════════════════════════════════ -->
     <!-- FAQ                                      -->
