@@ -471,20 +471,20 @@
       transform: rotate(45deg);
     }
 
-    /* Two beats on an 8s clock: the link lands as the call runs,
+    /* Two beats on a 5s clock (sped up, Danny 14 Nov 2026): the link lands as the call runs,
        the paid pill follows while they're still talking */
-    .iv-thread__item--1 { animation: iv-thread-1 8s ease infinite; }
-    .iv-thread__item--3 { animation: iv-thread-3 8s ease infinite; }
+    .iv-thread__item--1 { animation: iv-thread-1 5s ease infinite; }
+    .iv-thread__item--3 { animation: iv-thread-3 5s ease infinite; }
 
     @keyframes iv-thread-1 {
       0%, 2% { opacity: 0; transform: translateY(8px); }
-      7%, 93% { opacity: 1; transform: translateY(0); }
+      8%, 94% { opacity: 1; transform: translateY(0); }
       100% { opacity: 0; transform: translateY(8px); }
     }
 
     @keyframes iv-thread-3 {
-      0%, 40% { opacity: 0; transform: scale(0.9); }
-      45%, 93% { opacity: 1; transform: scale(1); }
+      0%, 26% { opacity: 0; transform: scale(0.9); }
+      32%, 94% { opacity: 1; transform: scale(1); }
       100% { opacity: 0; transform: scale(0.9); }
     }
 

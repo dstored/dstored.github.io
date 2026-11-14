@@ -721,25 +721,25 @@
     /* One 8s clock shared with the timeline below: invoice text lands as
        the sent dot fills, the reminder bubble as the nudge dot pops (~27%),
        the paid pill as the paid dot pops (~54%) */
-    .iv-thread__item--1 { animation: iv-thread-1 8s ease infinite; }
-    .iv-thread__item--2 { animation: iv-thread-2 8s ease infinite; transform-origin: left bottom; }
-    .iv-thread__item--3 { animation: iv-thread-3 8s ease infinite; }
+    .iv-thread__item--1 { animation: iv-thread-1 6s ease infinite; }
+    .iv-thread__item--2 { animation: iv-thread-2 6s ease infinite; transform-origin: left bottom; }
+    .iv-thread__item--3 { animation: iv-thread-3 6s ease infinite; }
 
     @keyframes iv-thread-1 {
       0%, 2% { opacity: 0; transform: translateY(8px); }
-      7%, 93% { opacity: 1; transform: translateY(0); }
+      8%, 94% { opacity: 1; transform: translateY(0); }
       100% { opacity: 0; transform: translateY(8px); }
     }
 
     @keyframes iv-thread-2 {
-      0%, 26% { opacity: 0; transform: translateY(8px) scale(0.96); }
-      31%, 93% { opacity: 1; transform: translateY(0) scale(1); }
+      0%, 20% { opacity: 0; transform: translateY(8px) scale(0.96); }
+      26%, 94% { opacity: 1; transform: translateY(0) scale(1); }
       100% { opacity: 0; transform: translateY(8px) scale(0.96); }
     }
 
     @keyframes iv-thread-3 {
-      0%, 53% { opacity: 0; transform: scale(0.9); }
-      58%, 93% { opacity: 1; transform: scale(1); }
+      0%, 40% { opacity: 0; transform: scale(0.9); }
+      46%, 94% { opacity: 1; transform: scale(1); }
       100% { opacity: 0; transform: scale(0.9); }
     }
 
