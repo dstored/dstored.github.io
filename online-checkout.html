@@ -78,7 +78,7 @@
       position: absolute;
       right: 36px; /* 36px inside the container line, matching terminals and gateway */
       top: 1px; /* same anchor as terminals: renders on the same line at every height */
-      width: 300px;
+      width: 314px;
             animation: checkout-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
     @keyframes checkout-slide-in {
@@ -93,7 +93,7 @@
 
     /* Slim customer phone: thin uniform bezel, rounder than the card machine */
     .phone-demo {
-      width: min(300px, 100%);
+      width: min(314px, 100%); /* 2.08:1 with the 640px screen, close to a real iPhone (2.06) */
       margin: 0 0 0 auto;
       background: #101014;
       border-radius: 36px;
