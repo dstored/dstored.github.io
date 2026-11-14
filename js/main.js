@@ -48,8 +48,8 @@ function initStreaks() {
 
   // The centre line filled out to a ribbon of even width, like the poster
   // streaks
-  const ribbon = (pts, thick) => {
-    const line = centreLine(pts);
+  const ribbon = (pts, thick) => ribbonOf(centreLine(pts), thick);
+  const ribbonOf = (line, thick) => {
     const left = [];
     const right = [];
     line.forEach((pt, k) => {
@@ -65,6 +65,89 @@ function initStreaks() {
     return 'M' + left.map(fmt).join('L') + 'L' + right.reverse().map(fmt).join('L') + 'Z';
   };
 
+  // A smooth line through a list of points (Catmull-Rom), for a ribbon that
+  // runs on through two sections
+  const through = (pts) => {
+    const line = [];
+    const p = [pts[0], ...pts, pts[pts.length - 1]];
+    for (let i = 1; i < p.length - 2; i++) {
+      const [p0, p1, p2, p3] = [p[i - 1], p[i], p[i + 1], p[i + 2]];
+      const n = Math.max(12, Math.round(Math.hypot(p2[0] - p1[0], p2[1] - p1[1]) / 6));
+      for (let k = i === 1 ? 0 : 1; k <= n; k++) {
+        const t = k / n;
+        const t2 = t * t;
+        const t3 = t2 * t;
+        line.push([0, 1].map((d) => 0.5 * ((2 * p1[d]) + (-p0[d] + p2[d]) * t
+          + (2 * p0[d] - 5 * p1[d] + 4 * p2[d] - p3[d]) * t2
+          + (-p0[d] + 3 * p1[d] - 3 * p2[d] + p3[d]) * t3)));
+      }
+    }
+    return line;
+  };
+
+  // Where an element sits in a section once any scroll-in movement has
+  // finished: layout offsets ignore transforms
+  const settledIn = (el, sec) => {
+    let left = 0;
+    let top = 0;
+    let node = el;
+    while (node && node !== sec) {
+      left += node.offsetLeft;
+      top += node.offsetTop;
+      node = node.offsetParent;
+    }
+    if (node !== sec) return null;
+    return { left, top, width: el.offsetWidth, height: el.offsetHeight };
+  };
+
+  // The graphic's box in a section: its biggest child that is not the old
+  // phone frame
+  const graphicIn = (graphic, sec) => {
+    let gEl = graphic;
+    let best = 0;
+    [...graphic.children].forEach((child) => {
+      if (child.matches('.hero-blob, .cm-float, .streak')) return;
+      const area = child.offsetWidth * child.offsetHeight;
+      if (area > best) { best = area; gEl = child; }
+    });
+    const b = settledIn(gEl, sec);
+    if (b) return b;
+    const r = gEl.getBoundingClientRect();
+    const s = sec.getBoundingClientRect();
+    return { left: r.left - s.left, top: r.top - s.top, width: r.width, height: r.height };
+  };
+
+  // Every line of text in a section, padded, shifted down by `oy`
+  const wordsIn = (sec, pad, oy) => {
+    const s = sec.getBoundingClientRect();
+    const out = [];
+    const walker = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT);
+    const range = document.createRange();
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      if (!node.textContent.trim() || node.parentElement.closest('[data-streak], .streak')) continue;
+      range.selectNodeContents(node);
+      const el = node.parentElement;
+      const eb = settledIn(el, sec);
+      const er = el.getBoundingClientRect();
+      const dx = eb ? er.left - s.left - eb.left : 0;
+      const dy = eb ? er.top - s.top - eb.top : 0;
+      [...range.getClientRects()].forEach((r) => {
+        if (r.width) out.push([r.left - s.left - dx - pad, r.top - s.top - dy - pad + oy, r.right - s.left - dx + pad, r.bottom - s.top - dy + pad + oy]);
+      });
+    }
+    return out;
+  };
+
+  // The next section along when only a hairline sits between, and it has a
+  // graphic with a streak of the same colour
+  const partnerOf = (sec, colour) => {
+    let next = sec.nextElementSibling;
+    while (next && next.tagName === 'DIV' && next.children.length === 1 && next.querySelector(':scope > hr')) next = next.nextElementSibling;
+    if (!next || next.tagName !== 'SECTION') return null;
+    const g = next.querySelector('[data-streak]');
+    return g && g.dataset.streak === colour && g.closest('section') === next ? next : null;
+  };
+
   // Draws itself in when the section comes into view, as the graphic pulls in
   const reveal = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -74,6 +157,7 @@ function initStreaks() {
     });
   }, { threshold: 0.2 });
 
+  const starts = [];
   graphics.forEach((graphic, n) => {
     const section = graphic.closest('section');
     if (!section) return;
@@ -115,9 +199,75 @@ function initStreaks() {
       return { left, top, width: el.offsetWidth, height: el.offsetHeight };
     };
 
+    // Two streak sections one after the other (only a hairline between):
+    // the first draws one ribbon that runs on behind both graphics, crossing
+    // between the sections in the gap clear of the copy (Danny, 14 Nov 2026).
+    // If no clear route is found, each section keeps its own.
+    const partner = partnerOf(section, graphic.dataset.streak);
+    const chain = (s, thick) => {
+      if (!partner || s.width <= 768) return false;
+      const bGraphic = partner.querySelector('[data-streak]');
+      const sb = partner.getBoundingClientRect();
+      const oy = sb.top - s.top;
+      const W = s.width;
+      const H = oy + sb.height;
+      const ga = graphicIn(graphic, section);
+      const gb = graphicIn(bGraphic, partner);
+      gb.top += oy;
+      const pad = thick * 0.6 + 12;
+      const aWords = wordsIn(section, pad, 0);
+      const bWords = wordsIn(partner, pad, oy);
+      const words = aWords.concat(bWords);
+      const ca = [ga.left + ga.width / 2, ga.top + ga.height / 2];
+      const cb = [gb.left + gb.width / 2, gb.top + gb.height / 2];
+      const sideA = ca[0] < W / 2 ? -1 : 1;
+      const sideB = cb[0] < W / 2 ? -1 : 1;
+      // The open band between the two sections' copy
+      const aLow = Math.max(ga.top + ga.height * 0.75, ...aWords.map((w) => w[3]));
+      const bHigh = Math.min(gb.top + gb.height * 0.25, ...bWords.map((w) => w[1]));
+      if (bHigh - aLow < 8) return false;
+      const clear = (line) => line.every(([px, py]) =>
+        !words.some(([l, t, r, b]) => px > l && px < r && py > t && py < b));
+      for (const out of [0.15, 0.3, 0, 0.45]) {
+        for (const mid of [0.5, 0.35, 0.65]) {
+          const jy = aLow + (bHigh - aLow) * mid;
+          const pts = [
+            [ca[0] + sideA * 0.3 * ga.width, -thick * 2],
+            [ca[0] + sideA * out * ga.width, ca[1]],
+            [ca[0] + sideA * out * ga.width * 0.5, jy],
+            [cb[0] + sideB * out * gb.width * 0.5, jy],
+            [cb[0] + sideB * out * gb.width, cb[1]],
+            [cb[0] + sideB * 0.3 * gb.width, H + thick * 2],
+          ];
+          const line = through(pts);
+          if (!clear(line)) continue;
+          partner.classList.add('streak-chained');
+          wrap.style.bottom = -(H - s.height) + 'px';
+          svg.setAttribute('width', W);
+          svg.setAttribute('height', H);
+          svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+          path.setAttribute('d', ribbonOf(line, thick));
+          spine.setAttribute('d', 'M' + line.map(fmt).join('L'));
+          spine.setAttribute('stroke-width', thick * 1.6);
+          return true;
+        }
+      }
+      return false;
+    };
+    section._streakDraw = () => draw();
+
     const draw = () => {
+      if (section.classList.contains('streak-chained')) return;
       const s = section.getBoundingClientRect();
       if (!s.width || !s.height) return;
+      if (partner) {
+        const thickC = Math.max(36, Math.min(74, s.width * 0.052));
+        if (chain(s, thickC)) return;
+        if (partner.classList.contains('streak-chained')) {
+          partner.classList.remove('streak-chained');
+          if (partner._streakDraw) partner._streakDraw();
+        }
+      }
       // The graphic itself: the biggest child that is not the old phone frame
       let gEl = graphic;
       let best = 0;
@@ -229,12 +379,17 @@ function initStreaks() {
         draw();
       });
     };
-    drawnWidth = section.offsetWidth;
-    draw();
-    new ResizeObserver(redraw).observe(section);
-    window.addEventListener('load', redraw);
-    if (document.fonts) document.fonts.ready.then(redraw);
+    starts.push(() => {
+      drawnWidth = section.offsetWidth;
+      draw();
+      new ResizeObserver(redraw).observe(section);
+      if (partner) new ResizeObserver(redraw).observe(partner);
+      window.addEventListener('load', redraw);
+      if (document.fonts) document.fonts.ready.then(redraw);
+    });
   });
+  // Drawn once every section has its ribbon, so a chained pair can hand over
+  starts.forEach((start) => start());
 }
 
 /* ─── Typewriter — types out text character by character on scroll-in ─── */

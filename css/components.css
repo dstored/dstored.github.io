@@ -857,6 +857,17 @@ textarea.input {
   display: none;
 }
 
+/* Two streak sections in a row: the first draws one ribbon through both,
+   so the second hides its own and sits above it (Danny, 14 Nov 2026) */
+.streak-chained > .streak {
+  display: none;
+}
+
+.streak-chained {
+  position: relative;
+  z-index: 1;
+}
+
 /* ════════════════════════════════════════════════════════ */
 /* Stats band typewriter — replaces the static stats grid    */
 /* with a single cycling phrase on the pink band (shared).   */
