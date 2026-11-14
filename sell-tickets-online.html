@@ -598,7 +598,12 @@
       .tk-s3 { opacity: 1; }
       .ev-tile__line { transition: none; }
     }
-  </style>
+  
+    /* Link through to the full case study */
+    .cs-more { display: inline-flex; align-items: center; gap: 8px; margin-top: var(--space-6); font-weight: 600; color: var(--hot); text-decoration: none; }
+    .cs-more:hover span { transform: translateX(3px); }
+    .cs-more span { transition: transform var(--duration-fast) var(--ease-out); }
+</style>
   <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
 <body>
@@ -1159,9 +1164,8 @@
       </div>
     </section>
 
-    <!-- CASE STUDY -->
-    <!-- Template until Danny supplies a real customer: replace the bracketed
-         quote, name, role and photo. Never fill it with invented details. -->
+    <!-- CASE STUDY: Cheeky Clucker (real customer; quote from Stored's
+         original case study). Full story at /case-studies/cheeky-clucker -->
     <section class="section section--dark">
       <div class="container">
         <div class="section-header section-header--center section-header--wide" data-animate>
@@ -1170,16 +1174,16 @@
         </div>
 
         <div class="case-study" data-animate>
-          <div class="case-study__image">Customer photo to come</div>
+          <div class="case-study__image"><img src="/assets/images/case-studies/cheeky-clucker-venue.jpg" alt="Inside Cheeky Clucker, a vaulted brick bar lit in yellow and purple" loading="lazy" decoding="async"></div>
           <div class="case-study__content">
-            <blockquote class="case-study__quote">&ldquo;[Customer quote to come: how selling tickets with Stored works for their events.]&rdquo;</blockquote>
+            <blockquote class="case-study__quote">&ldquo;With Stored we can quickly and easily create payment links for any event. We share them with our followers across our social channels and take payment instantly.&rdquo;</blockquote>
             <div class="case-study__attribution">
-              <div class="case-study__avatar"></div>
               <div>
-                <div class="case-study__name">[Customer name]</div>
-                <div class="case-study__role">[Role, business]</div>
+                <div class="case-study__name">Cheeky Clucker</div>
+                <div class="case-study__role">Bar &amp; restaurant</div>
               </div>
             </div>
+            <a href="/case-studies/cheeky-clucker" class="cs-more">Read the case study <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>
       </div>

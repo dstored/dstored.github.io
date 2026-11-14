@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <script src="/js/consent.js?v=conv-1"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheeky Clucker case study: tickets paid upfront | Stored</title>
+  <meta name="description" content="How Cheeky Clucker, a bar and restaurant, takes payment upfront for its events with Stored payment links shared on social media and its website.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.storedpayments.com/case-studies/cheeky-clucker">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cheeky Clucker case study: tickets paid upfront | Stored">
+  <meta property="og:description" content="How Cheeky Clucker, a bar and restaurant, takes payment upfront for its events with Stored payment links shared on social media and its website.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.storedpayments.com/case-studies/cheeky-clucker">
+  <meta property="og:image" content="https://www.storedpayments.com/assets/images/og-default.jpg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/variables.css?v=green-1">
+  <link rel="stylesheet" href="/css/base.css?v=brand-2">
+  <link rel="stylesheet" href="/css/components.css?v=faq-1">
+  <link rel="stylesheet" href="/css/animations.css?v=brand-2">
+  <link rel="stylesheet" href="/css/header.css?v=menu-8">
+  <link rel="stylesheet" href="/css/footer.css?v=two-col-1">
+  <link rel="stylesheet" href="/css/pages/solutions.css?v=glimpse-lib-5">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=3">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=2">
+
+  <style>
+    /* Case study: Cheeky Clucker. Content and quote from Stored's original
+       case study (joinstored.com/case-study), rebuilt in the current style */
+    .cc-hero { min-height: auto; padding-bottom: var(--space-20); }
+    /* Same huge headline as the product heroes */
+    .cc-hero .solution-hero__title {
+      font-size: clamp(4.75rem, 3.2rem + 8.5vw, 10rem);
+      line-height: calc(0.85em + 5px);
+      letter-spacing: -0.05em;
+      margin-bottom: 34px;
+    }
+    .solution-hero__asterisk { color: var(--hot); display: inline-block; margin-left: 0.05em; }
+    .solution-hero__subtitle-asterisk { color: var(--hot); margin-right: 0.4em; }
+    .section--dark .section-header__title .highlight { color: var(--ink); }
+    /* Bone box trimmed from the top so it clears the line above */
+    .section-header__title .highlight { background: linear-gradient(var(--bone), var(--bone)) no-repeat 0 100% / 100% 86%; }
+    .cc-hero .solution-hero__inner { grid-template-columns: 1.15fr 0.85fr; }
+    .cc-hero .solution-hero__visual { position: relative; display: flex; justify-content: center; }
+    .cc-photo {
+      position: relative;
+      width: min(380px, 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 24px 32px 64px rgba(11, 27, 51, 0.18);
+    }
+    .cc-photo img { display: block; width: 100%; height: auto; }
+
+    .cc-overview { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+    .cc-overview .section-header { text-align: left; margin: 0; }
+    .cc-overview p { font-size: var(--text-lg); line-height: 1.6; color: var(--mute); margin: 0; }
+    .cc-facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: var(--space-6); }
+    .cc-facts span { padding: 8px 14px; border-radius: 999px; background: var(--white); border: 1px solid rgba(11, 27, 51, 0.12); font-size: var(--text-sm); font-weight: 600; color: var(--ink); }
+
+    .cc-problems { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-12); }
+    .cc-problem { background: var(--ink); color: var(--white); padding: var(--space-8); border-radius: var(--radius-xl); }
+    .cc-problem__x { width: 36px; height: 36px; border-radius: 50%; background: rgba(235, 24, 87, 0.16); color: var(--hot); display: grid; place-items: center; margin-bottom: var(--space-6); }
+    .cc-problem h3 { font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: -0.02em; margin: 0 0 var(--space-3); }
+    .cc-problem p { color: rgba(255, 255, 255, 0.72); line-height: 1.55; margin: 0; }
+
+    .cc-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+    .cc-split .section-header { text-align: left; margin: 0; }
+    .cc-split .section-header__subtitle { margin-left: 0; }
+    .cc-ticket {
+      width: min(320px, 100%);
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 22px;
+      overflow: hidden;
+      color: var(--ink);
+      box-shadow: 10px 10px 0 var(--hot);
+      position: relative;
+    }
+    .cc-ticket__bar { background: #E2A72E; padding: 14px 18px; font-family: var(--font-display); font-weight: 700; font-size: 18px; text-align: center; letter-spacing: -0.01em; }
+    .cc-ticket__img { aspect-ratio: 16 / 11; overflow: hidden; }
+    .cc-ticket__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cc-ticket__body { padding: 18px 20px 20px; }
+    .cc-ticket__name { font-weight: 700; font-size: 17px; margin-bottom: 12px; }
+    .cc-ticket__row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; margin-bottom: 14px; }
+    .cc-ticket__qty { border: 1px solid rgba(11, 27, 51, 0.16); border-radius: 8px; padding: 4px 12px; font-weight: 600; }
+    .cc-ticket__pay { background: var(--ink); color: var(--white); text-align: center; border-radius: 10px; padding: 12px; font-weight: 600; font-size: 15px; }
+    .cc-ticket__chip { position: absolute; top: 66px; right: 12px; background: var(--white); color: var(--ink); border-radius: 999px; padding: 7px 13px; font-size: 12.5px; font-weight: 700; box-shadow: 0 8px 24px rgba(11, 27, 51, 0.2); display: flex; align-items: center; gap: 7px; }
+    .cc-ticket__chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+
+    .cc-quote { max-width: 900px; margin: 0 auto; }
+    .cc-quote__mark { font-family: var(--font-display); font-size: 96px; line-height: 0.6; color: var(--hot); height: 44px; }
+    .cc-quote blockquote { margin: 0; font-family: var(--font-display); font-size: clamp(1.4rem, 1rem + 1.2vw, 2rem); line-height: 1.35; letter-spacing: -0.015em; color: var(--ink); }
+    .cc-quote blockquote p { margin: 0 0 0.8em; }
+    .cc-quote blockquote p:last-child { margin-bottom: 0; }
+    .cc-quote__by { margin-top: var(--space-8); display: flex; align-items: center; gap: 14px; }
+    .cc-quote__by img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+    .cc-quote__by b { display: block; font-size: var(--text-md); color: var(--ink); }
+    .cc-quote__by span { color: var(--mute); font-size: var(--text-sm); }
+
+    @media (max-width: 968px) {
+      .cc-hero .solution-hero__inner, .cc-overview, .cc-split { grid-template-columns: 1fr; }
+      .cc-problems { grid-template-columns: 1fr; }
+      .cc-hero .solution-hero__visual { margin-top: var(--space-10); }
+    }
+  </style>
+  <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
+</head>
+<body>
+
+<header class="header" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="Stored home page">
+        <img src="/assets/images/stored-logo.svg" alt="Stored" width="129" height="28">
+      </a>
+
+      <nav class="header__nav" role="navigation" aria-label="Primary">
+        <a href="#" class="nav-link" data-mega-trigger="mega-solutions">
+          Solutions
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="nav-link" data-mega-trigger="mega-sectors">
+          Sectors
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/pricing" class="nav-link">Pricing</a>
+        <a href="/blog/" class="nav-link">Resources</a>
+        <a href="#" class="nav-link" data-mega-trigger="mega-company">
+          Company
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="https://s.joinstored.com/portal/auth/login" class="btn btn--secondary btn--sm">Sign in</a>
+        <a href="/sign-up" class="btn btn--primary btn--sm">Sign up</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+    </div>
+
+    <!-- Solutions mega menu -->
+    <div class="mega-menu" id="mega-solutions" role="menu">
+      <div class="mega-menu__inner">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">In-person payments</div>
+          <a href="/card-machines" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Card machines</span>
+              <span class="mega-menu__link-desc">Countertop, portable & mobile</span>
+            </div>
+          </a>
+          <a href="/epos-system" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">POS</span>
+              <span class="mega-menu__link-desc">Full POS for counter, table & field</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Digital payments</div>
+          <a href="/payment-gateway" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Payment gateway</span>
+              <span class="mega-menu__link-desc">Cards & wallets on your site</span>
+            </div>
+          </a>
+          <a href="/online-checkout" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Hosted checkout</span>
+              <span class="mega-menu__link-desc">Branded checkout pages, no code</span>
+            </div>
+          </a>
+          <a href="/payment-links" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Pay by link</span>
+              <span class="mega-menu__link-desc">SMS, email, WhatsApp or QR</span>
+            </div>
+          </a>
+          <a href="/online-invoicing" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Invoicing</span>
+              <span class="mega-menu__link-desc">Invoices with built-in payment</span>
+            </div>
+          </a>
+          <a href="/virtual-terminal" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Virtual terminal</span>
+              <span class="mega-menu__link-desc">Card payments over the phone</span>
+            </div>
+          </a>
+          <a href="/bulk-payment-links" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Bulk payments</span>
+              <span class="mega-menu__link-desc">Hundreds of payment links at once</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Merchant platform</div>
+          <a href="/sell-tickets-online" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Tickets &amp; events</span>
+              <span class="mega-menu__link-desc">Sell, scan and settle events</span>
+            </div>
+          </a>
+          <a href="/gift-vouchers" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Gift vouchers</span>
+              <span class="mega-menu__link-desc">Digital vouchers, sold and redeemed</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">See Stored in action.</div>
+            <p class="mega-menu__promo-text">20 minutes with a payments specialist. No pressure, no commitment.</p>
+          </div>
+          <a href="/sign-up" class="btn btn--primary btn--sm" style="align-self: flex-start;">Sign up now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sectors mega menu -->
+    <div class="mega-menu" id="mega-sectors" role="menu">
+      <div class="mega-menu__inner">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Consumer-facing</div>
+          <a href="/hospitality-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Hospitality</span>
+              <span class="mega-menu__link-desc">Restaurants, bars &amp; caf&eacute;s</span>
+            </div>
+          </a>
+          <a href="/beauty-wellness-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Beauty &amp; wellness</span>
+              <span class="mega-menu__link-desc">Salons, spas &amp; clinics</span>
+            </div>
+          </a>
+          <a href="/retail-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Retail</span>
+              <span class="mega-menu__link-desc">Single &amp; multi-store shops</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Service &amp; trade</div>
+          <a href="/payments-for-tradespeople" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Trades</span>
+              <span class="mega-menu__link-desc">Tradespeople &amp; field teams</span>
+            </div>
+          </a>
+          <a href="/professional-services-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Professional services</span>
+              <span class="mega-menu__link-desc">Accountants, agencies &amp; consultants</span>
+            </div>
+          </a>
+          <a href="/b2b-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">B2B</span>
+              <span class="mega-menu__link-desc">Invoices &amp; telephone payments</span>
+            </div>
+          </a>
+          <a href="/wholesale-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Wholesale</span>
+              <span class="mega-menu__link-desc">Bulk billing &amp; trade accounts</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">Not sure which fits?</div>
+            <p class="mega-menu__promo-text">20 minutes with a payments specialist. We&rsquo;ll map Stored to your sector.</p>
+          </div>
+          <a href="/sign-up" class="btn btn--primary btn--sm" style="align-self: flex-start;">Sign up now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company mega menu -->
+    <div class="mega-menu" id="mega-company" role="menu">
+      <div class="mega-menu__inner" style="grid-template-columns: 1fr 1fr 1fr 280px;">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Company</div>
+          <a href="/about" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">About Stored</span>
+              <span class="mega-menu__link-desc">Our story, mission and team</span>
+            </div>
+          </a>
+          <a href="/partners" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Partners</span>
+              <span class="mega-menu__link-desc">Resell, refer or integrate Stored</span>
+            </div>
+          </a>
+          <a href="/careers" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Careers</span>
+              <span class="mega-menu__link-desc">Join the team</span>
+            </div>
+          </a>
+          <a href="/contact" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Contact</span>
+              <span class="mega-menu__link-desc">Sales, support & press</span>
+            </div>
+          </a>
+        </div>
+        <div class="mega-menu__column"></div>
+        <div class="mega-menu__column"></div>
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">Built on proven rails.</div>
+            <p class="mega-menu__promo-text">Every Stored payment is processed by one of our chosen acquiring partners: Worldpay, Cashflows or Stripe.</p>
+          </div>
+          <a href="/partners" class="btn btn--white btn--sm" style="align-self: flex-start;">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Solutions</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/card-machines" class="mobile-nav__link">Card machines</a>
+        <a href="/epos-system" class="mobile-nav__link">POS</a>
+        <a href="/payment-gateway" class="mobile-nav__link">Payment gateway</a>
+        <a href="/online-checkout" class="mobile-nav__link">Hosted checkout</a>
+        <a href="/payment-links" class="mobile-nav__link">Pay by link</a>
+        <a href="/online-invoicing" class="mobile-nav__link">Invoicing</a>
+        <a href="/virtual-terminal" class="mobile-nav__link">Virtual terminal</a>
+        <a href="/bulk-payment-links" class="mobile-nav__link">Bulk payments</a>
+        <a href="/sell-tickets-online" class="mobile-nav__link">Tickets &amp; events</a>
+        <a href="/gift-vouchers" class="mobile-nav__link">Gift vouchers</a>
+      </div>
+    </div>
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Sectors</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/hospitality-payment-solutions" class="mobile-nav__link">Hospitality</a>
+        <a href="/beauty-wellness-payment-solutions" class="mobile-nav__link">Beauty &amp; wellness</a>
+        <a href="/retail-payment-solutions" class="mobile-nav__link">Retail</a>
+        <a href="/payments-for-tradespeople" class="mobile-nav__link">Trades</a>
+        <a href="/professional-services-payment-solutions" class="mobile-nav__link">Professional services</a>
+        <a href="/b2b-payment-solutions" class="mobile-nav__link">B2B</a>
+        <a href="/wholesale-payment-solutions" class="mobile-nav__link">Wholesale</a>
+      </div>
+    </div>
+    <div class="mobile-nav__section">
+      <a href="/pricing" class="mobile-nav__link">Pricing</a>
+    </div>
+    <div class="mobile-nav__section">
+      <a href="/blog/" class="mobile-nav__link">Resources</a>
+    </div>
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Company</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/about" class="mobile-nav__link">About</a>
+        <a href="/partners" class="mobile-nav__link">Partners</a>
+        <a href="/careers" class="mobile-nav__link">Careers</a>
+        <a href="/contact" class="mobile-nav__link">Contact</a>
+      </div>
+    </div>
+    <div class="mobile-nav__actions">
+      <a href="/sign-up" class="btn btn--primary">Sign up</a>
+      <a href="/book-a-demo" class="btn btn--secondary">Book a demo</a>
+      <a href="https://s.joinstored.com/portal/auth/login" class="btn btn--ghost">Sign in</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section class="solution-hero cc-hero">
+      <div class="container">
+        <div class="solution-hero__inner">
+          <div class="solution-hero__content" data-animate>
+            <div class="solution-hero__overline">Case study &middot; Cheeky Clucker</div>
+            <h1 class="solution-hero__title fit-phone" style="--fit-em: 3.96">Paid<br><span style="white-space: nowrap;">upfront.<span class="solution-hero__asterisk">*</span></span></h1>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>Cheeky Clucker take payment upfront for their events with Stored, reducing no-shows and time spent while increasing their bottom line.</p>
+            <div class="solution-hero__actions">
+              <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
+                Sign up now
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="/book-a-demo" class="btn btn--secondary btn--lg">Contact sales</a>
+            </div>
+          </div>
+          <div class="solution-hero__visual" data-animate>
+            <div class="hero-blob" aria-hidden="true"><svg viewBox="0 0 500 500"><path d="M488.3 250.0C487.6 261.1 486.5 272.1 484.7 283.0C482.8 293.8 480.5 304.7 477.4 315.2C474.4 325.8 470.6 336.1 466.3 346.3C462.1 356.5 457.4 366.6 451.9 376.2C446.5 385.8 440.1 395.0 433.4 403.9C426.7 412.8 419.5 421.5 411.8 429.7C404.0 437.8 395.8 446.0 386.8 452.8C377.8 459.6 367.7 465.4 357.5 470.4C347.3 475.4 336.5 479.5 325.7 482.8C314.8 486.2 303.6 488.7 292.4 490.5C281.2 492.4 269.8 493.5 258.5 493.9C247.2 494.3 235.8 493.9 224.5 492.9C213.2 491.9 201.9 490.0 190.7 487.7C179.6 485.4 168.4 482.7 157.4 479.1C146.5 475.6 135.5 471.4 125.1 466.3C114.7 461.2 104.3 455.4 94.9 448.5C85.5 441.6 76.6 433.6 68.8 425.0C61.0 416.4 53.9 406.7 47.9 396.8C41.9 386.9 37.0 376.2 32.6 365.6C28.3 355.0 24.4 344.1 21.6 333.1C18.7 322.2 17.0 311.0 15.4 299.9C13.8 288.8 12.6 277.7 12.1 266.6C11.5 255.6 11.5 244.4 12.1 233.4C12.6 222.3 13.6 211.2 15.4 200.1C17.2 189.1 19.5 178.0 22.6 167.2C25.8 156.5 29.7 145.7 34.5 135.4C39.3 125.2 45.0 115.1 51.3 105.6C57.6 96.2 64.6 86.8 72.4 78.5C80.2 70.1 88.9 62.4 98.0 55.4C107.0 48.4 116.8 42.1 126.8 36.6C136.8 31.2 147.4 26.3 158.1 22.5C168.8 18.7 180.0 16.1 191.1 13.7C202.2 11.4 213.4 9.7 224.6 8.4C235.8 7.1 247.2 6.2 258.5 6.1C269.9 6.0 281.3 6.7 292.7 7.9C304.1 9.2 315.6 10.9 326.8 13.7C338.0 16.5 349.1 20.3 359.8 24.8C370.6 29.3 381.3 34.5 391.3 40.5C401.3 46.6 411.2 53.4 420.1 61.1C429.0 68.7 437.6 77.3 444.9 86.5C452.2 95.7 458.5 106.0 464.0 116.3C469.5 126.6 474.3 137.5 477.9 148.5C481.5 159.6 483.7 171.1 485.5 182.5C487.4 193.8 488.4 205.2 488.8 216.4C489.3 227.7 489.0 238.9 488.3 250.0Z" fill="var(--blurple)" stroke="#0B1B33" stroke-width="2.4" stroke-linejoin="round"/></svg></div>
+            <div class="cc-photo"><img src="/assets/images/case-studies/cheeky-clucker-venue.jpg" alt="Inside Cheeky Clucker: a vaulted brick bar lit in yellow and purple, with the Cheeky Clucker name across it" width="900" height="955"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE BUSINESS -->
+    <section class="section">
+      <div class="container cc-overview">
+        <div class="section-header" data-animate>
+          <div class="section-header__overline">THE BUSINESS</div>
+          <h2 class="section-header__title">Events that need <span class="highlight">paying upfront.</span></h2>
+        </div>
+        <div data-animate>
+          <p>Cheeky Clucker is a bar and restaurant that hosts recurring events, and many of them need paying for in advance. Without an e-commerce platform, taking payment upfront could be time-consuming, costly or harder for their customers, which meant fewer bookings or smaller profits.</p>
+          <div class="cc-facts"><span>Bar &amp; restaurant</span><span>Recurring events</span><span>Pay by link</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="section-rule"></div>
+
+    <!-- THE PROBLEM -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header section-header--center section-header--wide" data-animate>
+          <div class="section-header__overline">THE PROBLEM</div>
+          <h2 class="section-header__title">The usual options <span class="highlight">didn&rsquo;t work.</span></h2>
+          <p class="section-header__subtitle">Taking payment digitally was time-consuming, complicated and expensive.</p>
+        </div>
+        <div class="cc-problems" data-stagger>
+          <div class="cc-problem">
+            <div class="cc-problem__x"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></div>
+            <h3>Taking cards by phone.</h3>
+            <p>The customer has to call and staff have to answer. It also means handling card details and customer data.</p>
+          </div>
+          <div class="cc-problem">
+            <div class="cc-problem__x"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></div>
+            <h3>One-off email links.</h3>
+            <p>The customer still has to get in touch, and someone has to send each one. Built for one-to-one payments, not a room full of guests.</p>
+          </div>
+          <div class="cc-problem">
+            <div class="cc-problem__x"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></div>
+            <h3>Ticketing marketplaces.</h3>
+            <p>Overkill for small events sold straight to their own community, and expensive, typically 8&ndash;15% in fees.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE SOLUTION -->
+    <section class="section section--dark">
+      <div class="container cc-split">
+        <div class="section-header" data-animate>
+          <div class="section-header__overline">THE SOLUTION</div>
+          <h2 class="section-header__title">A link for <span class="highlight">every event.</span></h2>
+          <p class="section-header__subtitle">Cheeky Clucker create a payment link for each event in moments and share it across social media and their website. Customers pay upfront, which cuts the time and cost of the old methods, removes friction for customers and reduces no-shows.</p>
+        </div>
+        <div data-animate>
+          <div class="cc-ticket" role="img" aria-label="A Cheeky Clucker payment link for Funny Cluckers Comedy Night, tickets at seven pounds fifty">
+            <div class="cc-ticket__bar">Cheeky Clucker</div>
+            <div class="cc-ticket__img"><img src="/assets/images/case-studies/cheeky-clucker-venue.jpg" alt=""></div>
+            <div class="cc-ticket__body">
+              <div class="cc-ticket__name">Funny Cluckers Comedy Night</div>
+              <div class="cc-ticket__row"><span>Tickets: <b>&pound;7.50</b></span><span class="cc-ticket__qty">Qty 1</span></div>
+              <div class="cc-ticket__pay">Pay &pound;7.50</div>
+            </div>
+            <div class="cc-ticket__chip"><i></i>Shared to socials</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IN THEIR WORDS -->
+    <section class="section">
+      <div class="container">
+        <div class="cc-quote" data-animate>
+          <div class="section-header__overline">IN THEIR WORDS</div>
+          <div class="cc-quote__mark" aria-hidden="true">&ldquo;</div>
+          <blockquote>
+            <p>We have a very simple need. We want to take pre-payment for small events.</p>
+            <p>Traditional methods are time consuming, expensive and cause friction for our customers, which means fewer bookings. The alternative is to take payment on the day which runs the risk of no shows.</p>
+            <p>With Stored we can quickly and easily create payment links for any event. We share them with our followers across our social channels and take payment instantly.</p>
+            <p>For our customers it&rsquo;s a fast and simple payment, and if it means we get more pre-paid customers through the door. It&rsquo;s a win win.</p>
+          </blockquote>
+          <div class="cc-quote__by">
+            <img src="/assets/images/case-studies/cheeky-clucker-venue.jpg" alt="">
+            <div><b>Cheeky Clucker</b><span>Bar &amp; restaurant</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band">
+      <div class="container" data-animate>
+        <div class="cta-band__title">Let&rsquo;s<br>get paid.</div>
+        <div class="cta-band__footer">
+          <div class="cta-band__actions">
+            <a href="/sign-up" class="btn cta-band__btn-primary btn--icon-right">
+              Sign up now
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/book-a-demo" class="btn cta-band__btn-secondary">Book a demo</a>
+          </div>
+          <p class="cta-band__note">GET PAID &middot; YOUR WAY &middot; NEXT DAY</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="/" class="footer__logo" aria-label="Stored">
+            <img src="/assets/images/stored-logo-white.svg" alt="Stored" width="129" height="28">
+          </a>
+          <p class="footer__tagline">Full-service payments for UK businesses. In-person, digital and platform, one partner for everything.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="X / Twitter">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Solutions</div>
+          <div class="footer__links">
+            <a href="/card-machines" class="footer__link">Card machines</a>
+            <a href="/epos-system" class="footer__link">POS</a>
+            <a href="/payment-gateway" class="footer__link">Payment gateway</a>
+            <a href="/online-checkout" class="footer__link">Hosted checkout</a>
+            <a href="/payment-links" class="footer__link">Pay by link</a>
+            <a href="/online-invoicing" class="footer__link">Invoicing</a>
+            <a href="/virtual-terminal" class="footer__link">Virtual terminal</a>
+            <a href="/bulk-payment-links" class="footer__link">Bulk payments</a>
+            <a href="/sell-tickets-online" class="footer__link">Tickets &amp; events</a>
+            <a href="/gift-vouchers" class="footer__link">Gift vouchers</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Sectors</div>
+          <div class="footer__links">
+            <a href="/hospitality-payment-solutions" class="footer__link">Hospitality</a>
+            <a href="/beauty-wellness-payment-solutions" class="footer__link">Beauty &amp; wellness</a>
+            <a href="/retail-payment-solutions" class="footer__link">Retail</a>
+            <a href="/payments-for-tradespeople" class="footer__link">Trades</a>
+            <a href="/professional-services-payment-solutions" class="footer__link">Professional services</a>
+            <a href="/b2b-payment-solutions" class="footer__link">B2B</a>
+            <a href="/wholesale-payment-solutions" class="footer__link">Wholesale</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Company</div>
+          <div class="footer__links">
+            <a href="/about" class="footer__link">About</a>
+            <a href="/partners" class="footer__link">Partners</a>
+            <a href="/careers" class="footer__link">Careers</a>
+            <a href="/contact" class="footer__link">Contact</a>
+            <a href="/pricing" class="footer__link">Pricing</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Resources</div>
+          <div class="footer__links">
+            <a href="/blog/" class="footer__link">Blog</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__legal">
+          <a href="/terms-and-conditions" class="footer__legal-link">Terms &amp; conditions</a>
+          <a href="/privacy-policy" class="footer__legal-link">Privacy policy</a>
+          <a href="/cookie-policy" class="footer__legal-link">Cookies</a>
+          <a href="/complaints" class="footer__legal-link">Complaints</a>
+          <a href="/regulatory-information" class="footer__legal-link">Regulatory</a>
+        </div>
+        <p class="footer__copyright">&copy; 2026 Stored. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js?v=chain-4"></script>
+</body>
+</html>
