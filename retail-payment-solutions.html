@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="/css/animations.css?v=brand-2">
   <link rel="stylesheet" href="/css/header.css?v=menu-8">
   <link rel="stylesheet" href="/css/footer.css?v=two-col-1">
-  <link rel="stylesheet" href="/css/pages/solutions.css?v=type-10">
+  <link rel="stylesheet" href="/css/pages/solutions.css?v=glimpse-lib-1">
   <style>
     /* The ticker sits on the bottom of the first screen, as on the product pages */
     .solution-hero { min-height: calc(100vh - 68px); }
@@ -814,41 +814,53 @@
         </div>
 
         <div class="pillars-grid" data-stagger data-phone-carousel>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">01 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="14" height="26" rx="3"/><rect x="12" y="7" width="8" height="6" rx="1"/><line x1="12" y1="18" x2="20" y2="18"/><line x1="12" y1="22" x2="20" y2="22"/></svg></div>
-            <h3 class="card__title">Card machines.</h3>
-            <p class="card__text">Countertop and portable machines. Tap, chip, contactless and wallets.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--terminal"><div class="glimpse__amount"><small>&pound;</small>45.00</div><div class="glimpse__hint">Tap, insert or swipe</div><svg class="glimpse__contactless" viewBox="2.5 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M11 11c3 3 3 7 0 10"/><path d="M16 8c5 5 5 11 0 16"/><path d="M21 5c7 7 7 15 0 22"/></svg></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">01 / 06</span>
+              <h3 class="card__title">Card machines.</h3>
+              <p class="card__text">Countertop and portable machines. Tap, chip, contactless and wallets.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">02 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M11 4v3h10V4M11 14h10M11 19h10M11 24h6"/></svg></div>
-            <h3 class="card__title">POS.</h3>
-            <p class="card__text">A full till for the counter. Products, staff and takings in one system.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--ticket"><div class="glimpse__ticket-head"><b>Sale 1042</b><span>Counter</span></div><div class="glimpse__line"><span>Linen shirt</span><b>&pound;45.00</b></div><div class="glimpse__line"><span>Gift wrap</span><b>&pound;3.00</b></div><div class="glimpse__line glimpse__line--total"><span>Total &pound;48.00</span><em>Card</em></div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">02 / 06</span>
+              <h3 class="card__title">POS.</h3>
+              <p class="card__text">A full till for the counter. Products, staff and takings in one system.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">03 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="24" height="20" rx="2"/><line x1="4" y1="12" x2="28" y2="12"/><circle cx="8" cy="9" r="1"/><circle cx="12" cy="9" r="1"/><rect x="9" y="17" width="14" height="4" rx="2"/></svg></div>
-            <h3 class="card__title">Hosted checkout.</h3>
-            <p class="card__text">Sell online with a branded checkout page. No code, no developer.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--form"><div class="glimpse__row"><span>Card number</span><b>&bull;&bull;&bull;&bull; 4242</b></div><div class="glimpse__row"><span>Expiry</span><b>08 / 28</b></div><div class="glimpse__pay">Pay &pound;48.00</div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">03 / 06</span>
+              <h3 class="card__title">Hosted checkout.</h3>
+              <p class="card__text">Sell online with a branded checkout page. No code, no developer.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">04 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18l4-4M12 16l-3 3a4 4 0 005.7 5.7l3-3M20 16l3-3a4 4 0 00-5.7-5.7l-3 3"/></svg></div>
-            <h3 class="card__title">Pay by link.</h3>
-            <p class="card__text">Take payment for special orders and click and collect by text or email.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--chat"><div class="glimpse__bubble">Your special order is in. Pay here and collect any time: <u>stored.link/order-1187</u></div><span class="glimpse__pill"><span class="is-before"><i></i>Sent &middot; &pound;120.00</span><span class="is-after"><i></i>Paid &middot; &pound;120.00</span></span></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">04 / 06</span>
+              <h3 class="card__title">Pay by link.</h3>
+              <p class="card__text">Take payment for special orders and click and collect by text or email.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">05 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="13" width="22" height="15" rx="2"/><line x1="16" y1="13" x2="16" y2="28"/><line x1="5" y1="19" x2="27" y2="19"/><path d="M16 13c-1.5-5-8-6-8-2.5S12 13 16 13zM16 13c1.5-5 8-6 8-2.5S20 13 16 13z"/></svg></div>
-            <h3 class="card__title">Gift vouchers.</h3>
-            <p class="card__text">Digital gift vouchers, sold and redeemed from the same account.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--voucher"><div class="glimpse__voucher-top"><span>Gift voucher</span><b>Gift card</b><div class="glimpse__big">&pound;25.00</div></div><div class="glimpse__voucher-foot"><span>GV-4R8T-9PL</span><span class="glimpse__pill"><span class="is-before"><i></i>Active</span><span class="is-after"><i></i>Redeemed</span></span></div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">05 / 06</span>
+              <h3 class="card__title">Gift vouchers.</h3>
+              <p class="card__text">Digital gift vouchers, sold and redeemed from the same account.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">06 / 06</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h11l5 5v19H8z"/><path d="M19 4v5h5"/><line x1="12" y1="15" x2="20" y2="15"/><line x1="12" y1="20" x2="20" y2="20"/><line x1="12" y1="25" x2="17" y2="25"/></svg></div>
-            <h3 class="card__title">Invoicing.</h3>
-            <p class="card__text">Invoice trade and account customers with payment built in.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--invoice"><div class="glimpse__head"><b>Invoice INV-0533</b><span>Due 30 Nov</span></div><div class="glimpse__item"><span>Trade order, 12 units</span><b>&pound;540.00</b></div><div class="glimpse__item"><span>Delivery</span><b>&pound;25.00</b></div><div class="glimpse__btn">Pay &pound;565.00</div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">06 / 06</span>
+              <h3 class="card__title">Invoicing.</h3>
+              <p class="card__text">Invoice trade and account customers with payment built in.</p>
+            </div>
           </div>
         </div>
       </div>

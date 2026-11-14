@@ -2925,3 +2925,533 @@ div.pillar-card:not(:has(a)) .card__text {
   .glimpse__total--full { display: none; }
   .glimpse__total--short { display: inline; }
 }
+
+/* ─── Glimpse library for every solutions, sector and company page
+   (Danny, 14 Nov 2026). The navy icon cards became the homepage-style
+   glimpse cards: a white stage with a small product snippet over the navy
+   text block. Types shared with the homepage (terminal, form, chat, qr,
+   link) are repeated here, scoped with .glimpse.glimpse--x so they win over
+   the card-level width and padding above. ─── */
+
+/* Link cards (sectors, partners): a divider and round arrow button */
+.pillar-card.pillar-card--glimpse .card__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: var(--space-4);
+}
+
+.pillar-card.pillar-card--glimpse .card__text:has(+ .card__link) { margin-bottom: var(--space-4); }
+
+.pillar-card__btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .pillar-card__btn {
+  background: var(--hot);
+  color: var(--white);
+  transform: translateX(3px);
+}
+
+/* Shared bits */
+.glimpse__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(11, 27, 51, 0.08);
+}
+
+.glimpse__head span { color: var(--mute); }
+
+.glimpse__pill {
+  display: inline-grid;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  border-radius: 20px;
+  padding: 3px 9px 3px 8px;
+  background: #EEF0F4;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: background 0.25s ease;
+}
+
+.glimpse__pill > span {
+  grid-area: 1 / 1;
+  transition: opacity 0.25s ease;
+}
+
+.glimpse__pill i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+  background: var(--mute);
+  transition: background 0.25s ease;
+}
+
+.glimpse__pill .is-after { opacity: 0; }
+.pillar-card--glimpse:hover .glimpse__pill { background: var(--green); }
+.pillar-card--glimpse:hover .glimpse__pill i { background: var(--ink); }
+.pillar-card--glimpse:hover .glimpse__pill .is-before { opacity: 0; }
+.pillar-card--glimpse:hover .glimpse__pill .is-after { opacity: 1; }
+
+.glimpse__btn {
+  display: block;
+  background: var(--ink);
+  color: var(--white);
+  text-align: center;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse__btn { background: var(--blurple); }
+
+.glimpse__big {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.glimpse__muted { color: var(--mute); }
+
+/* Card machine */
+.glimpse.glimpse--terminal {
+  width: 196px;
+  padding: 20px 18px 16px;
+  text-align: center;
+}
+
+.glimpse__amount {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.glimpse__amount small {
+  font-size: inherit;
+  vertical-align: baseline;
+  margin-right: 1px;
+}
+
+.glimpse--terminal .glimpse__hint {
+  font-size: 11px;
+  white-space: nowrap;
+  margin: 4px 0 8px;
+}
+
+.glimpse--terminal .glimpse__contactless {
+  display: block;
+  box-sizing: border-box;
+  width: 38px;
+  height: 38px;
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse--terminal .glimpse__contactless { background: var(--blurple); }
+
+/* Card form: hosted checkout, virtual terminal */
+.glimpse.glimpse--form { width: 240px; }
+
+.glimpse__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid #E3E6EC;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.glimpse__row span { color: var(--mute); }
+
+.glimpse__pay {
+  background: var(--ink);
+  color: var(--white);
+  text-align: center;
+  border-radius: 8px;
+  padding: 9px;
+  font-weight: 600;
+  margin-top: 4px;
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse__pay { background: var(--blurple); }
+
+/* Text message with a link: Sent turns to Paid */
+.glimpse.glimpse--chat {
+  width: 240px;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.glimpse__bubble {
+  background: var(--white);
+  border-radius: 16px 16px 16px 4px;
+  padding: 10px 12px;
+  line-height: 1.5;
+  box-shadow: 0 0 0 1px rgba(11, 27, 51, 0.08), 0 14px 32px rgba(11, 27, 51, 0.14);
+}
+
+.glimpse__bubble u { color: #2563EB; }
+
+.glimpse--chat .glimpse__pill {
+  display: grid;
+  width: max-content;
+  margin: 10px 0 0 auto;
+  background: var(--blurple);
+  color: var(--white);
+}
+
+.glimpse--chat .glimpse__pill i { background: var(--white); }
+.pillar-card--glimpse:hover .glimpse--chat .glimpse__pill { background: var(--green); color: var(--ink); }
+.pillar-card--glimpse:hover .glimpse--chat .glimpse__pill i { background: var(--ink); }
+
+/* QR code: a tick draws in on hover */
+.glimpse.glimpse--qr {
+  width: auto;
+  padding: 14px 14px 10px;
+  text-align: center;
+}
+
+.glimpse__qr-code {
+  position: relative;
+  width: 112px;
+  height: 112px;
+}
+
+.glimpse__qr-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: var(--ink);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.glimpse__qr-tick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.glimpse__qr-tick circle { fill: var(--green); }
+
+.glimpse__qr-tick path {
+  stroke: var(--ink);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.35s ease 0.15s;
+}
+
+.glimpse__qr-label {
+  display: grid;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.glimpse__qr-label > span {
+  grid-area: 1 / 1;
+  transition: opacity 0.25s ease;
+}
+
+.glimpse__qr-paid { opacity: 0; }
+.pillar-card--glimpse:hover .glimpse__qr-svg { opacity: 0.12; filter: blur(1px); }
+.pillar-card--glimpse:hover .glimpse__qr-tick { opacity: 1; transform: scale(1); }
+.pillar-card--glimpse:hover .glimpse__qr-tick path { stroke-dashoffset: 0; }
+.pillar-card--glimpse:hover .glimpse__qr-scan { opacity: 0; }
+.pillar-card--glimpse:hover .glimpse__qr-paid { opacity: 1; }
+
+/* Browser window: payment link, embed, storefront */
+.glimpse.glimpse--window {
+  width: 250px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.glimpse__chrome {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: -12px -12px 12px;
+  padding: 9px 12px;
+  background: #F3F4F7;
+  border-bottom: 1px solid rgba(11, 27, 51, 0.08);
+}
+
+.glimpse__chrome i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #FF5F57;
+}
+
+.glimpse__chrome i:nth-child(2) { background: #FEBC2E; }
+.glimpse__chrome i:nth-child(3) { background: #28C840; }
+
+.glimpse__chrome span {
+  margin-left: 6px;
+  color: var(--mute);
+  font-size: 10px;
+}
+
+.glimpse__url {
+  background: #F3F4F7;
+  border-radius: 8px;
+  padding: 9px 10px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.glimpse__status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--mute);
+}
+
+.glimpse__status i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+  background: var(--blurple);
+}
+
+.glimpse__status .glimpse__done { background: var(--mute); transition: background 0.25s ease; }
+.glimpse__paid-step { transition: color 0.25s ease; }
+.glimpse__now-paid { display: none; }
+.pillar-card--glimpse:hover .glimpse__paid-step { color: #12875A; }
+.pillar-card--glimpse:hover .glimpse__status .glimpse__done { background: var(--green); }
+.pillar-card--glimpse:hover .glimpse__unpaid { display: none; }
+.pillar-card--glimpse:hover .glimpse__now-paid { display: inline; }
+
+.glimpse__site-line {
+  height: 7px;
+  border-radius: 4px;
+  background: #EEF0F4;
+  margin-bottom: 6px;
+}
+
+.glimpse__site-line--short { width: 60%; }
+
+.glimpse__tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.glimpse__tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.glimpse__tile i {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background: #EEF0F4;
+}
+
+.glimpse__tile:nth-child(2) i { background: #E3E6EC; }
+.glimpse__tile:nth-child(3) i { background: #D5D9E0; }
+
+/* List rows: invoices, bulk runs, payouts, steps */
+.glimpse__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  white-space: nowrap;
+}
+
+.glimpse__item + .glimpse__item { border-top: 1px solid rgba(11, 27, 51, 0.06); }
+.glimpse__item > span { color: var(--mute); }
+.glimpse__item b { margin-left: auto; }
+
+.glimpse__dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: #D5D9E0;
+  transition: background 0.25s ease;
+}
+
+.glimpse__dot.is-on { background: var(--green); }
+.pillar-card--glimpse:hover .glimpse__dot.is-next { background: var(--green); }
+.glimpse__dot.is-blurple { background: var(--blurple); }
+
+/* Gift voucher */
+.glimpse.glimpse--voucher {
+  width: 236px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.glimpse__voucher-top {
+  background: var(--ink);
+  color: var(--white);
+  padding: 14px;
+  transition: background 0.25s ease;
+}
+
+.pillar-card--glimpse:hover .glimpse__voucher-top { background: var(--blurple); }
+
+.glimpse__voucher-top span {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.glimpse__voucher-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  white-space: nowrap;
+  border-top: 1px dashed rgba(11, 27, 51, 0.2);
+}
+
+.glimpse__voucher-foot span { color: var(--mute); font-size: 11px; letter-spacing: 0.04em; }
+
+/* Event ticket */
+.glimpse.glimpse--ticketstub {
+  display: flex;
+  width: 250px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.glimpse__stub-main {
+  flex: 1;
+  padding: 14px;
+  white-space: nowrap;
+}
+
+.glimpse__stub-main > b { display: block; font-size: 15px; margin-bottom: 2px; }
+.glimpse__stub-main > span:not(.glimpse__pill) { display: block; color: var(--mute); margin-bottom: 10px; }
+
+.glimpse__stub-side {
+  width: 64px;
+  display: grid;
+  place-items: center;
+  border-left: 1px dashed rgba(11, 27, 51, 0.2);
+  background: #F3F4F7;
+}
+
+.glimpse__stub-side svg {
+  width: 40px;
+  height: 40px;
+  fill: var(--ink);
+}
+
+/* Payout */
+.glimpse__payout-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  white-space: nowrap;
+}
+
+/* Channels: where you sell */
+.glimpse__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.glimpse__chips i {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  border-radius: 20px;
+  padding: 5px 10px;
+  background: #EEF0F4;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.glimpse__chips i.is-on {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.pillar-card--glimpse:hover .glimpse__chips i.is-on { background: var(--blurple); }
+
+/* Photo stage: the sector cards show the sector's own photo */
+.pillar-card__stage--photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.pillar-card__stage--photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pillar-card--glimpse:hover .pillar-card__stage--photo img { transform: scale(1.04); }
+
+@media (prefers-reduced-motion: reduce) {
+  .glimpse__pill, .glimpse__pill > span, .glimpse__pill i, .glimpse__btn,
+  .glimpse__pay, .glimpse__qr-svg, .glimpse__qr-tick, .glimpse__qr-tick path,
+  .glimpse__qr-label > span, .glimpse__dot, .glimpse__voucher-top,
+  .glimpse__chips i, .pillar-card__stage--photo img,
+  .glimpse--terminal .glimpse__contactless {
+    transition: none;
+  }
+}
+
+.glimpse__pay--alt {
+  margin-top: 6px;
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px #E3E6EC;
+}
+
+.pillar-card--glimpse:hover .glimpse__pay--alt { background: var(--white); }

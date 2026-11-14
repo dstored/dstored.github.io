@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="/css/animations.css?v=brand-2">
   <link rel="stylesheet" href="/css/header.css?v=menu-8">
   <link rel="stylesheet" href="/css/footer.css?v=two-col-1">
-  <link rel="stylesheet" href="/css/pages/solutions.css?v=type-10">
+  <link rel="stylesheet" href="/css/pages/solutions.css?v=glimpse-lib-1">
 
   <style>
     /* The ticker sits on the bottom of the first screen, as on the product pages */
@@ -332,7 +332,7 @@
     .pros-product + .pros-product { padding-top: var(--space-6); } #pay-by-link { padding-top: var(--space-12); }
     .pros-product .section-header { margin-bottom: var(--space-8); }
     .pros-pillars .pillar-card { min-height: 0; }
-    .pros-pillars .pillar-card .card__title { margin-top: 32px; font-size: var(--text-3xl); }
+    .pros-pillars .pillar-card:not(.pillar-card--glimpse) .card__title { margin-top: 32px; font-size: var(--text-3xl); }
     .pros-demo-cta { display: flex; justify-content: center; padding: var(--space-4) 0 var(--space-6); }
     .pros-faq { padding-top: var(--space-10); }
     .pros-jump { white-space: nowrap; font-weight: var(--weight-semibold); color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
@@ -810,23 +810,29 @@
         </div>
 
         <div class="pillars-grid pros-pillars" data-stagger data-phone-carousel>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">01 / 03</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
-            <h3 class="card__title">Sent with the invoice.</h3>
-            <p class="card__text">Add a secure link to the invoices you already send. Your practice, project and accounts software stay as they are.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--invoice"><div class="glimpse__head"><b>Invoice INV-2210</b><span>Due 30 Nov</span></div><div class="glimpse__item"><span>Year-end accounts</span><b>&pound;1,200.00</b></div><div class="glimpse__item"><span>Tax return</span><b>&pound;350.00</b></div><div class="glimpse__btn">Pay &pound;1,550.00</div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">01 / 03</span>
+              <h3 class="card__title">Sent with the invoice.</h3>
+              <p class="card__text">Add a secure link to the invoices you already send. Your practice, project and accounts software stay as they are.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">02 / 03</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></div>
-            <h3 class="card__title">Your firm, front and centre.</h3>
-            <p class="card__text">Every link shows your firm&rsquo;s name and the invoice reference, so clients know exactly who they&rsquo;re paying.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--form"><div class="glimpse__head"><b>Bloom Accountants</b><span>INV-2210</span></div><div class="glimpse__row"><span>Amount</span><b>&pound;1,550.00</b></div><div class="glimpse__pay">Pay securely</div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">02 / 03</span>
+              <h3 class="card__title">Your firm, front and centre.</h3>
+              <p class="card__text">Every link shows your firm&rsquo;s name and the invoice reference, so clients know exactly who they&rsquo;re paying.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">03 / 03</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
-            <h3 class="card__title">Reminders, sent for you.</h3>
-            <p class="card__text">Unpaid links get automatic reminders, so senior people stay on billable work, not chasing.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--chat"><div class="glimpse__bubble">Reminder: invoice INV-2210 from Bloom is due tomorrow. One tap to pay: <u>stored.link/inv-2210</u></div><span class="glimpse__pill"><span class="is-before"><i></i>Sent &middot; &pound;1,550.00</span><span class="is-after"><i></i>Paid &middot; &pound;1,550.00</span></span></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">03 / 03</span>
+              <h3 class="card__title">Reminders, sent for you.</h3>
+              <p class="card__text">Unpaid links get automatic reminders, so senior people stay on billable work, not chasing.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -842,23 +848,29 @@
         </div>
 
         <div class="pillars-grid pros-pillars" data-stagger data-phone-carousel>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">01 / 03</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg></div>
-            <h3 class="card__title">Upload the list.</h3>
-            <p class="card__text">Upload a spreadsheet of invoices and each client gets their own branded link.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--rows"><div class="glimpse__head"><b>invoices.xlsx</b><span>120 rows</span></div><div class="glimpse__item"><i class="glimpse__dot is-on"></i>INV-2210<b>&pound;1,550.00</b></div><div class="glimpse__item"><i class="glimpse__dot is-next"></i>INV-2211<b>&pound;780.00</b></div><div class="glimpse__item"><i class="glimpse__dot is-next"></i>INV-2212<b>&pound;2,100.00</b></div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">01 / 03</span>
+              <h3 class="card__title">Upload the list.</h3>
+              <p class="card__text">Upload a spreadsheet of invoices and each client gets their own branded link.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">02 / 03</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-            <h3 class="card__title">Or from PDFs.</h3>
-            <p class="card__text">Drag in hundreds of PDF or Word invoices and each one becomes its own payment link.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--rows"><div class="glimpse__item"><i class="glimpse__dot is-on"></i>INV-2213.pdf<b>Link made</b></div><div class="glimpse__item"><i class="glimpse__dot is-on"></i>INV-2214.pdf<b>Link made</b></div><div class="glimpse__item"><i class="glimpse__dot is-blurple"></i>INV-2215.docx<b>Reading</b></div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">02 / 03</span>
+              <h3 class="card__title">Or from PDFs.</h3>
+              <p class="card__text">Drag in hundreds of PDF or Word invoices and each one becomes its own payment link.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">03 / 03</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-            <h3 class="card__title">Tracked in one list.</h3>
-            <p class="card__text">See which invoices are paid and which are still outstanding, without chasing for an update.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--rows"><div class="glimpse__head"><b>Outstanding</b><span>3 of 120</span></div><div class="glimpse__item"><i class="glimpse__dot is-on"></i>INV-2210<b>Paid</b></div><div class="glimpse__item"><i class="glimpse__dot is-next"></i>INV-2211<b>Opened</b></div><div class="glimpse__item"><i class="glimpse__dot is-next"></i>INV-2212<b>Sent</b></div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">03 / 03</span>
+              <h3 class="card__title">Tracked in one list.</h3>
+              <p class="card__text">See which invoices are paid and which are still outstanding, without chasing for an update.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -874,23 +886,29 @@
         </div>
 
         <div class="pillars-grid pros-pillars" data-stagger data-phone-carousel>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">01 / 03</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></div>
-            <h3 class="card__title">Card details, keyed in.</h3>
-            <p class="card__text">Take a client&rsquo;s card on a secure page in your browser. No card machine needed.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--form"><div class="glimpse__row"><span>Card number</span><b>4929 &bull;&bull;&bull;&bull; 1187</b></div><div class="glimpse__row"><span>Amount</span><b>&pound;1,550.00</b></div><div class="glimpse__pay">Charge card</div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">01 / 03</span>
+              <h3 class="card__title">Card details, keyed in.</h3>
+              <p class="card__text">Take a client&rsquo;s card on a secure page in your browser. No card machine needed.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">02 / 03</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-            <h3 class="card__title">Or text a link mid-call.</h3>
-            <p class="card__text">If they&rsquo;d rather not read out their card, send a link and they pay before you hang up.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--chat"><div class="glimpse__bubble">As discussed, here&rsquo;s the link for your invoice: <u>stored.link/inv-2211</u></div><span class="glimpse__pill"><span class="is-before"><i></i>Sent &middot; &pound;780.00</span><span class="is-after"><i></i>Paid &middot; &pound;780.00</span></span></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">02 / 03</span>
+              <h3 class="card__title">Or text a link mid-call.</h3>
+              <p class="card__text">If they&rsquo;d rather not read out their card, send a link and they pay before you hang up.</p>
+            </div>
           </div>
-          <div class="card card--dark pillar-card">
-            <span class="card__label">03 / 03</span>
-            <div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-            <h3 class="card__title">Security handled.</h3>
-            <p class="card__text">Card details never touch your systems, and every payment is logged.</p>
+          <div class="card card--dark pillar-card pillar-card--glimpse">
+            <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--rows"><div class="glimpse__item"><i class="glimpse__dot is-on"></i>Card details<b>Held by Stored</b></div><div class="glimpse__item"><i class="glimpse__dot is-on"></i>Payment logged<b>10:42</b></div><div class="glimpse__item"><i class="glimpse__dot is-next"></i>Receipt sent<b>Email</b></div></div></div>
+            <div class="pillar-card__body">
+              <span class="card__label">03 / 03</span>
+              <h3 class="card__title">Security handled.</h3>
+              <p class="card__text">Card details never touch your systems, and every payment is logged.</p>
+            </div>
           </div>
         </div>
       </div>
