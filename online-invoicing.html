@@ -885,7 +885,47 @@
       .pl-ai__file, .pl-ai__count, .pl-ai__reading, .pl-ai__out .pl-track__row { opacity: 1; transform: none; }
       .pl-ai__bar span { width: 100%; }
     }
-  </style>
+  
+    /* Late payment: copy left, panel of government figures right (same as
+       professional services), on navy */
+    .context-split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+    .context-split .section-header { text-align: left; margin: 0; max-width: 560px; }
+    .context-split .section-header__subtitle { margin-left: 0; }
+    .context-split .section-header__title:has(.highlight) { line-height: 1.24; }
+    .context-split .section-header__title:has(.highlight) + .section-header__subtitle { margin-top: var(--space-5); }
+    .context-panel { --fig: clamp(2.5rem, 4.2vw, var(--text-5xl)); border-radius: var(--radius-xl); padding: clamp(1.75rem, 3vw, 2.75rem); }
+    .context-panel__overline { font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase; margin-bottom: var(--space-4); }
+    .context-panel__list { list-style: none; margin: 0; padding: 0; }
+    .context-panel__item { padding: var(--space-5) 0; display: grid; grid-template-columns: calc(var(--fig) * 3.35) 1fr; gap: var(--space-5); align-items: center; }
+    .context-panel__item + .context-panel__item { border-top: 1px solid var(--rule); }
+    .context-panel__figure { font-family: var(--font-display); font-weight: 600; font-size: var(--fig); line-height: 1; letter-spacing: -0.03em; white-space: nowrap; }
+    .context-panel__text { font-size: var(--text-base); line-height: 1.45; }
+    .context-panel__source { font-size: var(--text-xs); line-height: 1.5; margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--rule); }
+    .context-panel__source a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+    .context-panel--paper { --rule: rgba(11,27,51,.14); background: #fff; color: var(--ink); border: 3px solid #fff; box-shadow: 10px 10px 0 var(--hot); }
+    .context-panel--paper .context-panel__overline { color: var(--hot); }
+    .context-panel--paper .context-panel__text,
+    .context-panel--paper .context-panel__source { color: var(--mute); }
+    @media (max-width: 1100px) {
+      .context-split { grid-template-columns: 1fr; }
+      .context-split .section-header { max-width: none; }
+    }
+    @media (max-width: 480px) {
+      .context-panel__item { grid-template-columns: 1fr; gap: var(--space-2); }
+    }
+    /* Two navy sections back to back: a faint white hairline at the seam,
+       container width, the navy version of .section-rule */
+    .iv-latepay + .section--dark { position: relative; }
+    .iv-latepay + .section--dark::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100% - 6 * var(--container-pad), var(--container-wide) - 6 * var(--container-pad));
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+</style>
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
@@ -1401,6 +1441,25 @@
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
+      </div>
+    </section>
+
+    <!-- LATE PAYMENT: MARKET CONTEXT -->
+    <section class="section section--dark iv-latepay">
+      <div class="container context-split">
+        <div class="section-header" data-animate>
+          <h2 class="section-header__title">Until it&rsquo;s paid, you&rsquo;re lending to <span class="highlight">your client.</span></h2>
+          <p class="section-header__subtitle">The work&rsquo;s delivered and can&rsquo;t be taken back. Every invoice still open is credit you didn&rsquo;t agree to give, and chasing it costs time you could bill.</p>
+        </div>
+        <aside class="context-panel context-panel--paper" aria-label="Late payment in the UK" data-animate>
+          <div class="context-panel__overline">Late payment in the UK</div>
+          <ul class="context-panel__list">
+            <li class="context-panel__item"><span class="context-panel__figure">86</span><span class="context-panel__text">hours a year the average affected business spends chasing late payments</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">&pound;17k</span><span class="context-panel__text">owed in late payments, on average, to each business affected</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">1 in 3</span><span class="context-panel__text">business services firms say clients pay later than their terms</span></li>
+          </ul>
+          <p class="context-panel__source">Source: <a href="https://assets.publishing.service.gov.uk/media/688a089a6478525675738ff9/late_payments_research_impact_on_uk_economy.pdf" rel="noopener" target="_blank">Late Payments Research</a>, Department for Business and Trade and the Office of the Small Business Commissioner, July 2025.</p>
+        </aside>
       </div>
     </section>
 
