@@ -311,6 +311,7 @@
     }
 
     .ev-tile img {
+      filter: sepia(0.35) saturate(0.9) brightness(0.6) contrast(1.05);
       position: absolute;
       inset: 0;
       width: 100%;
@@ -328,10 +329,10 @@
       z-index: -1;
       /* flat wash + a fine grain, so the frosting reads like the grainy
          low-light photos on the homepage rather than a clean flat screen */
-      /* Lighter, no grain, so the bright golden-hour photos keep their
-         warmth (Danny, 14 Nov 2026); the soft centre band keeps the label
-         legible */
-      background: radial-gradient(ellipse 90% 55% at 50% 50%, rgba(11, 27, 51, 0.38), rgba(11, 27, 51, 0.12));
+      /* Same warm, darker lens as the sector strips on the other pages
+         (sepia and a brown tint; brightness 0.6 here because these photos start brighter, so the strips match), so every
+         strip on the site starts from the same point (Danny, 14 Nov 2026) */
+      background-color: rgba(48, 30, 14, 0.22);
       transition: opacity var(--duration-base, 0.3s) var(--ease-out, ease-out);
     }
 
