@@ -38,8 +38,8 @@
     }
 
     .solution-hero .solution-hero__inner .solution-hero__title {
-      font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem); /* "Done. Paid." matches
-         the other heroes' 10rem (was "Job done.", capped at 8.25rem) */
+      font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem); /* "Finished. Paid."
+         (Danny, 14 Nov 2026), same size as the other heroes */
       line-height: calc(0.85em + 5px);
       letter-spacing: -0.05em;
       margin-top: 23px;
@@ -331,6 +331,13 @@
     /* Hero subtitle breaks after the second comma on desktop only */
     .br-desk { display: none; }
     @media (min-width: 969px) { .br-desk { display: inline; } }
+    a.pillar-card { text-decoration: none; }
+    a.pillar-card .card__link { color: inherit; }
+    /* Product card titles hold one line: full size on big screens, a touch
+       smaller on smaller laptops (Danny, 14 Nov 2026) */
+    @media (min-width: 1200px) {
+      .pillars-grid .pillar-card .pillar-card__body .card__title { font-size: min(40px, 2.75vw); white-space: nowrap; }
+    }
 </style>
 
   <!-- Favicon -->
@@ -627,7 +634,7 @@
       <div class="container">
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
-            <h1 class="solution-hero__title" style="--fit-em: 3.58"><span style="white-space: nowrap;">Done.</span><br><span style="white-space: nowrap;">Paid.<span class="solution-hero__asterisk">*</span></span></h1>
+            <h1 class="solution-hero__title" style="--fit-em: 3.89"><span style="white-space: nowrap;">Finished.</span><br><span style="white-space: nowrap;">Paid.<span class="solution-hero__asterisk">*</span></span></h1>
             <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>on the doorstep, by link or by invoice,<br class="br-desk"> all from one account and settled next working day.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
@@ -811,54 +818,60 @@
         </div>
 
         <div class="pillars-grid" data-stagger data-phone-carousel>
-          <div class="card card--dark pillar-card pillar-card--glimpse">
+          <a href="/payment-links" class="card card--dark pillar-card pillar-card--glimpse">
             <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--window"><div class="glimpse__chrome"><i></i><i></i><i></i></div><div class="glimpse__url">stored.link/boiler-150</div><div class="glimpse__status"><span><i></i>Opened</span><span class="glimpse__paid-step"><i class="glimpse__done"></i><span class="glimpse__unpaid">Unpaid</span><span class="glimpse__now-paid">Paid</span></span></div></div></div>
             <div class="pillar-card__body">
               <span class="card__label">01 / 06</span>
-              <h3 class="card__title">Paid from the van.</h3>
+              <h3 class="card__title">Pay by link.</h3>
               <p class="card__text">Send a payment link the moment the job is done. Pay-by-link needs no card machine at all.</p>
+              <span class="card__link">Explore <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-          </div>
-          <div class="card card--dark pillar-card pillar-card--glimpse">
+          </a>
+          <a href="/card-machines" class="card card--dark pillar-card pillar-card--glimpse">
             <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--terminal"><div class="glimpse__amount"><small>&pound;</small>150.00</div><div class="glimpse__hint">Tap, insert or swipe</div><svg class="glimpse__contactless" viewBox="2.5 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M11 11c3 3 3 7 0 10"/><path d="M16 8c5 5 5 11 0 16"/><path d="M21 5c7 7 7 15 0 22"/></svg></div></div>
             <div class="pillar-card__body">
               <span class="card__label">02 / 06</span>
-              <h3 class="card__title">Cards at the door.</h3>
+              <h3 class="card__title">Card machines.</h3>
               <p class="card__text">Pocket card machines for tap, chip and contactless on any job, anywhere.</p>
+              <span class="card__link">Explore <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-          </div>
-          <div class="card card--dark pillar-card pillar-card--glimpse">
+          </a>
+          <a href="/online-invoicing" class="card card--dark pillar-card pillar-card--glimpse">
             <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--invoice"><div class="glimpse__head"><b>Invoice INV-0315</b><span>Due 30 Nov</span></div><div class="glimpse__item"><span>Boiler service</span><b>&pound;95.00</b></div><div class="glimpse__item"><span>Parts</span><b>&pound;55.00</b></div><div class="glimpse__btn">Pay &pound;150.00</div></div></div>
             <div class="pillar-card__body">
               <span class="card__label">03 / 06</span>
-              <h3 class="card__title">Invoices with a pay button.</h3>
+              <h3 class="card__title">Invoicing.</h3>
               <p class="card__text">Digital invoicing with payment built in. Paying takes a tap, not a bank transfer.</p>
+              <span class="card__link">Explore <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-          </div>
-          <div class="card card--dark pillar-card pillar-card--glimpse">
+          </a>
+          <a href="/virtual-terminal" class="card card--dark pillar-card pillar-card--glimpse">
             <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--form"><div class="glimpse__row"><span>Card number</span><b>4929 &bull;&bull;&bull;&bull; 1187</b></div><div class="glimpse__row"><span>Amount</span><b>&pound;200.00</b></div><div class="glimpse__pay">Charge card</div></div></div>
             <div class="pillar-card__body">
               <span class="card__label">04 / 06</span>
-              <h3 class="card__title">Deposits over the phone.</h3>
+              <h3 class="card__title">Phone payments.</h3>
               <p class="card__text">Take card payments on a call for quotes and call-outs with the virtual terminal.</p>
+              <span class="card__link">Explore <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-          </div>
-          <div class="card card--dark pillar-card pillar-card--glimpse">
+          </a>
+          <a href="/bulk-payment-links" class="card card--dark pillar-card pillar-card--glimpse">
             <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--rows"><div class="glimpse__head"><b>This month</b><span>23 jobs</span></div><div class="glimpse__item"><i class="glimpse__dot is-on"></i>Job 0412<b>&pound;150.00</b></div><div class="glimpse__item"><i class="glimpse__dot is-next"></i>Job 0413<b>&pound;320.00</b></div><div class="glimpse__item"><i class="glimpse__dot is-next"></i>Job 0414<b>&pound;85.00</b></div></div></div>
             <div class="pillar-card__body">
               <span class="card__label">05 / 06</span>
-              <h3 class="card__title">The whole month at once.</h3>
+              <h3 class="card__title">Bulk payments.</h3>
               <p class="card__text">Upload a list and send every outstanding balance its own link with bulk payments.</p>
+              <span class="card__link">Explore <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-          </div>
-          <div class="card card--dark pillar-card pillar-card--glimpse">
+          </a>
+          <a href="/online-checkout" class="card card--dark pillar-card pillar-card--glimpse">
             <div class="pillar-card__stage" aria-hidden="true"><div class="glimpse glimpse--form"><div class="glimpse__row"><span>Deposit</span><b>Kitchen fit</b></div><div class="glimpse__row"><span>Card number</span><b>&bull;&bull;&bull;&bull; 4242</b></div><div class="glimpse__pay">Pay &pound;500.00</div></div></div>
             <div class="pillar-card__body">
               <span class="card__label">06 / 06</span>
-              <h3 class="card__title">Your own payment page.</h3>
+              <h3 class="card__title">Hosted checkout.</h3>
               <p class="card__text">A branded hosted checkout for deposits and prepay. No website code needed.</p>
+              <span class="card__link">Explore <span class="pillar-card__btn" aria-hidden="true">&rarr;</span></span>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
