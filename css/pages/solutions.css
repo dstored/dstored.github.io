@@ -1274,13 +1274,21 @@
   color: var(--white);
 }
 
+/* Small and quiet, so the title leads (Danny, 14 Nov 2026: 56px read
+   too big and cheapened the cards) */
 .pillar-card__icon {
-  width: 56px;
-  height: 56px;
+  width: 32px;
+  height: 32px;
   position: absolute;
   top: var(--space-6);
   right: var(--space-6);
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Beats mobile.css's 40px phone size, which is bigger than this */
+.pillar-card .pillar-card__icon {
+  width: 32px;
+  height: 32px;
 }
 
 .pillar-card__icon svg {
