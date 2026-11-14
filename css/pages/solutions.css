@@ -3293,6 +3293,16 @@ div.pillar-card:not(:has(a)) .card__text {
 .glimpse__tile:nth-child(2) i { background: #E3E6EC; }
 .glimpse__tile:nth-child(3) i { background: #D5D9E0; }
 
+.glimpse__tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #EEF0F4;
+}
+
 /* List rows: invoices, bulk runs, payouts, steps */
 .glimpse__item {
   display: flex;
