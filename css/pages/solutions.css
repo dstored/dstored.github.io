@@ -3270,6 +3270,29 @@ div.pillar-card:not(:has(a)) .card__text {
 
 .glimpse__site-line--short { width: 60%; }
 
+.glimpse__product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.glimpse__product img {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #EEF0F4;
+}
+
+.glimpse__product div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
 .glimpse__tiles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
