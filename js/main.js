@@ -218,7 +218,8 @@ function initStreaks() {
       blend.setAttribute('gradientUnits', 'userSpaceOnUse');
       blend.setAttribute('x1', '0');
       blend.setAttribute('x2', '0');
-      // A clean change of colour exactly at the seam, no blend (Danny)
+      // The colour changes at the seam with a soft, blurred edge, not a long
+      // blend (Danny); the edge offsets are set once the ribbon's width is known
       const second = colours[partnerColour] || colours.blurple;
       [[0, ownFill], [0.5, ownFill], [0.5, second], [1, second]].forEach(([at, c]) => {
         const stop = document.createElementNS(NS, 'stop');
@@ -274,6 +275,10 @@ function initStreaks() {
           if (blend) {
             blend.setAttribute('y1', s.height - thick * 1.5);
             blend.setAttribute('y2', s.height + thick * 1.5);
+            const soft = Math.min(0.2, 9 / (thick * 3));
+            const stops = blend.querySelectorAll('stop');
+            stops[1].setAttribute('offset', String(0.5 - soft));
+            stops[2].setAttribute('offset', String(0.5 + soft));
             path.setAttribute('fill', `url(#${blend.id})`);
           }
           spine.setAttribute('d', 'M' + line.map(fmt).join('L'));
