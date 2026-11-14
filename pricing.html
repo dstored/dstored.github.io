@@ -512,6 +512,12 @@
     }
     /* "Terminals. Free over £100k a year." only fits one line from 1280px;
        between 1024 and 1279 it wraps like any other section headline */
+    /* "Flat rate." is wider than "Flat.": on smaller laptops the headline
+       scales so it stays clear of the receipt card */
+    @media (min-width: 969px) and (max-width: 1279px) {
+      .solution-hero .solution-hero__inner .solution-hero__title { font-size: min(10rem, calc((100vw - 520px) / 4.6)); }
+    }
+
     @media (min-width: 1024px) and (max-width: 1279px) {
       body .section-header--one-line { max-width: 720px; }
       body .section-header--one-line .section-header__title { white-space: normal; }
@@ -809,7 +815,7 @@
       <div class="container">
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
-            <h1 class="solution-hero__title" style="--fit-em: 2.39">1%.<br><span style="white-space: nowrap;">Flat.<span class="solution-hero__asterisk">*</span></span></h1>
+            <h1 class="solution-hero__title" style="--fit-em: 4.33">1%.<br><span style="white-space: nowrap;">Flat rate.<span class="solution-hero__asterisk">*</span></span></h1>
             <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>one flat rate on card payments, in person and online, for merchants under &pound;200,000 a year. Bespoke rates above.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
