@@ -333,6 +333,9 @@
     @media (min-width: 1200px) {
       .pillars-grid .pillar-card .pillar-card__body .card__title { font-size: min(40px, 2.6vw); white-space: nowrap; }
     }
+    /* Hero subtitle line break on desktop only */
+    .br-desk { display: none; }
+    @media (min-width: 969px) { .br-desk { display: inline; } }
 </style>
 
   <!-- Favicon -->
@@ -630,7 +633,7 @@
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
             <h1 class="solution-hero__title" style="--fit-em: 3.25">By the<br><span style="white-space: nowrap;">pallet.<span class="solution-hero__asterisk">*</span></span></h1>
-            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>sell in bulk, bill in bulk. The whole invoice run in one upload, a payment link for every account.</p>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>sell in bulk, bill in bulk. The whole invoice run in<br class="br-desk"> one upload, a payment link for every account.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
                 Sign up now
@@ -724,7 +727,7 @@
               </svg>
             </div>
             <h3 class="why-card__title">Upload the run.</h3>
-            <p class="why-card__text">Every account, amount and reference in one list.</p>
+            <p class="why-card__text">Every account, amount and reference in one spreadsheet, ready to send.</p>
           </div>
 
           <div class="why-card">
