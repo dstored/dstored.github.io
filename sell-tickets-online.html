@@ -328,9 +328,10 @@
       z-index: -1;
       /* flat wash + a fine grain, so the frosting reads like the grainy
          low-light photos on the homepage rather than a clean flat screen */
-      background-color: rgba(11, 27, 51, 0.44);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
-      background-size: 140px 140px;
+      /* Lighter, no grain, so the bright golden-hour photos keep their
+         warmth (Danny, 14 Nov 2026); the soft centre band keeps the label
+         legible */
+      background: radial-gradient(ellipse 90% 55% at 50% 50%, rgba(11, 27, 51, 0.38), rgba(11, 27, 51, 0.12));
       transition: opacity var(--duration-base, 0.3s) var(--ease-out, ease-out);
     }
 
@@ -1116,32 +1117,32 @@
 
         <div class="ev-strip" data-animate="fade">
           <figure class="ev-tile ev-tile--1">
-            <img src="/assets/images/events/gigs.jpg" alt="" loading="lazy" decoding="async">
+            <img src="/assets/images/events/gigs.jpg?v=2" alt="" loading="lazy" decoding="async">
             <figcaption class="ev-tile__name">Gigs &amp; nights.</figcaption>
-            <span class="ev-tile__line">Host a club night: ticket the show, scan the queue, settle next working day.</span>
+            <span class="ev-tile__line">Host a gig: ticket the show, scan the queue, settle next working day.</span>
           </figure>
           <figure class="ev-tile ev-tile--2">
-            <img src="/assets/images/events/workshops.jpg" alt="" loading="lazy" decoding="async">
+            <img src="/assets/images/events/workshops.jpg?v=2" alt="" loading="lazy" decoding="async">
             <figcaption class="ev-tile__name">Workshops.</figcaption>
             <span class="ev-tile__line">Run a workshop with limited spots, paid upfront. No places held for no-shows.</span>
           </figure>
           <figure class="ev-tile ev-tile--3">
-            <img src="/assets/images/events/classes.jpg" alt="" loading="lazy" decoding="async">
+            <img src="/assets/images/events/classes.jpg?v=2" alt="" loading="lazy" decoding="async">
             <figcaption class="ev-tile__name">Classes.</figcaption>
             <span class="ev-tile__line">Sell a yoga block or a single session. Everyone arrives already paid.</span>
           </figure>
           <figure class="ev-tile ev-tile--4">
-            <img src="/assets/images/events/popups.jpg" alt="" loading="lazy" decoding="async">
+            <img src="/assets/images/events/popups.jpg?v=2" alt="" loading="lazy" decoding="async">
             <figcaption class="ev-tile__name">Pop-ups.</figcaption>
             <span class="ev-tile__line">Ticket a one-off market or supper club without joining a ticket platform.</span>
           </figure>
           <figure class="ev-tile ev-tile--5">
-            <img src="/assets/images/events/tastings.jpg" alt="" loading="lazy" decoding="async">
+            <img src="/assets/images/events/tastings.jpg?v=2" alt="" loading="lazy" decoding="async">
             <figcaption class="ev-tile__name">Tastings &amp; tours.</figcaption>
             <span class="ev-tile__line">Small groups, fixed capacity, deposits taken at the moment of booking.</span>
           </figure>
           <figure class="ev-tile ev-tile--6">
-            <img src="/assets/images/events/community.jpg" alt="" loading="lazy" decoding="async">
+            <img src="/assets/images/events/community.jpg?v=2" alt="" loading="lazy" decoding="async">
             <figcaption class="ev-tile__name">Community.</figcaption>
             <span class="ev-tile__line">Fairs, fundraisers and fixtures, ticketed in minutes.</span>
           </figure>
