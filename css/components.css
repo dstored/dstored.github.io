@@ -517,6 +517,10 @@
   font-weight: var(--weight-semibold);
   text-align: left;
   cursor: pointer;
+  /* A <button>: iOS Safari colours button text system blue unless told,
+     so it takes the section's own text colour (Danny, 14 Nov 2026) */
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
   transition: color var(--duration-fast) var(--ease-out);
 }
 
