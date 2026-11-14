@@ -38,9 +38,8 @@
     }
 
     .solution-hero .solution-hero__inner .solution-hero__title {
-      font-size: clamp(4.75rem, 3.2rem + 10.5vw, 8.25rem); /* "Job done." is the
-         longest hero line on the site; capped here so it holds two lines
-         beside a full-size circle */
+      font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem); /* "Done. Paid." matches
+         the other heroes' 10rem (was "Job done.", capped at 8.25rem) */
       line-height: calc(0.85em + 5px);
       letter-spacing: -0.05em;
       margin-top: 23px;
@@ -329,6 +328,9 @@
       .hero__card-status { width: 6px; height: 6px; }
     }
 
+    /* Hero subtitle breaks after the second comma on desktop only */
+    .br-desk { display: none; }
+    @media (min-width: 969px) { .br-desk { display: inline; } }
 </style>
 
   <!-- Favicon -->
@@ -625,8 +627,8 @@
       <div class="container">
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
-            <h1 class="solution-hero__title" style="--fit-em: 4.36"><span style="white-space: nowrap;">Job done.</span><br><span style="white-space: nowrap;">Paid.<span class="solution-hero__asterisk">*</span></span></h1>
-            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>on the doorstep, by link or by invoice, from one account.</p>
+            <h1 class="solution-hero__title" style="--fit-em: 3.58"><span style="white-space: nowrap;">Done.</span><br><span style="white-space: nowrap;">Paid.<span class="solution-hero__asterisk">*</span></span></h1>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>on the doorstep, by link or by invoice,<br class="br-desk"> all from one account and settled next working day.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
                 Sign up now
@@ -804,7 +806,8 @@
       <div class="container">
         <div class="section-header section-header--center" data-animate>
           <div class="section-header__overline">THE PLATFORM</div>
-          <h2 class="section-header__title">Every way a job gets paid.</h2>
+          <h2 class="section-header__title">Every job, paid.</h2>
+          <p class="section-header__subtitle">From the van to the doorstep to the office, it all runs from one account.</p>
         </div>
 
         <div class="pillars-grid" data-stagger data-phone-carousel>
