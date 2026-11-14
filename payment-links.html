@@ -527,6 +527,8 @@
     /* ── Sent by text: two claims, then the reminder chase ──
        Always a dark section. Compressed so the header, both stat cards and
        the reminder card hold on one laptop screen. */
+    /* Nothing sits under the Branding copy, so its bottom margin only padded the section */
+    .pl-brand .section-header { margin-bottom: 0; }
     .pl-sms .section-header { margin-bottom: var(--space-8); }
 
     .pl-sms .section-header__title .highlight { color: var(--ink); }
@@ -2134,7 +2136,7 @@
     <!-- ════════════════════════════════════════ -->
     <!-- BRANDING                                 -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section section--dark">
+    <section class="section section--dark pl-brand">
       <div class="container">
         <div class="content-split content-split--reverse">
           <div data-animate>
