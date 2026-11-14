@@ -327,6 +327,9 @@
       .hero__card-status { width: 6px; height: 6px; }
     }
 
+    /* Hero subtitle line break on desktop only */
+    .br-desk { display: none; }
+    @media (min-width: 969px) { .br-desk { display: inline; } }
 </style>
 
   <!-- Favicon -->
@@ -624,7 +627,7 @@
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
             <h1 class="solution-hero__title" style="--fit-em: 3.87">Big bills.<br><span style="white-space: nowrap;">Settled.<span class="solution-hero__asterisk">*</span></span></h1>
-            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>invoices that carry their own pay button, card payments over the phone and a payment link for slow payers.</p>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>invoices that carry their own pay button, card payments<br class="br-desk"> over the phone and a payment link for slow payers.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
                 Sign up now
