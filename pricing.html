@@ -77,7 +77,6 @@
       width: min(320px, 100%);
       margin: 0 0 0 auto;
       background: #FFFFFF;
-      border: 2px solid var(--ink);
       border-radius: 18px;
       box-shadow: 24px 32px 64px rgba(11, 27, 51, 0.18);
       overflow: hidden;
@@ -128,14 +127,13 @@
       height: 38px;
       flex: none;
       border-radius: 10px;
-      background: var(--ink);
-      color: #FFFFFF;
+      background: #EAE4FF;
+      color: var(--blurple);
       display: grid;
       place-items: center;
     }
 
     .cf-icon svg { width: 20px; height: 20px; }
-    .cf-icon--ig { background: radial-gradient(circle at 30% 107%, #FDD86E 0%, #F9744B 40%, #D62A7C 65%, #8F39CE 100%); }
 
     .cf-text { min-width: 0; flex: 1; line-height: 1.25; }
     .cf-text b { display: block; font-size: 14px; font-weight: 700; }
@@ -145,8 +143,8 @@
       flex: none;
       padding: 5px 9px;
       border-radius: 999px;
-      background: var(--hot);
-      color: #FFFFFF;
+      background: var(--green);
+      color: var(--ink);
       font-size: 12px;
       font-weight: 700;
       opacity: 0;
@@ -801,11 +799,11 @@
             <div class="channels-demo" role="img" aria-label="Payments arriving from Instagram, a website, a card terminal, the phone and a payment link, each charged the same 1 per cent fee">
               <div class="cf-head"><b>Payments in</b><span>Live</span></div>
               <ul class="cf-list" data-channels-feed>
-                <li class="cf-item"><span class="cf-icon cf-icon--ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></span><span class="cf-text"><b>Instagram</b><span>Order #0125 &middot; &pound;85.00</span></span><span class="cf-fee">1% &middot; 85p</span></li>
-                <li class="cf-item"><span class="cf-icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span><span class="cf-text"><b>Website</b><span>Checkout &middot; &pound;42.00</span></span><span class="cf-fee">1% &middot; 42p</span></li>
-                <li class="cf-item"><span class="cf-icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><rect x="8.5" y="5.5" width="7" height="5" rx="1"/><path d="M9 14h.01M12 14h.01M15 14h.01M9 17h.01M12 17h.01M15 17h.01"/></svg></span><span class="cf-text"><b>Card terminal</b><span>Tap to pay &middot; &pound;120.00</span></span><span class="cf-fee">1% &middot; &pound;1.20</span></li>
-                <li class="cf-item"><span class="cf-icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11 11 0 0 0 5.2 5.2l1.4-2.1 4.2 1.6V17a2.5 2.5 0 0 1-2.7 2.5A15.5 15.5 0 0 1 2.5 6.2 2.5 2.5 0 0 1 5 3.5z"/></svg></span><span class="cf-text"><b>Phone</b><span>Booking &middot; &pound;240.00</span></span><span class="cf-fee">1% &middot; &pound;2.40</span></li>
-                <li class="cf-item"><span class="cf-icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg></span><span class="cf-text"><b>Anywhere</b><span>Payment link &middot; &pound;60.00</span></span><span class="cf-fee">1% &middot; 60p</span></li>
+                <li class="cf-item"><span class="cf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></span><span class="cf-text"><b>Instagram</b><span>Order #0125 &middot; &pound;85.00</span></span><span class="cf-fee">1% &middot; 85p</span></li>
+                <li class="cf-item"><span class="cf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span><span class="cf-text"><b>Website</b><span>Checkout &middot; &pound;42.00</span></span><span class="cf-fee">1% &middot; 42p</span></li>
+                <li class="cf-item"><span class="cf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><rect x="8.5" y="5.5" width="7" height="5" rx="1"/><path d="M9 14h.01M12 14h.01M15 14h.01M9 17h.01M12 17h.01M15 17h.01"/></svg></span><span class="cf-text"><b>Card terminal</b><span>Tap to pay &middot; &pound;120.00</span></span><span class="cf-fee">1% &middot; &pound;1.20</span></li>
+                <li class="cf-item"><span class="cf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11 11 0 0 0 5.2 5.2l1.4-2.1 4.2 1.6V17a2.5 2.5 0 0 1-2.7 2.5A15.5 15.5 0 0 1 2.5 6.2 2.5 2.5 0 0 1 5 3.5z"/></svg></span><span class="cf-text"><b>Phone</b><span>Booking &middot; &pound;240.00</span></span><span class="cf-fee">1% &middot; &pound;2.40</span></li>
+                <li class="cf-item"><span class="cf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg></span><span class="cf-text"><b>Anywhere</b><span>Payment link &middot; &pound;60.00</span></span><span class="cf-fee">1% &middot; 60p</span></li>
               </ul>
               <div class="cf-foot">Every channel. 1%.</div>
             </div>
