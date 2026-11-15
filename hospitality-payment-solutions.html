@@ -341,6 +341,9 @@
     /* Hero subtitle breaks after "account," on desktop only (Danny, 14 Nov 2026) */
     .br-desk { display: none; }
     @media (min-width: 969px) { .br-desk { display: inline; } }
+    .cs-more { display: inline-flex; align-items: center; gap: 8px; margin-top: var(--space-6); font-weight: 600; color: var(--hot); text-decoration: none; }
+    .cs-more:hover span { transform: translateX(3px); }
+    .cs-more span { transition: transform var(--duration-fast) var(--ease-out); }
 </style>
 
   <!-- Favicon -->
@@ -883,6 +886,31 @@
       <div class="container">
         <div class="stats-typewriter" data-animate>
           <span class="stats-typewriter__cycle" style="--fit-em: 6.31" data-typewriter-cycle="Table.|Counter.|Online.|One account.|Paid next day."></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDY: Cheeky Clucker (real customer; quote from Stored's
+         original case study). Full story at /case-studies/cheeky-clucker -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="section-header section-header--center section-header--wide" data-animate>
+          <div class="section-header__overline">CASE STUDY</div>
+          <h2 class="section-header__title">Every event, paid by link.</h2>
+        </div>
+
+        <div class="case-study" data-animate>
+          <div class="case-study__image"><img src="/assets/images/case-studies/cheeky-clucker-venue.jpg" alt="Inside Cheeky Clucker, a vaulted brick bar lit in yellow and purple" loading="lazy" decoding="async"></div>
+          <div class="case-study__content">
+            <blockquote class="case-study__quote">&ldquo;With Stored we can quickly and easily create payment links for any event. We share them with our followers across our social channels and take payment instantly.&rdquo;</blockquote>
+            <div class="case-study__attribution">
+              <div>
+                <div class="case-study__name">Cheeky Clucker</div>
+                <div class="case-study__role">Bar &amp; restaurant</div>
+              </div>
+            </div>
+            <a href="/case-studies/cheeky-clucker" class="cs-more">Read the case study <span aria-hidden="true">&rarr;</span></a>
+          </div>
         </div>
       </div>
     </section>
