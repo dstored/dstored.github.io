@@ -572,7 +572,10 @@
     .solution-hero { min-height: 760px !important; }
     [data-animate] { opacity: 1 !important; transform: none !important; }
     .iv-thread__item--1, .iv-thread__item--2, .iv-thread__item--3 { animation: none !important; opacity: 1 !important; transform: none !important; }
-</style>
+    .cs-more { display: inline-flex; align-items: center; gap: 8px; margin-top: var(--space-6); font-weight: 600; color: var(--hot); text-decoration: none; }
+    .cs-more:hover span { transform: translateX(3px); }
+    .cs-more span { transition: transform var(--duration-fast) var(--ease-out); }
+  </style>
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
@@ -1169,24 +1172,23 @@
 
     <!-- FAQ -->
 
+    <!-- CASE STUDY: Cheeky Clucker (real customer; quote from Stored's
+         original case study). Full story at /case-studies/cheeky-clucker -->
     <section class="section section--dark">
       <div class="container">
 <div class="case-study" data-animate>
-          <div class="case-study__image">
-            <img src="/assets/images/sectors/hospitality/table.jpg" alt="A restaurant dining room" loading="lazy">
-          </div>
+          <div class="case-study__image"><img src="/assets/images/case-studies/cheeky-clucker-venue.jpg" alt="Inside Cheeky Clucker, a vaulted brick bar lit in yellow and purple" loading="lazy" decoding="async"></div>
           <div class="case-study__content">
-            <blockquote class="case-study__quote">&ldquo;Every booking over the phone is deposit-paid before we hang up, and the Christmas function invoices chase themselves. We stopped holding tables for people who never turn up.&rdquo;</blockquote>
+            <blockquote class="case-study__quote">&ldquo;With Stored we can quickly and easily create payment links for any event. We share them with our followers across our social channels and take payment instantly.&rdquo;</blockquote>
             <div class="case-study__attribution">
-              <div class="case-study__avatar"></div>
               <div>
-                <div class="case-study__name">PLACEHOLDER: needs a real venue</div>
-                <div class="case-study__role">Quote is invented, for layout only</div>
+                <div class="case-study__name">Cheeky Clucker</div>
+                <div class="case-study__role">Bar &amp; restaurant</div>
               </div>
             </div>
+            <a href="/case-studies/cheeky-clucker" class="cs-more">Read the case study <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>
-      </div>
     
       </div>
     </section>
