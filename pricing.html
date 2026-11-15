@@ -35,7 +35,7 @@
     /* The ticker sits on the bottom of the first screen, as on the product pages */
     .solution-hero { min-height: calc(100vh - 68px); }
 
-    /* Homepage-pattern hero: full-width headline, receipt demo at right */
+    /* Homepage-pattern hero: full-width headline, channels feed at right */
     .solution-hero .solution-hero__inner {
       grid-template-columns: 1fr;
       gap: 0;
@@ -70,8 +70,10 @@
       to { opacity: 1; transform: none; }
     }
 
-    /* Drawn receipt mock: the flat rate made tangible */
-    .receipt-demo {
+    /* Channels feed: payments land from every channel, each one stamped
+       with the same 1% fee. Items slide in one by one, then the feed
+       clears and starts again (inline script at the end of the page) */
+    .channels-demo {
       width: min(320px, 100%);
       margin: 0 0 0 auto;
       background: #FFFFFF;
@@ -79,126 +81,93 @@
       border-radius: 18px;
       box-shadow: 24px 32px 64px rgba(11, 27, 51, 0.18);
       overflow: hidden;
-    }
-
-    .receipt-demo__screens { display: grid; }
-
-    .receipt-demo .hero__card-state {
-      grid-area: 1 / 1;
-      min-width: 0;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      pointer-events: none;
-    }
-
-    .receipt-demo .hero__card-state.is-active { opacity: 1; }
-
-    .receipt-demo__screen {
-      min-height: 380px;
-      padding: 28px 24px 24px;
-      display: flex;
-      flex-direction: column;
       font-family: var(--font-body);
-    }
-
-    .rc-head {
-      font-family: var(--font-display);
-      font-size: 19px;
-      font-weight: 700;
       color: var(--ink);
-      text-align: center;
     }
 
-    .rc-sub {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(11, 27, 51, 0.55);
-      text-align: center;
-      margin-top: 5px;
-    }
-
-    .rc-divide { border-top: 2px dashed rgba(11, 27, 51, 0.2); margin: 18px 0; }
-
-    .rc-row {
+    .cf-head {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-      padding: 7px 0;
+      padding: 18px 18px 14px;
+      border-bottom: 2px dashed rgba(11, 27, 51, 0.15);
     }
 
-    .rc-row--total {
-      font-family: var(--font-display);
-      font-size: 19px;
-      font-weight: 700;
+    .cf-head b { font-family: var(--font-display); font-size: 17px; font-weight: 700; }
+
+    .cf-head span {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(11, 27, 51, 0.55);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .rc-flat {
-      margin-top: auto;
-      height: 46px;
+    .cf-head span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+
+    .cf-list { list-style: none; margin: 0; padding: 10px 10px 12px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+
+    .cf-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px;
       border-radius: 12px;
+      background: #F6F5F1;
+      opacity: 0;
+      transform: translateX(110%);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+    }
+
+    .cf-item.is-in { opacity: 1; transform: none; }
+    .channels-demo.is-clearing .cf-item { opacity: 0; transform: none; transition: opacity 0.5s ease; }
+
+    .cf-icon {
+      width: 38px;
+      height: 38px;
+      flex: none;
+      border-radius: 10px;
+      background: var(--ink);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+    }
+
+    .cf-icon svg { width: 20px; height: 20px; }
+    .cf-icon--ig { background: radial-gradient(circle at 30% 107%, #FDD86E 0%, #F9744B 40%, #D62A7C 65%, #8F39CE 100%); }
+
+    .cf-text { min-width: 0; flex: 1; line-height: 1.25; }
+    .cf-text b { display: block; font-size: 14px; font-weight: 700; }
+    .cf-text span { display: block; font-size: 12px; color: rgba(11, 27, 51, 0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .cf-fee {
+      flex: none;
+      padding: 5px 9px;
+      border-radius: 999px;
       background: var(--hot);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0;
+      transform: scale(0.4) rotate(-8deg);
+      transition: opacity 0.25s ease 0.55s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s;
+    }
+
+    .cf-item.is-in .cf-fee { opacity: 1; transform: none; }
+    .channels-demo.is-clearing .cf-fee { transition: none; }
+
+    .cf-foot {
+      margin: 0 10px 10px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--ink);
       color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      font-size: 15px;
-    }
-
-    /* Settled state */
-    .rc-settled {
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 10px;
-    }
-
-    .rc-tick { width: 58px; height: 58px; }
-
-    .hero__card-state.is-active .rc-tick {
-      animation: rc-tick-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.2s;
-    }
-
-    @keyframes rc-tick-pop {
-      from { transform: scale(0.4); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .rc-settled__amount { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--ink); }
-    .rc-settled__meta { font-size: 13px; font-weight: 500; color: rgba(11, 27, 51, 0.55); }
-
-    .rc-settled__pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 2px solid var(--ink);
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--ink);
-    }
-
-    .rc-settled__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
-
-    /* Rows land one by one each cycle */
-    .rc-pop { opacity: 0; }
-    .hero__card-state.is-active .rc-pop--1 { animation: rc-pop 0.5s ease forwards 0.2s; }
-    .hero__card-state.is-active .rc-pop--2 { animation: rc-pop 0.5s ease forwards 0.7s; }
-    .hero__card-state.is-active .rc-pop--3 { animation: rc-pop 0.5s ease forwards 1.2s; }
-
-    @keyframes rc-pop {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: none; }
+      font-size: 14px;
     }
 
     /* £200k segment split */
@@ -456,7 +425,7 @@
         animation: none;
       }
 
-      .solution-hero .solution-hero__visual .receipt-demo { margin: 0 auto; }
+      .solution-hero .solution-hero__visual .channels-demo { margin: 0 auto; zoom: 0.8; position: relative; }
     }
 
     /* Shorter laptop screens: same compression as the homepage hero,
@@ -502,18 +471,17 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .solution-hero .solution-hero__visual,
-      .hero__card-state.is-active .rc-tick {
+      .solution-hero .solution-hero__visual {
         animation: none;
       }
 
-      .rc-pop { opacity: 1; animation: none; }
+      .cf-item, .cf-fee { opacity: 1; transform: none; transition: none; }
       .segment-card__bar-fill { transition: none; width: var(--fill, 40%); }
     }
     /* "Terminals. Free over £100k a year." only fits one line from 1280px;
        between 1024 and 1279 it wraps like any other section headline */
     /* "Flat rate." is wider than "Flat.": on smaller laptops the headline
-       scales so it stays clear of the receipt card */
+       scales so it stays clear of the channels card */
     @media (min-width: 969px) and (max-width: 1279px) {
       .solution-hero .solution-hero__inner .solution-hero__title { font-size: min(10rem, calc((100vw - 520px) / 4.6)); }
     }
@@ -830,28 +798,16 @@
           </div>
           <div class="solution-hero__visual">
             <div class="hero-blob" aria-hidden="true"><svg viewBox="0 0 500 500"><path d="M488.3 250.0C487.6 261.1 486.5 272.1 484.7 283.0C482.8 293.8 480.5 304.7 477.4 315.2C474.4 325.8 470.6 336.1 466.3 346.3C462.1 356.5 457.4 366.6 451.9 376.2C446.5 385.8 440.1 395.0 433.4 403.9C426.7 412.8 419.5 421.5 411.8 429.7C404.0 437.8 395.8 446.0 386.8 452.8C377.8 459.6 367.7 465.4 357.5 470.4C347.3 475.4 336.5 479.5 325.7 482.8C314.8 486.2 303.6 488.7 292.4 490.5C281.2 492.4 269.8 493.5 258.5 493.9C247.2 494.3 235.8 493.9 224.5 492.9C213.2 491.9 201.9 490.0 190.7 487.7C179.6 485.4 168.4 482.7 157.4 479.1C146.5 475.6 135.5 471.4 125.1 466.3C114.7 461.2 104.3 455.4 94.9 448.5C85.5 441.6 76.6 433.6 68.8 425.0C61.0 416.4 53.9 406.7 47.9 396.8C41.9 386.9 37.0 376.2 32.6 365.6C28.3 355.0 24.4 344.1 21.6 333.1C18.7 322.2 17.0 311.0 15.4 299.9C13.8 288.8 12.6 277.7 12.1 266.6C11.5 255.6 11.5 244.4 12.1 233.4C12.6 222.3 13.6 211.2 15.4 200.1C17.2 189.1 19.5 178.0 22.6 167.2C25.8 156.5 29.7 145.7 34.5 135.4C39.3 125.2 45.0 115.1 51.3 105.6C57.6 96.2 64.6 86.8 72.4 78.5C80.2 70.1 88.9 62.4 98.0 55.4C107.0 48.4 116.8 42.1 126.8 36.6C136.8 31.2 147.4 26.3 158.1 22.5C168.8 18.7 180.0 16.1 191.1 13.7C202.2 11.4 213.4 9.7 224.6 8.4C235.8 7.1 247.2 6.2 258.5 6.1C269.9 6.0 281.3 6.7 292.7 7.9C304.1 9.2 315.6 10.9 326.8 13.7C338.0 16.5 349.1 20.3 359.8 24.8C370.6 29.3 381.3 34.5 391.3 40.5C401.3 46.6 411.2 53.4 420.1 61.1C429.0 68.7 437.6 77.3 444.9 86.5C452.2 95.7 458.5 106.0 464.0 116.3C469.5 126.6 474.3 137.5 477.9 148.5C481.5 159.6 483.7 171.1 485.5 182.5C487.4 193.8 488.4 205.2 488.8 216.4C489.3 227.7 489.0 238.9 488.3 250.0Z" fill="var(--blurple)" stroke="#0B1B33" stroke-width="2.4" stroke-linejoin="round"/></svg></div>
-            <div class="receipt-demo" role="img" aria-label="A receipt for a one hundred pound sale with a one pound card fee at 1 per cent, settled the next working day">
-              <div class="receipt-demo__screens" data-cycle-card data-cycle-interval="4000">
-                <div class="hero__card-state is-active receipt-demo__screen">
-                  <div class="rc-head">Sun Shack</div>
-                  <div class="rc-sub">Card payment &middot; 10:24</div>
-                  <div class="rc-divide"></div>
-                  <div class="rc-row rc-pop rc-pop--1"><span>Sale</span><span>&pound;100.00</span></div>
-                  <div class="rc-row rc-pop rc-pop--2"><span>Card fee &middot; 1%</span><span>&pound;1.00</span></div>
-                  <div class="rc-divide"></div>
-                  <div class="rc-row rc-row--total rc-pop rc-pop--3"><span>You receive</span><span>&pound;99.00</span></div>
-                  <div class="rc-flat">One flat rate. 1%.</div>
-                </div>
-                <div class="hero__card-state receipt-demo__screen rc-settled">
-                  <svg class="rc-tick" viewBox="0 0 58 58" fill="none" aria-hidden="true">
-                    <circle cx="29" cy="29" r="26" style="fill: var(--green)" stroke="#16223C" stroke-width="3"/>
-                    <path d="M18 30l8 8 14-16" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <div class="rc-settled__amount">&pound;99.00</div>
-                  <div class="rc-settled__meta">In your account the next working day.</div>
-                  <div class="rc-settled__pill"><span class="rc-settled__dot"></span>SETTLED</div>
-                </div>
-              </div>
+            <div class="channels-demo" role="img" aria-label="Payments arriving from Instagram, a website, a card terminal, the phone and a payment link, each charged the same 1 per cent fee">
+              <div class="cf-head"><b>Payments in</b><span>Live</span></div>
+              <ul class="cf-list" data-channels-feed>
+                <li class="cf-item"><span class="cf-icon cf-icon--ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></span><span class="cf-text"><b>Instagram</b><span>Order #0125 &middot; &pound;85.00</span></span><span class="cf-fee">1% &middot; 85p</span></li>
+                <li class="cf-item"><span class="cf-icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span><span class="cf-text"><b>Website</b><span>Checkout &middot; &pound;42.00</span></span><span class="cf-fee">1% &middot; 42p</span></li>
+                <li class="cf-item"><span class="cf-icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><rect x="8.5" y="5.5" width="7" height="5" rx="1"/><path d="M9 14h.01M12 14h.01M15 14h.01M9 17h.01M12 17h.01M15 17h.01"/></svg></span><span class="cf-text"><b>Card terminal</b><span>Tap to pay &middot; &pound;120.00</span></span><span class="cf-fee">1% &middot; &pound;1.20</span></li>
+                <li class="cf-item"><span class="cf-icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11 11 0 0 0 5.2 5.2l1.4-2.1 4.2 1.6V17a2.5 2.5 0 0 1-2.7 2.5A15.5 15.5 0 0 1 2.5 6.2 2.5 2.5 0 0 1 5 3.5z"/></svg></span><span class="cf-text"><b>Phone</b><span>Booking &middot; &pound;240.00</span></span><span class="cf-fee">1% &middot; &pound;2.40</span></li>
+                <li class="cf-item"><span class="cf-icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg></span><span class="cf-text"><b>Anywhere</b><span>Payment link &middot; &pound;60.00</span></span><span class="cf-fee">1% &middot; 60p</span></li>
+              </ul>
+              <div class="cf-foot">Every channel. 1%.</div>
             </div>
           </div>
         </div>
@@ -1348,5 +1304,28 @@
   </footer>
 
   <script src="js/main.js?v=chain-4"></script>
+  <script>
+    /* Channels feed on the pricing hero: payments land one by one, each
+       stamped 1%, then the feed clears and runs again */
+    (function () {
+      var list = document.querySelector('[data-channels-feed]');
+      if (!list) return;
+      var items = list.querySelectorAll('.cf-item');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        items.forEach(function (el) { el.classList.add('is-in'); });
+        return;
+      }
+      var card = list.closest('.channels-demo');
+      var step = 1100, lead = 700, hold = 3200;
+      function run() {
+        card.classList.remove('is-clearing');
+        items.forEach(function (el) { el.classList.remove('is-in'); });
+        items.forEach(function (el, i) { setTimeout(function () { el.classList.add('is-in'); }, lead + i * step); });
+        setTimeout(function () { card.classList.add('is-clearing'); }, lead + items.length * step + hold);
+        setTimeout(run, lead + items.length * step + hold + 700);
+      }
+      run();
+    })();
+  </script>
 </body>
 </html>
