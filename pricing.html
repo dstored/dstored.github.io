@@ -61,7 +61,7 @@
       position: absolute;
       right: 0;
       top: 1px; /* = 95px into the hero: graphics never sit higher than this line (rule of 10 Aug) */
-      width: 320px;
+      width: 360px;
             animation: rc-slide-in 0.9s var(--ease-out, ease-out) 0.35s both;
     }
 
@@ -74,7 +74,7 @@
        with the same 1% fee. Items slide in one by one, then the feed
        clears and starts again (inline script at the end of the page) */
     .channels-demo {
-      width: min(320px, 100%);
+      width: min(360px, 100%);
       margin: 0 0 0 auto;
       background: #FFFFFF;
       border-radius: 18px;
@@ -159,7 +159,7 @@
       margin: 0 10px 10px;
       height: 44px;
       border-radius: 12px;
-      background: var(--ink);
+      background: var(--blurple);
       color: #FFFFFF;
       display: flex;
       align-items: center;
@@ -480,8 +480,8 @@
        between 1024 and 1279 it wraps like any other section headline */
     /* "Flat rate." is wider than "Flat.": on smaller laptops the headline
        scales so it stays clear of the channels card */
-    @media (min-width: 969px) and (max-width: 1279px) {
-      .solution-hero .solution-hero__inner .solution-hero__title { font-size: min(10rem, calc((100vw - 520px) / 4.6)); }
+    @media (min-width: 969px) and (max-width: 1359px) {
+      .solution-hero .solution-hero__inner .solution-hero__title { font-size: min(10rem, calc((100vw - 560px) / 4.6)); }
     }
 
     @media (min-width: 1024px) and (max-width: 1279px) {
