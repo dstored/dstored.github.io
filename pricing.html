@@ -228,6 +228,9 @@
     .segment-card--published:hover {
       box-shadow: 10px 10px 0 var(--ink);
     }
+    /* White face, like "Book a demo" on the bespoke card */
+    .segment-card--published .btn--secondary { background-color: var(--white); }
+    .segment-card--published .btn--secondary:hover { background-color: var(--ink); }
     .segment-card--bespoke {
       background: var(--ink);
       color: var(--white);
@@ -778,7 +781,7 @@
 
           <div class="segment-card segment-card--bespoke">
             <span class="segment-card__tag">OVER &pound;200K A YEAR</span>
-            <h3 class="segment-card__title">Bespoke rates.<br>Priced to win.</h3>
+            <h3 class="segment-card__title">Bespoke rates.<br>Talk to us.</h3>
             <div>
               <div class="segment-card__rate">Custom</div>
               <div class="segment-card__rate-label">Tailored to your volume, sector and mix.</div>
