@@ -232,6 +232,11 @@
       background: var(--ink);
       color: var(--white);
     }
+    /* Navy card on a light section: its primary button takes the pink
+       offset shadow, as on any navy section */
+    .segment-card--bespoke .btn--primary { box-shadow: 6px 6px 0 var(--hot); }
+    .segment-card--bespoke .btn--primary:hover { box-shadow: 3px 3px 0 var(--hot); }
+    .segment-card--bespoke .btn--primary:active { box-shadow: 0 0 0 var(--hot); }
     .segment-card__tag {
       display: inline-flex;
       align-self: flex-start;
