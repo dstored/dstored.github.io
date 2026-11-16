@@ -323,73 +323,6 @@
       flex-wrap: wrap;
     }
 
-    /* Rate tile grid */
-    .rate-tiles {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-5);
-    }
-    .rate-tile {
-      background: var(--white);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-    }
-    .rate-tile__label {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: var(--weight-semibold);
-      color: var(--hot);
-    }
-    .rate-tile__rate {
-      font-family: var(--font-display);
-      font-weight: var(--weight-bold);
-      font-size: var(--text-4xl);
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: var(--ink);
-    }
-    .rate-tile__sub {
-      font-size: var(--text-sm);
-      color: var(--text-secondary);
-    }
-
-    /* Headline rate banner */
-    .headline-rate {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: var(--space-10);
-      align-items: center;
-      padding: var(--space-10);
-      background: var(--paper);
-      border-radius: var(--radius-xl);
-      margin-bottom: var(--space-10);
-    }
-    .headline-rate__big {
-      font-family: var(--font-display);
-      font-weight: var(--weight-bold);
-      font-size: 8rem;
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-      color: var(--hot);
-    }
-    .headline-rate__label {
-      font-size: var(--text-lg);
-      font-weight: var(--weight-medium);
-      color: var(--ink);
-    }
-    .headline-rate__text {
-      font-size: var(--text-md);
-      color: var(--text-secondary);
-      line-height: var(--leading-normal);
-      margin-top: var(--space-3);
-    }
-
     /* Bone capability cards inside the dark bespoke section */
     .section--dark .capability-card.cap-card--bone {
       background: var(--bone);
@@ -461,14 +394,6 @@
         transform: none;
         margin: 0 auto;
       }
-      .rate-tiles {
-        grid-template-columns: 1fr 1fr;
-      }
-      .headline-rate {
-        grid-template-columns: 1fr;
-        padding: var(--space-6);
-      }
-      .headline-rate__big { font-size: 5rem; }
       .segment-card__rate { font-size: 4rem; }
     }
 
@@ -498,6 +423,11 @@
       body .section-header--one-line { max-width: 720px; }
       body .section-header--one-line .section-header__title { white-space: normal; }
     }
+    /* Four-card version of the homepage pricing band */
+    .pricing-teaser--four .pricing-teaser__rates { grid-template-columns: repeat(4, 1fr); }
+    @media (min-width: 1101px) { .pricing-teaser--four .pricing-teaser__rate-note { min-height: 3em; } }
+    @media (max-width: 1100px) { .pricing-teaser--four .pricing-teaser__rates { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .pricing-teaser--four .pricing-teaser__rates { grid-template-columns: 1fr; } }
   </style>
   <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
@@ -898,45 +828,41 @@
     <!-- ════════════════════════════════════════ -->
     <!-- UNDER £200K — THE FLAT RATE              -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section section--alt" id="published-rates">
+    <section class="section section--dark" id="published-rates">
       <div class="container">
         <div class="section-header" data-animate>
           <div class="section-header__overline">UNDER &pound;200K &middot; PUBLISHED RATE</div>
           <h2 class="section-header__title">In person and online. 1%.</h2>
-          <p class="section-header__subtitle">One flat rate covers contactless, chip &amp; PIN, wallets, gateway, pay-by-link, invoicing and virtual terminal.</p>
+          <p class="section-header__subtitle">One flat rate for Visa, Mastercard, Maestro and all major wallets, in person, online and over the phone. No tiered surcharges, no surprises on your statement.</p>
         </div>
 
-        <div class="headline-rate" data-animate>
-          <div>
-            <div class="headline-rate__big" data-count-to="1" data-decimals="0" data-suffix="%">0%</div>
-            <div class="headline-rate__label">per card transaction, every channel</div>
-          </div>
-          <div>
-            <div class="headline-rate__text">A single, transparent rate for Visa, Mastercard, Maestro and all major wallets, in person and online. No tiered surcharges. No surprises on your statement.</div>
-            <p class="headline-rate__text" style="margin-top: var(--space-4);"><strong>Terminals free when you process &pound;100,000 or more a year.</strong> Under that, terminals start from &pound;16 a month.</p>
-          </div>
-        </div>
-
-        <div class="rate-tiles" data-stagger>
-          <div class="rate-tile">
-            <span class="rate-tile__label">In-person</span>
-            <div class="rate-tile__rate">1%</div>
-            <span class="rate-tile__sub">Contactless, chip &amp; PIN, wallets.</span>
-          </div>
-          <div class="rate-tile">
-            <span class="rate-tile__label">Online</span>
-            <div class="rate-tile__rate">1%</div>
-            <span class="rate-tile__sub">Gateway, pay-by-link, invoicing.</span>
-          </div>
-          <div class="rate-tile">
-            <span class="rate-tile__label">Virtual terminal</span>
-            <div class="rate-tile__rate">1%</div>
-            <span class="rate-tile__sub">Card payments over the phone.</span>
-          </div>
-          <div class="rate-tile">
-            <span class="rate-tile__label">Terminal hardware</span>
-            <div class="rate-tile__rate">Free</div>
-            <span class="rate-tile__sub">Over &pound;100k a year. Otherwise from &pound;16 a month.</span>
+        <!-- Same card style as the homepage pricing band (Danny, 16 Nov 2026) -->
+        <div class="pricing-teaser pricing-teaser--four" data-animate>
+          <div class="pricing-teaser__rates">
+            <div class="pricing-teaser__rate-card">
+              <div class="pricing-teaser__rate-label">in-person</div>
+              <div class="pricing-teaser__rate-note">Contactless, chip &amp; PIN, wallets.</div>
+              <div class="pricing-teaser__rate-number"><span data-count-to="1" data-decimals="0" data-suffix="%">0%</span><span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>blended rate</div>
+            </div>
+            <div class="pricing-teaser__rate-card">
+              <div class="pricing-teaser__rate-label">online</div>
+              <div class="pricing-teaser__rate-note">Gateway, pay by link, invoicing.</div>
+              <div class="pricing-teaser__rate-number"><span data-count-to="1" data-decimals="0" data-suffix="%">0%</span><span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>blended rate</div>
+            </div>
+            <div class="pricing-teaser__rate-card">
+              <div class="pricing-teaser__rate-label">virtual terminal</div>
+              <div class="pricing-teaser__rate-note">Card payments over the phone.</div>
+              <div class="pricing-teaser__rate-number"><span data-count-to="1" data-decimals="0" data-suffix="%">0%</span><span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>blended rate</div>
+            </div>
+            <div class="pricing-teaser__rate-card">
+              <div class="pricing-teaser__rate-label">terminals</div>
+              <div class="pricing-teaser__rate-note">When you process &pound;100k or more a year.</div>
+              <div class="pricing-teaser__rate-number"><span class="pricing-teaser__rate-typed" data-typewriter="Free"></span><span class="pricing-teaser__rate-unit"><span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>under that, from &pound;16 a month</div>
+            </div>
           </div>
         </div>
       </div>
