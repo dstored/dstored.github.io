@@ -407,6 +407,10 @@
     /* Keep the three rate figures level when a note wraps */
     @media (min-width: 769px) and (max-width: 1399px) { #published-rates .pricing-teaser__rate-note { min-height: 3em; } }
     @media (min-width: 769px) and (max-width: 899px) { #published-rates .pricing-teaser__rate-note { min-height: 4.5em; } }
+    /* Published-rate subtitle runs the full width of the container */
+    .section-header--full { max-width: none; }
+    .section-header--full .section-header__subtitle { max-width: none; }
+    @media (min-width: 769px) { #card-fees .pricing-teaser__rate-note { min-height: 3em; } }
   </style>
   <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
@@ -801,10 +805,10 @@
     <!-- ════════════════════════════════════════ -->
     <section class="section section--dark" id="published-rates">
       <div class="container">
-        <div class="section-header" data-animate>
+        <div class="section-header section-header--full" data-animate>
           <div class="section-header__overline">UNDER &pound;200K &middot; PUBLISHED RATE</div>
           <h2 class="section-header__title">In person and online. 1%.</h2>
-          <p class="section-header__subtitle">One flat rate for Visa, Mastercard, Maestro and all major wallets, in person, online and over the phone. No tiered surcharges, no surprises on your statement.</p>
+          <p class="section-header__subtitle">Wherever your customers pay, in person, online, by link or over the phone, it&rsquo;s one blended rate of 1%.</p>
         </div>
 
         <!-- Same card style as the homepage pricing band (Danny, 16 Nov 2026) -->
@@ -827,6 +831,36 @@
               <div class="pricing-teaser__rate-note">When you process &pound;100k or more a year.</div>
               <div class="pricing-teaser__rate-number"><span class="pricing-teaser__rate-typed" data-typewriter="Free"></span><span class="pricing-teaser__rate-unit"><span class="pricing-teaser__asterisk">*</span></span></div>
               <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>under that, from &pound;16 a month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- COMMERCIAL & INTERNATIONAL CARDS          -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section section--alt" id="card-fees">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <div class="section-header__overline">COMMERCIAL &amp; INTERNATIONAL CARDS</div>
+          <h2 class="section-header__title">Never more than 1%.</h2>
+          <p class="section-header__subtitle">Commercial and international cards carry higher processing fees. Stored lets you pass some of these costs on to the customer, or ask them to pay with another card. That means you never pay more than 1% in processing fees.</p>
+        </div>
+
+        <div class="pricing-teaser pricing-teaser--two" data-animate>
+          <div class="pricing-teaser__rates">
+            <div class="pricing-teaser__rate-card">
+              <div class="pricing-teaser__rate-label">pass it on</div>
+              <div class="pricing-teaser__rate-note">Surcharge the customer, or ask them to use another card.</div>
+              <div class="pricing-teaser__rate-number"><span data-count-to="1" data-decimals="0" data-suffix="%">0%</span><span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>the most you pay in processing fees</div>
+            </div>
+            <div class="pricing-teaser__rate-card">
+              <div class="pricing-teaser__rate-label">absorb it</div>
+              <div class="pricing-teaser__rate-note">If you choose not to pass these fees on.</div>
+              <div class="pricing-teaser__rate-number">2.5%<span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>international and commercial cards</div>
             </div>
           </div>
         </div>
