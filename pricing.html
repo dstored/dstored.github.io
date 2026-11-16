@@ -160,7 +160,7 @@
       margin: 0 10px 10px;
       padding: 13px 14px;
       border-radius: 12px;
-      background: #EAE4FF;
+      background: var(--hot-light);
       display: flex;
       align-items: baseline;
       justify-content: space-between;
@@ -168,7 +168,13 @@
       font-size: 13px;
       font-weight: 500;
       color: rgba(11, 27, 51, 0.7);
+      opacity: 0;
+      transform: translateX(110%);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
     }
+
+    .cf-foot.is-in { opacity: 1; transform: none; }
+    .channels-demo.is-clearing .cf-foot { opacity: 0; transform: none; transition: opacity 0.5s ease; }
 
     .cf-foot b { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--ink); }
 
@@ -477,7 +483,7 @@
         animation: none;
       }
 
-      .cf-item, .cf-fee { opacity: 1; transform: none; transition: none; }
+      .cf-item, .cf-fee, .cf-foot { opacity: 1; transform: none; transition: none; }
       .segment-card__bar-fill { transition: none; width: var(--fill, 40%); }
     }
     /* "Terminals. Free over £100k a year." only fits one line from 1280px;
@@ -1312,7 +1318,7 @@
     (function () {
       var list = document.querySelector('[data-channels-feed]');
       if (!list) return;
-      var items = list.querySelectorAll('.cf-item');
+      var items = list.closest('.channels-demo').querySelectorAll('.cf-item, .cf-foot');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         items.forEach(function (el) { el.classList.add('is-in'); });
         return;
