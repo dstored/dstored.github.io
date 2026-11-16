@@ -207,38 +207,6 @@
       z-index: 2;
       box-shadow: 4px 4px 0 var(--ink);
     }
-    .segment-card__bar {
-      margin-top: var(--space-4);
-      height: 6px;
-      background: rgba(11, 27, 51, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .segment-card--bespoke .segment-card__bar {
-      background: rgba(255, 255, 255, 0.15);
-    }
-    .segment-card__bar-fill {
-      position: absolute;
-      inset: 0;
-      width: 0;
-      background: var(--hot);
-      transition: width 1.6s var(--ease-out);
-    }
-    [data-animate].is-visible .segment-card__bar-fill,
-    [data-stagger].is-visible .segment-card__bar-fill {
-      width: var(--fill, 40%);
-    }
-    .segment-card__bar-caption {
-      margin-top: var(--space-2);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--mute);
-    }
-    .segment-card--bespoke .segment-card__bar-caption {
-      color: rgba(255, 255, 255, 0.5);
-    }
     .segment-card {
       border: 2px solid var(--ink);
       border-radius: 0;
@@ -411,7 +379,6 @@
       }
 
       .cf-item, .cf-fee, .cf-foot { opacity: 1; transform: none; transition: none; }
-      .segment-card__bar-fill { transition: none; width: var(--fill, 40%); }
     }
     /* "Terminals. Free over £100k a year." only fits one line from 1280px;
        between 1024 and 1279 it wraps like any other section headline */
@@ -794,10 +761,6 @@
               <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>blended rate, in person and online</div>
             </div>
             <p class="segment-card__text">All-in pricing for UK businesses. No hidden fees, no monthly minimums, no in-contract price increases.</p>
-            <div class="segment-card__bar" aria-hidden="true">
-              <div class="segment-card__bar-fill" style="--fill: 40%;"></div>
-            </div>
-            <div class="segment-card__bar-caption">&pound;0, &pound;200k annual volume</div>
             <div class="segment-card__actions">
               <a href="/sign-up" class="btn btn--primary">Sign up</a>
               <a href="#published-rates" class="btn btn--secondary">See the rates</a>
@@ -812,10 +775,6 @@
               <div class="segment-card__rate-label">Tailored to your volume, sector and mix.</div>
             </div>
             <p class="segment-card__text">Higher volume deserves better economics. Send three months of statements and we&rsquo;ll price your rate from them. Account manager included.</p>
-            <div class="segment-card__bar" aria-hidden="true">
-              <div class="segment-card__bar-fill" style="--fill: 100%;"></div>
-            </div>
-            <div class="segment-card__bar-caption">&pound;200k, no ceiling</div>
             <div class="segment-card__actions">
               <a href="/contact?topic=sales#contact-form" class="btn btn--primary">Get a custom quote</a>
               <a href="/book-a-demo" class="btn btn--white">Book a demo</a>
