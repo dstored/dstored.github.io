@@ -295,6 +295,8 @@
       letter-spacing: -0.04em;
       color: var(--hot);
     }
+    /* Ink figure + pink asterisk, as on the homepage rate cards */
+    .segment-card__rate--ink { color: var(--ink); }
     .segment-card--bespoke .segment-card__rate {
       color: var(--bone);
       font-size: 4rem;
@@ -788,8 +790,8 @@
             <span class="segment-card__tag">UNDER &pound;200K A YEAR</span>
             <h3 class="segment-card__title">Published rate.<br>Start today.</h3>
             <div>
-              <div class="segment-card__rate" data-count-to="1" data-decimals="0" data-suffix="%">0%</div>
-              <div class="segment-card__rate-label">flat, in person and online.</div>
+              <div class="segment-card__rate segment-card__rate--ink"><span data-count-to="1" data-decimals="0" data-suffix="%">0%</span><span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
+              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>blended rate, in person and online</div>
             </div>
             <p class="segment-card__text">All-in pricing for UK businesses. No hidden fees, no monthly minimums, no long contracts.</p>
             <div class="segment-card__bar" aria-hidden="true">
