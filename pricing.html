@@ -404,11 +404,9 @@
       body .section-header--one-line { max-width: 720px; }
       body .section-header--one-line .section-header__title { white-space: normal; }
     }
-    /* Four-card version of the homepage pricing band */
-    .pricing-teaser--four .pricing-teaser__rates { grid-template-columns: repeat(4, 1fr); }
-    @media (min-width: 1101px) { .pricing-teaser--four .pricing-teaser__rate-note { min-height: 3em; } }
-    @media (max-width: 1100px) { .pricing-teaser--four .pricing-teaser__rates { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 768px) { .pricing-teaser--four .pricing-teaser__rates { grid-template-columns: 1fr; } }
+    /* Keep the three rate figures level when a note wraps */
+    @media (min-width: 769px) and (max-width: 1399px) { #published-rates .pricing-teaser__rate-note { min-height: 3em; } }
+    @media (min-width: 769px) and (max-width: 899px) { #published-rates .pricing-teaser__rate-note { min-height: 4.5em; } }
   </style>
   <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
@@ -810,7 +808,7 @@
         </div>
 
         <!-- Same card style as the homepage pricing band (Danny, 16 Nov 2026) -->
-        <div class="pricing-teaser pricing-teaser--four" data-animate>
+        <div class="pricing-teaser" data-animate>
           <div class="pricing-teaser__rates">
             <div class="pricing-teaser__rate-card">
               <div class="pricing-teaser__rate-label">in-person</div>
@@ -821,12 +819,6 @@
             <div class="pricing-teaser__rate-card">
               <div class="pricing-teaser__rate-label">online</div>
               <div class="pricing-teaser__rate-note">Gateway, pay by link, invoicing.</div>
-              <div class="pricing-teaser__rate-number"><span data-count-to="1" data-decimals="0" data-suffix="%">0%</span><span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
-              <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>blended rate</div>
-            </div>
-            <div class="pricing-teaser__rate-card">
-              <div class="pricing-teaser__rate-label">virtual terminal</div>
-              <div class="pricing-teaser__rate-note">Card payments over the phone.</div>
               <div class="pricing-teaser__rate-number"><span data-count-to="1" data-decimals="0" data-suffix="%">0%</span><span class="pricing-teaser__rate-unit is-visible"><span class="pricing-teaser__asterisk">*</span></span></div>
               <div class="pricing-teaser__rate-footnote"><span class="pricing-teaser__asterisk">*</span>blended rate</div>
             </div>
