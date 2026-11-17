@@ -442,6 +442,9 @@
       .about-purpose__title { font-size: var(--text-3xl); }
       .about-purpose__text { font-size: var(--text-base); }
     }
+    /* Hero subtitle breaks after "you're covered." on desktop only */
+    .br-desk { display: none; }
+    @media (min-width: 969px) { .br-desk { display: inline; } }
   </style>
 
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
@@ -737,7 +740,7 @@
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
             <h1 class="solution-hero__title fit-phone" style="--fit-em: 4.73">However,<br><span style="white-space: nowrap;">wherever.<span class="solution-hero__asterisk">*</span></span></h1>
-            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>your customers want to pay, you&rsquo;re covered. That&rsquo;s why Stored was founded in 2022.</p>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>your customers want to pay, you&rsquo;re covered.<br class="br-desk"> That&rsquo;s why Stored was founded in 2022.</p>
             <div class="solution-hero__actions">
               <a href="/contact" class="btn btn--primary btn--lg btn--icon-right">
                 Contact us
