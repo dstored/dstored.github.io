@@ -201,15 +201,16 @@
     .lp__head { display: flex; justify-content: space-between; align-items: center; padding: 38px 22px 0; }
     .lp__head img { height: 20px; width: auto; display: block; }
     .lp__head span { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.55); }
-    /* A blank ID photo: white, head and shoulders in a pale grey */
-    .lp__photo { margin: 22px auto 0; width: 104px; height: 124px; background: var(--white); border-radius: 8px; overflow: hidden; position: relative; }
-    .lp__photo svg { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; display: block; }
-    .lp__name { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: -0.03em; line-height: 1; margin: 18px 22px 0; text-align: center; }
+    /* The photo space: the dashed outline, with a head and shoulders in a
+       lighter navy, as if faded into the pass */
+    .lp__photo { margin: 22px 22px 0; height: 120px; border: 2px dashed rgba(255, 255, 255, 0.28); border-radius: 12px; overflow: hidden; position: relative; }
+    .lp__photo svg { position: absolute; left: 50%; bottom: 0; width: 120px; height: 106px; margin-left: -60px; display: block; }
+    .lp__name { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: -0.03em; line-height: 1; margin: 20px 22px 0; }
     .lp__name i { font-style: normal; color: var(--hot); }
-    .lp__meta { display: flex; justify-content: center; gap: 28px; margin: 14px 22px 0; text-align: center; }
+    .lp__meta { display: flex; gap: 18px; margin: 14px 22px 0; }
     .lp__meta small { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); font-weight: 600; }
     .lp__meta b { display: block; font-size: 13px; font-weight: 600; margin-top: 2px; }
-    .lp__foot { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; background: var(--hot); display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-size: 11.5px; font-weight: 700; }
+    .lp__foot { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; background: var(--blurple); display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-size: 11.5px; font-weight: 700; }
     .lp__bars { display: flex; gap: 2px; height: 18px; align-items: stretch; }
     .lp__bars i { width: 2px; background: rgba(255, 255, 255, 0.85); }
     .lp__bars i:nth-child(3n) { width: 4px; }
@@ -531,7 +532,7 @@
               <div class="lp__card">
                 <span class="lp__slot"></span>
                 <div class="lp__head"><img src="/assets/images/stored-logo-white.svg" alt=""><span>TEAM PASS</span></div>
-                <div class="lp__photo"><svg viewBox="0 0 104 124" aria-hidden="true"><circle cx="52" cy="50" r="22" fill="#C8D1DC"/><path d="M10 124c2-26 19-40 42-40s40 14 42 40z" fill="#C8D1DC"/></svg></div>
+                <div class="lp__photo"><svg viewBox="0 0 120 106" aria-hidden="true"><circle cx="60" cy="40" r="21" fill="#1C3555"/><path d="M18 106c2-24 18-38 42-38s40 14 42 38z" fill="#1C3555"/></svg></div>
                 <div class="lp__name">Your name<i>*</i></div>
                 <div class="lp__meta"><span><small>Team</small><b>Any discipline</b></span><span><small>Based</small><b>UK</b></span></div>
                 <div class="lp__foot"><span>Come and build it.</span><span class="lp__bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
