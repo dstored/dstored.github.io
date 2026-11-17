@@ -57,19 +57,19 @@
       }
     }
 
-    /* The Stored story: heading beside the intro, timeline across the page */
+    /* The Stored story: one-line heading, intro full width beneath it,
+       timeline across the page (Danny, 17 Nov 2026) */
     .about-story__top {
       display: grid;
-      grid-template-columns: 5fr 7fr;
-      gap: var(--space-16);
-      align-items: end;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
     }
 
-    .about-story__top .section-header { margin-bottom: 0; }
+    .about-story__top .section-header { margin-bottom: 0; max-width: none; }
 
     .about-story__intro p {
       margin: 0;
-      max-width: 640px;
+      max-width: none;
       color: var(--ink);
       line-height: var(--leading-relaxed);
     }
@@ -780,7 +780,7 @@
     <section class="section" id="below-hero">
       <div class="container">
         <div class="about-story__top">
-          <div class="section-header" data-animate>
+          <div class="section-header section-header--one-line" data-animate>
             <div class="section-header__overline">OUR STORY</div>
             <h2 class="section-header__title">The Stored <span class="highlight">story.</span></h2>
           </div>
