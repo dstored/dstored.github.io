@@ -404,6 +404,33 @@
     @media (prefers-reduced-motion: reduce) {
       #bespoke .bp-bar, #bespoke .bp-swing, #bespoke .bp-bob, #bespoke .anim-chat-dot { animation: none; }
     }
+
+    /* No surprises: six fees we don't charge, set like lines on a statement.
+       Each line reads £0, and the total at the foot is £0.00 */
+    .nf-section .section-header__title { color: var(--white); }
+    .nf-statement { max-width: 1080px; margin: 0 auto; border: 1px solid rgba(255, 255, 255, 0.14); }
+    .nf-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: rgba(255, 255, 255, 0.14); }
+    .nf-tile { background: var(--ink); padding: var(--space-8) var(--space-8) var(--space-10); }
+    .nf-tile__zero {
+      font-family: var(--font-display); font-weight: 700; font-size: clamp(3.5rem, 2.5rem + 2.5vw, 5rem);
+      line-height: 0.9; letter-spacing: -0.04em; color: var(--white); margin-bottom: var(--space-6);
+    }
+    .nf-tile__title { font-family: var(--font-body); font-size: var(--text-md); font-weight: var(--weight-semibold); color: var(--white); margin: 0 0 var(--space-2); }
+    .nf-tile__text { font-size: var(--text-sm); line-height: 1.55; color: rgba(255, 255, 255, 0.65); margin: 0; max-width: 30ch; }
+    .nf-total {
+      display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+      padding: var(--space-6) var(--space-8); border-top: 2px dashed rgba(255, 255, 255, 0.22);
+      color: rgba(255, 255, 255, 0.75); font-weight: var(--weight-medium);
+    }
+    .nf-total b { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--white); letter-spacing: -0.03em; }
+    @media (max-width: 968px) { .nf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 640px) {
+      .nf-grid { grid-template-columns: 1fr; }
+      .nf-tile { display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-5); padding: var(--space-6) var(--space-5); align-items: start; }
+      .nf-tile__zero { grid-row: span 2; font-size: 2.75rem; margin: 0; }
+      .nf-total { padding: var(--space-5); }
+      .nf-total b { font-size: var(--text-2xl); }
+    }
   </style>
   <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
@@ -996,40 +1023,52 @@
     <!-- ════════════════════════════════════════ -->
     <!-- TRANSPARENCY — NO HIDDEN FEES            -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section">
+    <section class="section section--dark nf-section">
       <div class="container">
-        <div class="section-header section-header--center" data-animate>
+        <div class="section-header section-header--center section-header--one-line" data-animate>
           <div class="section-header__overline">NO SURPRISES</div>
           <h2 class="section-header__title">Things we don&rsquo;t charge for.</h2>
           <p class="section-header__subtitle">If it&rsquo;s not on your rate card, it&rsquo;s not on your statement.</p>
         </div>
 
-        <ul class="feature-list" data-stagger style="max-width: 640px; margin: 0 auto;">
-          <li class="feature-list__item">
-            <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><path d="M5 12h13m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="feature-list__text"><strong>No authorisation fees.</strong> Every transaction, every channel.</div>
-          </li>
-          <li class="feature-list__item">
-            <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><path d="M5 12h13m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="feature-list__text"><strong>No PCI compliance fees.</strong> Compliance is part of the package, not a surcharge.</div>
-          </li>
-          <li class="feature-list__item">
-            <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><path d="M5 12h13m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="feature-list__text"><strong>No monthly minimums.</strong> Trade what you trade. Quiet months don&rsquo;t cost you.</div>
-          </li>
-          <li class="feature-list__item">
-            <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><path d="M5 12h13m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="feature-list__text"><strong>No setup fees.</strong> Onboarding, configuration and branding are on us.</div>
-          </li>
-          <li class="feature-list__item">
-            <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><path d="M5 12h13m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="feature-list__text"><strong>No long-term contracts.</strong> 30-day rolling. Cancel any time, no penalty.</div>
-          </li>
-          <li class="feature-list__item">
-            <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none"><path d="M5 12h13m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="feature-list__text"><strong>No chargeback handling fees.</strong> We dispute on your behalf, free of charge.</div>
-          </li>
-        </ul>
+        <div class="nf-statement" data-animate>
+          <div class="nf-grid" data-stagger>
+          <div class="nf-tile">
+            <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
+            <h3 class="nf-tile__title">No authorisation fees.</h3>
+            <p class="nf-tile__text">Every transaction, every channel.</p>
+          </div>
+          <div class="nf-tile">
+            <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
+            <h3 class="nf-tile__title">No PCI compliance fees.</h3>
+            <p class="nf-tile__text">Compliance is part of the package, not a surcharge.</p>
+          </div>
+          <div class="nf-tile">
+            <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
+            <h3 class="nf-tile__title">No monthly minimums.</h3>
+            <p class="nf-tile__text">Trade what you trade. Quiet months don&rsquo;t cost you.</p>
+          </div>
+          <div class="nf-tile">
+            <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
+            <h3 class="nf-tile__title">No setup fees.</h3>
+            <p class="nf-tile__text">Onboarding, configuration and branding are on us.</p>
+          </div>
+          <div class="nf-tile">
+            <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
+            <h3 class="nf-tile__title">No long-term contracts.</h3>
+            <p class="nf-tile__text">30-day rolling. Cancel any time, no penalty.</p>
+          </div>
+          <div class="nf-tile">
+            <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
+            <h3 class="nf-tile__title">No chargeback handling fees.</h3>
+            <p class="nf-tile__text">We dispute on your behalf, free of charge.</p>
+          </div>
+          </div>
+          <div class="nf-total">
+            <span>Hidden fees on your statement</span>
+            <b>&pound;0.00</b>
+          </div>
+        </div>
       </div>
     </section>
 
