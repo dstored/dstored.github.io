@@ -436,9 +436,9 @@
 
     /* ── Hero graphic: "However, wherever." ──
        The ribbon is the customer's journey. It winds down past every way
-       Sun Shack gets paid (in store, website, payment link, invoice, phone)
-       and ends in one Stored account. A payment travels the ribbon; each
-       stop turns paid as it passes and the account total counts up.
+       Sun Shack gets paid (in store, website, payment link, invoice) and
+       ends in one Stored account. Each payment appears on the ribbon in
+       turn, settles to paid and adds to the account total.
        Text-led hero (geometry A): the journey sits on the right, from the
        95px line, and rides the site's shared ribbon (data-streak), the same S as card machines. */
     .about-hero { overflow: hidden; }
@@ -457,17 +457,14 @@
        machines phone (300 x 654, 36px in from the container edge, 1px under
        the copy's top), so the shared script draws the very same S */
     .jr__box { position: absolute; right: 36px; top: var(--box-top, 0px); width: 300px; height: 654px; pointer-events: none; }
-    .jr__dot { position: absolute; left: 0; top: 0; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%;
-      background: #fff; box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.28), 0 0 0 12px rgba(255, 255, 255, 0.12); opacity: 0; transition: opacity 0.3s ease; z-index: 1; }
-    .jr__dot.is-on { opacity: 1; }
 
     .jr-stop {
       position: absolute; width: 214px; margin-left: -107px; margin-top: -30px; z-index: 2;
       display: flex; align-items: center; gap: 11px; padding: 10px 12px;
       background: #fff; border-radius: 14px; box-shadow: var(--shadow-xl);
-      opacity: 0; transform: translateY(10px) scale(0.96); transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 0; transform: translateY(8px) scale(0.97); transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .jr.is-ready .jr-stop { opacity: 1; transform: none; }
+    .jr-stop.is-in { opacity: 1; transform: none; }
     .jr-stop__ico { width: 38px; height: 38px; flex: none; border-radius: 10px; background: #EAE4FF; color: var(--blurple); display: grid; place-items: center; overflow: hidden; }
     .jr-stop__ico svg { width: 20px; height: 20px; }
     .jr-stop__ico img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -485,8 +482,6 @@
     .jr-pill__paid { background: rgba(49, 216, 149, 0.25); color: #0F7A45; opacity: 0; }
     .jr-stop.is-paid .jr-pill__wait { opacity: 0; }
     .jr-stop.is-paid .jr-pill__paid { opacity: 1; }
-    .jr-stop.is-paid { animation: jr-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    @keyframes jr-pop { 40% { transform: scale(1.05); } 100% { transform: none; } }
 
     /* The end of the journey: one account */
     .jr-end {
@@ -509,10 +504,9 @@
       .jr { position: relative; right: auto; top: auto; margin: var(--space-10) auto 0; width: 100%; max-width: 440px; height: 600px; }
     }
     @media (max-width: 968px) {
-      .jr__dot { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .jr-stop, .jr-end, .jr__dot { transition: none; animation: none; }
+      .jr-stop, .jr-end { transition: none; animation: none; }
     }
   </style>
 
@@ -823,7 +817,6 @@
           </div>
           <div class="jr" data-streak="blurple" role="img" aria-label="A ribbon showing one customer journey: Sun Shack is paid in store, on its website, by payment link and by invoice, and every payment lands in one Stored account">
             <span class="jr__box" aria-hidden="true"></span>
-            <span class="jr__dot" aria-hidden="true"></span>
             <div class="jr-stop" data-amt="64.00"><span class="jr-stop__ico jr-stop__ico--pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8.5 8.5a5 5 0 010 7M12 6a8.5 8.5 0 010 12M15.5 3.5a12 12 0 010 17"/></svg></span><span class="jr-stop__txt"><small>In store</small><b>Tap to pay</b></span><span class="jr-stop__amt"><b>&pound;64.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
             <div class="jr-stop" data-amt="125.00"><span class="jr-stop__ico"><img src="/assets/images/products/studio-sunglasses.jpg?v=2" alt=""></span><span class="jr-stop__txt"><small>Website</small><b>Sunglasses</b></span><span class="jr-stop__amt"><b>&pound;125.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
             <div class="jr-stop" data-amt="85.00"><span class="jr-stop__ico jr-stop__ico--plain"><img src="/assets/images/Instagram_logo.svg" alt=""></span><span class="jr-stop__txt"><small>Payment link</small><b>Instagram</b></span><span class="jr-stop__amt"><b>&pound;85.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
@@ -1202,13 +1195,12 @@
     })();
   </script>
   <script>
-    /* About hero journey: lay the stops along the ribbon, then send a
-       payment down it. Each stop turns paid as it passes; the account at
-       the end counts up. Holds, resets and runs again. */
+    /* About hero journey: lay the stops along the ribbon, then let each
+       payment appear on it in turn and add to the account at the end.
+       Holds, resets and runs again. */
     (function () {
       var jr = document.querySelector('.jr');
       if (!jr) return;
-      var dot = jr.querySelector('.jr__dot');
       var stops = Array.prototype.slice.call(jr.querySelectorAll('.jr-stop'));
       var end = jr.querySelector('.jr-end');
       var totalEl = jr.querySelector('[data-jr-total]');
@@ -1270,7 +1262,7 @@
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduce) {
         jr.classList.add('is-ready');
-        stops.forEach(function (el) { el.classList.add('is-paid'); });
+        stops.forEach(function (el) { el.classList.add('is-in', 'is-paid'); });
         totalEl.textContent = fmt(full);
         return;
       }
@@ -1281,36 +1273,28 @@
         requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
-      var DUR = 7000;
+      // Each payment appears on the ribbon in turn, settles to paid, and
+      // adds to the account total at the bottom. Holds, clears, repeats.
+      var GAP = 1600;
       var run = function () {
         if (!placed) { setTimeout(run, 300); return; }
-        var F0 = Math.max(0, parseFloat(stops[0].dataset.at) - 0.08), F1 = parseFloat(end.dataset.at);
-        var t0 = null;
-        stops.forEach(function (el) { el.classList.remove('is-paid'); });
-        target = 0; shown = 0; totalEl.textContent = fmt(0);
-        dot.classList.add('is-on');
-        var frame = function (ts) {
-          if (!t0) t0 = ts;
-          var u = Math.min(1, (ts - t0) / DUR);
-          var e = u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
-          var f = F0 + (F1 - F0) * e;
-          var p = at(f);
-          dot.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px)';
-          var sum = 0;
-          stops.forEach(function (el) {
-            if (f >= parseFloat(el.dataset.at)) {
-              if (!el.classList.contains('is-paid')) el.classList.add('is-paid');
-              sum += parseFloat(el.dataset.amt);
-            }
-          });
-          target = sum;
-          if (u < 1) requestAnimationFrame(frame);
-          else { dot.classList.remove('is-on'); setTimeout(run, 3600); }
-        };
-        requestAnimationFrame(frame);
+        stops.forEach(function (el) { el.classList.remove('is-in', 'is-paid'); });
+        target = 0;
+        var sum = 0;
+        stops.forEach(function (el, n) {
+          setTimeout(function () { el.classList.add('is-in'); }, n * GAP);
+          setTimeout(function () {
+            el.classList.add('is-paid');
+            sum += parseFloat(el.dataset.amt);
+            target = sum;
+          }, n * GAP + 700);
+        });
+        var hold = stops.length * GAP + 3600;
+        setTimeout(function () { stops.forEach(function (el) { el.classList.remove('is-in'); }); }, hold);
+        setTimeout(function () { shown = 0; target = 0; totalEl.textContent = fmt(0); run(); }, hold + 900);
       };
-      setTimeout(function () { jr.classList.add('is-ready'); }, 1300);
-      setTimeout(run, 2400);
+      setTimeout(function () { jr.classList.add('is-ready'); }, 900);
+      setTimeout(run, 1500);
     })();
   </script>
 </body>
