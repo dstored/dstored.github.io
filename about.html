@@ -842,6 +842,15 @@
               <p>Stored powers Worldpay&rsquo;s payment links, reaching merchants who want to take payment however and wherever their customers find them.</p>
             </div>
           </li>
+          <!-- Second 2026 card: no year button of its own, so the 2026 button
+               stays lit while it is in view (data-year) -->
+          <li class="about-timeline__step" id="timeline-2026-volume" data-year="timeline-2026">
+            <div class="about-timeline__card">
+              <div class="about-timeline__date">October 2026</div>
+              <h3>$1 billion a year.</h3>
+              <p>Stored reached $1 billion in annualised payment volume.</p>
+            </div>
+          </li>
           <li class="about-timeline__step" id="timeline-today">
             <div class="about-timeline__card">
               <div class="about-timeline__date">Today</div>
@@ -1146,12 +1155,13 @@
         prev.disabled = track.scrollLeft <= 2;
         next.disabled = atEnd;
         bar.style.width = ((track.scrollLeft + track.clientWidth) / track.scrollWidth) * 100 + '%';
-        years.forEach(function (y, n) { y.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+        var lit = steps[i].getAttribute('data-year') || steps[i].id;
+        years.forEach(function (y) { y.setAttribute('aria-current', y.getAttribute('data-target') === lit ? 'true' : 'false'); });
       }
 
       prev.addEventListener('click', function () { goTo(current() - 1); });
       next.addEventListener('click', function () { goTo(current() + 1); });
-      years.forEach(function (y, n) { y.addEventListener('click', function () { goTo(n); }); });
+      years.forEach(function (y) { y.addEventListener('click', function () { goTo(steps.indexOf(document.getElementById(y.getAttribute('data-target')))); }); });
       track.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);
       update();
