@@ -822,7 +822,7 @@
             <div class="jr-stop" data-amt="85.00"><span class="jr-stop__ico jr-stop__ico--plain"><img src="/assets/images/Instagram_logo.svg" alt=""></span><span class="jr-stop__txt"><small>Payment link</small><b>Instagram</b></span><span class="jr-stop__amt"><b>&pound;85.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
             <div class="jr-stop" data-amt="516.00"><span class="jr-stop__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9.5 12h6M9.5 16h6"/></svg></span><span class="jr-stop__txt"><small>Invoice</small><b>INV-0231</b></span><span class="jr-stop__amt"><b>&pound;516.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
             <div class="jr-end">
-              <div class="jr-end__top"><img class="jr-end__logo" src="/assets/images/stored-logo-white.svg" alt="Stored"><span>Sun Shack &middot; today</span></div>
+              <div class="jr-end__top"><img class="jr-end__logo" src="/assets/images/stored-logo-white.svg" alt="Stored"><span>Today</span></div>
               <div class="jr-end__total" data-jr-total>&pound;0.00</div>
               <div class="jr-end__meta">In one account next working day</div>
             </div>
@@ -1221,35 +1221,44 @@
       var pts = [], at = function (f) { var i = Math.min(pts.length - 1, Math.max(0, Math.round(f * (pts.length - 1)))); return pts[i]; };
       var place = function () {
         var spine = hero.querySelector('.streak__spine');
-        if (!spine || !spine.getAttribute('d')) return false;
+        if (getComputedStyle(jr).position === 'absolute' && (!spine || !spine.getAttribute('d'))) return false;
+        // Phones and tablets: the shared ribbon runs across rather than
+        // down, so the stops zig-zag down the stage on their own, with the
+        // same gap between each
+        if (getComputedStyle(jr).position !== 'absolute') {
+          var allP = [].concat(stops, [end]), HP = jr.offsetHeight, WP = jr.offsetWidth;
+          var hsP = allP.map(function (el) { return el.offsetHeight; });
+          var gapP = (HP - 50 - hsP.reduce(function (a, h) { return a + h; }, 0)) / (allP.length - 1), yP = 20;
+          allP.forEach(function (el, n) {
+            var last = n === allP.length - 1, half = el.offsetWidth / 2;
+            el.style.left = (last ? WP / 2 : (n % 2 ? half + 4 : WP - half - 4)) + 'px';
+            el.style.marginTop = -hsP[n] / 2 + 'px';
+            el.style.top = (yP + hsP[n] / 2) + 'px';
+            yP += hsP[n] + gapP;
+          });
+          return true;
+        }
         var L = spine.getTotalLength(), jb = jr.getBoundingClientRect(), sb = hero.getBoundingClientRect();
         var ox = jb.left - sb.left, oy = jb.top - sb.top;
         pts = [];
         for (var k = 0; k <= 600; k++) { var q = spine.getPointAtLength(k / 600 * L); pts.push({ x: q.x - ox, y: q.y - oy }); }
-        // The stretch of ribbon inside the stage, split evenly by length
-        var all = [].concat(stops, [end]), H = jr.offsetHeight, W = jr.offsetWidth, i0 = -1, i1 = -1;
-        // Phones and tablets: the shared ribbon runs across rather than down, so the
-        // stops zig-zag down the stage on their own and simply turn paid
-        if (getComputedStyle(jr).position !== 'absolute') {
-          all.forEach(function (el, n) {
-            var last = n === all.length - 1, half = (last ? 252 : 214) / 2;
-            var x = last ? W / 2 : (n % 2 ? half + 4 : W - half - 4);
-            el.dataset.at = 0.2 + 0.7 * n / (all.length - 1);
-            el.style.left = x + 'px';
-            el.style.top = (50 + (H - 120) * n / (all.length - 1)) + 'px';
-          });
-          pts = [{ x: -999, y: -999 }];
-          return true;
-        }
-        pts.forEach(function (q, k) { if (q.y > 60 && q.y < H - 70 && q.x > -20 && q.x < W + 20) { if (i0 < 0) i0 = k; i1 = k; } });
-        if (i0 < 0) return true;
+        // Equal gaps between the cards: stack them top to bottom with the
+        // same space between each edge, then seat each on the ribbon at
+        // its height
+        var all = [].concat(stops, [end]), H = jr.offsetHeight, W = jr.offsetWidth;
+        var hs = all.map(function (el) { return el.offsetHeight; });
+        var top = 70, bottom = H - 30;
+        var gap = (bottom - top - hs.reduce(function (a, h) { return a + h; }, 0)) / (all.length - 1);
+        var y = top;
         all.forEach(function (el, n) {
-          var best = Math.round(i0 + (i1 - i0) * n / (all.length - 1));
-          var q = pts[best];
+          var cy = y + hs[n] / 2, best = 0, bd = Infinity;
+          pts.forEach(function (q, k) { var d = Math.abs(q.y - cy); if (d < bd) { bd = d; best = k; } });
+          var hw = el.offsetWidth / 2;
           el.dataset.at = best / (pts.length - 1);
-          var hw = el === end ? 126 : 107;
-          el.style.left = Math.min(W - hw, Math.max(hw, q.x)) + 'px';
-          el.style.top = q.y + 'px';
+          el.style.left = Math.min(W - hw, Math.max(hw, pts[best].x)) + 'px';
+          el.style.marginTop = -hs[n] / 2 + 'px';
+          el.style.top = cy + 'px';
+          y += hs[n] + gap;
         });
         return true;
       };
