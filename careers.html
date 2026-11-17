@@ -122,6 +122,49 @@
         animation: none;
       }
     }
+    /* Our values: Emily's value posters, rebuilt as HTML. Each poster is a
+       fixed-ratio card; type scales with its width (cqi). The mono labels and
+       lines are part of the poster design, an agreed exception to the
+       mono-only-in-heroes rule (Danny, 17 Nov 2026). */
+    .careers-posters { padding-top: calc(var(--space-section) * 0.55); }
+    .vp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+    @media (max-width: 968px) and (min-width: 641px) { .vp-grid { grid-template-columns: repeat(2, 1fr); } }
+    .vp {
+      position: relative; overflow: hidden; container-type: inline-size;
+      aspect-ratio: 194 / 274; color: var(--white);
+      box-shadow: 0 1px 3px rgba(11, 27, 51, 0.14);
+    }
+    .vp__ribbon { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .vp__label {
+      position: absolute; left: 7.7cqi; top: 6.6%;
+      font-family: var(--font-mono); font-weight: 700; font-size: 2.7cqi;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .vp__copy { position: absolute; left: 7.7cqi; right: 6cqi; top: var(--copy-top, 44%); }
+    .vp__title {
+      margin: 0; font-family: var(--font-display); font-weight: 700;
+      font-size: var(--fs, 13.6cqi); line-height: 1; letter-spacing: -0.03em; color: inherit;
+    }
+    .vp__sub {
+      margin: 4.6cqi 0 0; font-family: var(--font-mono); font-weight: 500;
+      font-size: 3.3cqi; line-height: 1.45; color: inherit;
+    }
+    .vp__logo {
+      position: absolute; left: 7.7cqi; bottom: var(--logo-bottom, 6.2%);
+      width: 17cqi; aspect-ratio: 240 / 52; background: currentColor;
+      -webkit-mask: url(/assets/images/stored-logo.svg) no-repeat left center / contain;
+      mask: url(/assets/images/stored-logo.svg) no-repeat left center / contain;
+    }
+    .vp--navy { background: var(--ink); }
+    .vp--navy .vp__label { color: var(--blurple-bright); }
+    .vp--bone { background: var(--bone); color: var(--ink); --copy-top: 24.5%; --fs: 12.4cqi; }
+    .vp--bone .vp__label { color: var(--blurple); }
+    .vp--bone .vp__logo { bottom: auto; top: 68%; }
+    .vp--blurple { background: var(--blurple); --copy-top: 46%; --fs: 12.2cqi; }
+    .vp--pink { background: var(--hot); --copy-top: 39%; --fs: 11.4cqi; }
+    .vp--five { --copy-top: 23.5%; --fs: 13cqi; }
+    .vp--white { background: var(--white); color: var(--ink); --copy-top: 24.5%; }
+    .vp--white .vp__label { color: var(--blurple); }
   </style>
 
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
@@ -527,6 +570,77 @@
             See open roles
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hairline between two same-tone sections -->
+    <div class="container"><hr class="section-rule"></div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- OUR VALUES (Emily's value posters)       -->
+    <!-- ════════════════════════════════════════ -->
+    <section class="section careers-posters">
+      <div class="container">
+        <div class="section-header section-header--center" data-animate>
+          <div class="section-header__overline">OUR VALUES</div>
+          <h2 class="section-header__title">What we stand for.</h2>
+        </div>
+
+        <div class="vp-grid" data-stagger data-phone-carousel>
+          <article class="vp vp--navy">
+            <svg class="vp__ribbon" viewBox="0 0 194 274" preserveAspectRatio="none" aria-hidden="true"><path d="M-10 79 C 60 80, 110 48, 204 45" fill="none" stroke="var(--hot)" stroke-width="18"/></svg>
+            <div class="vp__label">01 / DRIVEN</div>
+            <div class="vp__copy">
+              <h3 class="vp__title">Paid beats<br>pending.</h3>
+              <p class="vp__sub">Done beats perfect, too.</p>
+            </div>
+            <span class="vp__logo" role="img" aria-label="Stored."></span>
+          </article>
+          <article class="vp vp--bone">
+            <svg class="vp__ribbon" viewBox="0 0 194 274" preserveAspectRatio="none" aria-hidden="true"><path d="M-10 240 C 60 248, 120 222, 204 220" fill="none" stroke="var(--hot)" stroke-width="18"/></svg>
+            <div class="vp__label">02 / NO POLITICS</div>
+            <div class="vp__copy">
+              <h3 class="vp__title">No politics.<br>Just say it.</h3>
+              <p class="vp__sub">Kindly. To their face.<br>Then crack on.</p>
+            </div>
+            <span class="vp__logo" role="img" aria-label="Stored."></span>
+          </article>
+          <article class="vp vp--blurple">
+            <svg class="vp__ribbon" viewBox="0 0 194 274" preserveAspectRatio="none" aria-hidden="true"><path d="M140 -10 C 138 40, 176 58, 168 100 S 150 142, 204 158" fill="none" stroke="#FFFFFF" stroke-width="15"/></svg>
+            <div class="vp__label">03 / DARING</div>
+            <div class="vp__copy">
+              <h3 class="vp__title">Do it<br>differently.</h3>
+              <p class="vp__sub">If it&rsquo;s always been done<br>that way, ask why.</p>
+            </div>
+            <span class="vp__logo" role="img" aria-label="Stored."></span>
+          </article>
+          <article class="vp vp--pink">
+            <svg class="vp__ribbon" viewBox="0 0 194 274" preserveAspectRatio="none" aria-hidden="true"><path d="M-10 44 C 40 44, 80 62, 120 52 S 172 28, 204 26" fill="none" stroke="var(--ink)" stroke-width="16"/></svg>
+            <div class="vp__label">04 / FUN</div>
+            <div class="vp__copy">
+              <h3 class="vp__title">Serious about<br>payments.<br>Not about<br>ourselves.</h3>
+            </div>
+            <span class="vp__logo" role="img" aria-label="Stored."></span>
+          </article>
+          <article class="vp vp--navy vp--five">
+            <svg class="vp__ribbon" viewBox="0 0 194 274" preserveAspectRatio="none" aria-hidden="true"><path d="M-10 212 C 60 214, 120 200, 204 184" fill="none" stroke="var(--hot)" stroke-width="18"/></svg>
+            <div class="vp__label">05 / ABOVE ALL</div>
+            <div class="vp__copy">
+              <h3 class="vp__title">Their win<br>is our win.</h3>
+              <p class="vp__sub">Get them paid.<br>However, wherever.</p>
+            </div>
+            <span class="vp__logo" role="img" aria-label="Stored."></span>
+          </article>
+          <article class="vp vp--white">
+            <svg class="vp__ribbon" viewBox="0 0 194 274" preserveAspectRatio="none" aria-hidden="true"><path d="M-10 168 C 50 140, 120 206, 204 176" fill="none" stroke="var(--blurple)" stroke-width="18"/></svg>
+            <div class="vp__label">06 / OWN IT</div>
+            <div class="vp__copy">
+              <h3 class="vp__title">See it.<br>Own it.</h3>
+              <p class="vp__sub">No &ldquo;not my job&rdquo;.<br>Fix it, or find who can.</p>
+            </div>
+            <span class="vp__logo" role="img" aria-label="Stored."></span>
+          </article>
         </div>
       </div>
     </section>
