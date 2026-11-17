@@ -305,40 +305,6 @@
       flex-wrap: wrap;
     }
 
-    /* Bone capability cards inside the dark bespoke section */
-    .section--dark .capability-card.cap-card--bone {
-      background: var(--bone);
-      color: var(--ink);
-      border: 2px solid var(--ink);
-      border-radius: 0;
-      position: relative;
-      transition: background var(--duration-base) var(--ease-out);
-    }
-    .section--dark .capability-card.cap-card--bone .capability-card__title {
-      color: var(--ink);
-      font-family: var(--font-display);
-      font-weight: var(--weight-bold);
-      font-size: var(--text-xl);
-      letter-spacing: -0.02em;
-    }
-    .section--dark .capability-card.cap-card--bone .capability-card__text {
-      color: var(--text-secondary);
-    }
-    .section--dark .capability-card.cap-card--bone .capability-card__icon {
-      color: var(--hot);
-    }
-    .section--dark .capability-card.cap-card--bone:hover {
-      background: var(--hot);
-      border-color: var(--hot);
-    }
-    .section--dark .capability-card.cap-card--bone:hover .capability-card__title,
-    .section--dark .capability-card.cap-card--bone:hover .capability-card__text {
-      color: var(--white);
-    }
-    .section--dark .capability-card.cap-card--bone:hover .capability-card__icon {
-      color: var(--white);
-    }
-
     @media (max-width: 968px) {
       .solution-hero .solution-hero__visual {
         position: static;
@@ -415,6 +381,25 @@
     #card-fees .pricing-teaser__rate-note { color: rgba(255, 255, 255, 0.75); }
     #card-fees .pricing-teaser__rate-number { color: var(--white); }
     #card-fees .pricing-teaser__rate-footnote { color: rgba(255, 255, 255, 0.6); }
+    /* Over £200k pillars: motion (chat dots copied from home.css) */
+    #bespoke .bp-bar { transform-box: fill-box; transform-origin: 50% 100%; animation: bp-bar 3.2s ease-in-out infinite; }
+    #bespoke .bp-bar-2 { animation-delay: 0.4s; }
+    #bespoke .bp-bar-3 { animation-delay: 0.8s; }
+    #bespoke .bp-bar-4 { animation-delay: 1.2s; }
+    @keyframes bp-bar { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.82); } }
+    #bespoke .bp-swing { transform-box: fill-box; transform-origin: 0% 50%; animation: bp-swing 3.6s ease-in-out infinite; }
+    @keyframes bp-swing { 0%, 100% { transform: rotate(4deg); } 50% { transform: rotate(-4deg); } }
+    #bespoke .bp-bob { animation: bp-bob 3s ease-in-out infinite; }
+    @keyframes bp-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    #bespoke .anim-chat-dot { transform-box: fill-box; transform-origin: center; animation: bp-chat 1.4s ease-in-out infinite; }
+    #bespoke .anim-chat-dot-2 { animation-delay: 0.18s; }
+    #bespoke .anim-chat-dot-3 { animation-delay: 0.36s; }
+    @keyframes bp-chat { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+    /* Buttons under the centred pillar cards centre with them on phones too */
+    @media (max-width: 768px) { #bespoke .section-cta-row { justify-content: center; } }
+    @media (prefers-reduced-motion: reduce) {
+      #bespoke .bp-bar, #bespoke .bp-swing, #bespoke .bp-bob, #bespoke .anim-chat-dot { animation: none; }
+    }
   </style>
   <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
@@ -869,47 +854,129 @@
 
 
     <!-- ════════════════════════════════════════ -->
-    <!-- OVER £200K — BESPOKE PRICING (DARK)      -->
+    <!-- OVER £200K — BESPOKE PRICING (PAPER)     -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section section--dark">
+    <section class="section section--white" id="bespoke">
       <div class="container">
-        <div class="section-header" data-animate>
+        <div class="section-header section-header--center" data-animate>
           <div class="section-header__overline">OVER &pound;200K</div>
-          <h2 class="section-header__title text-inverse">Over &pound;200k a year?<br>Let&rsquo;s talk.</h2>
+          <h2 class="section-header__title">Over &pound;200k a year?<br>Let&rsquo;s talk.</h2>
           <p class="section-header__subtitle">Send us three months of statements. We&rsquo;ll come back with a rate built to beat your current setup.</p>
         </div>
 
-        <div class="capability-grid" data-stagger style="margin-top: var(--space-10);">
-          <div class="capability-card cap-card--bone">
-            <div class="capability-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="4" y2="14"/><line x1="10" y1="20" x2="10" y2="9"/><line x1="16" y1="20" x2="16" y2="11"/><line x1="22" y1="20" x2="22" y2="5"/></svg></div>
-            <div class="capability-card__title">Custom rates.</div>
-            <p class="capability-card__text">Interchange-plus or blended, whichever works better for your mix. Priced against your last quarter, not a list.</p>
+        <div class="why-grid" data-stagger style="margin-top: var(--space-12);">
+
+          <!-- Bespoke pricing: statement with moving bars, swinging % tag -->
+          <div class="why-card">
+            <div class="why-card__illustration">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="A statement and a price tag: pricing built from your numbers">
+                <ellipse cx="160" cy="244" rx="104" ry="13" fill="#D8D0C2" opacity="0.5"/>
+                <g transform="translate(62 58) rotate(-5)">
+                  <rect x="0" y="0" width="134" height="172" rx="10" fill="#FFFFFF" stroke="#16223C" stroke-width="2.6"/>
+                  <line x1="16" y1="24" x2="84" y2="24" stroke="#16223C" stroke-width="3.2" stroke-linecap="round"/>
+                  <line x1="16" y1="38" x2="60" y2="38" stroke="#DCE3EC" stroke-width="3.2" stroke-linecap="round"/>
+                  <line x1="14" y1="152" x2="120" y2="152" stroke="#DCE3EC" stroke-width="2.4" stroke-linecap="round"/>
+                  <rect class="bp-bar bp-bar-1" x="18" y="108" width="18" height="44" rx="2" fill="#DCE3EC" stroke="#16223C" stroke-width="2"/>
+                  <rect class="bp-bar bp-bar-2" x="44" y="86" width="18" height="66" rx="2" fill="#DCE3EC" stroke="#16223C" stroke-width="2"/>
+                  <rect class="bp-bar bp-bar-3" x="70" y="98" width="18" height="54" rx="2" fill="#DCE3EC" stroke="#16223C" stroke-width="2"/>
+                  <rect class="bp-bar bp-bar-4" x="96" y="70" width="18" height="82" rx="2" fill="#6E44FF" stroke="#16223C" stroke-width="2"/>
+                </g>
+                <g transform="translate(174 118)">
+                  <g class="bp-swing">
+                    <path d="M 24 0 H 98 a 10 10 0 0 1 10 10 V 86 a 10 10 0 0 1 -10 10 H 24 L 0 48 Z" fill="#EB1857" stroke="#16223C" stroke-width="2.6" stroke-linejoin="round"/>
+                    <circle cx="20" cy="48" r="6" fill="#F3EEE5" stroke="#16223C" stroke-width="1.8"/>
+                    <text x="64" y="64" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="44" font-weight="700" fill="#FFFFFF">%</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <h3 class="why-card__title">Bespoke pricing.</h3>
+            <p class="why-card__text">Interchange-plus or blended, whichever suits your mix. Priced from your last three months, not a list.</p>
           </div>
-          <div class="capability-card cap-card--bone">
-            <div class="capability-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
-            <div class="capability-card__title">Dedicated account manager.</div>
-            <p class="capability-card__text">A named contact who knows your business. One phone number, one email, no ticket queues.</p>
+
+          <!-- Account manager: same chat bubbles as the homepage -->
+          <div class="why-card">
+            <div class="why-card__illustration">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="A conversation with your account manager">
+                <ellipse cx="160" cy="240" rx="100" ry="13" fill="#D8D0C2" opacity="0.45"/>
+                <g transform="translate(160 154) scale(1.1) translate(-160 -154)">
+                  <g transform="translate(176 88)">
+                    <path d="M 18 0 H 78 a 18 18 0 0 1 18 18 V 42 a 18 18 0 0 1 -18 18 H 80 L 80 80 L 64 60 H 18 a 18 18 0 0 1 -18 -18 V 18 a 18 18 0 0 1 18 -18 Z" fill="#EB1857" stroke="#16223C" stroke-width="2.909" stroke-linejoin="round" stroke-linecap="round"/>
+                    <line x1="18" y1="24" x2="70" y2="24" stroke="#F3EEE5" stroke-width="3.091" stroke-linecap="round"/>
+                    <line x1="18" y1="40" x2="52" y2="40" stroke="#F3EEE5" stroke-width="3.091" stroke-linecap="round"/>
+                  </g>
+                  <g transform="translate(48 120)">
+                    <path d="M 22 0 H 106 a 22 22 0 0 1 22 22 V 56 a 22 22 0 0 1 -22 22 H 58 L 32 100 L 32 78 H 22 a 22 22 0 0 1 -22 -22 V 22 a 22 22 0 0 1 22 -22 Z" fill="#FFFFFF" stroke="#16223C" stroke-width="2.909" stroke-linejoin="round" stroke-linecap="round"/>
+                    <circle class="anim-chat-dot anim-chat-dot-1" cx="40" cy="40" r="7" fill="#16223C"/>
+                    <circle class="anim-chat-dot anim-chat-dot-2" cx="64" cy="40" r="7" fill="#6E44FF"/>
+                    <circle class="anim-chat-dot anim-chat-dot-3" cx="88" cy="40" r="7" fill="#16223C"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <h3 class="why-card__title">A dedicated account manager.</h3>
+            <p class="why-card__text">A named contact who knows your business. One number, one email, no ticket queues.</p>
           </div>
-          <div class="capability-card cap-card--bone">
-            <div class="capability-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-            <div class="capability-card__title">Faster settlement.</div>
-            <p class="capability-card__text">Same-day or next-working-day settlement available. Funds in your account, every working day, no weekend lag.</p>
+
+          <!-- Hardware: same three terminals as the card machines page -->
+          <div class="why-card">
+            <div class="why-card__illustration">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="Three card machines, set up for your sites">
+                <ellipse cx="160" cy="244" rx="104" ry="13" fill="#D8D0C2" opacity="0.5"/>
+                <g transform="translate(28 78) rotate(-7)">
+                  <rect x="0" y="0" width="74" height="138" rx="11" fill="#FFFFFF" stroke="#16223C" stroke-width="2.6"/>
+                  <rect x="8" y="14" width="58" height="40" rx="4" fill="#16223C"/>
+                  <g fill="#16223C" opacity="0.55">
+                    <rect x="14" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="88" width="14" height="9" rx="1.4"/>
+                  </g>
+                </g>
+                <g transform="translate(123 64)">
+                  <g class="bp-bob">
+                  <rect x="0" y="0" width="74" height="138" rx="11" fill="#FFFFFF" stroke="#16223C" stroke-width="3"/>
+                  <rect x="8" y="14" width="58" height="40" rx="4" fill="#EB1857"/>
+                  <text x="37" y="40" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">&#163;</text>
+                  <g fill="#16223C" opacity="0.6">
+                    <rect x="14" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="88" width="14" height="9" rx="1.4"/>
+                  </g>
+                  <rect x="46" y="88" width="14" height="9" rx="1.4" fill="#6E44FF"/>
+                  </g>
+                </g>
+                <g transform="translate(218 78) rotate(7)">
+                  <rect x="0" y="0" width="74" height="138" rx="11" fill="#FFFFFF" stroke="#16223C" stroke-width="2.6"/>
+                  <rect x="8" y="14" width="58" height="40" rx="4" fill="#16223C"/>
+                  <g fill="#16223C" opacity="0.55">
+                    <rect x="14" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="64" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="76" width="14" height="9" rx="1.4"/>
+                    <rect x="14" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="30" y="88" width="14" height="9" rx="1.4"/>
+                    <rect x="46" y="88" width="14" height="9" rx="1.4"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <h3 class="why-card__title">Specialised hardware.</h3>
+            <p class="why-card__text">Countertop, portable and mobile card machines, set up for every site before they arrive.</p>
           </div>
-          <div class="capability-card cap-card--bone">
-            <div class="capability-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6-6 6 6M12 3v15M6 21h12"/></svg></div>
-            <div class="capability-card__title">Priority support.</div>
-            <p class="capability-card__text">Phone-first support with guaranteed response times. Critical issues are escalated, not queued.</p>
-          </div>
-          <div class="capability-card cap-card--bone">
-            <div class="capability-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-3 3a4 4 0 1 1-5.7-5.7l3-3M14 10l3-3a4 4 0 1 1 5.7 5.7l-3 3M9 15l6-6"/></svg></div>
-            <div class="capability-card__title">Integration support.</div>
-            <p class="capability-card__text">Need to plug into your ERP, booking system or order management? We&rsquo;ll do the build with you, not bill you for it.</p>
-          </div>
-          <div class="capability-card cap-card--bone">
-            <div class="capability-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
-            <div class="capability-card__title">Multi-site &amp; multi-MID.</div>
-            <p class="capability-card__text">One contract, one platform, one report, across every site, every MID, every channel.</p>
-          </div>
+
         </div>
 
         <div class="solution-hero__actions section-cta-row" style="margin-top: var(--space-12);" data-animate>
@@ -917,7 +984,7 @@
             Get a custom quote
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="/book-a-demo" class="btn btn--white btn--lg">Book a demo</a>
+          <a href="/book-a-demo" class="btn btn--secondary btn--lg">Book a demo</a>
         </div>
       </div>
     </section>
