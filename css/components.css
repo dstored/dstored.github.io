@@ -583,7 +583,7 @@
   padding: 0.875rem 1.25rem;
   font-size: var(--text-base);
   border: 1px solid var(--border-medium);
-  border-radius: var(--radius-lg);
+  border-radius: 0; /* square, like every other box on the site (Danny, 17 Nov 2026) */
   background: var(--white);
   color: var(--text-primary);
   transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
@@ -602,6 +602,18 @@
 .input--lg {
   padding: 1.125rem 1.5rem;
   font-size: var(--text-md);
+}
+
+/* Dropdowns: our own chevron, bold and ink, in place of the faint browser one */
+select.input {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 3rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%230B1B33' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 6l4.5 4.5L12.5 6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.1rem center;
+  background-size: 16px 16px;
+  cursor: pointer;
 }
 
 textarea.input {
