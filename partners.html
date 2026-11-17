@@ -68,6 +68,26 @@
       }
     }
 
+
+    /* Partner enquiry: navy, why-partner copy on the left, form on the right */
+    .pe-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-16); align-items: start; }
+    .pe-intro .section-header__title { color: var(--white); margin-bottom: var(--space-4); }
+    .pe-intro__text { font-size: var(--text-lg); color: rgba(255, 255, 255, 0.7); margin: 0 0 var(--space-8); max-width: 34ch; }
+    .pe-points { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-5); }
+    .pe-points li { display: flex; gap: var(--space-3); align-items: flex-start; color: rgba(255, 255, 255, 0.7); line-height: 1.5; max-width: 42ch; }
+    .pe-points b { color: var(--white); font-weight: var(--weight-semibold); }
+    .pe-points__tick { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--hot); color: var(--white); display: grid; place-items: center; margin-top: 1px; }
+    .pe-points__tick svg { width: 15px; height: 15px; }
+    .pe-form { display: grid; gap: var(--space-5); background: var(--ink-light); border: 1px solid rgba(255, 255, 255, 0.08); padding: var(--space-8); }
+    .pe-form .form-label { color: rgba(255, 255, 255, 0.85); }
+    .pe-form .btn { justify-self: start; }
+    .pe-form .form-meta { font-size: var(--text-xs); color: rgba(255, 255, 255, 0.55); margin: 0; }
+    @media (max-width: 968px) {
+      .pe-split { grid-template-columns: 1fr; gap: var(--space-10); }
+    }
+    @media (max-width: 640px) {
+      .pe-form { padding: var(--space-5); }
+    }
   </style>
 
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
@@ -432,21 +452,25 @@
       </div>
     </section>
 
-    <!-- Hairline between two same-tone sections -->
-    <div class="container"><hr class="section-rule"></div>
-
     <!-- ════════════════════════════════════════ -->
     <!-- PARTNER ENQUIRY FORM                     -->
     <!-- ════════════════════════════════════════ -->
-    <section class="section" id="partner-enquiry">
+    <section class="section section--dark" id="partner-enquiry">
       <div class="container">
-        <div class="section-header section-header--center" data-animate>
+        <div class="pe-split">
+        <div class="pe-intro" data-animate>
           <div class="section-header__overline">GET IN TOUCH</div>
           <h2 class="section-header__title">Partner enquiry.</h2>
-          <p class="section-header__subtitle">Tell us about your business and we&rsquo;ll come back to you.</p>
+          <p class="pe-intro__text">Tell us about your business and we&rsquo;ll come back to you.</p>
+          <ul class="pe-points">
+            <li><span class="pe-points__tick"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 6.5"/></svg></span><span><b>Revenue share on every partnership.</b> Agreed with you up front, in writing.</span></li>
+            <li><span class="pe-points__tick"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 6.5"/></svg></span><span><b>One account, one contract.</b> Your merchants take payments in person and online.</span></li>
+            <li><span class="pe-points__tick"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 6.5"/></svg></span><span><b>Paid next working day.</b> Running on Worldpay, Cashflows and Stripe.</span></li>
+            <li><span class="pe-points__tick"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10.5l3.2 3.2L15 6.5"/></svg></span><span><b>A person reads every enquiry.</b> If there&rsquo;s a fit, we&rsquo;ll set up a conversation.</span></li>
+          </ul>
         </div>
 
-        <form style="max-width: 640px; margin: 0 auto; display: grid; gap: var(--space-5);" data-animate data-email-form="hello@joinstored.com" data-email-subject="Partner enquiry">
+        <form class="pe-form" data-animate data-email-form="hello@joinstored.com" data-email-subject="Partner enquiry">
           <div class="form-group">
             <label class="form-label" for="company">Company name</label>
             <input class="input input--lg" type="text" id="company" name="company" required placeholder="Acme Payments Ltd">
@@ -479,8 +503,9 @@
             <textarea class="input input--lg" id="about" name="about" rows="5" placeholder="Who do you serve, how many merchants, what are you looking for in a payments partner?"></textarea>
           </div>
           <button type="submit" class="btn btn--primary btn--lg" style="justify-self: start;">Send enquiry</button>
-          <p class="form-meta" style="font-size: var(--text-xs); color: var(--text-secondary); margin: 0;">This opens your email app with your enquiry ready to send to hello@joinstored.com.</p>
+          <p class="form-meta">This opens your email app with your enquiry ready to send to hello@joinstored.com.</p>
         </form>
+        </div>
       </div>
     </section>
 
