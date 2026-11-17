@@ -56,6 +56,8 @@
 .prose h2 { font-family: var(--font-display); font-size: var(--text-3xl); line-height: var(--leading-snug); letter-spacing: -0.03em; margin-top: var(--space-16); scroll-margin-top: calc(72px + var(--space-6)); }
 .prose h3 { font-family: var(--font-display); font-size: var(--text-xl); letter-spacing: -0.02em; margin-top: var(--space-10); }
 .prose h2 + *, .prose h3 + * { margin-top: var(--space-4); }
+/* A little less air between the opening paragraph and the first heading (Lee review, 12 Nov 2026) */
+.prose > h2:first-of-type { margin-top: var(--space-12); }
 .prose a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .prose a:hover { color: var(--hot); }
 .prose ul, .prose ol { padding-left: 1.4em; }
@@ -70,14 +72,14 @@
   font-family: var(--font-display); font-size: var(--text-2xl); line-height: var(--leading-snug); letter-spacing: -0.02em; font-weight: var(--weight-bold);
 }
 .prose figure { margin: var(--space-10) 0; }
-.prose figure img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border: 2px solid var(--ink); border-radius: var(--radius-lg); background: var(--white); }
+.prose figure img { width: 100%; height: auto; display: block; border: 2px solid var(--ink); border-radius: var(--radius-lg); background: var(--white); }
 .prose figcaption { margin-top: var(--space-3); font-size: var(--text-sm); color: var(--mute); }
 
 .callout { background: var(--bone); border: 2px solid var(--ink); border-radius: var(--radius-lg); padding: var(--space-6) var(--space-8); }
 .callout__title { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase; color: var(--ink); margin-bottom: var(--space-3); }
 .callout ul { margin: 0; }
 
-.post__share { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-16); padding-top: var(--space-8); border-top: 2px solid var(--border-medium); }
+.post__share { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-16); padding-top: var(--space-8); margin-bottom: var(--space-16); border-top: 2px solid var(--border-medium); }
 .post__share-label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase; color: var(--mute); margin-right: var(--space-2); }
 .post__share .btn { padding: 8px 16px; font-size: var(--text-sm); }
 
