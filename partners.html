@@ -39,7 +39,9 @@
       line-height: calc(0.85em + 5px);
       letter-spacing: -0.05em;
       margin-top: 23px;
-      margin-bottom: 40px;
+      /* "company." has descenders (p, y) that eat ~40px of margin; set so the
+         visible gap to the subtitle matches the other heroes (~45-55px) */
+      margin-bottom: 66px;
     }
 
     .solution-hero__asterisk { color: var(--hot); display: inline-block; margin-left: 0.05em; }
@@ -86,7 +88,7 @@
 
       .solution-hero .solution-hero__inner .solution-hero__title {
         margin-top: 16px;
-        margin-bottom: 26px;
+        margin-bottom: 56px;
       }
     }
 
