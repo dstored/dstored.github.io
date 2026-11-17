@@ -70,7 +70,7 @@
 
 
     /* Partner enquiry: navy, why-partner copy on the left, form on the right */
-    .pe-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-16); align-items: start; }
+    .pe-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-16); align-items: center; }
     .pe-intro .section-header__title { color: var(--white); margin-bottom: var(--space-4); }
     .pe-intro__text { font-size: var(--text-lg); color: rgba(255, 255, 255, 0.7); margin: 0 0 var(--space-8); max-width: 34ch; }
     .pe-points { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-5); }
@@ -78,7 +78,9 @@
     .pe-points b { color: var(--white); font-weight: var(--weight-semibold); }
     .pe-points__tick { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--hot); color: var(--white); display: grid; place-items: center; margin-top: 1px; }
     .pe-points__tick svg { width: 15px; height: 15px; }
-    .pe-form { display: grid; gap: var(--space-5); background: var(--ink-light); border: 1px solid rgba(255, 255, 255, 0.08); padding: var(--space-8); }
+    .pe-form { display: grid; gap: var(--space-4); }
+    .pe-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .pe-form .form-group { display: grid; gap: var(--space-2); }
     .pe-form .form-label { color: rgba(255, 255, 255, 0.85); }
     .pe-form .btn { justify-self: start; }
     .pe-form .form-meta { font-size: var(--text-xs); color: rgba(255, 255, 255, 0.55); margin: 0; }
@@ -86,7 +88,7 @@
       .pe-split { grid-template-columns: 1fr; gap: var(--space-10); }
     }
     @media (max-width: 640px) {
-      .pe-form { padding: var(--space-5); }
+      .pe-row { grid-template-columns: 1fr; }
     }
   </style>
 
@@ -471,13 +473,14 @@
         </div>
 
         <form class="pe-form" data-animate data-email-form="hello@joinstored.com" data-email-subject="Partner enquiry">
+          <div class="pe-row">
           <div class="form-group">
             <label class="form-label" for="company">Company name</label>
-            <input class="input input--lg" type="text" id="company" name="company" required placeholder="Acme Payments Ltd">
+            <input class="input" type="text" id="company" name="company" required placeholder="Acme Payments Ltd">
           </div>
           <div class="form-group">
             <label class="form-label" for="partner-type">Partner type</label>
-            <select class="input input--lg" id="partner-type" name="partner-type">
+            <select class="input" id="partner-type" name="partner-type">
               <option>ISO partner</option>
               <option>Referral partner</option>
               <option>Integration partner</option>
@@ -486,21 +489,24 @@
               <option>Other</option>
             </select>
           </div>
+          </div>
+          <div class="pe-row">
           <div class="form-group">
             <label class="form-label" for="name">Contact name</label>
-            <input class="input input--lg" type="text" id="name" name="name" required placeholder="Jane Smith">
+            <input class="input" type="text" id="name" name="name" required placeholder="Jane Smith">
           </div>
           <div class="form-group">
             <label class="form-label" for="email">Work email</label>
-            <input class="input input--lg" type="email" id="email" name="email" required placeholder="jane@company.com">
+            <input class="input" type="email" id="email" name="email" required placeholder="jane@company.com">
+          </div>
           </div>
           <div class="form-group">
             <label class="form-label" for="phone">Phone</label>
-            <input class="input input--lg" type="tel" id="phone" name="phone" placeholder="0203 000 0000">
+            <input class="input" type="tel" id="phone" name="phone" placeholder="0203 000 0000">
           </div>
           <div class="form-group">
             <label class="form-label" for="about">Tell us about your business</label>
-            <textarea class="input input--lg" id="about" name="about" rows="5" placeholder="Who do you serve, how many merchants, what are you looking for in a payments partner?"></textarea>
+            <textarea class="input" id="about" name="about" rows="3" placeholder="Who do you serve, how many merchants, what are you looking for in a payments partner?"></textarea>
           </div>
           <button type="submit" class="btn btn--primary btn--lg" style="justify-self: start;">Send enquiry</button>
           <p class="form-meta">This opens your email app with your enquiry ready to send to hello@joinstored.com.</p>
