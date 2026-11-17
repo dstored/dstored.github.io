@@ -381,6 +381,10 @@
     #card-fees .pricing-teaser__rate-note { color: rgba(255, 255, 255, 0.75); }
     #card-fees .pricing-teaser__rate-number { color: var(--white); }
     #card-fees .pricing-teaser__rate-footnote { color: rgba(255, 255, 255, 0.6); }
+    /* Subtitle breaks after "in person and online," on desktop only */
+    .br-desk { display: none; }
+    @media (min-width: 969px) { .br-desk { display: inline; } }
+
     /* Over £200k pillars: motion (chat dots copied from home.css) */
     #bespoke .bp-bar { transform-box: fill-box; transform-origin: 50% 100%; animation: bp-bar 3.2s ease-in-out infinite; }
     #bespoke .bp-bar-2 { animation-delay: 0.4s; }
@@ -690,7 +694,7 @@
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
             <h1 class="solution-hero__title" style="--fit-em: 4.33">1%.<br><span style="white-space: nowrap;">Flat rate.<span class="solution-hero__asterisk">*</span></span></h1>
-            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>one flat rate on card payments, in person and online, for merchants under &pound;200,000 a year. Bespoke rates above.</p>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>one flat rate on card payments, in person and online,<br class="br-desk"> for merchants under &pound;200,000 a year. Bespoke rates above.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
                 Sign up now
