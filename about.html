@@ -440,7 +440,7 @@
        and ends in one Stored account. A payment travels the ribbon; each
        stop turns paid as it passes and the account total counts up.
        Text-led hero (geometry A): the journey sits on the right, from the
-       95px line, and draws its own ribbon (no data-streak). */
+       95px line, and rides the site's shared ribbon (data-streak), the same S as card machines. */
     .about-hero { overflow: hidden; }
     .about-hero .solution-hero__inner { grid-template-columns: 1fr; gap: 0; position: relative; }
     .about-hero .solution-hero__inner .solution-hero__title {
@@ -453,11 +453,7 @@
       font-family: var(--font-body); color: var(--ink);
       transform-origin: right top;
     }
-    .jr__ribbon { position: absolute; left: 0; top: 0; width: 440px; height: 650px; overflow: visible; pointer-events: none; }
-    .jr__path { fill: none; stroke: var(--blurple); stroke-width: 64; stroke-linecap: butt;
-      stroke-dasharray: var(--len, 2000); stroke-dashoffset: var(--len, 2000);
-      animation: jr-draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards; }
-    @keyframes jr-draw { to { stroke-dashoffset: 0; } }
+    .jr__box { position: absolute; inset: 0; pointer-events: none; }
     .jr__dot { position: absolute; left: 0; top: 0; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%;
       background: #fff; box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.28), 0 0 0 12px rgba(255, 255, 255, 0.12); opacity: 0; transition: opacity 0.3s ease; z-index: 1; }
     .jr__dot.is-on { opacity: 1; }
@@ -504,16 +500,15 @@
     .jr-end__meta::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
 
     @media (min-width: 969px) and (max-width: 1279px) { .jr { display: none; } }
-    @media (min-width: 1280px) and (max-width: 1439px) { .jr { scale: 0.86; } }
-    @media (min-width: 969px) and (max-height: 860px) { .jr { scale: 0.86; } }
+    @media (min-width: 969px) and (max-height: 860px) { .jr { height: 560px; } }
     @media (max-width: 968px) {
       .about-hero .solution-hero__content { position: relative; z-index: 1; }
-      .jr { position: relative; right: auto; top: auto; margin: var(--space-10) auto 0; zoom: 0.78; height: 700px; overflow: hidden; }
-      .jr__ribbon { top: 40px; }
-      .jr-stop, .jr-end { translate: 0 40px; }
+      .jr { position: relative; right: auto; top: auto; margin: var(--space-10) auto 0; width: 100%; max-width: 440px; height: 600px; }
+    }
+    @media (max-width: 968px) {
+      .jr__dot { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .jr__path { animation: none; stroke-dashoffset: 0; }
       .jr-stop, .jr-end, .jr__dot { transition: none; animation: none; }
     }
   </style>
@@ -823,14 +818,14 @@
               <a class="solution-hero__trust-text trust-line" href="https://uk.trustpilot.com/review/joinstored.com" target="_blank" rel="noopener noreferrer"><span class="trust-line__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" style="fill: var(--green)"/></svg></span>Rated <strong data-trustpilot-rating>4.9</strong> out of 5 stars on <strong class="trust-line__name">Trustpilot</strong>.</a>
             </div>
           </div>
-          <div class="jr" role="img" aria-label="A ribbon showing one customer journey: Sun Shack is paid in store, on its website, by payment link and by invoice, and every payment lands in one Stored account">
-            <svg class="jr__ribbon" viewBox="0 0 440 650" aria-hidden="true"><path class="jr__path" d="M390 -190 C 390 -10, 300 30, 300 105 C 300 175, 120 155, 120 225 C 120 295, 300 275, 300 345 C 300 415, 120 395, 120 465 C 120 535, 230 515, 230 590 L 230 840"/></svg>
+          <div class="jr" data-streak="blurple" role="img" aria-label="A ribbon showing one customer journey: Sun Shack is paid in store, on its website, by payment link and by invoice, and every payment lands in one Stored account">
+            <span class="jr__box" aria-hidden="true"></span>
             <span class="jr__dot" aria-hidden="true"></span>
-            <div class="jr-stop" data-xy="300,105" data-amt="64.00"><span class="jr-stop__ico jr-stop__ico--pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8.5 8.5a5 5 0 010 7M12 6a8.5 8.5 0 010 12M15.5 3.5a12 12 0 010 17"/></svg></span><span class="jr-stop__txt"><small>In store</small><b>Tap to pay</b></span><span class="jr-stop__amt"><b>&pound;64.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
-            <div class="jr-stop" data-xy="120,225" data-amt="125.00"><span class="jr-stop__ico"><img src="/assets/images/products/studio-sunglasses.jpg?v=2" alt=""></span><span class="jr-stop__txt"><small>Website</small><b>Sunglasses</b></span><span class="jr-stop__amt"><b>&pound;125.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
-            <div class="jr-stop" data-xy="300,345" data-amt="85.00"><span class="jr-stop__ico jr-stop__ico--plain"><img src="/assets/images/Instagram_logo.svg" alt=""></span><span class="jr-stop__txt"><small>Payment link</small><b>Instagram</b></span><span class="jr-stop__amt"><b>&pound;85.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
-            <div class="jr-stop" data-xy="120,465" data-amt="516.00"><span class="jr-stop__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9.5 12h6M9.5 16h6"/></svg></span><span class="jr-stop__txt"><small>Invoice</small><b>INV-0231</b></span><span class="jr-stop__amt"><b>&pound;516.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
-            <div class="jr-end" data-xy="230,590">
+            <div class="jr-stop" data-amt="64.00"><span class="jr-stop__ico jr-stop__ico--pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8.5 8.5a5 5 0 010 7M12 6a8.5 8.5 0 010 12M15.5 3.5a12 12 0 010 17"/></svg></span><span class="jr-stop__txt"><small>In store</small><b>Tap to pay</b></span><span class="jr-stop__amt"><b>&pound;64.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
+            <div class="jr-stop" data-amt="125.00"><span class="jr-stop__ico"><img src="/assets/images/products/studio-sunglasses.jpg?v=2" alt=""></span><span class="jr-stop__txt"><small>Website</small><b>Sunglasses</b></span><span class="jr-stop__amt"><b>&pound;125.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
+            <div class="jr-stop" data-amt="85.00"><span class="jr-stop__ico jr-stop__ico--plain"><img src="/assets/images/Instagram_logo.svg" alt=""></span><span class="jr-stop__txt"><small>Payment link</small><b>Instagram</b></span><span class="jr-stop__amt"><b>&pound;85.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
+            <div class="jr-stop" data-amt="516.00"><span class="jr-stop__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9.5 12h6M9.5 16h6"/></svg></span><span class="jr-stop__txt"><small>Invoice</small><b>INV-0231</b></span><span class="jr-stop__amt"><b>&pound;516.00</b><span class="jr-pill"><span class="jr-pill__wait">Pending</span><span class="jr-pill__paid">Paid</span></span></span></div>
+            <div class="jr-end">
               <div class="jr-end__top"><img class="jr-end__logo" src="/assets/images/stored-logo-white.svg" alt="Stored"><span>Sun Shack &middot; today</span></div>
               <div class="jr-end__total" data-jr-total>&pound;0.00</div>
               <div class="jr-end__meta">In one account next working day</div>
@@ -1210,7 +1205,6 @@
     (function () {
       var jr = document.querySelector('.jr');
       if (!jr) return;
-      var path = jr.querySelector('.jr__path');
       var dot = jr.querySelector('.jr__dot');
       var stops = Array.prototype.slice.call(jr.querySelectorAll('.jr-stop'));
       var end = jr.querySelector('.jr-end');
@@ -1225,19 +1219,48 @@
       };
       pin();
       window.addEventListener('resize', pin);
-      var L = path.getTotalLength();
-      path.style.setProperty('--len', L);
-      var at = function (f) { return path.getPointAtLength(f * L); };
-      // Each stop sits where the ribbon passes its point; keep that fraction
-      [].concat(stops, [end]).forEach(function (el) {
-        var xy = el.dataset.xy.split(',').map(Number), best = 0, bd = Infinity;
-        for (var k = 0; k <= 400; k++) {
-          var q = at(k / 400), d = Math.hypot(q.x - xy[0], q.y - xy[1]);
-          if (d < bd) { bd = d; best = k / 400; }
+      // The ribbon is the site's shared streak (same S as card machines),
+      // drawn into the section. Sample its centre line in the journey's own
+      // coordinates and seat each stop on it, spaced evenly down the stage.
+      var pts = [], at = function (f) { var i = Math.min(pts.length - 1, Math.max(0, Math.round(f * (pts.length - 1)))); return pts[i]; };
+      var place = function () {
+        var spine = hero.querySelector('.streak__spine');
+        if (!spine || !spine.getAttribute('d')) return false;
+        var L = spine.getTotalLength(), jb = jr.getBoundingClientRect(), sb = hero.getBoundingClientRect();
+        var ox = jb.left - sb.left, oy = jb.top - sb.top;
+        pts = [];
+        for (var k = 0; k <= 600; k++) { var q = spine.getPointAtLength(k / 600 * L); pts.push({ x: q.x - ox, y: q.y - oy }); }
+        // The stretch of ribbon inside the stage, split evenly by length
+        var all = [].concat(stops, [end]), H = jr.offsetHeight, W = jr.offsetWidth, i0 = -1, i1 = -1;
+        // Phones and tablets: the shared ribbon runs across rather than down, so the
+        // stops zig-zag down the stage on their own and simply turn paid
+        if (getComputedStyle(jr).position !== 'absolute') {
+          all.forEach(function (el, n) {
+            var last = n === all.length - 1, half = (last ? 252 : 214) / 2;
+            var x = last ? W / 2 : (n % 2 ? half + 4 : W - half - 4);
+            el.dataset.at = 0.2 + 0.7 * n / (all.length - 1);
+            el.style.left = x + 'px';
+            el.style.top = (50 + (H - 120) * n / (all.length - 1)) + 'px';
+          });
+          pts = [{ x: -999, y: -999 }];
+          return true;
         }
-        el.dataset.at = best;
-        el.style.left = xy[0] + 'px'; el.style.top = xy[1] + 'px';
-      });
+        pts.forEach(function (q, k) { if (q.y > 60 && q.y < H - 70 && q.x > -20 && q.x < W + 20) { if (i0 < 0) i0 = k; i1 = k; } });
+        if (i0 < 0) return true;
+        all.forEach(function (el, n) {
+          var best = Math.round(i0 + (i1 - i0) * n / (all.length - 1));
+          var q = pts[best];
+          el.dataset.at = best / (pts.length - 1);
+          var hw = el === end ? 126 : 107;
+          el.style.left = Math.min(W - hw, Math.max(hw, q.x)) + 'px';
+          el.style.top = q.y + 'px';
+        });
+        return true;
+      };
+      var placed = false;
+      var waitSpine = function () { if (place()) { placed = true; } else requestAnimationFrame(waitSpine); };
+      waitSpine();
+      window.addEventListener('resize', function () { setTimeout(place, 120); });
       var fmt = function (v) { return '£' + v.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
       var full = stops.reduce(function (s, el) { return s + parseFloat(el.dataset.amt); }, 0);
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1254,8 +1277,10 @@
         requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
-      var F0 = Math.max(0, parseFloat(stops[0].dataset.at) - 0.08), F1 = parseFloat(end.dataset.at), DUR = 7000;
+      var DUR = 7000;
       var run = function () {
+        if (!placed) { setTimeout(run, 300); return; }
+        var F0 = Math.max(0, parseFloat(stops[0].dataset.at) - 0.08), F1 = parseFloat(end.dataset.at);
         var t0 = null;
         stops.forEach(function (el) { el.classList.remove('is-paid'); });
         target = 0; shown = 0; totalEl.textContent = fmt(0);
