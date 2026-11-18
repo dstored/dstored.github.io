@@ -159,10 +159,24 @@
     .role-apply__note { margin: var(--space-4) 0 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); color: var(--text-secondary); }
     .role-apply__note a { color: var(--ink); font-weight: var(--weight-semibold); }
 
+    /* The at-a-glance card on navy, styled like the navy sections: pink
+       offset shadow, white text, and the light button with a pink shadow */
+    .role-layout .role-apply { background: var(--ink); border-color: var(--ink); box-shadow: 8px 8px 0 var(--hot); color: var(--white); }
+    .role-layout .role-apply__title { color: var(--white); }
+    .role-layout .role-apply dl div { border-top-color: rgba(255, 255, 255, 0.14); }
+    .role-layout .role-apply dt { color: rgba(255, 255, 255, 0.55); }
+    .role-layout .role-apply dd { color: var(--white); }
+    .role-layout .role-apply .btn--primary { background-color: var(--bone); color: var(--ink); border-color: var(--ink); box-shadow: 6px 6px 0 var(--hot); }
+    .role-layout .role-apply .btn--primary:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 var(--hot); }
+    .role-layout .role-apply .btn--primary:active { transform: translate(6px, 6px); box-shadow: 0 0 0 var(--hot); }
+    .role-layout .role-apply__note { color: rgba(255, 255, 255, 0.65); }
+    .role-layout .role-apply__note a { color: var(--white); }
+
     .role-hiring { padding-top: calc(var(--space-section) * 0.55); }
 
     @media (max-width: 640px) {
-      .role-apply { padding: var(--space-6); box-shadow: 4px 4px 0 var(--ink); }
+      .role-apply { padding: var(--space-6); }
+      .role-layout .role-apply { box-shadow: 5px 5px 0 var(--hot); }
       .role-body__section p, .role-body__section li { font-size: var(--text-base); }
     }
   </style>
