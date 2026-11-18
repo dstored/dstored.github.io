@@ -338,6 +338,10 @@
 
     a.pillar-card { text-decoration: none; }
     a.pillar-card .card__link { color: inherit; }
+    /* Headline-to-subtitle gap: the same visible space (0.275em of ink) on
+       every hero, set from each headline's own descenders (Danny, 18 Nov 2026) */
+    @media (min-width: 769px) and (max-height: 900px) { html body .solution-hero__title { margin-bottom: 0.156em !important; } }
+    @media (min-width: 769px) and (min-height: 901px) { html body .solution-hero__title { margin-bottom: 0.156em !important; } }
 </style>
 
   <!-- Favicon -->

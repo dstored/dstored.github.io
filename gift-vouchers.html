@@ -638,6 +638,10 @@
     .gv-stackpeek span:nth-child(1) { margin: 0 9px; background: rgba(11, 27, 51, 0.34); }
     .gv-stackpeek span:nth-child(2) { margin: 0 18px; background: rgba(11, 27, 51, 0.18); }
 
+    /* Headline-to-subtitle gap: the same visible space (0.275em of ink) on
+       every hero, set from each headline's own descenders (Danny, 18 Nov 2026) */
+    @media (min-width: 769px) and (max-height: 900px) { html body .solution-hero__title { margin-bottom: 0.163em !important; } }
+    @media (min-width: 769px) and (min-height: 901px) { html body .solution-hero__title { margin-bottom: 0.163em !important; } }
 </style>
   <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>

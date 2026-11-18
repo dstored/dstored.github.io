@@ -403,6 +403,10 @@
     /* Four feature cards: two by two on desktop (Danny, 26 Oct 2026) */
     .pillars-grid--four { grid-template-columns: repeat(2, 1fr); }
     @media (max-width: 768px) { .pillars-grid--four { grid-template-columns: 1fr; } }
+    /* Headline-to-subtitle gap: the same visible space (0.275em of ink) on
+       every hero, set from each headline's own descenders (Danny, 18 Nov 2026) */
+    @media (min-width: 769px) and (max-height: 900px) { html body .solution-hero__title { margin-bottom: 0.156em !important; } }
+    @media (min-width: 769px) and (min-height: 901px) { html body .solution-hero__title { margin-bottom: 0.156em !important; } }
   </style>
   <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>
@@ -900,7 +904,7 @@
     <!-- ════════════════════════════════════════ -->
     <section class="section">
       <div class="container">
-        <div class="section-header section-header--center" data-animate>
+        <div class="section-header section-header--center section-header--one-line" data-animate>
           <div class="section-header__overline">FEATURES</div>
           <h2 class="section-header__title">Everything a checkout needs.</h2>
           <p class="section-header__subtitle">Cards, wallets and security. One integration.</p>

@@ -862,9 +862,9 @@
 
     .iv-compare__card--pay .iv-compare__label {
       color: var(--hot);
-      /* Tighter than the shared label: the display line below carries its
-         own internal leading, so the box gap shrinks to compensate */
-      margin-bottom: 2px;
+      /* Same visible gap under the label as the bank-transfer card has
+         above its first step (Danny, 18 Nov 2026) */
+      margin-bottom: 16px;
     }
 
     .iv-compare__tap {
@@ -937,6 +937,10 @@
     @media (max-width: 480px) {
       .context-panel__item { grid-template-columns: 1fr; gap: var(--space-2); }
     }
+    /* Headline-to-subtitle gap: the same visible space (0.275em of ink) on
+       every hero, set from each headline's own descenders (Danny, 18 Nov 2026) */
+    @media (min-width: 769px) and (max-height: 900px) { html body .solution-hero__title { margin-bottom: 0.163em !important; } }
+    @media (min-width: 769px) and (min-height: 901px) { html body .solution-hero__title { margin-bottom: 0.163em !important; } }
 </style>
 
   <!-- Favicon -->

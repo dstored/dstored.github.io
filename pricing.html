@@ -431,6 +431,10 @@
       .nf-total { padding: var(--space-5); }
       .nf-total b { font-size: var(--text-2xl); }
     }
+    /* Headline-to-subtitle gap: the same visible space (0.275em of ink) on
+       every hero, set from each headline's own descenders (Danny, 18 Nov 2026) */
+    @media (min-width: 769px) and (max-height: 900px) { html body .solution-hero__title { margin-bottom: 0.156em !important; } }
+    @media (min-width: 769px) and (min-height: 901px) { html body .solution-hero__title { margin-bottom: 0.156em !important; } }
   </style>
   <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
 </head>

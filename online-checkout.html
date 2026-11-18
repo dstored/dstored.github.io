@@ -783,6 +783,16 @@
     @media (max-width: 480px) {
       .context-panel__item { grid-template-columns: 1fr; gap: var(--space-2); }
     }
+    /* Headline-to-subtitle gap: the same visible space (0.275em of ink) on
+       every hero, set from each headline's own descenders (Danny, 18 Nov 2026) */
+    @media (min-width: 769px) and (max-height: 900px) { html body .solution-hero__title { margin-bottom: 0.350em !important; } }
+    @media (min-width: 769px) and (min-height: 901px) { html body .solution-hero__title { margin-bottom: 0.350em !important; } }
+    /* Hero subtitle: "No code, no developer needed." starts its own line on desktop */
+    .br-desk { display: none; }
+    @media (min-width: 969px) { .br-desk { display: inline; } }
+    /* Four steps: each description runs to two lines across the column */
+    .why-grid .why-card { padding: 0; }
+    .why-grid .why-card__text { max-width: none; text-wrap: balance; }
 </style>
 
   <!-- Schema -->
@@ -1091,7 +1101,7 @@
         <div class="solution-hero__inner">
           <div class="solution-hero__content" data-animate>
             <h1 class="solution-hero__title fit-phone" style="--fit-em: 5.12">Sell now,<br><span style="white-space: nowrap;">anywhere.<span class="solution-hero__asterisk">*</span></span></h1>
-            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>without a website. Share, embed or QR a checkout in minutes. No developer needed.</p>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>without a website. Share, embed or QR a checkout in minutes.<br class="br-desk"> No code, no developer needed.</p>
             <div class="solution-hero__actions">
               <a href="/sign-up" class="btn btn--primary btn--lg btn--icon-right">
                 Sign up now
@@ -1300,7 +1310,7 @@
               </svg>
             </div>
             <h3 class="why-card__title">Add item.</h3>
-            <p class="why-card__text">Log in and add a photo, name and price. Add details yourself or let AI do it for you.</p>
+            <p class="why-card__text">Add a photo, name and price, or let AI write the details.</p>
           </div>
 
           <div class="why-card">
@@ -1319,7 +1329,7 @@
               </svg>
             </div>
             <h3 class="why-card__title">Pick a checkout.</h3>
-            <p class="why-card__text">A single item, a bundle or a micro storefront. No developer, no code.</p>
+            <p class="why-card__text">A single item, a bundle or a micro storefront. No code.</p>
           </div>
 
           <div class="why-card">
@@ -1358,7 +1368,7 @@
               </svg>
             </div>
             <h3 class="why-card__title">Share it.</h3>
-            <p class="why-card__text">Post the link, print the QR or embed it. Socials, WhatsApp, email, text, website.</p>
+            <p class="why-card__text">Post the link, print the QR or embed it anywhere.</p>
           </div>
 
           <div class="why-card">
@@ -1406,7 +1416,7 @@
               </svg>
             </div>
             <h3 class="why-card__title">Get paid.</h3>
-            <p class="why-card__text">Card and wallet payments, settled to your account the next working day.</p>
+            <p class="why-card__text">Card and wallet payments, settled next working day.</p>
           </div>
         </div>
 

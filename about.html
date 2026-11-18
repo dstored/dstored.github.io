@@ -508,6 +508,11 @@
     @media (prefers-reduced-motion: reduce) {
       .jr-stop, .jr-end { transition: none; animation: none; }
     }
+
+    /* Headline-to-subtitle gap: the same visible space (0.275em of ink) on
+       every hero, set from each headline's own descenders (Danny, 18 Nov 2026) */
+    @media (min-width: 769px) and (max-height: 900px) { html body .solution-hero__title { margin-bottom: 0.163em !important; } }
+    @media (min-width: 769px) and (min-height: 901px) { html body .solution-hero__title { margin-bottom: 0.163em !important; } }
   </style>
 
   <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
