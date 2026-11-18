@@ -219,9 +219,10 @@
 
     .vt-gen__btn--primary { animation: vt-press 12s ease-in-out infinite; }
 
+    /* Navy until the cursor clicks it, then blurple for the rest of the loop */
     @keyframes vt-press {
-      0%, 32% { transform: scale(1); background: var(--blurple); }
-      33%, 34.5% { transform: scale(0.97); background: var(--blurple-dark); }
+      0%, 32% { transform: scale(1); background: var(--ink); }
+      33%, 34.5% { transform: scale(0.97); background: var(--blurple); }
       36%, 100% { transform: scale(1); background: var(--blurple); }
     }
 
@@ -236,7 +237,7 @@
       font-weight: 600;
     }
 
-    .vt-gen__btn--primary { background: var(--blurple); color: #FFFFFF; }
+    .vt-gen__btn--primary { background: var(--ink); color: #FFFFFF; }
 
     /* States 2 and 3: the payment summary */
     .vt-gen__panel {
