@@ -85,6 +85,9 @@
     .why-card__text { max-width: 36ch; margin-inline: auto; }
 
     /* General application: email shown as a button, not a trailing link */
+    /* Live role rows: separate boxes with a full border, arrow kept beside 'View role' */
+    .careers-roles .role-row + .role-row { border-top: 2px solid var(--ink); }
+    .careers-roles .role-row__cta { display: inline-flex; align-items: center; gap: 6px; }
     .role-row--general .role-row__btn { pointer-events: none; white-space: nowrap; }
     .role-row--general:hover .role-row__btn { background: var(--white); color: var(--ink); border-color: var(--white); }
 
@@ -713,11 +716,29 @@
         <div class="section-header" data-animate>
           <div class="section-header__overline">OPEN ROLES</div>
           <h2 class="section-header__title">Open roles at Stored.</h2>
-          <p class="section-header__subtitle">We list roles here when they are live, and take them down when they are filled. Nothing is listed right now, but we always read general applications.</p>
+          <p class="section-header__subtitle">We list roles here when they are live, and take them down when they are filled. We always read general applications too.</p>
         </div>
 
         <!-- Live roles go above the general application, one row each, linking to their own page at the site root, e.g. /careers-sales-executive (copy careers-role-template.html; never a careers/ folder, which would break /careers) -->
         <div data-stagger style="display: grid; gap: var(--space-3);">
+          <a href="/careers-inside-sales" class="role-row">
+            <div>
+              <h3 class="role-row__title">Inside sales</h3>
+              <p class="role-row__sub">Talk to UK businesses that come to Stored, help them choose the right way to get paid, and open their account.</p>
+            </div>
+            <span class="mono-meta">Sales</span>
+            <span class="mono-meta">Remote, UK</span>
+            <span class="role-row__cta">View role <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="/careers-field-sales-representative" class="role-row">
+            <div>
+              <h3 class="role-row__title">Field sales representative</h3>
+              <p class="role-row__sub">Meet UK businesses where they trade and bring them onto Stored. Proven payments experience required.</p>
+            </div>
+            <span class="mono-meta">Sales</span>
+            <span class="mono-meta">Across the UK</span>
+            <span class="role-row__cta">View role <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
           <a href="mailto:careers@joinstored.com?subject=General%20application%20-%20what%20I%20would%20bring%20to%20Stored." class="role-row role-row--general">
             <div>
               <h3 class="role-row__title">General application</h3>
