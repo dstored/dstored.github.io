@@ -375,6 +375,38 @@
     .section-header--full { max-width: none; }
     .section-header--full .section-header__subtitle { max-width: none; }
     @media (min-width: 769px) { #card-fees .pricing-teaser__rate-note { min-height: 3em; } }
+    /* Market context: a split section, copy on the left, a vertical panel of
+       third-party figures on the right. Static numbers (no counting), so it
+       never reads as the pink strip of Stored's own facts. */
+    .context-split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+    .context-split .section-header { text-align: left; margin: 0; max-width: 560px; }
+    .context-split .section-header__subtitle { margin-left: 0; }
+    .context-panel { border-radius: var(--radius-xl); padding: clamp(1.75rem, 3vw, 2.75rem); }
+    .context-panel__overline { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--space-4); }
+    .context-panel__list { list-style: none; margin: 0; padding: 0; }
+    .context-panel__item { padding: var(--space-5) 0; display: grid; grid-template-columns: 9.5rem 1fr; gap: var(--space-5); align-items: center; }
+    .context-panel__item + .context-panel__item { border-top: 1px solid var(--rule); }
+    .context-panel__figure { font-family: var(--font-display); font-weight: 600; font-size: var(--text-5xl); line-height: 1; letter-spacing: -0.03em; white-space: nowrap; }
+    .context-panel__text { font-size: var(--text-base); line-height: 1.45; }
+    .context-panel__source { font-size: var(--text-xs); line-height: 1.5; margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--rule); }
+    .context-panel__source a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+    .context-panel--paper { --rule: rgba(11,27,51,.14); background: #fff; color: var(--ink); border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+    .context-panel--paper .context-panel__overline { color: var(--hot); }
+    .context-panel--paper .context-panel__text,
+    .context-panel--paper .context-panel__source { color: var(--mute); }
+
+    @media (max-width: 900px) {
+      .context-split { grid-template-columns: 1fr; }
+      .context-split .section-header { max-width: none; }
+    }
+    @media (max-width: 480px) {
+      .context-panel__item { grid-template-columns: 1fr; gap: var(--space-2); }
+    }
+    #true-cost { padding-bottom: 0; }
+    #true-cost .context-panel__item { grid-template-columns: 11.25rem 1fr; }
+    #true-cost .context-panel__figure { font-size: var(--text-4xl); }
+    @media (max-width: 480px) { #true-cost .context-panel__item { grid-template-columns: 1fr; } }
     #card-fees { padding-bottom: 0; }
     #card-fees .pricing-teaser--two .pricing-teaser__rates { max-width: none; }
     /* Bone rate cards on the card-fees section (Danny, 18 Nov 2026: navy was too heavy here) */
@@ -757,7 +789,7 @@
           </div>
         </div>
       </div>
-      <a href="#below-hero" class="scroll-hint" aria-label="Scroll down">
+      <a href="#true-cost" class="scroll-hint" aria-label="Scroll down">
         <span class="scroll-hint__text">Scroll</span>
         <svg class="scroll-hint__icon" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" stroke-width="1.6"/>
@@ -781,6 +813,26 @@
 
     <!-- ════════════════════════════════════════ -->
     <!-- £200K SEGMENT SPLIT — the visual centerpiece -->
+    <!-- THE FULLY LOADED COST -->
+    <section class="section" id="true-cost">
+      <div class="container context-split">
+        <div class="section-header" data-animate>
+          <h2 class="section-header__title">The rate isn&rsquo;t <span class="highlight">the real cost.</span></h2>
+          <p class="section-header__subtitle">A low processing rate can hide the real story. Add machine rental, PCI, authorisation, minimum and inactivity fees, and businesses under &pound;250k a year typically pay 1.5% to 2.5% all in.</p>
+        </div>
+        <aside class="context-panel context-panel--paper" aria-label="Fees on top of the rate" data-animate>
+          <div class="context-panel__overline">Fees on top of the rate</div>
+          <ul class="context-panel__list">
+            <li class="context-panel__item"><span class="context-panel__figure">3&ndash;5p</span><span class="context-panel__text">authorisation fee on every transaction</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">&pound;15&ndash;30</span><span class="context-panel__text">a month to rent a card machine</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">&pound;4&ndash;6</span><span class="context-panel__text">a month in PCI compliance fees</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">&pound;15&ndash;30</span><span class="context-panel__text">monthly minimum service charge</span></li>
+          </ul>
+          <p class="context-panel__source">Source: typical traditional acquirer fees, <a href="https://www.expertsure.com/uk/merchant-accounts/payment-processing-costs/" rel="noopener" target="_blank">ExpertSure</a>, prices verified October 2026.</p>
+        </aside>
+      </div>
+    </section>
+
     <!-- ════════════════════════════════════════ -->
     <section class="section" id="below-hero">
       <div class="container">
