@@ -1935,9 +1935,13 @@
   }
 }
 
-/* Featured blog card: the summary runs to four short lines under the title
-   (Danny, 18 Nov 2026) */
+/* Featured blog card: the summary set larger, filling the column under the
+   title (Danny, 18 Nov 2026) */
 .rc--featured .rc__body > p {
-  max-width: 24ch;
-  text-wrap: balance;
+  font-size: var(--text-xl);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+@media (max-width: 640px) {
+  .rc--featured .rc__body > p { font-size: var(--text-lg); }
 }
