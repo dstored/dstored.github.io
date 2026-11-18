@@ -27,7 +27,7 @@
 
   <style>
     /* Job listing: title and facts up top, the description beside a sticky apply card */
-    .role-hero { padding: calc(var(--space-section) * 0.9) 0 var(--space-6); }
+    .role-hero { padding: calc(var(--space-section) * 0.9 + var(--space-6)) 0 var(--space-6); }
     /* The description follows straight on, without a full section gap */
     .role-hero + .section { padding-top: var(--space-8); }
 
@@ -79,9 +79,18 @@
       border-radius: 999px;
     }
 
+    /* Role header: title and summary left, the at-a-glance card and the one
+       Apply button right, so the top of the page has no empty corner */
+    .role-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: var(--space-16); align-items: center; }
+    .role-hero__lede { margin: 0; max-width: 46ch; font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); }
+    .role-hero .role-apply { position: static; order: 0; }
+    @media (max-width: 1024px) {
+      .role-hero__grid { grid-template-columns: 1fr; gap: var(--space-8); align-items: start; }
+      .role-hero .role-apply { max-width: 420px; }
+    }
     .role-body {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 360px;
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--space-16);
       align-items: start;
     }
@@ -447,17 +456,24 @@
     <!-- ════════════════════════════════════════ -->
     <section class="role-hero">
       <div class="container">
-        <a href="/careers#roles" class="role-hero__back"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All roles</a>
-        <div class="section-header__overline">OPEN ROLE &middot; SALES</div>
-        <h1 class="role-hero__title" data-job-title>Telesales</h1>
-        <ul class="role-hero__facts">
-          <li>Full time</li>
-          <li>Remote, UK</li>
-        </ul>
-        <a href="mailto:careers@joinstored.com?subject=Application" class="btn btn--primary btn--lg btn--icon-right" data-apply>
-          Apply now
-          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <div class="role-hero__grid">
+          <div>
+          <a href="/careers#roles" class="role-hero__back"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All roles</a>
+          <div class="section-header__overline">OPEN ROLE &middot; SALES</div>
+          <h1 class="role-hero__title" data-job-title>Telesales</h1>
+          <p class="role-hero__lede">Pick up the phone to UK businesses, book the meetings and bring them onto Stored.</p>
+          </div>
+          <aside class="role-apply" aria-label="Apply for this role">
+            <p class="role-apply__title">The role at a glance.</p>
+            <dl>
+              <div><dt>Team</dt><dd>Sales</dd></div>
+              <div><dt>Type</dt><dd>Full time</dd></div>
+              <div><dt>Where</dt><dd>Remote, UK</dd></div>
+            </dl>
+            <a href="mailto:careers@joinstored.com?subject=Application" class="btn btn--primary btn--lg" data-apply>Apply now</a>
+            <p class="role-apply__note">Apply by email with your CV and a few lines on why this role. It goes to <a href="mailto:careers@joinstored.com">careers@joinstored.com</a>, and a person reads every application.</p>
+          </aside>
+        </div>
       </div>
     </section>
 
@@ -504,16 +520,6 @@
 
           </div>
 
-          <aside class="role-apply" aria-label="Apply for this role">
-            <p class="role-apply__title">The role at a glance.</p>
-            <dl>
-              <div><dt>Team</dt><dd>Sales</dd></div>
-              <div><dt>Type</dt><dd>Full time</dd></div>
-              <div><dt>Where</dt><dd>Remote, UK</dd></div>
-            </dl>
-            <a href="mailto:careers@joinstored.com?subject=Application" class="btn btn--primary btn--lg" data-apply>Apply now</a>
-            <p class="role-apply__note">Apply by email with your CV and a few lines on why this role. It goes to <a href="mailto:careers@joinstored.com">careers@joinstored.com</a>, and a person reads every application.</p>
-          </aside>
         </div>
       </div>
     </section>
