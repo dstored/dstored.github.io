@@ -166,6 +166,8 @@
     }
 
     .tk-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Drawn event artwork: a ticket stub on blurple instead of a photo (Danny, 18 Nov 2026) */
+    .tk-art { width: 100%; height: 100%; display: block; }
 
     /* Ticket screen: the artwork is a smaller square inset at the top, with
        white around it, rather than the full-bleed image of the product page */
@@ -911,7 +913,7 @@
                 <div class="hero__card-state phone-demo__screen tk-s1">
                   <div class="tk-page">
                     <div class="tk-media">
-                      <img src="/assets/images/event-live-gig.jpg?v=3" alt="" loading="lazy" decoding="async">
+                      <svg class="tk-art" viewBox="0 0 320 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="300" fill="#6E44FF"/><g opacity=".14" stroke="#fff" stroke-width="1"><path d="M0 0V300"/><path d="M30 0V300"/><path d="M60 0V300"/><path d="M90 0V300"/><path d="M120 0V300"/><path d="M150 0V300"/><path d="M180 0V300"/><path d="M210 0V300"/><path d="M240 0V300"/><path d="M270 0V300"/><path d="M300 0V300"/><path d="M330 0V300"/><path d="M0 0H320"/><path d="M0 30H320"/><path d="M0 60H320"/><path d="M0 90H320"/><path d="M0 120H320"/><path d="M0 150H320"/><path d="M0 180H320"/><path d="M0 210H320"/><path d="M0 240H320"/><path d="M0 270H320"/><path d="M0 300H320"/></g><g transform="rotate(-8 160 150)"><path d="M58 92h204a12 12 0 0 0 0 24v68a12 12 0 0 0 0 24H58a12 12 0 0 0 0-24v-68a12 12 0 0 0 0-24z" fill="#fff" stroke="#0B1B33" stroke-width="3"/><path d="M206 98v104" stroke="#0B1B33" stroke-width="2.5" stroke-dasharray="6 6"/><text x="74" y="132" font-family="JetBrains Mono, monospace" font-weight="700" font-size="11" letter-spacing="2" fill="#EB1857">ADMIT ONE</text><text x="74" y="166" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="30" letter-spacing="-1" fill="#0B1B33">Live.</text><text x="74" y="188" font-family="Inter, sans-serif" font-size="11" fill="#5A6578">Fri · 9 pm · £15</text><g fill="#0B1B33"><rect x="218" y="118" width="4" height="64"/><rect x="225" y="118" width="2" height="64"/><rect x="224" y="118" width="2" height="64"/><rect x="231" y="118" width="4" height="64"/><rect x="230" y="118" width="2" height="64"/><rect x="237" y="118" width="2" height="64"/><rect x="236" y="118" width="4" height="64"/><rect x="243" y="118" width="2" height="64"/><rect x="242" y="118" width="2" height="64"/><rect x="249" y="118" width="4" height="64"/></g></g><text x="266" y="80" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="56" fill="#EB1857">*</text></svg>
                       <div class="tk-dots"><span></span><span></span><span></span><span></span></div>
                     </div>
                     <div class="tk-body">
@@ -949,7 +951,7 @@
                 <div class="hero__card-state phone-demo__screen tk-s3">
                   <div class="tk-page">
                     <div class="tk-media tk-media--inset">
-                      <img src="/assets/images/event-live-gig.jpg?v=3" alt="" decoding="async">
+                      <svg class="tk-art" viewBox="0 0 320 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="300" fill="#6E44FF"/><g opacity=".14" stroke="#fff" stroke-width="1"><path d="M0 0V300"/><path d="M30 0V300"/><path d="M60 0V300"/><path d="M90 0V300"/><path d="M120 0V300"/><path d="M150 0V300"/><path d="M180 0V300"/><path d="M210 0V300"/><path d="M240 0V300"/><path d="M270 0V300"/><path d="M300 0V300"/><path d="M330 0V300"/><path d="M0 0H320"/><path d="M0 30H320"/><path d="M0 60H320"/><path d="M0 90H320"/><path d="M0 120H320"/><path d="M0 150H320"/><path d="M0 180H320"/><path d="M0 210H320"/><path d="M0 240H320"/><path d="M0 270H320"/><path d="M0 300H320"/></g><g transform="rotate(-8 160 150)"><path d="M58 92h204a12 12 0 0 0 0 24v68a12 12 0 0 0 0 24H58a12 12 0 0 0 0-24v-68a12 12 0 0 0 0-24z" fill="#fff" stroke="#0B1B33" stroke-width="3"/><path d="M206 98v104" stroke="#0B1B33" stroke-width="2.5" stroke-dasharray="6 6"/><text x="74" y="132" font-family="JetBrains Mono, monospace" font-weight="700" font-size="11" letter-spacing="2" fill="#EB1857">ADMIT ONE</text><text x="74" y="166" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="30" letter-spacing="-1" fill="#0B1B33">Live.</text><text x="74" y="188" font-family="Inter, sans-serif" font-size="11" fill="#5A6578">Fri · 9 pm · £15</text><g fill="#0B1B33"><rect x="218" y="118" width="4" height="64"/><rect x="225" y="118" width="2" height="64"/><rect x="224" y="118" width="2" height="64"/><rect x="231" y="118" width="4" height="64"/><rect x="230" y="118" width="2" height="64"/><rect x="237" y="118" width="2" height="64"/><rect x="236" y="118" width="4" height="64"/><rect x="243" y="118" width="2" height="64"/><rect x="242" y="118" width="2" height="64"/><rect x="249" y="118" width="4" height="64"/></g></g><text x="266" y="80" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="56" fill="#EB1857">*</text></svg>
                     </div>
                     <div class="tk-tick-body">
                       <div class="tk-tick-head">
