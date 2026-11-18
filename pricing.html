@@ -376,11 +376,14 @@
     .section-header--full .section-header__subtitle { max-width: none; }
     @media (min-width: 769px) { #card-fees .pricing-teaser__rate-note { min-height: 3em; } }
     #card-fees .pricing-teaser--two .pricing-teaser__rates { max-width: none; }
-    /* Navy rate cards on the light card-fees section */
-    #card-fees .pricing-teaser__rate-card { background: var(--ink); }
-    #card-fees .pricing-teaser__rate-note { color: rgba(255, 255, 255, 0.75); }
-    #card-fees .pricing-teaser__rate-number { color: var(--white); }
-    #card-fees .pricing-teaser__rate-footnote { color: rgba(255, 255, 255, 0.6); }
+    /* Bone rate cards on the card-fees section (Danny, 18 Nov 2026: navy was too heavy here) */
+    #card-fees .pricing-teaser__rate-card { background: var(--bone); }
+    #card-fees .pricing-teaser__rate-note { color: var(--text-secondary); }
+    #card-fees .pricing-teaser__rate-number { color: var(--ink); }
+    #card-fees .pricing-teaser__rate-footnote { color: var(--mute); }
+    /* Over £200k: heading on one line, the line under it wraps at the heading's width */
+    #bespoke .section-header { width: fit-content; max-width: 100%; margin-inline: auto; }
+    #bespoke .section-header__subtitle { width: 0; min-width: 100%; max-width: none; text-wrap: balance; }
     /* Subtitle breaks after "in person and online," on desktop only */
     .br-desk { display: none; }
     @media (min-width: 969px) { .br-desk { display: inline; } }
@@ -893,9 +896,9 @@
     <!-- ════════════════════════════════════════ -->
     <section class="section section--white" id="bespoke">
       <div class="container">
-        <div class="section-header section-header--center" data-animate>
+        <div class="section-header section-header--center section-header--one-line" data-animate>
           <div class="section-header__overline">OVER &pound;200K</div>
-          <h2 class="section-header__title">Over &pound;200k a year?<br>Let&rsquo;s talk.</h2>
+          <h2 class="section-header__title">Over &pound;200k a year? Let&rsquo;s talk.</h2>
           <p class="section-header__subtitle">Send us three months of statements. We&rsquo;ll come back with a rate built to beat your current setup.</p>
         </div>
 
