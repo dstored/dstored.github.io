@@ -444,9 +444,9 @@
     /* No surprises: six fees we don't charge, set like lines on a statement.
        Each line reads £0, and the total at the foot is £0.00 */
     .nf-section .section-header__title { color: var(--white); }
-    .nf-statement { max-width: 1080px; margin: 0 auto; border: 1px solid rgba(255, 255, 255, 0.14); }
-    .nf-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: rgba(255, 255, 255, 0.14); }
-    .nf-tile { background: var(--ink); padding: var(--space-8) var(--space-8) var(--space-10); }
+    .nf-statement { max-width: none; margin: 0 auto; border: 1px solid rgba(255, 255, 255, 0.14); }
+    .nf-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: rgba(255, 255, 255, 0.14); }
+    .nf-tile { background: var(--ink); padding: var(--space-8) var(--space-6) var(--space-8); }
     .nf-tile__zero {
       font-family: var(--font-display); font-weight: 700; font-size: clamp(3.5rem, 2.5rem + 2.5vw, 5rem);
       line-height: 0.9; letter-spacing: -0.04em; color: var(--white); margin-bottom: var(--space-6);
@@ -459,8 +459,8 @@
       color: rgba(255, 255, 255, 0.75); font-weight: var(--weight-medium);
     }
     .nf-total b { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--white); letter-spacing: -0.03em; }
-    @media (max-width: 968px) { .nf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 640px) {
+    @media (min-width: 1025px) and (max-width: 1360px) { .nf-tile { padding-left: var(--space-5); padding-right: var(--space-5); } .nf-tile__title { font-size: var(--text-base); } }
+    @media (max-width: 1024px) {
       .nf-grid { grid-template-columns: 1fr; }
       .nf-tile { display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-5); padding: var(--space-6) var(--space-5); align-items: start; }
       .nf-tile__zero { grid-row: span 2; font-size: 2.75rem; margin: 0; }
@@ -818,7 +818,7 @@
       <div class="container context-split">
         <div class="section-header" data-animate>
           <h2 class="section-header__title">The rate isn&rsquo;t <span class="highlight">the real cost.</span></h2>
-          <p class="section-header__subtitle">A low processing rate can hide the real story. Add machine rental, PCI, authorisation, minimum and inactivity fees, and businesses under &pound;250k a year typically pay 1.5% to 2.5% all in.</p>
+          <p class="section-header__subtitle">A low processing rate can hide the real story. Machine rental, PCI, authorisation, minimum and inactivity fees sit on top, and UK SMEs typically pay 1.5% to 2.5% under blended pricing.</p>
         </div>
         <aside class="context-panel context-panel--paper" aria-label="Fees on top of the rate" data-animate>
           <div class="context-panel__overline">Fees on top of the rate</div>
@@ -828,7 +828,7 @@
             <li class="context-panel__item"><span class="context-panel__figure">&pound;4&ndash;6</span><span class="context-panel__text">a month in PCI compliance fees</span></li>
             <li class="context-panel__item"><span class="context-panel__figure">&pound;15&ndash;30</span><span class="context-panel__text">monthly minimum service charge</span></li>
           </ul>
-          <p class="context-panel__source">Source: typical traditional acquirer fees, <a href="https://www.expertsure.com/uk/merchant-accounts/payment-processing-costs/" rel="noopener" target="_blank">ExpertSure</a>, prices verified October 2026.</p>
+          <p class="context-panel__source">Sources: ExpertSure, <a href="https://www.expertsure.com/uk/merchant-accounts/payment-processing-costs/" rel="noopener" target="_blank">traditional acquirer fees</a> (verified October 2026) and <a href="https://www.expertsure.com/uk/merchant-accounts/merchant-account-fee-calculator/" rel="noopener" target="_blank">SME blended rates</a> (verified February 2026).</p>
         </aside>
       </div>
     </section>
@@ -1100,28 +1100,23 @@
           </div>
           <div class="nf-tile">
             <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
-            <h3 class="nf-tile__title">No PCI compliance fees.</h3>
-            <p class="nf-tile__text">Compliance is part of the package, not a surcharge.</p>
+            <h3 class="nf-tile__title">No PCI fees.</h3>
+            <p class="nf-tile__text">Compliance comes as part of the package.</p>
           </div>
           <div class="nf-tile">
             <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
             <h3 class="nf-tile__title">No monthly minimums.</h3>
-            <p class="nf-tile__text">Trade what you trade. Quiet months don&rsquo;t cost you.</p>
+            <p class="nf-tile__text">Quiet months don&rsquo;t cost you extra.</p>
           </div>
           <div class="nf-tile">
             <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
             <h3 class="nf-tile__title">No setup fees.</h3>
-            <p class="nf-tile__text">Onboarding, configuration and branding are on us.</p>
+            <p class="nf-tile__text">Onboarding and branding are on us.</p>
           </div>
           <div class="nf-tile">
             <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
-            <h3 class="nf-tile__title">No long-term contracts.</h3>
-            <p class="nf-tile__text">30-day rolling. Cancel any time, no penalty.</p>
-          </div>
-          <div class="nf-tile">
-            <div class="nf-tile__zero" aria-hidden="true">&pound;0</div>
-            <h3 class="nf-tile__title">No chargeback handling fees.</h3>
-            <p class="nf-tile__text">We dispute on your behalf, free of charge.</p>
+            <h3 class="nf-tile__title">No hardware fees.</h3>
+            <p class="nf-tile__text">No rental charge on your card machine.</p>
           </div>
           </div>
           <div class="nf-total">
