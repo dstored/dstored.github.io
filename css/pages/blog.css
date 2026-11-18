@@ -17,9 +17,10 @@
 .post__title {
   font-family: var(--font-display); font-weight: var(--weight-bold);
   font-size: clamp(2.6rem, 1.5rem + 4.2vw, 5rem); line-height: 0.98; letter-spacing: -0.045em;
-  color: var(--ink); max-width: 17ch; margin: var(--space-6) 0 var(--space-6);
+  color: var(--ink); max-width: none; text-wrap: balance; margin: var(--space-6) 0 var(--space-6);
 }
-.post__standfirst { font-size: var(--text-xl); line-height: var(--leading-normal); color: var(--mute); max-width: 40ch; }
+.post__standfirst { font-size: var(--text-xl); line-height: var(--leading-normal); color: var(--mute); max-width: none; text-wrap: pretty; }
+/* Title and standfirst run the full width of the post column (Danny, 18 Nov 2026) */
 
 .post__meta { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-8); }
 .post__avatar {
