@@ -408,7 +408,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-10);
-  align-items: center;
+  /* Photo runs the full height of the card, edge to edge (Danny, 18 Nov 2026) */
+  align-items: stretch;
   background: var(--white);
   border: 2px solid var(--ink);
   box-shadow: none;
@@ -417,7 +418,8 @@
 }
 
 .case-study__image {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: auto;
+  min-height: 100%;
   background: var(--bone);
   display: flex;
   align-items: center;
@@ -437,6 +439,7 @@
 
 .case-study__content {
   padding: var(--space-10);
+  align-self: center;
 }
 
 .case-study__quote {
@@ -692,6 +695,7 @@
   .case-study {
     grid-template-columns: 1fr;
   }
+  .case-study__image { aspect-ratio: 16 / 10; }
 
   .content-split {
     grid-template-columns: 1fr;
