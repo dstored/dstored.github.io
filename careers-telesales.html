@@ -27,9 +27,7 @@
 
   <style>
     /* Job listing: title and facts up top, the description beside a sticky apply card */
-    .role-hero { padding: calc(var(--space-section) * 0.9 + var(--space-6)) 0 var(--space-6); }
-    /* The description follows straight on, without a full section gap */
-    .role-hero + .section { padding-top: var(--space-8); }
+    .role-hero { padding: max(calc(var(--space-section) * 0.9), calc(82px + var(--space-4))) 0 var(--space-section); }
 
     .role-hero__back {
       display: inline-flex;
@@ -79,20 +77,23 @@
       border-radius: 999px;
     }
 
-    /* Role header: title and summary left, the at-a-glance card and the one
-       Apply button right, so the top of the page has no empty corner */
-    .role-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: var(--space-16); align-items: center; }
-    .role-hero__lede { margin: 0; max-width: 46ch; font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); }
-    .role-hero .role-apply { position: static; order: 0; }
-    @media (max-width: 1024px) {
-      .role-hero__grid { grid-template-columns: 1fr; gap: var(--space-8); align-items: start; }
-      .role-hero .role-apply { max-width: 420px; }
-    }
-    .role-body {
+    /* One layout for the whole role: intro and description on the left, the
+       at-a-glance card (with the only Apply button) pinned on the right as
+       you scroll, so the text never runs underneath it */
+    .role-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: var(--space-16);
+      grid-template-columns: minmax(0, 1fr) 360px;
+      grid-template-areas: "intro card" "body card";
+      column-gap: var(--space-16);
       align-items: start;
+    }
+    .role-intro { grid-area: intro; }
+    .role-body { grid-area: body; margin-top: var(--space-12); }
+    .role-layout .role-apply { grid-area: card; position: sticky; top: 110px; }
+    .role-hero__lede { margin: 0; max-width: 46ch; font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); }
+    @media (max-width: 1024px) {
+      .role-layout { grid-template-columns: 1fr; grid-template-areas: "intro" "card" "body"; }
+      .role-layout .role-apply { position: static; margin-top: var(--space-8); max-width: 420px; }
     }
 
     .role-body__section + .role-body__section { margin-top: var(--space-12); }
@@ -159,11 +160,6 @@
     .role-apply__note a { color: var(--ink); font-weight: var(--weight-semibold); }
 
     .role-hiring { padding-top: calc(var(--space-section) * 0.55); }
-
-    @media (max-width: 1024px) {
-      .role-body { grid-template-columns: 1fr; gap: var(--space-12); }
-      .role-apply { position: static; order: -1; }
-    }
 
     @media (max-width: 640px) {
       .role-apply { padding: var(--space-6); box-shadow: 4px 4px 0 var(--ink); }
@@ -456,8 +452,8 @@
     <!-- ════════════════════════════════════════ -->
     <section class="role-hero">
       <div class="container">
-        <div class="role-hero__grid">
-          <div>
+        <div class="role-layout">
+          <div class="role-intro">
           <a href="/careers#roles" class="role-hero__back"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All roles</a>
           <div class="section-header__overline">OPEN ROLE &middot; SALES</div>
           <h1 class="role-hero__title" data-job-title>Telesales</h1>
@@ -473,17 +469,7 @@
             <a href="mailto:careers@joinstored.com?subject=Application" class="btn btn--primary btn--lg" data-apply>Apply now</a>
             <p class="role-apply__note">Apply by email with your CV and a few lines on why this role. It goes to <a href="mailto:careers@joinstored.com">careers@joinstored.com</a>, and a person reads every application.</p>
           </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════ -->
-    <!-- JOB DESCRIPTION                          -->
-    <!-- ════════════════════════════════════════ -->
-    <section class="section section--white">
-      <div class="container">
-        <div class="role-body">
-          <div>
+          <div class="role-body">
             <div class="role-body__section">
               <h2>About the role.</h2>
               <p>You&rsquo;re the first voice a business hears from Stored. You&rsquo;ll pick up the phone to UK businesses, find the ones who&rsquo;d be better off getting paid with Stored, and book them in. Where it fits, you&rsquo;ll take them all the way: signed up and onboarded over the phone, without anyone leaving their desk.</p>
@@ -517,9 +503,7 @@
               <li>Experience selling to small and medium UK businesses.</li>
               </ul>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>
