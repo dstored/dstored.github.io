@@ -93,7 +93,7 @@
     .role-intro { grid-area: intro; }
     .role-body { grid-area: body; margin-top: var(--space-12); }
     .role-layout .role-apply { grid-area: card; position: sticky; top: 110px; }
-    .role-hero__lede { margin: 0; max-width: var(--role-measure); font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); }
+    .role-hero__lede { margin: 0; max-width: var(--role-measure); text-wrap: pretty; font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); }
     @media (max-width: 1024px) {
       .role-layout { grid-template-columns: 1fr; grid-template-areas: "intro" "card" "body"; }
       .role-layout .role-apply { position: static; margin-top: var(--space-8); max-width: 420px; }
@@ -117,7 +117,7 @@
       color: var(--text-secondary);
     }
 
-    .role-body__section p { margin: 0 0 var(--space-4); max-width: var(--role-measure); }
+    .role-body__section p { margin: 0 0 var(--space-4); max-width: var(--role-measure); text-wrap: pretty; }
 
     .role-body__section ul { margin: 0; padding-left: 1.25em; max-width: var(--role-measure); list-style: disc; }
     .role-body__section li { display: list-item; }
