@@ -162,18 +162,15 @@
     .role-apply__note { margin: var(--space-4) 0 0; font-size: var(--text-sm); line-height: var(--leading-relaxed); color: var(--text-secondary); }
     .role-apply__note a { color: var(--ink); font-weight: var(--weight-semibold); }
 
-    /* What happens next: three numbered steps on navy cards, on the light
-       page (a navy section would run straight into the navy footer) */
+    /* What happens next: three navy cards in the homepage pillar-card style
+       (label, title, text) */
     .role-hiring { padding-top: 0; }
-    .hire-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); margin-top: var(--space-10); }
-    .hire-step { padding: var(--space-8); background: var(--ink); box-shadow: 6px 6px 0 var(--hot); }
-    .hire-step__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-10); }
-    .hire-step__num { font-family: var(--font-display); font-weight: 700; font-size: var(--text-4xl); line-height: 1; letter-spacing: -0.04em; color: var(--hot); }
-    .hire-step__icon { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.25); display: grid; place-items: center; color: var(--white); }
-    .hire-step__icon svg { width: 22px; height: 22px; }
-    .hire-step__title { margin: 0 0 var(--space-2); font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; letter-spacing: -0.02em; color: var(--white); }
-    .hire-step__text { margin: 0; font-size: var(--text-base); line-height: var(--leading-relaxed); color: rgba(255, 255, 255, 0.7); }
-    @media (max-width: 968px) { .hire-steps { grid-template-columns: 1fr; } .hire-step__top { margin-bottom: var(--space-6); } }
+    .hire-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-10); }
+    .hire-card.pillar-card { min-height: 0; padding: var(--space-8); justify-content: flex-start; }
+    .hire-card .card__label { color: var(--blurple-bright); font-weight: var(--weight-bold); margin-bottom: var(--space-2); }
+    .hire-card .card__title { font-size: var(--text-3xl); font-weight: var(--weight-bold); letter-spacing: -0.03em; color: var(--white); margin: 0 0 var(--space-3); }
+    .hire-card .card__text { font-size: var(--text-md); color: rgba(255, 255, 255, 0.65); margin: 0; }
+    @media (max-width: 968px) { .hire-steps { grid-template-columns: 1fr; } }
 
     @media (max-width: 640px) {
       .role-apply { padding: var(--space-6); box-shadow: 4px 4px 0 var(--ink); }
@@ -531,20 +528,20 @@
           <h2 class="section-header__title">What happens next.</h2>
         </div>
         <div class="hire-steps" data-stagger>
-          <div class="hire-step">
-            <div class="hire-step__top"><span class="hire-step__num">01</span><span class="hire-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span></div>
-            <h3 class="hire-step__title">A real reply.</h3>
-            <p class="hire-step__text">A person reads every application, not a filter.</p>
+          <div class="card card--dark pillar-card hire-card">
+            <span class="card__label">01 / 03</span>
+            <h3 class="card__title">A real reply.</h3>
+            <p class="card__text">A person reads every application, not a filter.</p>
           </div>
-          <div class="hire-step">
-            <div class="hire-step__top"><span class="hire-step__num">02</span><span class="hire-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span></div>
-            <h3 class="hire-step__title">A short process.</h3>
-            <p class="hire-step__text">Conversations about the actual work, not riddles.</p>
+          <div class="card card--dark pillar-card hire-card">
+            <span class="card__label">02 / 03</span>
+            <h3 class="card__title">A short process.</h3>
+            <p class="card__text">Conversations about the actual work, not riddles.</p>
           </div>
-          <div class="hire-step">
-            <div class="hire-step__top"><span class="hire-step__num">03</span><span class="hire-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-            <h3 class="hire-step__title">A straight no.</h3>
-            <p class="hire-step__text">If it is not a fit, we say so quickly and kindly.</p>
+          <div class="card card--dark pillar-card hire-card">
+            <span class="card__label">03 / 03</span>
+            <h3 class="card__title">A straight no.</h3>
+            <p class="card__text">If it is not a fit, we say so quickly and kindly.</p>
           </div>
         </div>
       </div>

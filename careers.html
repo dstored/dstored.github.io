@@ -88,6 +88,7 @@
     /* Live role rows: separate boxes with a full border, arrow kept beside 'View role' */
     .careers-roles .role-row + .role-row { border-top: 2px solid var(--ink); }
     .careers-roles .role-row__cta { display: inline-flex; align-items: center; gap: 6px; }
+    .role-row--general { grid-template-columns: minmax(0, 1fr) auto; }
     .role-row--general .role-row__btn { pointer-events: none; white-space: nowrap; }
     .role-row--general:hover .role-row__btn { background: var(--white); color: var(--ink); border-color: var(--white); }
 
@@ -742,10 +743,8 @@
           <a href="mailto:careers@joinstored.com?subject=General%20application%20-%20what%20I%20would%20bring%20to%20Stored." class="role-row role-row--general">
             <div>
               <h3 class="role-row__title">General application</h3>
-              <p class="role-row__sub"><strong>We&rsquo;re less interested in your job titles and more interested in the skills and ambition you would bring to Stored. Tell us what you would bring and why it matters.</strong></p>
+              <p class="role-row__sub">We&rsquo;re less interested in your job titles and more interested in the skills and ambition you would bring to Stored. Tell us what you would bring and why it matters.</p>
             </div>
-            <span class="mono-meta">Any discipline</span>
-            <span class="mono-meta">UK</span>
             <span class="btn btn--primary role-row__btn">Email careers@joinstored.com</span>
           </a>
         </div>
