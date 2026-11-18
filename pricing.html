@@ -403,9 +403,10 @@
     @media (max-width: 480px) {
       .context-panel__item { grid-template-columns: 1fr; gap: var(--space-2); }
     }
-    #true-cost { padding-bottom: 0; }
     #true-cost .section-header__overline { text-align: left; }
-    .tc-us-line { margin: var(--space-5) 0 0; font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--ink); text-wrap: balance; }
+    .tc-us-line { margin: var(--space-5) 0 0; font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--white); text-wrap: balance; }
+    #true-cost .context-panel--paper { border-color: var(--white); box-shadow: 10px 10px 0 var(--blurple); }
+    #true-cost .section-header__title .highlight { color: var(--ink); }
     .tc-us { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .06em; text-transform: uppercase; color: var(--blurple); }
     #true-cost .context-panel__item { grid-template-columns: 11.25rem 1fr; }
     #true-cost .context-panel__figure { font-size: var(--text-4xl); }
@@ -817,11 +818,11 @@
     <!-- ════════════════════════════════════════ -->
     <!-- £200K SEGMENT SPLIT — the visual centerpiece -->
     <!-- THE FULLY LOADED COST -->
-    <section class="section" id="true-cost">
+    <section class="section section--dark" id="true-cost">
       <div class="container context-split">
         <div class="section-header" data-animate>
           <div class="section-header__overline">THE INDUSTRY PROBLEM</div>
-          <h2 class="section-header__title">Too high. <span class="highlight">Too hidden.</span></h2>
+          <h2 class="section-header__title">Too high.<br><span class="highlight">Too hidden.</span></h2>
           <p class="section-header__subtitle">Most providers quote a low rate, then add rental, PCI, authorisation, minimum and inactivity fees on top. UK SMEs typically pay 1.5% to 2.5% under blended pricing.</p>
           <p class="tc-us-line">At Stored, it&rsquo;s 1% flat and none of these.</p>
         </div>
