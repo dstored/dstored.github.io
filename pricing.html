@@ -404,6 +404,9 @@
       .context-panel__item { grid-template-columns: 1fr; gap: var(--space-2); }
     }
     #true-cost { padding-bottom: 0; }
+    #true-cost .section-header__overline { text-align: left; }
+    .tc-us-line { margin: var(--space-5) 0 0; font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--ink); text-wrap: balance; }
+    .tc-us { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .06em; text-transform: uppercase; color: var(--blurple); }
     #true-cost .context-panel__item { grid-template-columns: 11.25rem 1fr; }
     #true-cost .context-panel__figure { font-size: var(--text-4xl); }
     @media (max-width: 480px) { #true-cost .context-panel__item { grid-template-columns: 1fr; } }
@@ -817,16 +820,18 @@
     <section class="section" id="true-cost">
       <div class="container context-split">
         <div class="section-header" data-animate>
-          <h2 class="section-header__title">The rate isn&rsquo;t <span class="highlight">the real cost.</span></h2>
-          <p class="section-header__subtitle">A low processing rate can hide the real story. Machine rental, PCI, authorisation, minimum and inactivity fees sit on top, and UK SMEs typically pay 1.5% to 2.5% under blended pricing.</p>
+          <div class="section-header__overline">THE INDUSTRY PROBLEM</div>
+          <h2 class="section-header__title">Too high. <span class="highlight">Too hidden.</span></h2>
+          <p class="section-header__subtitle">Most providers quote a low rate, then add rental, PCI, authorisation, minimum and inactivity fees on top. UK SMEs typically pay 1.5% to 2.5% under blended pricing.</p>
+          <p class="tc-us-line">At Stored, it&rsquo;s 1% flat and none of these.</p>
         </div>
-        <aside class="context-panel context-panel--paper" aria-label="Fees on top of the rate" data-animate>
-          <div class="context-panel__overline">Fees on top of the rate</div>
+        <aside class="context-panel context-panel--paper" aria-label="Typical fees from other providers" data-animate>
+          <div class="context-panel__overline">Typical fees elsewhere</div>
           <ul class="context-panel__list">
-            <li class="context-panel__item"><span class="context-panel__figure">3&ndash;5p</span><span class="context-panel__text">authorisation fee on every transaction</span></li>
-            <li class="context-panel__item"><span class="context-panel__figure">&pound;15&ndash;30</span><span class="context-panel__text">a month to rent a card machine</span></li>
-            <li class="context-panel__item"><span class="context-panel__figure">&pound;4&ndash;6</span><span class="context-panel__text">a month in PCI compliance fees</span></li>
-            <li class="context-panel__item"><span class="context-panel__figure">&pound;15&ndash;30</span><span class="context-panel__text">monthly minimum service charge</span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">3&ndash;5p</span><span class="context-panel__text">authorisation fee on every transaction<span class="tc-us">&pound;0 at Stored</span></span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">&pound;15&ndash;30</span><span class="context-panel__text">a month to rent a card machine<span class="tc-us">&pound;0 at Stored</span></span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">&pound;4&ndash;6</span><span class="context-panel__text">a month in PCI compliance fees<span class="tc-us">&pound;0 at Stored</span></span></li>
+            <li class="context-panel__item"><span class="context-panel__figure">&pound;15&ndash;30</span><span class="context-panel__text">monthly minimum service charge<span class="tc-us">&pound;0 at Stored</span></span></li>
           </ul>
           <p class="context-panel__source">Sources: ExpertSure, <a href="https://www.expertsure.com/uk/merchant-accounts/payment-processing-costs/" rel="noopener" target="_blank">traditional acquirer fees</a> (verified October 2026) and <a href="https://www.expertsure.com/uk/merchant-accounts/merchant-account-fee-calculator/" rel="noopener" target="_blank">SME blended rates</a> (verified February 2026).</p>
         </aside>
