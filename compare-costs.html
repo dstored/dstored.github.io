@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <script src="/js/consent.js?v=conv-1"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare card payment costs | Stored</title>
+  <meta name="description" content="Put in the rates and fees from your card statement and see what the same sales would cost at Stored&#39;s flat 1%. Or send us your statement.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.storedpayments.com/compare-costs">
+
+  <meta property="og:title" content="Compare card payment costs | Stored">
+  <meta property="og:description" content="Put in the rates and fees from your card statement and see what the same sales would cost at Stored&#39;s flat 1%. Or send us your statement.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.storedpayments.com/compare-costs">
+  <meta property="og:image" content="https://www.storedpayments.com/assets/images/og-default.jpg">
+
+  <link rel="stylesheet" href="css/variables.css?v=green-1">
+  <link rel="stylesheet" href="css/base.css?v=brand-2">
+  <link rel="stylesheet" href="css/components.css?v=square-1">
+  <link rel="stylesheet" href="css/animations.css?v=brand-2">
+  <link rel="stylesheet" href="css/header.css?v=menu-8">
+  <link rel="stylesheet" href="css/footer.css?v=two-col-1">
+  <link rel="stylesheet" href="css/pages/solutions.css?v=case-1">
+
+  <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=3">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=2">
+  <style>
+    /* The ticker sits on the bottom of the first screen, as on the product pages */
+    .solution-hero { min-height: calc(100vh - 68px); }
+
+    /* Two-column hero: text left, example statement right */
+    .solution-hero .solution-hero__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+      gap: 48px;
+      align-items: center;
+    }
+    @media (min-width: 1361px) {
+      body .solution-hero .solution-hero__inner .solution-hero__title { font-size: 7.5rem; }
+    }
+    @media (min-width: 1025px) and (max-width: 1360px) {
+      body .solution-hero .solution-hero__inner .solution-hero__title { font-size: 8.5vw; }
+    }
+    @media (max-width: 1024px) {
+      .solution-hero .solution-hero__inner { grid-template-columns: 1fr; gap: 0; }
+      .cc-demo-wrap { margin: var(--space-10) auto 0; }
+    }
+    .solution-hero .solution-hero__inner .solution-hero__title {
+      font-size: clamp(4.75rem, 3.2rem + 10.5vw, 10rem);
+      line-height: calc(0.85em + 5px);
+      letter-spacing: -0.05em;
+      margin-top: 23px;
+    }
+    .solution-hero__asterisk { color: var(--hot); display: inline-block; margin-left: 0.05em; }
+    @media (min-width: 769px) and (max-height: 900px) {
+      .solution-hero { min-height: calc(100vh - 110px); padding-top: 94px; padding-bottom: 42px; }
+      .solution-hero .solution-hero__inner .solution-hero__title { margin-top: 16px; }
+    }
+    @media (max-width: 768px) {
+      .solution-hero .solution-hero__inner .solution-hero__title { font-size: clamp(3rem, 2.5rem + 5vw, 5rem); }
+    }
+    @media (min-width: 769px) and (max-height: 900px) { html body .solution-hero__title { margin-bottom: 0.156em !important; } }
+    @media (min-width: 769px) and (min-height: 901px) { html body .solution-hero__title { margin-bottom: 0.156em !important; } }
+
+    /* Hero graphic: an example statement whose fees add up, then the Stored line */
+    .cc-demo-wrap { position: relative; width: 100%; max-width: 460px; margin-left: auto; }
+    .cc-demo { position: relative; background: var(--white); border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); padding: 26px 28px 22px; }
+    .cc-demo__head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; border-bottom: 2px dashed rgba(11,27,51,.18); }
+    .cc-demo__head b { font-family: var(--font-display); font-size: 1.35rem; letter-spacing: -0.02em; color: var(--ink); }
+    .cc-demo__head span { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--mute); }
+    .cc-demo__rows { list-style: none; margin: 0; padding: 6px 0 0; }
+    .cc-demo__row { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid rgba(11,27,51,.08); font-size: var(--text-base); color: var(--text-secondary); opacity: 0; animation: cc-row-in .5s ease-out forwards; }
+    .cc-demo__row b { color: var(--ink); font-weight: var(--weight-semibold); font-variant-numeric: tabular-nums; }
+    .cc-demo__row:nth-child(1) { animation-delay: .3s; }
+    .cc-demo__row:nth-child(2) { animation-delay: .7s; }
+    .cc-demo__row:nth-child(3) { animation-delay: 1.1s; }
+    .cc-demo__row:nth-child(4) { animation-delay: 1.5s; }
+    .cc-demo__row:nth-child(5) { animation-delay: 1.9s; }
+    .cc-demo__total { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0 4px; font-weight: var(--weight-semibold); color: var(--ink); opacity: 0; animation: cc-row-in .5s ease-out 2.4s forwards; }
+    .cc-demo__total b { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    .cc-demo__stored { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; gap: 16px; background: var(--blurple); color: var(--white); padding: 16px 18px; opacity: 0; transform: translateY(8px); animation: cc-stored-in .6s cubic-bezier(.2,.8,.2,1) 3.1s forwards; }
+    .cc-demo__stored span { font-size: var(--text-sm); }
+    .cc-demo__stored b { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    @keyframes cc-row-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    @keyframes cc-stored-in { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .cc-demo__row, .cc-demo__total, .cc-demo__stored { animation: none; opacity: 1; transform: none; }
+    }
+
+    /* The calculator: inputs on the left, the answer on the right */
+    .cc-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: var(--space-8); align-items: start; margin-top: var(--space-10); }
+    .cc-form { display: grid; gap: var(--space-8); }
+    .cc-group__title { font-family: var(--font-display); font-weight: var(--weight-bold); font-size: var(--text-xl); letter-spacing: -0.02em; color: var(--ink); margin: 0 0 var(--space-4); }
+    .cc-group__note { font-size: var(--text-sm); color: var(--text-secondary); margin: var(--space-3) 0 0; }
+    .cc-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .cc-form .form-group { margin: 0; }
+    .cc-field { position: relative; }
+    .cc-field .input { padding-left: 2.1rem; font-variant-numeric: tabular-nums; -moz-appearance: textfield; }
+    .cc-field .input::-webkit-outer-spin-button, .cc-field .input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .cc-field--suffix .input { padding-left: 1.1rem; padding-right: 2.6rem; }
+    .cc-field__unit { position: absolute; top: 50%; transform: translateY(-50%); left: 1rem; color: var(--mute); pointer-events: none; font-size: var(--text-base); }
+    .cc-field--suffix .cc-field__unit { left: auto; right: 1rem; }
+    .cc-rates { width: 100%; border-collapse: collapse; }
+    .cc-rates th { font-size: var(--text-sm); font-weight: var(--weight-medium); text-align: left; color: var(--text-secondary); padding: 0 0 var(--space-2); }
+    .cc-rates td { padding: 6px 0; vertical-align: middle; }
+    .cc-rates td:first-child { font-weight: var(--weight-medium); color: var(--ink); padding-right: var(--space-4); white-space: nowrap; }
+    .cc-rates td + td { padding-left: var(--space-3); width: 30%; }
+    .cc-check { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--text-sm); color: var(--text-secondary); cursor: pointer; }
+    .cc-check input { width: 18px; height: 18px; margin-top: 1px; accent-color: var(--ink); flex: none; }
+
+    .cc-result { position: sticky; top: 96px; background: var(--ink); color: var(--white); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--blurple); padding: var(--space-8); }
+    .cc-result__overline { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .08em; text-transform: uppercase; color: var(--hot); margin-bottom: var(--space-5); }
+    .cc-result__line { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4); padding: var(--space-4) 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+    .cc-result__line span { color: rgba(255,255,255,.75); }
+    .cc-result__line b { font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; text-align: right; }
+    .cc-result__line small { display: block; font-family: var(--font-body); font-size: var(--text-sm); font-weight: var(--weight-regular); color: rgba(255,255,255,.6); letter-spacing: 0; }
+    .cc-result__save { margin-top: var(--space-6); }
+    .cc-result__save span { display: block; color: rgba(255,255,255,.75); margin-bottom: var(--space-1); }
+    .cc-result__save b { display: block; font-family: var(--font-display); font-size: clamp(2.75rem, 2rem + 2.5vw, 4rem); line-height: 1; letter-spacing: -0.04em; color: var(--white); font-variant-numeric: tabular-nums; }
+    .cc-result__msg { font-size: var(--text-sm); color: rgba(255,255,255,.75); margin: var(--space-5) 0 0; }
+    .cc-result__fine { font-size: var(--text-xs); color: rgba(255,255,255,.55); margin: var(--space-5) 0 0; line-height: 1.5; }
+    .cc-result__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+    .cc-result.is-empty .cc-result__save b { color: rgba(255,255,255,.35); }
+
+    @media (max-width: 1024px) {
+      .cc-layout { grid-template-columns: 1fr; }
+      .cc-result { position: static; }
+    }
+    @media (max-width: 640px) {
+      .cc-row2 { grid-template-columns: 1fr; }
+      .form-card--brutalist.cc-card { padding: var(--space-6) var(--space-5); }
+      .cc-rates, .cc-rates thead, .cc-rates tbody { display: block; }
+      .cc-rates tr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 14px; }
+      .cc-rates th:first-child { display: none; }
+      .cc-rates th, .cc-rates td, .cc-rates td + td { padding: 0; width: auto; }
+      .cc-rates td:first-child { grid-column: 1 / -1; }
+    }
+
+    .br-desk { display: none; }
+    @media (min-width: 969px) { .br-desk { display: inline; } }
+    .cc-demo__head b, .cc-demo__head span { white-space: nowrap; }
+    @media (max-width: 640px) {
+      .cc-demo { padding: 20px 18px 18px; }
+      .cc-demo__head b { font-size: 1.1rem; }
+    }
+
+    /* Statement route */
+    .cc-statement-card { max-width: 760px; margin: var(--space-10) auto 0; }
+    .cc-statement { display: grid; gap: var(--space-5); }
+    .cc-statement .form-group { margin: 0; }
+    .cc-statement__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
+    .cc-statement__note { font-size: var(--text-sm); color: var(--text-secondary); margin: 0; }
+    .cc-optional { color: var(--text-secondary); font-weight: var(--weight-regular); }
+  </style>
+  <link rel="stylesheet" href="/css/mobile.css?v=thread-1">
+</head>
+<body>
+
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo" aria-label="Stored home page">
+        <img src="/assets/images/stored-logo.svg" alt="Stored" width="129" height="28">
+      </a>
+
+      <nav class="header__nav" role="navigation" aria-label="Primary">
+        <a href="#" class="nav-link" data-mega-trigger="mega-solutions">
+          Solutions
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="nav-link" data-mega-trigger="mega-sectors">
+          Sectors
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/pricing" class="nav-link">Pricing</a>
+        <a href="#" class="nav-link" data-mega-trigger="mega-company">
+          Company
+          <svg class="nav-link__chevron" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="https://s.joinstored.com/portal/auth/login" class="btn btn--secondary btn--sm">Sign in</a>
+        <a href="/sign-up" class="btn btn--primary btn--sm">Sign up</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+        <span class="mobile-toggle__bar"></span>
+      </button>
+    </div>
+
+    <!-- Solutions mega menu -->
+    <div class="mega-menu" id="mega-solutions" role="menu">
+      <div class="mega-menu__inner">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">In-person payments</div>
+          <a href="/card-machines" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Card machines</span>
+              <span class="mega-menu__link-desc">Countertop, portable & mobile</span>
+            </div>
+          </a>
+          <a href="/epos-system" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">POS</span>
+              <span class="mega-menu__link-desc">Full POS for counter, table & field</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Digital payments</div>
+          <a href="/payment-gateway" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Payment gateway</span>
+              <span class="mega-menu__link-desc">Cards & wallets on your site</span>
+            </div>
+          </a>
+          <a href="/online-checkout" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Hosted checkout</span>
+              <span class="mega-menu__link-desc">Branded checkout pages, no code</span>
+            </div>
+          </a>
+          <a href="/payment-links" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Pay by link</span>
+              <span class="mega-menu__link-desc">SMS, email, WhatsApp or QR</span>
+            </div>
+          </a>
+          <a href="/online-invoicing" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Invoicing</span>
+              <span class="mega-menu__link-desc">Invoices with built-in payment</span>
+            </div>
+          </a>
+          <a href="/virtual-terminal" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Virtual terminal</span>
+              <span class="mega-menu__link-desc">Card payments over the phone</span>
+            </div>
+          </a>
+          <a href="/bulk-payment-links" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Bulk payments</span>
+              <span class="mega-menu__link-desc">Hundreds of payment links at once</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Merchant platform</div>
+          <a href="/sell-tickets-online" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Tickets &amp; events</span>
+              <span class="mega-menu__link-desc">Sell, scan and settle events</span>
+            </div>
+          </a>
+          <a href="/gift-vouchers" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Gift vouchers</span>
+              <span class="mega-menu__link-desc">Digital vouchers, sold and redeemed</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">See Stored in action.</div>
+            <p class="mega-menu__promo-text">20 minutes with a payments specialist. No pressure, no commitment.</p>
+          </div>
+          <a href="/sign-up" class="btn btn--primary btn--sm" style="align-self: flex-start;">Sign up now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sectors mega menu -->
+    <div class="mega-menu" id="mega-sectors" role="menu">
+      <div class="mega-menu__inner">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Consumer-facing</div>
+          <a href="/hospitality-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Hospitality</span>
+              <span class="mega-menu__link-desc">Restaurants, bars &amp; caf&eacute;s</span>
+            </div>
+          </a>
+          <a href="/beauty-wellness-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Beauty &amp; wellness</span>
+              <span class="mega-menu__link-desc">Salons, spas &amp; clinics</span>
+            </div>
+          </a>
+          <a href="/retail-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Retail</span>
+              <span class="mega-menu__link-desc">Single &amp; multi-store shops</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Service &amp; trade</div>
+          <a href="/payments-for-tradespeople" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Trades</span>
+              <span class="mega-menu__link-desc">Tradespeople &amp; field teams</span>
+            </div>
+          </a>
+          <a href="/professional-services-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Professional services</span>
+              <span class="mega-menu__link-desc">Accountants, agencies &amp; consultants</span>
+            </div>
+          </a>
+          <a href="/b2b-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">B2B</span>
+              <span class="mega-menu__link-desc">Invoices &amp; telephone payments</span>
+            </div>
+          </a>
+          <a href="/wholesale-payment-solutions" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Wholesale</span>
+              <span class="mega-menu__link-desc">Bulk billing &amp; trade accounts</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">Not sure which fits?</div>
+            <p class="mega-menu__promo-text">20 minutes with a payments specialist. We&rsquo;ll map Stored to your sector.</p>
+          </div>
+          <a href="/sign-up" class="btn btn--primary btn--sm" style="align-self: flex-start;">Sign up now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company mega menu -->
+    <div class="mega-menu" id="mega-company" role="menu">
+      <div class="mega-menu__inner" style="grid-template-columns: 1fr 1fr 1fr 280px;">
+        <div class="mega-menu__column">
+          <div class="mega-menu__column-title">Company</div>
+          <a href="/about" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">About Stored</span>
+              <span class="mega-menu__link-desc">Our story, mission and team</span>
+            </div>
+          </a>
+          <a href="/partners" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Partners</span>
+              <span class="mega-menu__link-desc">Resell, refer or integrate Stored</span>
+            </div>
+          </a>
+          <a href="/careers" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Careers</span>
+              <span class="mega-menu__link-desc">Join the team</span>
+            </div>
+          </a>
+          <a href="/contact" class="mega-menu__link">
+            <div class="mega-menu__link-text">
+              <span class="mega-menu__link-title">Contact</span>
+              <span class="mega-menu__link-desc">Sales, support & press</span>
+            </div>
+          </a>
+        </div>
+        <div class="mega-menu__column"></div>
+        <div class="mega-menu__column"></div>
+        <div class="mega-menu__promo">
+          <div>
+            <div class="mega-menu__promo-title">Built on proven rails.</div>
+            <p class="mega-menu__promo-text">Every Stored payment is processed by one of our chosen acquiring partners: Worldpay, Cashflows or Stripe.</p>
+          </div>
+          <a href="/partners" class="btn btn--white btn--sm" style="align-self: flex-start;">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav">
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Solutions</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/card-machines" class="mobile-nav__link">Card machines</a>
+        <a href="/epos-system" class="mobile-nav__link">POS</a>
+        <a href="/payment-gateway" class="mobile-nav__link">Payment gateway</a>
+        <a href="/online-checkout" class="mobile-nav__link">Hosted checkout</a>
+        <a href="/payment-links" class="mobile-nav__link">Pay by link</a>
+        <a href="/online-invoicing" class="mobile-nav__link">Invoicing</a>
+        <a href="/virtual-terminal" class="mobile-nav__link">Virtual terminal</a>
+        <a href="/bulk-payment-links" class="mobile-nav__link">Bulk payments</a>
+        <a href="/sell-tickets-online" class="mobile-nav__link">Tickets &amp; events</a>
+        <a href="/gift-vouchers" class="mobile-nav__link">Gift vouchers</a>
+      </div>
+    </div>
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Sectors</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/hospitality-payment-solutions" class="mobile-nav__link">Hospitality</a>
+        <a href="/beauty-wellness-payment-solutions" class="mobile-nav__link">Beauty &amp; wellness</a>
+        <a href="/retail-payment-solutions" class="mobile-nav__link">Retail</a>
+        <a href="/payments-for-tradespeople" class="mobile-nav__link">Trades</a>
+        <a href="/professional-services-payment-solutions" class="mobile-nav__link">Professional services</a>
+        <a href="/b2b-payment-solutions" class="mobile-nav__link">B2B</a>
+        <a href="/wholesale-payment-solutions" class="mobile-nav__link">Wholesale</a>
+      </div>
+    </div>
+    <div class="mobile-nav__section">
+      <a href="/pricing" class="mobile-nav__link">Pricing</a>
+    </div>
+    <div class="mobile-nav__section" data-mobile-accordion>
+      <button class="mobile-nav__section-title" data-mobile-accordion-trigger>Company</button>
+      <div data-mobile-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+        <a href="/about" class="mobile-nav__link">About</a>
+        <a href="/partners" class="mobile-nav__link">Partners</a>
+        <a href="/careers" class="mobile-nav__link">Careers</a>
+        <a href="/contact" class="mobile-nav__link">Contact</a>
+      </div>
+    </div>
+    <div class="mobile-nav__actions">
+      <a href="/sign-up" class="btn btn--primary">Sign up</a>
+      <a href="/book-a-demo" class="btn btn--secondary">Book a demo</a>
+      <a href="https://s.joinstored.com/portal/auth/login" class="btn btn--ghost">Sign in</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="solution-hero">
+      <div class="container">
+        <div class="solution-hero__inner">
+          <div class="solution-hero__content" data-animate>
+            <h1 class="solution-hero__title fit-phone" style="--fit-em: 4.6">Compare<br><span style="white-space: nowrap;">costs.<span class="solution-hero__asterisk">*</span></span></h1>
+            <p class="solution-hero__subtitle"><span class="solution-hero__subtitle-asterisk">*</span>put in the rates and fees from your statement,<br class="br-desk"> and see what you&rsquo;d pay with Stored.</p>
+            <div class="solution-hero__actions">
+              <a href="#below-hero" class="btn btn--primary btn--lg btn--icon-right">
+                Enter my rates
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#statement" class="btn btn--secondary btn--lg">Send my statement</a>
+            </div>
+            <div class="solution-hero__trust">
+              <a class="solution-hero__trust-text trust-line" href="https://uk.trustpilot.com/review/joinstored.com" target="_blank" rel="noopener noreferrer"><span class="trust-line__star" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.6L22 9.3l-5.3 4.7L18.2 21 12 17.4 5.8 21l1.5-7L2 9.3l7.1-.7z" style="fill: var(--green)"/></svg></span>Rated <strong data-trustpilot-rating>4.9</strong> out of 5 stars on <strong class="trust-line__name">Trustpilot</strong>.</a>
+            </div>
+          </div>
+          <div class="cc-demo-wrap" data-animate>
+            <div class="cc-demo" role="img" aria-label="An example monthly statement: card fees, authorisation fees, machine rental, a PCI fee and a service charge add up to £165.63 on £12,500 of card sales, against £125 at Stored's 1%">
+              <div class="cc-demo__head"><b>Example statement</b><span>&pound;12,500 card sales</span></div>
+              <ul class="cc-demo__rows">
+                <li class="cc-demo__row">Card fees<b>&pound;91.88</b></li>
+                <li class="cc-demo__row">Authorisation fees<b>&pound;18.75</b></li>
+                <li class="cc-demo__row">Card machine rental<b>&pound;25.00</b></li>
+                <li class="cc-demo__row">PCI fee<b>&pound;10.00</b></li>
+                <li class="cc-demo__row">Service charge<b>&pound;20.00</b></li>
+              </ul>
+              <div class="cc-demo__total"><span>This month</span><b>&pound;165.63</b></div>
+              <div class="cc-demo__stored"><span>Stored card fees &middot; 1% flat</span><b>&pound;125.00</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#below-hero" class="scroll-hint" aria-label="Scroll down">
+        <span class="scroll-hint__text">Scroll</span>
+        <svg class="scroll-hint__icon" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" stroke-width="1.6"/>
+          <circle class="scroll-hint__wheel" cx="8" cy="7" r="1.6" fill="currentColor"/>
+        </svg>
+      </a>
+    </section>
+
+    <div class="marquee">
+      <div class="marquee__track">
+        <span class="marquee__item">YOUR RATES <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">YOUR FEES <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">ONE FLAT 1% <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">COMPARE <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">YOUR RATES <span class="marquee__separator">&rarr;</span></span>
+        <span class="marquee__item">YOUR FEES <span class="marquee__separator">&rarr;</span></span>
+      </div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <section class="section" id="below-hero">
+      <div class="container">
+        <div class="section-header section-header--center section-header--one-line" data-animate>
+          <div class="section-header__overline">YOUR STATEMENT</div>
+          <h2 class="section-header__title">What you pay now, side by side.</h2>
+          <p class="section-header__subtitle">Copy the rates and monthly fees from your last statement. The answer updates as you type.</p>
+        </div>
+
+        <div class="cc-layout">
+          <div class="form-card form-card--brutalist cc-card" data-animate>
+            <form class="cc-form" data-cc-form novalidate>
+              <div>
+                <h3 class="cc-group__title">Your card sales</h3>
+                <div class="cc-row2">
+                  <div class="form-group">
+                    <label class="form-label" for="cc-sales">Card sales a month</label>
+                    <div class="cc-field"><span class="cc-field__unit">&pound;</span><input class="input" id="cc-sales" name="sales" type="number" inputmode="decimal" min="0" step="any" placeholder="12,500"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cc-avg">Average sale</label>
+                    <div class="cc-field"><span class="cc-field__unit">&pound;</span><input class="input" id="cc-avg" name="avg" type="number" inputmode="decimal" min="0" step="any" placeholder="20"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 class="cc-group__title">Your rates</h3>
+                <table class="cc-rates">
+                  <thead><tr><th scope="col">Card type</th><th scope="col">Rate</th><th scope="col">Share of sales</th></tr></thead>
+                  <tbody>
+                    <tr><td>Consumer debit</td><td><div class="cc-field cc-field--suffix"><input class="input" name="rate-cd" aria-label="Consumer debit rate" type="number" inputmode="decimal" min="0" step="any" placeholder="0.65"><span class="cc-field__unit">%</span></div></td><td><div class="cc-field cc-field--suffix"><input class="input" name="share-cd" aria-label="Consumer debit share of sales" type="number" inputmode="decimal" min="0" max="100" step="any" value="70"><span class="cc-field__unit">%</span></div></td></tr>
+                    <tr><td>Consumer credit</td><td><div class="cc-field cc-field--suffix"><input class="input" name="rate-cc" aria-label="Consumer credit rate" type="number" inputmode="decimal" min="0" step="any" placeholder="0.75"><span class="cc-field__unit">%</span></div></td><td><div class="cc-field cc-field--suffix"><input class="input" name="share-cc" aria-label="Consumer credit share of sales" type="number" inputmode="decimal" min="0" max="100" step="any" value="20"><span class="cc-field__unit">%</span></div></td></tr>
+                    <tr><td>Business debit</td><td><div class="cc-field cc-field--suffix"><input class="input" name="rate-bd" aria-label="Business debit rate" type="number" inputmode="decimal" min="0" step="any" placeholder="1.50"><span class="cc-field__unit">%</span></div></td><td><div class="cc-field cc-field--suffix"><input class="input" name="share-bd" aria-label="Business debit share of sales" type="number" inputmode="decimal" min="0" max="100" step="any" value="5"><span class="cc-field__unit">%</span></div></td></tr>
+                    <tr><td>Business credit</td><td><div class="cc-field cc-field--suffix"><input class="input" name="rate-bc" aria-label="Business credit rate" type="number" inputmode="decimal" min="0" step="any" placeholder="2.50"><span class="cc-field__unit">%</span></div></td><td><div class="cc-field cc-field--suffix"><input class="input" name="share-bc" aria-label="Business credit share of sales" type="number" inputmode="decimal" min="0" max="100" step="any" value="5"><span class="cc-field__unit">%</span></div></td></tr>
+                  </tbody>
+                </table>
+                <p class="cc-group__note" data-cc-share-note>Not sure of the split? Keep our starting guess, or copy it from your statement.</p>
+              </div>
+
+              <div>
+                <h3 class="cc-group__title">Your monthly fees</h3>
+                <div class="cc-row2">
+                  <div class="form-group">
+                    <label class="form-label" for="cc-auth">Authorisation fee, per sale</label>
+                    <div class="cc-field cc-field--suffix"><input class="input" id="cc-auth" name="auth" type="number" inputmode="decimal" min="0" step="any" placeholder="0"><span class="cc-field__unit">p</span></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cc-rental">Card machine rental</label>
+                    <div class="cc-field"><span class="cc-field__unit">&pound;</span><input class="input" id="cc-rental" name="rental" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cc-pci">PCI fee</label>
+                    <div class="cc-field"><span class="cc-field__unit">&pound;</span><input class="input" id="cc-pci" name="pci" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cc-service">Service or minimum charge</label>
+                    <div class="cc-field"><span class="cc-field__unit">&pound;</span><input class="input" id="cc-service" name="service" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cc-other">Any other monthly fees</label>
+                    <div class="cc-field"><span class="cc-field__unit">&pound;</span><input class="input" id="cc-other" name="other" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></div>
+                  </div>
+                </div>
+              </div>
+
+              <label class="cc-check"><input type="checkbox" name="absorb"> I&rsquo;d absorb business card fees with Stored (2.5%) rather than pass them on to the customer (1%).</label>
+            </form>
+          </div>
+
+          <aside class="cc-result is-empty" aria-live="polite" data-cc-result data-animate>
+            <div class="cc-result__overline">Your card costs a year</div>
+            <div class="cc-result__line"><span>Now</span><b data-cc-now>&ndash;<small>&nbsp;</small></b></div>
+            <div class="cc-result__line"><span>With Stored</span><b data-cc-stored>&ndash;<small>&nbsp;</small></b></div>
+            <div class="cc-result__save"><span data-cc-save-label>You&rsquo;d save</span><b data-cc-save>&pound;0</b></div>
+            <p class="cc-result__msg" data-cc-msg>Add your card sales and at least one rate to see the comparison.</p>
+            <p class="cc-result__fine">Stored figure: 1% flat on consumer cards, with no authorisation, PCI, monthly minimum or setup fees. Business cards at 1% when you pass the fee on, 2.5% when you absorb it. Card machine costs aren&rsquo;t included. The 1% published rate is for businesses under &pound;200k a year.</p>
+            <div class="cc-result__actions">
+              <a href="/sign-up" class="btn btn--primary">Sign up</a>
+              <a href="#statement" class="btn btn--white">Send my statement</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="section section--white" id="statement">
+      <div class="container">
+        <div class="section-header section-header--center section-header--one-line" data-animate>
+          <div class="section-header__overline">RATHER WE DID IT?</div>
+          <h2 class="section-header__title">Send us your statement.</h2>
+          <p class="section-header__subtitle">Email your last three months of statements and we&rsquo;ll come back with a full comparison.</p>
+        </div>
+
+        <div class="form-card form-card--brutalist cc-statement-card" data-animate>
+          <form class="cc-statement" data-email-form="sales@joinstored.com" data-email-subject="Statement comparison">
+            <div class="cc-row2">
+              <div class="form-group">
+                <label class="form-label" for="st-name">Your name</label>
+                <input class="input" id="st-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="st-business">Business name</label>
+                <input class="input" id="st-business" name="business" type="text" autocomplete="organization" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="st-phone">Contact number <span class="cc-optional">(optional)</span></label>
+                <input class="input" id="st-phone" name="phone" type="tel" autocomplete="tel">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="st-provider">Current provider <span class="cc-optional">(optional)</span></label>
+                <input class="input" id="st-provider" name="provider" type="text">
+              </div>
+            </div>
+            <div class="cc-statement__actions">
+              <button type="submit" class="btn btn--primary btn--lg btn--icon-right">
+                Email my statement
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <p class="cc-statement__note">This opens your email app to sales@joinstored.com. Attach your statements before you send.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="/" class="footer__logo" aria-label="Stored">
+            <img src="/assets/images/stored-logo-white.svg" alt="Stored" width="129" height="28">
+          </a>
+          <p class="footer__tagline">Full-service payments for UK businesses. In-person, digital and platform, one partner for everything.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="X / Twitter"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Solutions</div>
+          <div class="footer__links">
+            <a href="/card-machines" class="footer__link">Card machines</a>
+            <a href="/epos-system" class="footer__link">POS</a>
+            <a href="/payment-gateway" class="footer__link">Payment gateway</a>
+            <a href="/online-checkout" class="footer__link">Hosted checkout</a>
+            <a href="/payment-links" class="footer__link">Pay by link</a>
+            <a href="/online-invoicing" class="footer__link">Invoicing</a>
+            <a href="/virtual-terminal" class="footer__link">Virtual terminal</a>
+            <a href="/bulk-payment-links" class="footer__link">Bulk payments</a>
+            <a href="/sell-tickets-online" class="footer__link">Tickets &amp; events</a>
+            <a href="/gift-vouchers" class="footer__link">Gift vouchers</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Sectors</div>
+          <div class="footer__links">
+            <a href="/hospitality-payment-solutions" class="footer__link">Hospitality</a>
+            <a href="/beauty-wellness-payment-solutions" class="footer__link">Beauty &amp; wellness</a>
+            <a href="/retail-payment-solutions" class="footer__link">Retail</a>
+            <a href="/payments-for-tradespeople" class="footer__link">Trades</a>
+            <a href="/professional-services-payment-solutions" class="footer__link">Professional services</a>
+            <a href="/b2b-payment-solutions" class="footer__link">B2B</a>
+            <a href="/wholesale-payment-solutions" class="footer__link">Wholesale</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Company</div>
+          <div class="footer__links">
+            <a href="/about" class="footer__link">About</a>
+            <a href="/partners" class="footer__link">Partners</a>
+            <a href="/careers" class="footer__link">Careers</a>
+            <a href="/contact" class="footer__link">Contact</a>
+            <a href="/pricing" class="footer__link">Pricing</a>
+          </div>
+        </div>
+
+        <div class="footer__column">
+          <div class="footer__column-title">Resources</div>
+          <div class="footer__links">
+            <a href="/blog/" class="footer__link">Blog</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__legal">
+          <a href="/terms-and-conditions" class="footer__legal-link">Terms &amp; conditions</a>
+          <a href="/privacy-policy" class="footer__legal-link">Privacy policy</a>
+          <a href="/cookie-policy" class="footer__legal-link">Cookies</a>
+          <a href="/complaints" class="footer__legal-link">Complaints</a>
+          <a href="/regulatory-information" class="footer__legal-link">Regulatory</a>
+        </div>
+        <p class="footer__copyright">&copy; 2026 Stored. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=chain-4"></script>
+  <script src="/js/email-form.js?v=1"></script>
+  <script>
+    // Compare costs: yearly cost now vs Stored, from the rates and fees typed in.
+    (function () {
+      var form = document.querySelector('[data-cc-form]');
+      var box = document.querySelector('[data-cc-result]');
+      if (!form || !box) return;
+      var $ = function (s) { return box.querySelector(s); };
+      var num = function (name) { var v = parseFloat(form.elements[name].value); return isFinite(v) && v > 0 ? v : 0; };
+      var gbp = function (v) { return '£' + Math.round(v).toLocaleString('en-GB'); };
+      var pct = function (v) { return (Math.round(v * 100) / 100).toFixed(2) + '%'; };
+      var types = ['cd', 'cc', 'bd', 'bc'];
+
+      function update() {
+        var sales = num('sales');
+        var shares = {}, total = 0, rated = false;
+        types.forEach(function (t) { shares[t] = num('share-' + t); total += shares[t]; if (num('rate-' + t)) rated = true; });
+        var note = form.querySelector('[data-cc-share-note]');
+        note.textContent = total && Math.abs(total - 100) > 0.5
+          ? 'Your split adds up to ' + Math.round(total) + '%, so we’ve scaled it to 100%.'
+          : 'Not sure of the split? Keep our starting guess, or copy it from your statement.';
+
+        if (!sales || !rated || !total) {
+          box.classList.add('is-empty');
+          $('[data-cc-now]').innerHTML = '&ndash;<small>&nbsp;</small>';
+          $('[data-cc-stored]').innerHTML = '&ndash;<small>&nbsp;</small>';
+          $('[data-cc-save-label]').textContent = 'You’d save';
+          $('[data-cc-save]').textContent = '£0';
+          $('[data-cc-msg]').textContent = 'Add your card sales and at least one rate to see the comparison.';
+          return;
+        }
+
+        var year = sales * 12;
+        var avg = num('avg');
+        var txns = avg ? sales / avg : 0;
+        var bizRate = form.elements.absorb.checked ? 2.5 : 1;
+        var nowCards = 0, storedCards = 0;
+        types.forEach(function (t) {
+          var turnover = year * shares[t] / total;
+          nowCards += turnover * num('rate-' + t) / 100;
+          storedCards += turnover * (t.charAt(0) === 'b' ? bizRate : 1) / 100;
+        });
+        var monthly = num('rental') + num('pci') + num('service') + num('other');
+        var now = nowCards + txns * 12 * num('auth') / 100 + monthly * 12;
+        var stored = storedCards;
+        var save = now - stored;
+
+        box.classList.remove('is-empty');
+        $('[data-cc-now]').innerHTML = gbp(now) + '<small>' + pct(now / year * 100) + ' of card sales</small>';
+        $('[data-cc-stored]').innerHTML = gbp(stored) + '<small>' + pct(stored / year * 100) + ' of card sales</small>';
+        $('[data-cc-save-label]').textContent = save >= 0 ? 'You’d save' : 'Stored would cost';
+        $('[data-cc-save]').textContent = save >= 0 ? gbp(save) + ' a year' : gbp(-save) + ' more';
+
+        var msg;
+        if (num('auth') && !avg) msg = 'Add your average sale so we can count your authorisation fees.';
+        else if (year > 200000) msg = 'At over £200k a year you’d get a bespoke rate. Send us your statement for a quote.';
+        else if (save < 0) msg = 'Your current costs come in under our flat rate. Send us your statement and we’ll take a proper look.';
+        else msg = 'Based on ' + gbp(year) + ' of card sales a year.';
+        $('[data-cc-msg]').textContent = msg;
+      }
+
+      form.addEventListener('input', update);
+      form.addEventListener('change', update);
+      update();
+    })();
+  </script>
+</body>
+</html>
